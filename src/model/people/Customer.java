@@ -1,4 +1,4 @@
-package pharmacy.src.model.people;
+package model.people;
 
 public class Customer extends Person {
     private double points;
