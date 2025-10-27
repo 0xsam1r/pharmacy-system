@@ -25,6 +25,20 @@ public class SaleReturn {
         this.customer = customer;
         this.totalRefundOfMoney = totalRefundOfMoney;
     }
+    public SaleReturn(SaleReturn s) {
+        this.id = s.id;
+        this.returnDate = s.returnDate;
+        this.refundProcessedBy = s.refundProcessedBy;
+        this.customer = s.customer;
+        this.totalRefundOfMoney = s.totalRefundOfMoney;
+    }
+    public SaleReturn() {
+        this.id = 0;
+        this.returnDate = null;
+        this.refundProcessedBy = null;
+        this.customer = null;
+        this.totalRefundOfMoney = 0;
+    }
     
     public void processRefund(/*SaleInvoice saleInvoice*/) {
     System.out.println("Processing refund for sale invoice: "  /*+  saleInvoice.getInvoiceId()*/);
