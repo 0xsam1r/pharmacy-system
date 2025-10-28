@@ -29,3 +29,59 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+
+##########################################
+Remove texteditors files
+##########################################
+# Java / build
+target/
+build/
+out/
+dist/
+
+# IDEs
+# IntelliJ IDEA
+/.idea/
+/*.iml
+/.idea_modules/
+
+# NetBeans
+/nbproject/
+/build/
+/nbbuild/
+/dist/
+/.*.cache
+
+# Eclipse 
+.classpath
+.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs, temp
+*.log
+*.tmp
+
+# Gradle
+.gradle/
+/build/
+
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# Node / others 
+node_modules/
+npm-debug.log
+
+# files 
+*.mf
