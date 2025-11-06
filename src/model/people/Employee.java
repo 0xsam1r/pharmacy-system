@@ -11,6 +11,18 @@ public class Employee extends Person {
         this.salary = salary;
         this.startDate = startDate;
     }
+    public Employee(Employee e) {
+        super(e.id, e.name, e.phone);
+        this.account = e.account;
+        this.salary = e.salary;
+        this.startDate = e.startDate;
+    }
+    public Employee() {
+        super();
+        this.account = null;
+        this.salary = 0;
+        this.startDate = "";
+    }
 
     // Getters and setters
     public UserAccount getAccount() { return account; }

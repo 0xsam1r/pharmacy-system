@@ -1,31 +1,60 @@
-.gitignore
-### IntelliJ IDEA ###
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
-.kotlin
+# --- Build outputs ---
+/build/
+/dist/
+/out/
+/target/
+/*.class
+/*.jar
+/*.war
+/*.ear
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# --- IDE-specific files ---
+# IntelliJ IDEA
+/.idea/
+/*.iml
 
-### NetBeans ###
+# NetBeans
+/nbproject/
 /nbproject/private/
 /nbbuild/
-/dist/
 /nbdist/
-/.nb-gradle/
+/nbactions.xml
+/nb-configuration.xml
 
-### VS Code ###
+# Eclipse
+.classpath
+.project
+.settings/
+
+# VS Code
 .vscode/
 
-### Mac OS ###
+# --- System files ---
 .DS_Store
+Thumbs.db
+
+# --- Logs and temporary files ---
+*.log
+*.tmp
+*.bak
+*.swp
+
+# --- Gradle / Maven (in case you switch later) ---
+.gradle/
+/build/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# --- NodeJS (ignore if not used, just for safety) ---
+node_modules/
+npm-debug.log
+
+# --- Misc ---
+# ignore generated MANIFEST files
+*.mf
+/build.xml
