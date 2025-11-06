@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.Product;
 
-/**
- *
- * @author mahmoud Elsayed
- */
+// @author mahmoud Elsayed
 public class DosageForm {
     private double Strength ;
     private String  Active_Ingredient ;

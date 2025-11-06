@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.Product;
+
+// @author mahmoud Elsayed
+
 /*
 import java.util.ArrayList;
-/**
- *
- * @author mahmoud Elsayed
- */
 /*
 public class Medicine extends Product{
     private ِArrayList<DosageForm> form  ;
@@ -42,8 +37,8 @@ public class Medicine extends Product {
 
     private ArrayList<DosageForm> forms; 
 
-    public Medicine(String parcode, String name, int unitsPerProduct, double price) {
-        super(parcode, name, unitsPerProduct, price, Category.MEDICINE);
+    public Medicine(String parcode, String name, int unitsPerProduct, double price, Category Category) {
+        super(parcode, name, unitsPerProduct, price, Category);
         this.forms = new ArrayList<>(); 
     }
 // this new to our structure

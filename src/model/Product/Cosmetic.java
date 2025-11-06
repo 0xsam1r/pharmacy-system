@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model.Product;
 import enums.Category;
+// @author mahmoud Elsayed
 
-/**
- *
- * @author mahmoud Elsayed
- */
 public class Cosmetic extends Product {
     private String brand;
     private char gender;
-    public Cosmetic(String Parcode, String Name,  int UnitsPerProduct, double Price,String brand, char gender) {
-        super(Parcode, Name, UnitsPerProduct, Price, Category.COSMETIC);
+    public Cosmetic(String Parcode, String Name,  int UnitsPerProduct, double Price,Category Category,String brand, char gender) {
+        super(Parcode, Name, UnitsPerProduct, Price, Category );
         this.brand = brand;
         this.gender = gender;
     }
