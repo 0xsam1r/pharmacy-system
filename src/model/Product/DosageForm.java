@@ -9,6 +9,14 @@ public class DosageForm {
         this.Strength = Strength;
         this.Active_Ingredient = Active_Ingredient;
     }
+    public DosageForm(DosageForm d) {
+        this.Strength = d.Strength;
+        this.Active_Ingredient = d.Active_Ingredient;
+    }
+    public DosageForm() {
+        this.Strength = 0;
+        this.Active_Ingredient = "";
+    }
 
     public double getStrength() {
         return Strength;

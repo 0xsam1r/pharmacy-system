@@ -16,11 +16,23 @@ public class Inventory {
     private ArrayList<PurchaseInvoice> purchaseInvoices;
     private double reorderLevel;
 
-    public Inventory(String ID, double reorderLevel) {
+    public Inventory(String ID, double reorderLevel, ArrayList<Product> products, ArrayList<PurchaseInvoice> purchaseInvoices) {
     this.ID = ID;
     this.reorderLevel = reorderLevel;
-    this.products = new ArrayList<>();
-    this.purchaseInvoices = new ArrayList<>();
+    this.products = products;
+    this.purchaseInvoices = purchaseInvoices;
+    }
+    public Inventory(Inventory i) {
+    this.ID = i.ID;
+    this.reorderLevel = i.reorderLevel;
+    this.products = i.products;
+    this.purchaseInvoices = i.purchaseInvoices;
+    }
+    public Inventory() {
+    this.ID = "";
+    this.reorderLevel = 0;
+    this.products = null;
+    this.purchaseInvoices = null;
     }
     
     public void addProduct(Product p) {
