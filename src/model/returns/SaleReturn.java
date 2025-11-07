@@ -11,6 +11,7 @@ import model.finance.Transaction;
 import model.finance.Treasury;
 
 public class SaleReturn {
+
     private int id;
     private LocalDateTime returnDate;
     private Employee refundProcessedBy;
@@ -25,6 +26,7 @@ public class SaleReturn {
         this.customer = customer;
         this.totalRefundOfMoney = totalRefundOfMoney;
     }
+
     public SaleReturn(SaleReturn s) {
         this.id = s.id;
         this.returnDate = s.returnDate;
@@ -32,6 +34,7 @@ public class SaleReturn {
         this.customer = s.customer;
         this.totalRefundOfMoney = s.totalRefundOfMoney;
     }
+
     public SaleReturn() {
         this.id = 0;
         this.returnDate = null;
@@ -39,55 +42,53 @@ public class SaleReturn {
         this.customer = null;
         this.totalRefundOfMoney = 0;
     }
-    
+
     public void processRefund(/*SaleInvoice saleInvoice*/) {
-    System.out.println("Processing refund for sale invoice: "  /*+  saleInvoice.getInvoiceId()*/);
+        System.out.println("Processing refund for sale invoice: " /*+  saleInvoice.getInvoiceId()*/);
 
-    double total = 0.0;
+        double total = 0.0;
 
-    for (ReturnItem item : returnItems) {
-        double refund = item.calcReturnMoney(); 
-        total += refund;
-    }
+        for (ReturnItem item : returnItems) {
+            double refund = item.calcReturnMoney();
+            total += refund;
+        }
 
-    totalRefundOfMoney = total;
-    System.out.println("tootal refund is " + totalRefundOfMoney + " جنيه");
+        totalRefundOfMoney = total;
+        System.out.println("tootal refund is " + totalRefundOfMoney + " جنيه");
 
-    for (ReturnItem item : returnItems) {
-        //Product product = item.getProduct();
-        //Batch batch = item.getBatch();
-        double returnedQty = item.getQuantity();
+        for (ReturnItem item : returnItems) {
+            //Product product = item.getProduct();
+            //Batch batch = item.getBatch();
+            double returnedQty = item.getQuantity();
 
-        //double newQuantity = batch.getQuantity() + returnedQty;
-        //batch.setQuantity(newQuantity);
+            //double newQuantity = batch.getQuantity() + returnedQty;
+            //batch.setQuantity(newQuantity);
+            //saleInvoice.getBranch().getInventory().modifyQuantaty(batch);
+            //System.out.println("refund is done " + returnedQty + "from  " + product.getName());
+        }
 
-        //saleInvoice.getBranch().getInventory().modifyQuantaty(batch);
+        if (customer != null) {
+            double pointsLost = 0.0;
 
-        //System.out.println("refund is done " + returnedQty + "from  " + product.getName());
-    }
+            if (totalRefundOfMoney <= 100) {
+                pointsLost = totalRefundOfMoney / 10.0;
+            } else if (totalRefundOfMoney <= 500) {
+                pointsLost = 10.0 + (totalRefundOfMoney - 100) / 8.0;
+            } else {
+                pointsLost = 10.0 + 50.0 + (totalRefundOfMoney - 500) / 5.0;
+            }
 
-    if (customer != null) {
-    double pointsLost = 0.0;
+            double newPoints = customer.getPoints() - pointsLost;
 
-    if (totalRefundOfMoney <= 100) {
-        pointsLost = totalRefundOfMoney / 10.0;
-    } else if (totalRefundOfMoney <= 500) {
-        pointsLost = 10.0 + (totalRefundOfMoney - 100) / 8.0;
-    } else {
-        pointsLost = 10.0 + 50.0 + (totalRefundOfMoney - 500) / 5.0;
-    }
+            if (newPoints < 0) {
+                newPoints = 0;
+            }
 
-    double newPoints = customer.getPoints() - pointsLost;
+            customer.setPoints(newPoints);
 
-    if (newPoints < 0) {
-        newPoints = 0;
-    }
-
-    customer.setPoints(newPoints);
-
-    System.out.println("points Lost " + pointsLost );
-    System.out.println("point aftr discount " + newPoints);
-}
+            System.out.println("points Lost " + pointsLost);
+            System.out.println("point aftr discount " + newPoints);
+        }
 
 //    Treasury treasury = saleInvoice.getBranch().getTreasury();
 //    double currentBalance = treasury.getCurrentBalance();
@@ -95,31 +96,64 @@ public class SaleReturn {
 //
 //    treasury.setCurrentBalance(newBalance);
 //    treasury.setLastUpdatedDate(LocalDate.now());
+        System.out.println("Refund  Money is" + totalRefundOfMoney + "Money after update" /*+ newBalance*/);
 
-    System.out.println("Refund  Money is" + totalRefundOfMoney + "Money after update" /*+ newBalance*/);
+        Transaction transaction = new Transaction();
+        transaction.setDateAndTime(LocalDateTime.now());
+        transaction.setType("SALE_RETURN");
+        transaction.setEmployee(refundProcessedBy);
+        //transaction.setInvoice(saleInvoice);
+        transaction.setAmountOfMoney(totalRefundOfMoney);
 
-    Transaction transaction = new Transaction();
-    transaction.setDateAndTime(LocalDateTime.now());
-    transaction.setType("SALE_RETURN");
-    transaction.setEmployee(refundProcessedBy);
-    //transaction.setInvoice(saleInvoice);
-    transaction.setAmountOfMoney(totalRefundOfMoney);
-
-    //saleInvoice.getBranch().getTransactions().add(transaction);
-}
-
+        //saleInvoice.getBranch().getTransactions().add(transaction);
+    }
 
     // Getters and setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public LocalDateTime getReturnDate() { return returnDate; }
-    public void setReturnDate(LocalDateTime returnDate) { this.returnDate = returnDate; }
-    public Employee getRefundProcessedBy() { return refundProcessedBy; }
-    public void setRefundProcessedBy(Employee refundProcessedBy) { this.refundProcessedBy = refundProcessedBy; }
-    public List<ReturnItem> getReturnItems() { return returnItems; }
-    public void setReturnItems(List<ReturnItem> returnItems) { this.returnItems = returnItems; }
-    public Customer getCustomer() { return customer; }
-    public void setCustomer(Customer customer) { this.customer = customer; }
-    public double getTotalRefundOfMoney() { return totalRefundOfMoney; }
-    public void setTotalRefundOfMoney(double totalRefundOfMoney) { this.totalRefundOfMoney = totalRefundOfMoney; }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDateTime returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public Employee getRefundProcessedBy() {
+        return refundProcessedBy;
+    }
+
+    public void setRefundProcessedBy(Employee refundProcessedBy) {
+        this.refundProcessedBy = refundProcessedBy;
+    }
+
+    public List<ReturnItem> getReturnItems() {
+        return returnItems;
+    }
+
+    public void setReturnItems(List<ReturnItem> returnItems) {
+        this.returnItems = returnItems;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public double getTotalRefundOfMoney() {
+        return totalRefundOfMoney;
+    }
+
+    public void setTotalRefundOfMoney(double totalRefundOfMoney) {
+        this.totalRefundOfMoney = totalRefundOfMoney;
+    }
 }

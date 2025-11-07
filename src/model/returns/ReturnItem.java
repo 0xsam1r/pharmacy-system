@@ -1,29 +1,32 @@
 package model.returns;
 
 //import model.products.Product;
-//import model.invoices.Batch;
+
+import model.Product.Product;
+
+import model.invoices.Batch;
 
 public class ReturnItem {
-    //private Product product;
-    //private Batch batch;
+    private Product product;
+    private Batch batch;
     private double unitPrice;
     private int quantity;
 
-    public ReturnItem(/*Product product, Batch batch,*/ double unitPrice, int quantity) {
-        //this.product = product;
-        //this.batch = batch;
+    public ReturnItem(Product product, Batch batch, double unitPrice, int quantity) {
+        this.product = product;
+        this.batch = batch;
         this.unitPrice = unitPrice;
         this.quantity = quantity;
     }
     public ReturnItem(ReturnItem r) {
-        //this.product = r.product;
-        //this.batch = r.batch;
+        this.product = r.product;
+        this.batch = r.batch;
         this.unitPrice = r.unitPrice;
         this.quantity = r.quantity;
     }
     public ReturnItem() {
-        //this.product = null;
-        //this.batch = null;
+        this.product = null;
+        this.batch = null;
         this.unitPrice = 0;
         this.quantity = 0;
     }
@@ -33,10 +36,10 @@ public class ReturnItem {
     }
 
     // Getters and setters
-    //public Product getProduct() { return product; }
-    //public void setProduct(Product product) { this.product = product; }
-    //public Batch getBatch() { return batch; }
-    //public void setBatch(Batch batch) { this.batch = batch; }
+    public Product getProduct() { return product; }
+    public void setProduct(Product product) { this.product = product; }
+    public Batch getBatch() { return batch; }
+    public void setBatch(Batch batch) { this.batch = batch; }
     public double getUnitPrice() { return unitPrice; }
     public void setUnitPrice(double unitPrice) { this.unitPrice = unitPrice; }
     public int getQuantity() { return quantity; }

@@ -20,9 +20,9 @@ INSERT INTO Customer (points, Person_ID, Person_Phone) VALUES
 (230.75, 'P005', '01055443322');
 
 -- 4. Bransh
-INSERT INTO Bransh (Adress, Name) VALUES
-('Revolution Street - Heliopolis', 'Al-Thawra Pharmacy'),
-('Faisal Main Street', 'Faisal Pharmacy');
+INSERT INTO Bransh (Adress, Name, ID) VALUES
+('Revolution Street - Heliopolis', 'Al-Thawra Pharmacy' , 1),
+('Faisal Main Street', 'Faisal Pharmacy', 2);
 
 -- 5. Treasury
 INSERT INTO Treasury (Bransh_ID) VALUES
@@ -79,9 +79,9 @@ INSERT INTO Batch (Batch_number, cost, expire_date, Quantaty, Product_parcode) V
 ('B003', 22.0, '2026-06-01', 200, '622300000003');
 
 -- 14. Inventory
-INSERT INTO Inventory (Bransh_ID) VALUES
-(1),
-(2);
+INSERT INTO Inventory (Bransh_ID, ID) VALUES
+(1 , 1),
+(2 , 2);
 
 -- 15. Inventory_has_Product
 INSERT INTO Inventory_has_Product (Inventory_ID, Product_parcode, Quntaty, reordr_level) VALUES

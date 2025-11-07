@@ -24,6 +24,22 @@ public class PurchaseReturn {
         //this.supplier = supplier;
         this.totalCreditOfMoney = totalCreditOfMoney;
     }
+    
+    public PurchaseReturn(PurchaseReturn p) {
+        this.id = p.id;
+        this.returnDate = p.returnDate;
+        this.returnInitiatedBy = p.returnInitiatedBy;
+        //this.supplier = p.supplier;
+        this.totalCreditOfMoney = p.totalCreditOfMoney;
+    }
+    
+    public PurchaseReturn() {
+        this.id = 0;
+        this.returnDate = null;
+        this.returnInitiatedBy = null;
+        //this.supplier = null;
+        this.totalCreditOfMoney = 0;
+    }
 
     public void processCredit() {
         double total = 0.0;
