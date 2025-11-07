@@ -1,5 +1,7 @@
 package model.branch;
 
+import DB.DBConnection;
+import com.sun.jdi.connect.spi.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import model.people.Employee;
@@ -115,5 +117,27 @@ public class Branch {
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
+    }
+    public static Branch getBranchById(String branchId) {
+        String sql = "SELECT ID, Name, Adress FROM bransh WHERE ID = ?";
+
+        try (Connection conn = (Connection) DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, Integer.parseInt(branchId));
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Branch(
+                    String.valueOf(rs.getInt("ID")),
+                    rs.getString("Name"),
+                    rs.getString("Adress")
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching branch by ID: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null; // لو مش موجود
     }
 }
