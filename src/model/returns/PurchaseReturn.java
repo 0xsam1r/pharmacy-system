@@ -1,12 +1,17 @@
 package model.returns;
 
+import java.time.LocalDate;
 import model.people.Employee;
-//import model.invoices.Supplier;
+import model.invoices.Supplier;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import model.Product.Product;
 import model.finance.Transaction;
+import model.finance.Treasury;
+import model.invoices.Batch;
+import model.invoices.Supplier;
 
 public class PurchaseReturn {
 
@@ -14,14 +19,14 @@ public class PurchaseReturn {
     private LocalDateTime returnDate;
     private Employee returnInitiatedBy;
     private List<ReturnItem> returnItems = new ArrayList<>();
-    //private Supplier supplier;
+    private Supplier supplier;
     private double totalCreditOfMoney;
 
     public PurchaseReturn(int id, LocalDateTime returnDate, Employee returnInitiatedBy, Supplier supplier, double totalCreditOfMoney) {
         this.id = id;
         this.returnDate = returnDate;
         this.returnInitiatedBy = returnInitiatedBy;
-        //this.supplier = supplier;
+        this.supplier = supplier;
         this.totalCreditOfMoney = totalCreditOfMoney;
     }
     
@@ -29,7 +34,7 @@ public class PurchaseReturn {
         this.id = p.id;
         this.returnDate = p.returnDate;
         this.returnInitiatedBy = p.returnInitiatedBy;
-        //this.supplier = p.supplier;
+        this.supplier = p.supplier;
         this.totalCreditOfMoney = p.totalCreditOfMoney;
     }
     
@@ -37,7 +42,7 @@ public class PurchaseReturn {
         this.id = 0;
         this.returnDate = null;
         this.returnInitiatedBy = null;
-        //this.supplier = null;
+        this.supplier = null;
         this.totalCreditOfMoney = 0;
     }
 
