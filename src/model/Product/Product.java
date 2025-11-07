@@ -3,12 +3,12 @@ import enums.Category;
 
 // @author mahmoud Elsayed
 public class Product {
-    private String Parcode ;
-    private String Name ;
-    private int UnitsPerProduct ;
-    private double Price ;
-    private  Category Category  ;
-    private double quantityInStock;// comment => that to handel Qu in inventory  
+    protected String Parcode ;
+    protected String Name ;
+    protected int UnitsPerProduct ;
+    protected double Price ;
+    protected  Category Category  ;
+    protected double quantityInStock;// comment => that to handel Qu in inventory  
 
     public Product(String Parcode, String Name, int UnitsPerProduct, double Price, Category Category) {
         this.Parcode = Parcode;
@@ -16,6 +16,22 @@ public class Product {
         this.UnitsPerProduct = UnitsPerProduct;
         this.Price = Price;
         this.Category = Category;
+        this.quantityInStock=0;
+    }
+    public Product(Product p) {
+        this.Parcode = p.Parcode;
+        this.Name = p.Name;
+        this.UnitsPerProduct = p.UnitsPerProduct;
+        this.Price = p.Price;
+        this.Category = p.Category;
+        this.quantityInStock=0;
+    }
+    public Product() {
+        this.Parcode = "";
+        this.Name ="";
+        this.UnitsPerProduct = 0;
+        this.Price = 0;
+        this.Category = null;
         this.quantityInStock=0;
     }
 

@@ -31,6 +31,23 @@ import enums.Category;
         this.brand = "";
         this.gender = 0;
     }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+    
     public void displayCosmetics() {
         System.out.println("Cosmetic Product :" + getName());
         System.out.println("Brand: " + brand);

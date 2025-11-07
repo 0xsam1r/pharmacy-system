@@ -1,6 +1,6 @@
 package model.returns;
 
-//import model.products.Product;
+import model.Product.Product;
 
 import model.Product.Product;
 

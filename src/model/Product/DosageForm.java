@@ -26,6 +26,14 @@ public class DosageForm {
         return Active_Ingredient;
     }
 
+    public void setStrength(double Strength) {
+        this.Strength = Strength;
+    }
+
+    public void setActive_Ingredient(String Active_Ingredient) {
+        this.Active_Ingredient = Active_Ingredient;
+    }
+
     @Override
     public String toString() {
         return "DosageForm{" + "Strength=" + Strength + ", Active_Ingredient=" + Active_Ingredient + '}';
