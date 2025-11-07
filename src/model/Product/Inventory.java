@@ -3,6 +3,12 @@ package model.Product;
 // * @author mahmoud Elsayed
 import model.invoices.Batch ;
 import java.util.ArrayList ;
+import model.invoices.InvoiceItem;
+import model.invoices.PurchaseInvoice;
+import model.invoices.SaleInvoice;
+import model.returns.PurchaseReturn;
+import model.returns.ReturnItem;
+import model.returns.SaleReturn;
 public class Inventory {
     
     private String ID;
@@ -42,7 +48,7 @@ public class Inventory {
     }
     
     public void modifyQuantaty(SaleReturn saleReturn) {
-        for (ReturnItems item : saleReturn.getReturnItems()) {
+        for (ReturnItem item : saleReturn.getReturnItems()) {
             Product p = item.getProduct();
             double qty = p.getQuantityInStock()+item.getQuantity();
             p.setQuantityInStock(qty);
@@ -50,7 +56,7 @@ public class Inventory {
     }
      
     public void modifyQuantaty(PurchaseReturn purchaseReturn) {
-        for (ReturnItems item : purchaseReturn.getReturnItems()) {
+        for (ReturnItem item : purchaseReturn.getReturnItems()) {
             Product p = item.getProduct();
             double qty = p.getQuantityInStock()-item.getQuantity();
             p.setQuantityInStock(qty);

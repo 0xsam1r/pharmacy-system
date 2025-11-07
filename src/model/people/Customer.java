@@ -1,5 +1,7 @@
 package model.people;
 
+import model.invoices.SaleInvoice;
+
 public class Customer extends Person {
     private double points;
 
@@ -17,9 +19,9 @@ public class Customer extends Person {
         this.points = 0;
     }
 
-public double calcPoints(/*SaleInvoice saleInvoice*/ double Total) {
-        if (/*saleInvoice != null*/ Total != 0) {
-            //double subTotal = saleInvoice.getSubTotal();
+public double calcPoints(SaleInvoice saleInvoice , double Total) {
+        if (saleInvoice != null) {
+            double subTotal = saleInvoice.getSupTotal();
             double pointsEarned = 0.0;
 
             if (Total <= 100) {

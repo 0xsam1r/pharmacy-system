@@ -1,14 +1,17 @@
 package model.returns;
 
+import java.time.LocalDate;
 import model.people.Customer;
 import model.people.Employee;
-//import model.invoices.SaleInvoice;
+import model.invoices.SaleInvoice;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import model.Product.Product;
 import model.finance.Transaction;
 import model.finance.Treasury;
+import model.invoices.Batch;
 
 public class SaleReturn {
 
@@ -18,6 +21,7 @@ public class SaleReturn {
     private List<ReturnItem> returnItems = new ArrayList<>();
     private Customer customer;
     private double totalRefundOfMoney;
+    
 
     public SaleReturn(int id, LocalDateTime returnDate, Employee refundProcessedBy, Customer customer, double totalRefundOfMoney) {
         this.id = id;
@@ -43,8 +47,8 @@ public class SaleReturn {
         this.totalRefundOfMoney = 0;
     }
 
-    public void processRefund(/*SaleInvoice saleInvoice*/) {
-        System.out.println("Processing refund for sale invoice: " /*+  saleInvoice.getInvoiceId()*/);
+    public void processRefund(SaleInvoice saleInvoice) {
+        System.out.println("Processing refund for sale invoice: " +  saleInvoice.getInvoiceID());
 
         double total = 0.0;
 
@@ -57,14 +61,14 @@ public class SaleReturn {
         System.out.println("tootal refund is " + totalRefundOfMoney + " جنيه");
 
         for (ReturnItem item : returnItems) {
-            //Product product = item.getProduct();
-            //Batch batch = item.getBatch();
+            Product product = item.getProduct();
+            Batch batch = item.getBatch();
             double returnedQty = item.getQuantity();
 
-            //double newQuantity = batch.getQuantity() + returnedQty;
-            //batch.setQuantity(newQuantity);
-            //saleInvoice.getBranch().getInventory().modifyQuantaty(batch);
-            //System.out.println("refund is done " + returnedQty + "from  " + product.getName());
+            double newQuantity = batch.getQuantity() + returnedQty;
+            batch.setQuantity(newQuantity);
+            saleInvoice.getBranch().getInventory().modifyQuantaty(batch);
+            System.out.println("refund is done " + returnedQty + "from  " + product.getName());
         }
 
         if (customer != null) {
@@ -90,19 +94,19 @@ public class SaleReturn {
             System.out.println("point aftr discount " + newPoints);
         }
 
-//    Treasury treasury = saleInvoice.getBranch().getTreasury();
-//    double currentBalance = treasury.getCurrentBalance();
-//    double newBalance = currentBalance - totalRefundOfMoney;
-//
-//    treasury.setCurrentBalance(newBalance);
-//    treasury.setLastUpdatedDate(LocalDate.now());
-        System.out.println("Refund  Money is" + totalRefundOfMoney + "Money after update" /*+ newBalance*/);
+    Treasury treasury = saleInvoice.getBranch().getTreasury();
+    double currentBalance = treasury.getCurrentBalance();
+    double newBalance = currentBalance - totalRefundOfMoney;
+
+    treasury.setCurrentBalance(newBalance);
+    treasury.setLastUpdatedDate(LocalDate.now());
+        System.out.println("Refund  Money is" + totalRefundOfMoney + "Money after update" + newBalance);
 
         Transaction transaction = new Transaction();
         transaction.setDateAndTime(LocalDateTime.now());
         transaction.setType("SALE_RETURN");
         transaction.setEmployee(refundProcessedBy);
-        //transaction.setInvoice(saleInvoice);
+        transaction.setInvoice(saleInvoice);
         transaction.setAmountOfMoney(totalRefundOfMoney);
 
         //saleInvoice.getBranch().getTransactions().add(transaction);

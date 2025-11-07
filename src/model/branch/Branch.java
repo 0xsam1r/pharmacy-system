@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import model.people.Employee;
 import model.Product.Inventory;
+import model.finance.Transaction;
+import model.finance.Treasury;
 //import model.finance.ReportGenerator; // Assuming Report is generated from ReportGenerator or similar; adjust if Report is a separate class
 
 public class Branch {
@@ -12,14 +14,35 @@ public class Branch {
     private String address;
     private List<Employee> employees;
     private Inventory inventory;
-
+    private Treasury treasury;
+    private List<Transaction> transactions;
     // Constructor
-    public Branch(String id, String name, String address, Inventory inventory) {
+    public Branch(String id, String name, String address,List<Employee> employees , Inventory inventory, Treasury treasury, List<Transaction> transaction) {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.employees = new ArrayList<>();
+        this.employees = employees;
         this.inventory = inventory;
+        this.treasury = treasury;
+        this.transactions = transaction;
+    }
+    public Branch(Branch b) {
+        this.id = b.id;
+        this.name = b.name;
+        this.address = b.address;
+        this.employees = b.employees;
+        this.inventory = b.inventory;
+        this.treasury = b.treasury;
+        this.transactions = b.transactions;
+    }
+    public Branch() {
+        this.id = "";
+        this.name = "";
+        this.address = "";
+        this.employees = null;
+        this.inventory = null;
+        this.treasury = null;
+        this.transactions = null;
     }
 
     // Getters and Setters
@@ -77,4 +100,20 @@ public class Branch {
 //        // Adjust based on actual ReportGenerator implementation
 //        return ReportGenerator.generateInventoryReport(this.inventory);
 //    }
+
+    public Treasury getTreasury() {
+        return treasury;
+    }
+
+    public void setTreasury(Treasury treasury) {
+        this.treasury = treasury;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
 }
