@@ -1,17 +1,16 @@
 package model.invoices;
 import model.Product.Product ;
 import java.util.Date ;
- // @author mahmoud Elsayed
  
 public class Batch {
     private int batchNumber ;
     private double Quantity ;
     private Date expireDate ;
     private double Cost ;
-    private double Supplier ;
+    private Supplier Supplier ;
     public Product products ;
 
-    public Batch(int batchNumber, double Quantity, Date expireDate, double Cost, double Supplier, Product products) {
+    public Batch(int batchNumber, double Quantity, Date expireDate, double Cost, Supplier Supplier, Product products) {
         this.batchNumber = batchNumber;
         this.Quantity = Quantity;
         this.expireDate = expireDate;
@@ -36,7 +35,7 @@ public class Batch {
         return Cost;
     }
 
-    public double getSupplier() {
+    public Supplier getSupplier() {
         return Supplier;
     }
 
@@ -56,7 +55,7 @@ public class Batch {
         this.Cost = Cost;
     }
 
-    public void setSupplier(double Supplier) {
+    public void setSupplier(Supplier Supplier) {
         this.Supplier = Supplier;
     }
     
