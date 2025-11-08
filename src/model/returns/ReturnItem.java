@@ -10,9 +10,9 @@ public class ReturnItem {
     private Product product;
     private Batch batch;
     private double unitPrice;
-    private int quantity;
+    private double quantity;
 
-    public ReturnItem(Product product, Batch batch, double unitPrice, int quantity) {
+    public ReturnItem(Product product, Batch batch, double unitPrice, double quantity) {
         this.product = product;
         this.batch = batch;
         this.unitPrice = unitPrice;
@@ -42,6 +42,6 @@ public class ReturnItem {
     public void setBatch(Batch batch) { this.batch = batch; }
     public double getUnitPrice() { return unitPrice; }
     public void setUnitPrice(double unitPrice) { this.unitPrice = unitPrice; }
-    public int getQuantity() { return quantity; }
+    public double getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
 }

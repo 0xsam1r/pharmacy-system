@@ -1,6 +1,7 @@
 package model.invoices;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import model.people.Customer;
 import java.util.List;
 import model.branch.Branch;
@@ -84,7 +85,14 @@ public class SaleInvoice extends Invoice{
         this.supTotal = supTotal;
         this.branch = branch;
     }
-
+    public SaleInvoice(int invoiceId, LocalDateTime date, double totalPrice, Branch branch) {
+    super(String.valueOf(branch.getId()), invoiceId, date, totalPrice, totalPrice);
+    this.customer = null;
+    this.discount = 0.0;
+    this.invoiceItems = new ArrayList<>();
+    this.supTotal = totalPrice;
+    this.branch = branch;
+}
     public SaleInvoice(SaleInvoice s) {
         this.BranchID = s.BranchID;
         this.InvoiceID = s.InvoiceID;
