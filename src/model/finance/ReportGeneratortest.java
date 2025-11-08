@@ -5,6 +5,6 @@ public class ReportGeneratortest {
         String date = "2025-11-06";
 
         ReportGenerator.generateSalesReport(date);
-        ReportGenerator.generateProfitGraph(date);
+        ReportGenerator.generateProfitGraph(date); // يطلّع صورة!
     }
 }

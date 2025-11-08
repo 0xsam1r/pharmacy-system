@@ -3,3 +3,7 @@
 2- هتاخد فايل ال insertion نعملو رن عشان الداتا
 ثانيا عشان الكونكشن يشتغل معاك محتاج تنزل المكتبه بتاعت mysql connection وتضفها علي المشروع
 https://dev.mysql.com/downloads/connector/j/
+
+
+تعدبل 2 عشان تشغل Report Generator محتاج تضيف ال Librarie بتاعت ال  Chart اسمها JFreeChart
+https://sourceforge.net/projects/jfreechart/files/
