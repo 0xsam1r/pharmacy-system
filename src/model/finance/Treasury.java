@@ -208,9 +208,31 @@ public class Treasury {
             Branch branchObj = this.branch; // أو this.branch
 
             if ("SALE".equals(t.getType())) {
-                t.setInvoice(new SaleInvoice(invoiceId, dateTime, amount, branchObj));
+                t.setInvoice(new SaleInvoice(
+    null,        // مفيش Customer دلوقتي
+    0.0,         // الخصم (discount)
+    null,        // مفيش Items لسه
+    0.0,         // subtotal
+    String.valueOf(branchObj.getId()), // BranchID
+    invoiceId,   // رقم الفاتورة
+    dateTime,    // التاريخ
+    amount,      // totalPrice
+    amount,      // totalAmount
+    branchObj    // الفرع
+));
             } else {
-                t.setInvoice(new PurchaseInvoice(invoiceId, dateTime, amount, branchObj));
+                t.setInvoice(new SaleInvoice(
+    null,        // مفيش Customer دلوقتي
+    0.0,         // الخصم (discount)
+    null,        // مفيش Items لسه
+    0.0,         // subtotal
+    String.valueOf(branchObj.getId()), // BranchID
+    invoiceId,   // رقم الفاتورة
+    dateTime,    // التاريخ
+    amount,      // totalPrice
+    amount,      // totalAmount
+    branchObj    // الفرع
+));
             }
 
             transactions.add(t);

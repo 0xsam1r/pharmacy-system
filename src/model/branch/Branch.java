@@ -1,7 +1,8 @@
 package model.branch;
 
+import java.sql.Connection;
+import java.sql.*;
 import DB.DBConnection;
-import com.sun.jdi.connect.spi.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import model.people.Employee;
@@ -19,7 +20,7 @@ public class Branch {
     private Treasury treasury;
     private List<Transaction> transactions;
     // Constructor
-    public Branch(String id, String name, String address,List<Employee> employees , Inventory inventory, Treasury treasury, List<Transaction> transaction) {
+    public Branch(String id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -121,7 +122,7 @@ public class Branch {
     public static Branch getBranchById(String branchId) {
         String sql = "SELECT ID, Name, Adress FROM bransh WHERE ID = ?";
 
-        try (Connection conn = (Connection) DBConnection.getConnection();
+        try (Connection conn =  DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, Integer.parseInt(branchId));
