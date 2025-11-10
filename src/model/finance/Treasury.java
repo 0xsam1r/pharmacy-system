@@ -91,7 +91,7 @@ public class Treasury {
             pstmt.setInt(1, Integer.parseInt(branch.getId()));
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return Math.abs(rs.getDouble("total_returns")); // نرجّع القيمة الموجبة
+                return Math.abs(rs.getDouble("total_returns"));   
             }
         } catch (SQLException e) {
             System.err.println("Error fetching daily sale returns: " + e.getMessage());
@@ -209,29 +209,29 @@ public class Treasury {
 
             if ("SALE".equals(t.getType())) {
                 t.setInvoice(new SaleInvoice(
-    null,        // مفيش Customer دلوقتي
-    0.0,         // الخصم (discount)
-    null,        // مفيش Items لسه
-    0.0,         // subtotal
-    String.valueOf(branchObj.getId()), // BranchID
-    invoiceId,   // رقم الفاتورة
-    dateTime,    // التاريخ
-    amount,      // totalPrice
-    amount,      // totalAmount
-    branchObj    // الفرع
+    null,        
+    0.0,        
+    null,       
+    0.0,        
+    String.valueOf(branchObj.getId()),
+    invoiceId,  
+    dateTime,    
+    amount,     
+    amount,     
+    branchObj 
 ));
             } else {
                 t.setInvoice(new SaleInvoice(
-    null,        // مفيش Customer دلوقتي
-    0.0,         // الخصم (discount)
-    null,        // مفيش Items لسه
-    0.0,         // subtotal
-    String.valueOf(branchObj.getId()), // BranchID
-    invoiceId,   // رقم الفاتورة
-    dateTime,    // التاريخ
-    amount,      // totalPrice
-    amount,      // totalAmount
-    branchObj    // الفرع
+    null,        
+    0.0,         
+    null,       
+    0.0,         
+    String.valueOf(branchObj.getId()),
+    invoiceId,  
+    dateTime,   
+    amount,      
+    amount,      
+    branchObj    
 ));
             }
 

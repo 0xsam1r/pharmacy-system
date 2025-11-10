@@ -62,7 +62,6 @@ public class SaleReturn {
         totalRefundOfMoney = total;
         System.out.println("tootal refund is " + totalRefundOfMoney + " $$");
 
-        // ✅ تعديل آمن لتفادي NullPointerException
         for (ReturnItem item : returnItems) {
             Product product = item.getProduct();
             Batch batch = item.getBatch();
@@ -73,16 +72,15 @@ public class SaleReturn {
                     double newQuantity = batch.getQuantity() + returnedQty;
                     batch.setQuantity(newQuantity);
                     saleInvoice.getBranch().getInventory().modifyQuantaty(batch);
-                    System.out.println("✅ Refund done: " + returnedQty + " from " + product.getName());
+                    System.out.println("Refund done: " + returnedQty + " from " + product.getName());
                 } else {
-                    System.out.println("⚠️ Skipped refund batch adjustment for non-batch or unlinked product: " + product.getName());
+                    System.out.println("Skipped refund batch adjustment for non-batch or unlinked product: " + product.getName());
                 }
             } catch (NullPointerException e) {
-                System.out.println("⚠️ Skipped refund batch adjustment (NullPointerException caught).");
+                System.out.println("️Skipped refund batch adjustment (NullPointerException caught).");
             }
         }
 
-        // ✅ حساب النقاط بعد الخصم
         if (customer != null) {
             double pointsLost = 0.0;
 
@@ -99,8 +97,8 @@ public class SaleReturn {
 
             customer.setPoints(newPoints);
 
-            System.out.println("💳 Points Lost: " + pointsLost);
-            System.out.println("💎 Points after refund: " + newPoints);
+            System.out.println("Points Lost: " + pointsLost);
+            System.out.println("Points after refund: " + newPoints);
         }
 
         // ✅ تحديث الخزنة
@@ -112,19 +110,18 @@ public class SaleReturn {
             treasury.setCurrentBalance(newBalance);
             treasury.setLastUpdatedDate(LocalDate.now());
 
-            System.out.println("💰 Refund Money: " + totalRefundOfMoney + " | Balance after update: " + newBalance);
+            System.out.println("Refund Money: " + totalRefundOfMoney + " | Balance after update: " + newBalance);
         } else {
-            System.out.println("⚠️ Treasury update skipped (branch or treasury is null).");
+            System.out.println(" Treasury update skipped (branch or treasury is null).");
         }
 
-        // ✅ تسجيل المعاملة
         Transaction transaction = new Transaction();
         transaction.setDateAndTime(LocalDateTime.now());
         transaction.setType("SALE_RETURN");
         transaction.setEmployee(refundProcessedBy);
         transaction.setInvoice(saleInvoice);
         transaction.setAmountOfMoney(totalRefundOfMoney);
-        System.out.println("🧾 Transaction recorded: SALE_RETURN for " + totalRefundOfMoney);
+        System.out.println(" Transaction recorded: SALE_RETURN for " + totalRefundOfMoney);
     }
 
     public int getId() {

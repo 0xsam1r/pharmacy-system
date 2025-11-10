@@ -28,10 +28,10 @@ public class  TestTreasury{
             sell.setString(4, "01110000000"); // نفس الرقم اللي في person/customer
             sell.executeUpdate();
 
-            System.out.println("✅ TreasuryTest executed successfully!");
+            System.out.println(" TreasuryTest executed successfully!");
 
         } catch (Exception e) {
-            System.err.println("❌ TreasuryTest failed: " + e.getMessage());
+            System.err.println(" TreasuryTest failed: " + e.getMessage());
         }
     }
 }

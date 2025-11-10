@@ -54,28 +54,28 @@ public class PharmacySystem {
 
         // 1. DosageForm
         DosageForm form1 = new DosageForm(500.0, "Paracetamol");
-        System.out.println("✅ DosageForm Created: " + form1);
+        System.out.println("DosageForm Created: " + form1);
 
         // 2. Medicine
         ArrayList<DosageForm> forms = new ArrayList<>();
         forms.add(form1);
         Medicine medicine = new Medicine("622300000001", "Panadol Extra", 10, 25.0, Category.MEDICINE, forms);
         medicine.setQuantityInStock(50.0);
-        System.out.println("✅ Medicine Created: " + medicine.getName() + " | Stock: " + medicine.getQuantityInStock());
+        System.out.println(" Medicine Created: " + medicine.getName() + " | Stock: " + medicine.getQuantityInStock());
 
         // 3. Cosmetic
         Cosmetic cosmetic = new Cosmetic("622300000004", "Nivea Cream", 1, 60.0, Category.COSMETIC, "Nivea", 'F');
         cosmetic.setQuantityInStock(30.0);
-        System.out.println("✅ Cosmetic Created: " + cosmetic.getName() + " | Stock: " + cosmetic.getQuantityInStock());
+        System.out.println(" Cosmetic Created: " + cosmetic.getName() + " | Stock: " + cosmetic.getQuantityInStock());
 
         // 4. Inventory
         List<Product> productsList = new ArrayList<>(Arrays.asList(medicine, cosmetic));
         Inventory inventory = new Inventory("INV001", 10.0, (ArrayList<Product>) productsList, new ArrayList<>());
-        System.out.println("✅ Inventory initialized with Panadol Extra and Nivea Cream.");
+        System.out.println(" Inventory initialized with Panadol Extra and Nivea Cream.");
 
         // 5. Search
         Product found = inventory.search("Panadol Extra");
-        System.out.println("✅ Search result for Panadol: " + (found != null ? found.getName() : "Not Found"));
+        System.out.println(" Search result for Panadol: " + (found != null ? found.getName() : "Not Found"));
     }
 
     private static void testSaleCycle() {
@@ -106,12 +106,12 @@ public class PharmacySystem {
         Product testProduct = new Cosmetic("622300000005", "Fair & Lovely", 1, 70.0, Category.COSMETIC, "Fair & Lovely", 'F');
         testProduct.setQuantityInStock(50.0);
 
-        System.out.println("✅ Core entities (Employee, Customer, Product) set up.");
+        System.out.println(" Core entities (Employee, Customer, Product) set up.");
 
         // --- Test SaleInvoice ---
         SaleInvoice invoice = createSampleSaleInvoice(employee, customer, testBranch, testProduct);
         System.out.println("\n--- Sale Invoice Test ---");
-        System.out.println("✅ Invoice ID: " + invoice.getInvoiceID() + " | Total: " + invoice.getTotalPrice());
+        System.out.println(" Invoice ID: " + invoice.getInvoiceID() + " | Total: " + invoice.getTotalPrice());
 
         // --- Test SaleReturn and ReturnItem ---
         testSaleReturn(invoice, employee, customer, testProduct);
@@ -139,7 +139,7 @@ public class PharmacySystem {
             returnItem.setProduct(product);
             returnItem.setQuantity(1);
             returnItem.setUnitPrice(product.getPrice());
-            System.out.println("✅ ReturnItem created for " + product.getName() + " | Qty: " + returnItem.getQuantity());
+            System.out.println(" ReturnItem created for " + product.getName() + " | Qty: " + returnItem.getQuantity());
 
             SaleReturn saleReturn = new SaleReturn(
                 5001,
@@ -153,10 +153,10 @@ public class PharmacySystem {
 
             saleReturn.processRefund(saleInvoice);
 
-            System.out.println("✅ SaleReturn ID " + saleReturn.getId() + " processed successfully.");
-            System.out.println("💰 Total Refund Amount: " + saleReturn.getTotalRefundOfMoney());
+            System.out.println(" SaleReturn ID " + saleReturn.getId() + " processed successfully.");
+            System.out.println(" Total Refund Amount: " + saleReturn.getTotalRefundOfMoney());
         } catch (Exception e) {
-            System.err.println("⚠️ Warning: SaleReturn.processRefund failed to run. May require Treasury/DB setup.");
+            System.err.println("️ Warning: SaleReturn.processRefund failed to run. May require Treasury/DB setup.");
             System.err.println("   Exception: " + e.getClass().getSimpleName() + " - " + e.getMessage());
         }
     }
@@ -170,20 +170,20 @@ public class PharmacySystem {
         transaction.setInvoice(invoice);
         transaction.setAmountOfMoney(500.0);
 
-        System.out.println("✅ Standalone Transaction ID " + transaction.getId() + " created.");
+        System.out.println(" Standalone Transaction ID " + transaction.getId() + " created.");
         System.out.println("    Type: " + transaction.getType() + " | Amount: " + transaction.getAmountOfMoney());
     }
 
     private static void testFinancialUtilities() {
         System.out.println("\n" + "=".repeat(50));
-        System.out.println("   3. Testing Financial Utilities (Alerts, Reports, Treasury)");
+        System.out.println("3. Testing Financial Utilities (Alerts, Reports, Treasury)");
         System.out.println("=".repeat(50));
 
         System.out.println("\n--- Treasury Test (Calling DB.TestTreasury.main) ---");
         try {
             DB.TestTreasury.main(null);
         } catch (Exception e) {
-            System.err.println("⚠️ ERROR: TreasuryTest failed to run. Ensure DB.TestTreasury class exists and DBConnection is configured.");
+            System.err.println("️ ERROR: TreasuryTest failed to run. Ensure DB.TestTreasury class exists and DBConnection is configured.");
             System.err.println("   Exception: " + e.getMessage());
         }
 
@@ -192,13 +192,13 @@ public class PharmacySystem {
         try {
             List<String> alerts = AlertSystem.checkAll();
             if (alerts.isEmpty()) {
-                System.out.println("✅ AlertSystem checked: No critical alerts found.");
+                System.out.println(" AlertSystem checked: No critical alerts found.");
             } else {
-                System.out.println("⚠️ Alerts found:");
+                System.out.println("Alerts found:");
                 alerts.forEach(System.out::println);
             }
         } catch (Exception e) {
-            System.err.println("⚠️ ERROR: AlertSystem failed. Ensure database setup is complete.");
+            System.err.println("️ ERROR: AlertSystem failed. Ensure database setup is complete.");
         }
 
         // --- Test ReportGenerator ---
@@ -206,9 +206,9 @@ public class PharmacySystem {
         String testDate = LocalDate.now().toString();
 
         ReportGenerator.generateSalesReport(testDate);
-        System.out.println("✅ Sales Report generated. Check 'reports' folder.");
+        System.out.println(" Sales Report generated. Check 'reports' folder.");
 
         ReportGenerator.generateProfitGraph(testDate);
-        System.out.println("✅ Profit Graph generated. Check 'reports' folder.");
+        System.out.println(" Profit Graph generated. Check 'reports' folder.");
     }
 }
