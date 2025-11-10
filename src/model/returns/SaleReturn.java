@@ -23,12 +23,13 @@ public class SaleReturn {
     private double totalRefundOfMoney;
     
 
-    public SaleReturn(int id, LocalDateTime returnDate, Employee refundProcessedBy, Customer customer, double totalRefundOfMoney) {
+    public SaleReturn(int id, LocalDateTime returnDate, Employee refundProcessedBy, Customer customer, double totalRefundOfMoney , List<ReturnItem> returnItems) {
         this.id = id;
         this.returnDate = returnDate;
         this.refundProcessedBy = refundProcessedBy;
         this.customer = customer;
         this.totalRefundOfMoney = totalRefundOfMoney;
+        this.returnItems = returnItems;
     }
 
     public SaleReturn(SaleReturn s) {
@@ -37,6 +38,7 @@ public class SaleReturn {
         this.refundProcessedBy = s.refundProcessedBy;
         this.customer = s.customer;
         this.totalRefundOfMoney = s.totalRefundOfMoney;
+        this.returnItems = s.returnItems;
     }
 
     public SaleReturn() {
@@ -45,6 +47,7 @@ public class SaleReturn {
         this.refundProcessedBy = null;
         this.customer = null;
         this.totalRefundOfMoney = 0;
+        this.returnItems = null;
     }
 
     public void processRefund(SaleInvoice saleInvoice) {
