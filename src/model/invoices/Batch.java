@@ -2,7 +2,7 @@ package model.invoices;
 import model.Product.Product ;
 import java.util.Date ;
  
-public class Batch {
+ public class Batch {
     private int batchNumber ;
     private double Quantity ;
     private Date expireDate ;
@@ -17,6 +17,14 @@ public class Batch {
         this.Cost = Cost;
         this.Supplier = Supplier;
         this.products = products;
+    }
+    public Batch() {
+        this.batchNumber = 0;
+        this.Quantity = 0;
+        this.expireDate = null;
+        this.Cost = 0;
+        this.Supplier = null;
+        this.products = null;
     }
 
     public int getBatchNumber() {

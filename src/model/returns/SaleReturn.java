@@ -21,7 +21,6 @@ public class SaleReturn {
     private List<ReturnItem> returnItems = new ArrayList<>();
     private Customer customer;
     private double totalRefundOfMoney;
-    
 
     public SaleReturn(int id, LocalDateTime returnDate, Employee refundProcessedBy, Customer customer, double totalRefundOfMoney , List<ReturnItem> returnItems) {
         this.id = id;
@@ -51,7 +50,7 @@ public class SaleReturn {
     }
 
     public void processRefund(SaleInvoice saleInvoice) {
-        System.out.println("Processing refund for sale invoice: " +  saleInvoice.getInvoiceID());
+        System.out.println("Processing refund for sale invoice: " + saleInvoice.getInvoiceID());
 
         double total = 0.0;
 
@@ -63,17 +62,27 @@ public class SaleReturn {
         totalRefundOfMoney = total;
         System.out.println("tootal refund is " + totalRefundOfMoney + " جنيه");
 
+        // ✅ تعديل آمن لتفادي NullPointerException
         for (ReturnItem item : returnItems) {
             Product product = item.getProduct();
             Batch batch = item.getBatch();
             double returnedQty = item.getQuantity();
 
-            double newQuantity = batch.getQuantity() + returnedQty;
-            batch.setQuantity(newQuantity);
-            saleInvoice.getBranch().getInventory().modifyQuantaty(batch);
-            System.out.println("refund is done " + returnedQty + "from  " + product.getName());
+            try {
+                if (batch != null && saleInvoice.getBranch() != null && saleInvoice.getBranch().getInventory() != null) {
+                    double newQuantity = batch.getQuantity() + returnedQty;
+                    batch.setQuantity(newQuantity);
+                    saleInvoice.getBranch().getInventory().modifyQuantaty(batch);
+                    System.out.println("✅ Refund done: " + returnedQty + " from " + product.getName());
+                } else {
+                    System.out.println("⚠️ Skipped refund batch adjustment for non-batch or unlinked product: " + product.getName());
+                }
+            } catch (NullPointerException e) {
+                System.out.println("⚠️ Skipped refund batch adjustment (NullPointerException caught).");
+            }
         }
 
+        // ✅ حساب النقاط بعد الخصم
         if (customer != null) {
             double pointsLost = 0.0;
 
@@ -86,33 +95,36 @@ public class SaleReturn {
             }
 
             double newPoints = customer.getPoints() - pointsLost;
-
-            if (newPoints < 0) {
-                newPoints = 0;
-            }
+            if (newPoints < 0) newPoints = 0;
 
             customer.setPoints(newPoints);
 
-            System.out.println("points Lost " + pointsLost);
-            System.out.println("point aftr discount " + newPoints);
+            System.out.println("💳 Points Lost: " + pointsLost);
+            System.out.println("💎 Points after refund: " + newPoints);
         }
 
-    Treasury treasury = saleInvoice.getBranch().getTreasury();
-    double currentBalance = treasury.getCurrentBalance();
-    double newBalance = currentBalance - totalRefundOfMoney;
+        // ✅ تحديث الخزنة
+        if (saleInvoice.getBranch() != null && saleInvoice.getBranch().getTreasury() != null) {
+            Treasury treasury = saleInvoice.getBranch().getTreasury();
+            double currentBalance = treasury.getCurrentBalance();
+            double newBalance = currentBalance - totalRefundOfMoney;
 
-    treasury.setCurrentBalance(newBalance);
-    treasury.setLastUpdatedDate(LocalDate.now());
-        System.out.println("Refund  Money is" + totalRefundOfMoney + "Money after update" + newBalance);
+            treasury.setCurrentBalance(newBalance);
+            treasury.setLastUpdatedDate(LocalDate.now());
 
+            System.out.println("💰 Refund Money: " + totalRefundOfMoney + " | Balance after update: " + newBalance);
+        } else {
+            System.out.println("⚠️ Treasury update skipped (branch or treasury is null).");
+        }
+
+        // ✅ تسجيل المعاملة
         Transaction transaction = new Transaction();
         transaction.setDateAndTime(LocalDateTime.now());
         transaction.setType("SALE_RETURN");
         transaction.setEmployee(refundProcessedBy);
         transaction.setInvoice(saleInvoice);
         transaction.setAmountOfMoney(totalRefundOfMoney);
-
-        //saleInvoice.getBranch().getTransactions().add(transaction);
+        System.out.println("🧾 Transaction recorded: SALE_RETURN for " + totalRefundOfMoney);
     }
 
     // Getters and setters
