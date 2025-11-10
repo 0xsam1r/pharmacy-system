@@ -5,14 +5,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * AlertSystem: Fully independent class.
- * Returns List<String> only - NO FILE OUTPUT.
- * Works with actual schema: Quantaty, reordr_level, inventory_has_product.
- */
 public class AlertSystem {
 
-    // 1. Check products expiring within 30 days
     public static List<String> checkExpiryDates() {
         List<String> alerts = new ArrayList<>();
         String sql = """
@@ -42,7 +36,6 @@ public class AlertSystem {
         return alerts;
     }
 
-    // 2. Check low stock: Aggregate from batch + compare with inventory_has_product.reordr_level
     public static List<String> checkLowStock() {
         List<String> alerts = new ArrayList<>();
         String sql = """
@@ -72,7 +65,6 @@ public class AlertSystem {
         return alerts;
     }
 
-    // 3. Check unpaid purchase invoices
     public static List<String> checkUnpaidInvoices() {
         List<String> alerts = new ArrayList<>();
         String sql = """
@@ -101,7 +93,6 @@ public class AlertSystem {
         return alerts;
     }
 
-    // 4. Check all alerts
     public static List<String> checkAll() {
         List<String> all = new ArrayList<>();
         all.add("=== EXPIRY ALERTS ===");
@@ -113,6 +104,3 @@ public class AlertSystem {
         return all;
     }
 }
-/*
-
-*/

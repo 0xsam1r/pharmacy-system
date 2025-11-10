@@ -2,34 +2,6 @@ package model.Product;
 
 // @author mahmoud Elsayed
 
-/*
-import java.util.ArrayList;
-/*
-public class Medicine extends Product{
-    private ِArrayList<DosageForm> form  ;
-
-    public Medicine( String Parcode, String Name, int UnitsPerProduct, double Price, Products.Category Category) {
-        super(Parcode, Name, UnitsPerProduct, Price ,Category);
-        this.form = new ArrayList<>();
-    }
-    
-    public void AddDosageForm(DosageForm Nform) {
-        form.add(Nform);
-    }
-    
-    public void RemoveDosageForm(DosageForm Oform) {
-        form.remove(Oform);
-    }
-     public int getFormsCount() {
-        return form.size();
-    }
-     public void displayMedicine() {
-        System.out.println("Medicine: " + getName());
-        for (DosageForm fo : form) {
-            System.out.println(" - " + fo);
-        }
-}
-*/
 import java.util.ArrayList;
 import enums.Category;
 
@@ -73,9 +45,16 @@ public class Medicine extends Product {
     }
     
     public void displayMedicine() {
-        System.out.println("Medicine Product :  " + getName());
         for (DosageForm form : forms) {
             System.out.println(" - " + form);
         }
     }
+
+    @Override
+    public String toString() {
+        displayproduct();
+        displayMedicine();
+        return "";
+    }
+    
 }

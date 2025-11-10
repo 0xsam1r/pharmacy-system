@@ -2,7 +2,6 @@ package model.returns;
 
 import java.time.LocalDate;
 import model.people.Employee;
-import model.invoices.Supplier;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -70,10 +69,9 @@ public class PurchaseReturn {
 
             returnInitiatedBy.getBranch().getInventory().modifyQuantaty(batch);
 
-            System.out.println("📦 تم خصم " + returnedQty + " من المنتج " + product.getName() + " من المخزون.");
+            System.out.println("descouand applaid " + returnedQty + " product " + product.getName() + " from inventory");
         }
 
-        // 3️⃣ نحدّث الخزنة (الفلوس بتزيد لأن المورد رجعها)
         Treasury treasury = returnInitiatedBy.getBranch().getTreasury();
         double currentBalance = treasury.getCurrentBalance();
         double newBalance = currentBalance + totalCreditOfMoney;
@@ -81,21 +79,20 @@ public class PurchaseReturn {
         treasury.setCurrentBalance(newBalance);
         treasury.setLastUpdatedDate(LocalDate.now());
 
-        System.out.println("🏦 تم إضافة " + totalCreditOfMoney + " إلى الخزنة. الرصيد الجديد = " + newBalance);
+        System.out.println("was added " + totalCreditOfMoney + " new Balance to inventory= " + newBalance);
 
-        // 4️⃣ نسجّل العملية في سجل المعاملات (Transaction)
         Transaction transaction = new Transaction();
         transaction.setDateAndTime(LocalDateTime.now());
         transaction.setType("PURCHASE_RETURN");
         transaction.setEmployee(returnInitiatedBy);
-        transaction.setInvoice(null); // مفيش فاتورة بيع هنا، دي عملية مستقلة
+        transaction.setInvoice(null); 
         transaction.setAmountOfMoney(totalCreditOfMoney);
 
-        // نضيف العملية دي لسجل المعاملات بتاع الفرع
+        
         returnInitiatedBy.getBranch().getTransactions().add(transaction);
     }
 
-    // Getters and setters
+    
     public int getId() {
         return id;
     }

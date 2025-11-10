@@ -1,6 +1,5 @@
 package model.returns;
 
-import model.Product.Product;
 
 import model.Product.Product;
 
@@ -35,7 +34,6 @@ public class ReturnItem {
         return unitPrice * quantity;
     }
 
-    // Getters and setters
     public Product getProduct() { return product; }
     public void setProduct(Product product) { this.product = product; }
     public Batch getBatch() { return batch; }

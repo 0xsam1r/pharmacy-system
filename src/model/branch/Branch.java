@@ -20,7 +20,8 @@ public class Branch {
     private Treasury treasury; // added to imporove 
     private List<Transaction> transactions;
     // Constructor
-    public Branch(String id, String name, String address,List<Transaction> transactions ) {
+
+    public Branch(String id, String name, String address, List<Employee> employees, Inventory inventory, Treasury treasury, List<Transaction> transactions) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -29,6 +30,7 @@ public class Branch {
         this.treasury = treasury;
         this.transactions = transactions;
     }
+
     public Branch(Branch b) {
         this.id = b.id;
         this.name = b.name;
@@ -100,7 +102,9 @@ public class Branch {
 
     // Methods
     public void addEmployee(Employee employee) {
-        employees.add(employee);
+       if( employees.contains(employee))
+            System.out.println("error that employee was exiset");
+       employees.add(employee);
     }
 
     public void removeEmployee(String employeeId) {

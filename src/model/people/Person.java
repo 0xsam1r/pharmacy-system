@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model.people;
 
-/**
- *
- * @author El hamd
- */
 
 public abstract class Person {
     protected String id;
@@ -32,7 +25,6 @@ public abstract class Person {
         this.phone = " ";
     }
 
-    // Getters and setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
     public String getName() { return name; }

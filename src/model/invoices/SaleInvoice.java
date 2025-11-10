@@ -13,6 +13,40 @@ public class SaleInvoice extends Invoice{
     private double supTotal;
     private Branch branch;
 
+        public SaleInvoice(int invoiceId, LocalDateTime date, double totalPrice, Branch branch) {
+    super(String.valueOf(branch.getId()), invoiceId, date, totalPrice, totalPrice);
+    this.customer = null;
+    this.discount = 0.0;
+    this.invoiceItems = new ArrayList<>();
+    this.supTotal = totalPrice;
+    this.branch = branch;
+}
+    public SaleInvoice(SaleInvoice s) {
+        this.BranchID = s.BranchID;
+        this.InvoiceID = s.InvoiceID;
+        this.date = s.date;
+        this.setTotalPrice(s.getTotalPrice());
+        this.totalAmount = s.totalAmount;
+        this.customer = s.customer;
+        this.discount = s.discount;
+        this.invoiceItems = s.invoiceItems;
+        this.supTotal = s.supTotal;
+        this.branch = s.branch;
+    }
+
+    public SaleInvoice() {
+        this.BranchID = "";
+        this.InvoiceID = 0;
+        this.date = null;
+        this.setTotalPrice(0);
+        this.totalAmount = 0;
+        this.customer = null;
+        this.discount = 0;
+        this.invoiceItems = null;
+        this.supTotal = 0;
+        this.branch = null;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
@@ -84,39 +118,6 @@ public class SaleInvoice extends Invoice{
         this.invoiceItems = invoiceItems;
         this.supTotal = supTotal;
         this.branch = branch;
-    }
-    public SaleInvoice(int invoiceId, LocalDateTime date, double totalPrice, Branch branch) {
-    super(String.valueOf(branch.getId()), invoiceId, date, totalPrice, totalPrice);
-    this.customer = null;
-    this.discount = 0.0;
-    this.invoiceItems = new ArrayList<>();
-    this.supTotal = totalPrice;
-    this.branch = branch;
-}
-    public SaleInvoice(SaleInvoice s) {
-        this.BranchID = s.BranchID;
-        this.InvoiceID = s.InvoiceID;
-        this.date = s.date;
-        this.setTotalPrice(s.getTotalPrice());
-        this.totalAmount = s.totalAmount;
-        this.customer = s.customer;
-        this.discount = s.discount;
-        this.invoiceItems = s.invoiceItems;
-        this.supTotal = s.supTotal;
-        this.branch = s.branch;
-    }
-
-    public SaleInvoice() {
-        this.BranchID = "";
-        this.InvoiceID = 0;
-        this.date = null;
-        this.setTotalPrice(0);
-        this.totalAmount = 0;
-        this.customer = null;
-        this.discount = 0;
-        this.invoiceItems = null;
-        this.supTotal = 0;
-        this.branch = null;
     }
 
     public Branch getBranch() {

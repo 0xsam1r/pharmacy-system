@@ -1,27 +1,37 @@
 package model.invoices;
 import java.time.LocalDateTime;
 
-/*=============================================
-###### Written By Samir Ahmed (0xsam1r) #######
-Email: 0xsam1r@proton.me
-=============================================*/
-
-/*
-* ##########################################################
-* An invoice shows what was sold, how much, and when —
-* like a printed receipt you get after buying medicine.
-* ##########################################################
-*/
-
-
 
 public class Invoice {
-    protected String BranchID; // BranchID are same for all program
+    protected String BranchID; 
     protected int InvoiceID;
-    protected LocalDateTime date; // using unix time or what ? unix good for api and time calculations
+    protected LocalDateTime date;
     private double totalPrice;
-    protected double totalAmount; // one is good
+    protected double totalAmount;
 
+    
+    public Invoice(String BranchID, int InvoiceID, LocalDateTime date, double totalPrice, double totalAmount) {
+        this.BranchID = BranchID;
+        this.InvoiceID = InvoiceID;
+        this.date = date;
+        this.totalPrice = totalPrice;
+        this.totalAmount = totalAmount;
+    }
+    public Invoice(Invoice i) {
+        this.BranchID = i.BranchID;
+        this.InvoiceID = i.InvoiceID;
+        this.date = i.date;
+        this.totalPrice = i.totalPrice;
+        this.totalAmount = i.totalAmount;
+    }
+    public Invoice() {
+        this.BranchID = "";
+        this.InvoiceID = 0;
+        this.date = null;
+        this.totalPrice = 0;
+        this.totalAmount = 0;
+    }
+    
     public String getBranchID() {
         return BranchID;
     }
@@ -62,26 +72,4 @@ public class Invoice {
         this.totalAmount = totalAmount;
     }
 
-    public Invoice(String BranchID, int InvoiceID, LocalDateTime date, double totalPrice, double totalAmount) {
-        this.BranchID = BranchID;
-        this.InvoiceID = InvoiceID;
-        this.date = date;
-        this.totalPrice = totalPrice;
-        this.totalAmount = totalAmount;
-    }
-    public Invoice(Invoice i) {
-        this.BranchID = i.BranchID;
-        this.InvoiceID = i.InvoiceID;
-        this.date = i.date;
-        this.totalPrice = i.totalPrice;
-        this.totalAmount = i.totalAmount;
-    }
-    public Invoice() {
-        this.BranchID = "";
-        this.InvoiceID = 0;
-        this.date = null;
-        this.totalPrice = 0;
-        this.totalAmount = 0;
-    }
-    
 }

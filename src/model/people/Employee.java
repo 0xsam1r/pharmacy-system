@@ -33,7 +33,6 @@ public class Employee extends Person {
         this.branch = null;
     }
 
-    // Getters and setters
     public UserAccount getAccount() {
         return account;
     }

@@ -61,7 +61,7 @@ public class SaleReturn {
         }
 
         totalRefundOfMoney = total;
-        System.out.println("tootal refund is " + totalRefundOfMoney + " جنيه");
+        System.out.println("tootal refund is " + totalRefundOfMoney + " $$");
 
         for (ReturnItem item : returnItems) {
             Product product = item.getProduct();
@@ -112,10 +112,8 @@ public class SaleReturn {
         transaction.setInvoice(saleInvoice);
         transaction.setAmountOfMoney(totalRefundOfMoney);
 
-        //saleInvoice.getBranch().getTransactions().add(transaction);
     }
 
-    // Getters and setters
     public int getId() {
         return id;
     }

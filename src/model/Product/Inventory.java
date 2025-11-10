@@ -36,6 +36,11 @@ public class Inventory {
     }
     
     public void addProduct(Product p) {
+        if(products.contains(p))
+        {  
+            System.out.println("product is already added ");
+            return ;
+           }
         products.add(p);
     }
     public void removeProduct(Product p) {
@@ -92,7 +97,7 @@ public class Inventory {
         }
         return null ;
     }
-    
+    // DISPLAY IS POWERFULL THAN tostring 
      public void displayInventory() {
         System.out.println("Inventory ID: " + ID);
         for (Product p : products) {

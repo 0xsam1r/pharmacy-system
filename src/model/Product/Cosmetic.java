@@ -47,13 +47,9 @@ import enums.Category;
     public void setGender(char gender) {
         this.gender = gender;
     }
-    
-    public void displayCosmetics() {
-        System.out.println("Cosmetic Product :" + getName());
-        System.out.println("Brand: " + brand);
-        System.out.println("Gender: " + gender);
+     
+    @Override
+    public String toString() {
+        return "Cosmetic{" +this.displayproduct()+ "brand=" + brand + ", gender=" + gender + '}';
     }
-    
-    
-    
 }

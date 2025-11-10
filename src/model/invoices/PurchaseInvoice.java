@@ -3,8 +3,6 @@
 package model.invoices;
 
 import model.branch.Branch;
-import model.invoices.Batch;
-import model.invoices.Supplier;
 import model.Product.Inventory;
 
 import java.time.LocalDateTime;
@@ -18,7 +16,6 @@ public class PurchaseInvoice extends Invoice {
     private List<Batch> batches;
     private Supplier supplier;
 
-    // === CONSTRUCTORS ===
 
     public PurchaseInvoice(Inventory inventory, double remainingMoney, double moneyPaid, List<Batch> batches, Supplier supplier) {
         this.inventory = inventory;
@@ -28,7 +25,6 @@ public class PurchaseInvoice extends Invoice {
         this.supplier = supplier;
     }
 
-    // Constructor بسيط للـ Transaction (اللي احنا محتاجينه في Treasury)
     public PurchaseInvoice(int invoiceId, LocalDateTime date, double totalAmount, Branch branch) {
         super(String.valueOf(branch.getId()), invoiceId, date, totalAmount, totalAmount);
         this.inventory = null;
@@ -56,7 +52,6 @@ public class PurchaseInvoice extends Invoice {
         this.supplier = null;
     }
 
-    // === GETTERS & SETTERS ===
     public Inventory getInventory() { return inventory; }
     public void setInventory(Inventory inventory) { this.inventory = inventory; }
 

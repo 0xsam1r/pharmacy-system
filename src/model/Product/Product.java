@@ -65,7 +65,15 @@ public class Product {
     public void setPrice(double Price) {
         this.Price = Price;
     }
-    
-    
+
+    //helper function
+    public Product displayproduct(){
+        return this;
+    } 
+
+    @Override
+    public String toString() {
+        return "Product{" + "Parcode=" + Parcode + ", Name=" + Name + ", UnitsPerProduct=" + UnitsPerProduct + ", Price=" + Price + ", Category=" + Category + ", quantityInStock=" + quantityInStock + '}';
+    }
     
 }

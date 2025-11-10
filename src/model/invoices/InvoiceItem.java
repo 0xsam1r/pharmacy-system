@@ -1,14 +1,14 @@
 package model.invoices;
 
-// @ Written By Samir Ahmed (0xsam1r)
+
 
 import model.Product.Inventory;
 import model.Product.Product;
 
 public class InvoiceItem {
     private Product product;
-    private String Units; // The measurement unit (e.g. “box”, “tablet”, “bottle”)
-    private int quantity; // How many of those units
+    private String Units; 
+    private int quantity; 
     private Inventory inventory;
 
     public InvoiceItem(Product product, String Units, int quantity, Inventory inventory) {
@@ -62,13 +62,8 @@ public class InvoiceItem {
         this.inventory = inventory;
     }
 
-    // =============================================================
-    // @ methods
-    // =============================================================
-    // handler 0 product not exist ---
     public double CalcPrice() {
 
-        // what for units !?
         if ( product.getQuantityInStock() > 0) {
             if (product.getQuantityInStock() < this.quantity) {
                 System.out.println("Quantity in stock not enough");
@@ -82,9 +77,5 @@ public class InvoiceItem {
             return 0;
         }
     }
-
-    
-        
-   
 }
 
