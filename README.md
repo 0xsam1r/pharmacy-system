@@ -1,9 +1,3 @@
-أكيد ✅
-ده الكود النهائي لملف **`README.md`** بعد التنسيق والضبط الكامل — جاهز تنسخه وتحطه في الـ GitHub repo مباشرة:
-
----
-
-````markdown
 # 💊 Pharmacy Management System  
 Project for **COMP301** at Faculty of Science, Ain Shams University.  
 A complete Java-based pharmacy management system with **database integration**, **financial utilities**, **reports**, and **alert management**.
