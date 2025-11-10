@@ -1,51 +1,37 @@
 package DB;
 
-import model.branch.Branch;
-import model.finance.Treasury;
-import model.finance.Transaction;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.time.LocalDate;
+import DB.DBConnection;
 
-import java.util.List;
-
-public class TestTreasury {
+public class  TestTreasury{
     public static void main(String[] args) {
-        try {
-            // أول حاجة: نجيب فرع موجود في الداتا بيز
-            Branch branch = Branch.getBranchById("1"); // فرع رقم 1 مثلاً
+        System.out.println("Connection succ");
+        try (Connection conn = DBConnection.getConnection()) {
 
-            if (branch == null) {
-                System.out.println("❌ مفيش فرع بالـ ID ده.");
-                return;
-            }
+            // 1️⃣ إنشاء فاتورة عامة
+            String addInvoice = "INSERT INTO invoice (ID, date, price, Treasury_Bransh_ID) VALUES (?, ?, ?, ?)";
+            PreparedStatement inv = conn.prepareStatement(addInvoice);
+            inv.setInt(1, 88);
+            inv.setDate(2, java.sql.Date.valueOf(LocalDate.now()));
+            inv.setFloat(3, 200);
+            inv.setInt(4, 1); // تأكد أن عندك Bransh_ID = 1
+            inv.executeUpdate();
 
-            // نعمل كائن Treasury للفرع
-            Treasury treasury = new Treasury(1, 0, null, branch);
+            // 2️⃣ إضافة فاتورة بيع مرتبطة بنفس العميل اللي عندك
+            String addSell = "INSERT INTO sell_invoice (Discount, Invoice_ID, Customer_Person_ID, Customer_Person_Phone) VALUES (?, ?, ?, ?)";
+            PreparedStatement sell = conn.prepareStatement(addSell);
+            sell.setFloat(1, 0);
+            sell.setInt(2, 88);
+            sell.setString(3, "C202");        // موجود بالفعل
+            sell.setString(4, "01110000000"); // نفس الرقم اللي في person/customer
+            sell.executeUpdate();
 
-            // نجرب الدوال واحدة واحدة 👇
-            System.out.println("===== 💰 بيانات اليوم للفرع: " + branch.getName() + " =====");
-            System.out.println("إجمالي المبيعات: " + treasury.getTotalDailySales());
-            System.out.println("إجمالي المشتريات: " + treasury.getTotalDailyPurchases());
-            System.out.println("مرتجعات البيع: " + treasury.getTotalDailySaleReturns());
-            System.out.println("مرتجعات الشراء: " + treasury.getTotalDailyPurchaseReturns());
-
-            System.out.println("\n===== 📜 سجل المعاملات =====");
-            List<Transaction> transactions = treasury.getTransactionsHistory();
-
-            if (transactions.isEmpty()) {
-                System.out.println("مفيش معاملات لليوم الحالي.");
-            } else {
-                for (Transaction t : transactions) {
-                    System.out.println("-------------------------------------------------");
-                    System.out.println("النوع: " + t.getType());
-                    System.out.println("المبلغ: " + t.getAmountOfMoney());
-                    System.out.println("التاريخ: " + t.getDateAndTime());
-                    System.out.println("رقم الفاتورة: " + t.getInvoice().getInvoiceID());
-                    
-                }
-            }
+            System.out.println("✅ TreasuryTest executed successfully!");
 
         } catch (Exception e) {
-            System.err.println("⚠️ حصل خطأ أثناء الاختبار: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("❌ TreasuryTest failed: " + e.getMessage());
         }
     }
 }
