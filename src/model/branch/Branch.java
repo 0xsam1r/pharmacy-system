@@ -20,14 +20,14 @@ public class Branch {
     private Treasury treasury;
     private List<Transaction> transactions;
     // Constructor
-    public Branch(String id, String name, String address) {
+    public Branch(String id, String name, String address,List<Transaction> transactions ) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.employees = employees;
         this.inventory = inventory;
         this.treasury = treasury;
-        this.transactions = transaction;
+        this.transactions = transactions;
     }
     public Branch(Branch b) {
         this.id = b.id;
@@ -42,6 +42,15 @@ public class Branch {
         this.id = "";
         this.name = "";
         this.address = "";
+        this.employees = null;
+        this.inventory = null;
+        this.treasury = null;
+        this.transactions = null;
+    }
+    public Branch(String id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
         this.employees = null;
         this.inventory = null;
         this.treasury = null;

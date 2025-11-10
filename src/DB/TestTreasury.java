@@ -39,7 +39,7 @@ public class TestTreasury {
                     System.out.println("المبلغ: " + t.getAmountOfMoney());
                     System.out.println("التاريخ: " + t.getDateAndTime());
                     System.out.println("رقم الفاتورة: " + t.getInvoice().getInvoiceID());
-                    System.out.println("الفرع: " + t.getInvoice().getBranch().getName());
+                    
                 }
             }
 
