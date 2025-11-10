@@ -56,7 +56,7 @@ public class Batch {
     }
 
     public void setSupplier(Supplier Supplier) {
-        this.Supplier = Supplier;
+            this.Supplier = Supplier;
     }
     
     

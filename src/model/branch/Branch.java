@@ -17,7 +17,7 @@ public class Branch {
     private String address;
     private List<Employee> employees;
     private Inventory inventory;
-    private Treasury treasury;
+    private Treasury treasury; // added to imporove 
     private List<Transaction> transactions;
     // Constructor
     public Branch(String id, String name, String address,List<Transaction> transactions ) {
