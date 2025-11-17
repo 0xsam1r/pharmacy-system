@@ -152,6 +152,6 @@ public class Branch {
             System.err.println("Error fetching branch by ID: " + e.getMessage());
             e.printStackTrace();
         }
-        return null; // لو مش موجود
+        return null;
     }
 }

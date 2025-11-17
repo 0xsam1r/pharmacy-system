@@ -42,7 +42,6 @@ public class Treasury {
     }
 
     // ====================== REAL DATABASE FUNCTIONS ======================
-    
     public double getTotalDailyPurchaseReturns() {
         if (branch == null) {
             return 0.0;
@@ -71,7 +70,6 @@ public class Treasury {
         return 0.0;
     }
 
-   
     public double getTotalDailySaleReturns() {
         if (branch == null) {
             return 0.0;
@@ -83,7 +81,7 @@ public class Treasury {
             JOIN invoice i ON si.Invoice_ID = i.ID
             WHERE i.Treasury_Bransh_ID = ?
               AND i.date = CURDATE()
-              AND i.price < 0  -- افتراض: المرتجعات تُسجل كـ negative price
+              AND i.price < 0
             """;
 
         try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -91,7 +89,7 @@ public class Treasury {
             pstmt.setInt(1, Integer.parseInt(branch.getId()));
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return Math.abs(rs.getDouble("total_returns"));   
+                return Math.abs(rs.getDouble("total_returns"));
             }
         } catch (SQLException e) {
             System.err.println("Error fetching daily sale returns: " + e.getMessage());
@@ -100,7 +98,6 @@ public class Treasury {
         return 0.0;
     }
 
-    
     public double getTotalDailySales() {
         if (branch == null) {
             return 0.0;
@@ -129,7 +126,6 @@ public class Treasury {
         return 0.0;
     }
 
-    
     public double getTotalDailyPurchases() {
         if (branch == null) {
             return 0.0;
@@ -157,12 +153,14 @@ public class Treasury {
         return 0.0;
     }
 
-    
+    //هيرجع ليست بالعمليات اللي حصلت ف الخزنة
     public List<Transaction> getTransactionsHistory() {
-    List<Transaction> transactions = new ArrayList<>();
-    if (branch == null) return transactions;
+        List<Transaction> transactions = new ArrayList<>();
+        if (branch == null) {
+            return transactions;
+        }
 
-    String sql = """
+        String sql = """
         SELECT
             i.ID AS invoice_id,
             i.date,
@@ -188,61 +186,60 @@ public class Treasury {
         ORDER BY date DESC
         """;
 
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-        int branchId = Integer.parseInt(branch.getId());
-        pstmt.setInt(1, branchId);
-        pstmt.setInt(2, branchId);
+            int branchId = Integer.parseInt(branch.getId());
+            pstmt.setInt(1, branchId);
+            pstmt.setInt(2, branchId);
 
-        ResultSet rs = pstmt.executeQuery();
-        while (rs.next()) {
-            Transaction t = new Transaction();
-            LocalDateTime dateTime = rs.getDate("date").toLocalDate().atStartOfDay();
-            t.setDateAndTime(dateTime);
-            t.setType(rs.getString("type"));
-            double amount = Math.abs(rs.getDouble("price"));
-            t.setAmountOfMoney(amount);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Transaction t = new Transaction();
+                LocalDateTime dateTime = rs.getDate("date").toLocalDate().atStartOfDay();
+                t.setDateAndTime(dateTime);
+                t.setType(rs.getString("type"));
+                double amount = Math.abs(rs.getDouble("price"));
+                t.setAmountOfMoney(amount);
 
-            int invoiceId = rs.getInt("invoice_id");
-            Branch branchObj = this.branch; // أو this.branch
+                int invoiceId = rs.getInt("invoice_id");
+                Branch branchObj = this.branch; // أو this.branch
 
-            if ("SALE".equals(t.getType())) {
-                t.setInvoice(new SaleInvoice(
-    null,        
-    0.0,        
-    null,       
-    0.0,        
-    String.valueOf(branchObj.getId()),
-    invoiceId,  
-    dateTime,    
-    amount,     
-    amount,     
-    branchObj 
-));
-            } else {
-                t.setInvoice(new SaleInvoice(
-    null,        
-    0.0,         
-    null,       
-    0.0,         
-    String.valueOf(branchObj.getId()),
-    invoiceId,  
-    dateTime,   
-    amount,      
-    amount,      
-    branchObj    
-));
+                if ("SALE".equals(t.getType())) {
+                    t.setInvoice(new SaleInvoice(
+                            null,
+                            0.0,
+                            null,
+                            0.0,
+                            String.valueOf(branchObj.getId()),
+                            invoiceId,
+                            dateTime,
+                            amount,
+                            amount,
+                            branchObj
+                    ));
+                } else {
+                    t.setInvoice(new SaleInvoice(
+                            null,
+                            0.0,
+                            null,
+                            0.0,
+                            String.valueOf(branchObj.getId()),
+                            invoiceId,
+                            dateTime,
+                            amount,
+                            amount,
+                            branchObj
+                    ));
+                }
+
+                transactions.add(t);
             }
-
-            transactions.add(t);
+        } catch (SQLException e) {
+            System.err.println("Error fetching transaction history: " + e.getMessage());
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        System.err.println("Error fetching transaction history: " + e.getMessage());
-        e.printStackTrace();
+        return transactions;
     }
-    return transactions;
-}
 
     // ====================== GETTERS & SETTERS ======================
     public int getId() {

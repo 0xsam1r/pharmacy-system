@@ -21,7 +21,7 @@ public class ReportGenerator {
     // 1. Sales + Purchases + Profit Report (Text File)
     public static void generateSalesReport(String dateStr) {
         LocalDate date = LocalDate.parse(dateStr);
-        String fileName = REPORTS_DIR + "/sales_report_" + dateStr + ".txt";
+        String fileName = REPORTS_DIR + "/sales_report_" + dateStr + ".pdf";
 
         try (Connection conn = DBConnection.getConnection();
              BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
