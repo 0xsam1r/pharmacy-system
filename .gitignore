@@ -3,23 +3,24 @@
 /dist/
 /out/
 /target/
-/*.class
-/*.jar
-/*.war
-/*.ear
+
+# Do NOT ignore libraries in /lib
+# So DO NOT ignore all .jar files globally
 
 # --- IDE-specific files ---
+
 # IntelliJ IDEA
 /.idea/
 /*.iml
 
 # NetBeans
-/nbproject/
-/nbproject/private/
+nbproject/private/
 /nbbuild/
 /nbdist/
 /nbactions.xml
 /nb-configuration.xml
+
+# Do NOT ignore nbproject/ (needed for Ant projects)
 
 # Eclipse
 .classpath
@@ -39,9 +40,8 @@ Thumbs.db
 *.bak
 *.swp
 
-# --- Gradle / Maven (in case you switch later) ---
+# --- Maven/Gradle (if you switch later) ---
 .gradle/
-/build/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -50,11 +50,9 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 
-# --- NodeJS (ignore if not used, just for safety) ---
+# --- NodeJS ---
 node_modules/
 npm-debug.log
 
 # --- Misc ---
-# ignore generated MANIFEST files
 *.mf
-/build.xml
