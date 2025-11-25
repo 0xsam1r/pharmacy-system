@@ -1,19 +1,13 @@
 ================================================================================
-       DAILY SALES & PURCHASES REPORT - 2025-11-08
+       DAILY SALES & PURCHASES REPORT - 2025-11-26
 ================================================================================
 
 1. SALES
 ----------------------------------------------------------------------
 Invoice  Date         Disc.    Customer        Product                   Price    Employee    
 ----------------------------------------------------------------------
-5        2025-11-08   20.00    Khaled Mostafa 
-                                                   L’Oreal Cream             75.00    omart       
-                                    Invoice Total: 75.00   
-10       2025-11-08   10.00    Khaled Mostafa 
-                                                   Garnier Light             65.00    omart       
-                                    Invoice Total: 65.00   
 ----------------------------------------------------------------------
-                                      Total Sales: 140.00  
+                                      Total Sales: 0.00    
 
 2. PURCHASES
 ----------------------------------------------------------------------
@@ -24,9 +18,9 @@ Invoice  Date         Total      Paid       Remain     Supplier
 
 3. PROFIT & LOSS SUMMARY
 --------------------------------------------------
-Total Sales:             140.00
+Total Sales:               0.00
 Total Purchases:           0.00
-Net Profit:              140.00
+Net Profit:                0.00
 --------------------------------------------------
 
 

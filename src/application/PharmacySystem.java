@@ -23,9 +23,6 @@ import model.people.UserAccount;
 import model.returns.ReturnItem;
 import model.returns.SaleReturn;
 
-/**
- * Main Class to comprehensively test all major system functionalities.
- */
 public class PharmacySystem {
 
     public static void main(String[] args) {
@@ -46,7 +43,7 @@ public class PharmacySystem {
         System.out.println("         ALL SYSTEM TESTS COMPLETED");
         System.out.println("==========================================");
     }
-
+    
     private static void testProductAndInventory() {
         System.out.println("\n" + "=".repeat(50));
         System.out.println("      1. Testing Product and Inventory Classes");
@@ -210,5 +207,7 @@ public class PharmacySystem {
 
         ReportGenerator.generateProfitGraph(testDate);
         System.out.println(" Profit Graph generated. Check 'reports' folder.");
+        
     }
 }
+
