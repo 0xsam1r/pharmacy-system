@@ -18,7 +18,5 @@ public class AlertSystemTest {
         System.out.println("\nUNPAID INVOICES (" + unpaid.size() + "):");
         unpaid.forEach(System.out::println);
 
-        System.out.println("\nALL ALERTS:");
-        AlertSystem.checkAll().forEach(System.out::println);
     }
 }
