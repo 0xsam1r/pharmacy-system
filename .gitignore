@@ -56,6 +56,6 @@ npm-debug.log
 
 # --- Misc ---
 *.mf
-reports/
-lib/
+/reports/**
+/lib/
 lib.zip
