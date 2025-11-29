@@ -4,9 +4,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
+
 -- -----------------------------------------------------
 -- Schema pms
 -- -----------------------------------------------------
@@ -14,19 +12,37 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema pms
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `pms` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `pms` DEFAULT CHARACTER SET utf8mb4 ;
 USE `pms` ;
+
+-- -----------------------------------------------------
+-- Table `pms`.`category`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pms`.`category` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(35) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8mb4;
+
 
 -- -----------------------------------------------------
 -- Table `pms`.`product`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pms`.`product` (
   `parcode` VARCHAR(14) NOT NULL,
-  `Name` VARCHAR(20) NOT NULL,
+  `Name` VARCHAR(40) NOT NULL,
   `Price` FLOAT NOT NULL,
   `Uints` INT(11) NOT NULL,
-  `Catagory` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`parcode`))
+  `Category_ID` INT(11) NOT NULL,
+  PRIMARY KEY (`parcode`, `Category_ID`),
+  INDEX `fk_product_Category1_idx` (`Category_ID` ASC) ,
+  CONSTRAINT `fk_product_Category1`
+    FOREIGN KEY (`Category_ID`)
+    REFERENCES `pms`.`category` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -162,8 +178,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pms`.`dosage_form` (
   `active_ing` VARCHAR(45) NOT NULL,
-  `ID` INT NOT NULL,
-  `Strength` DOUBLE NOT NULL,
+  `ID` INT(11) NOT NULL,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -289,17 +304,10 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pms`.`medicine` (
   `Product_parcode` VARCHAR(14) NOT NULL,
-  `dosage_form_ID` INT NOT NULL,
   PRIMARY KEY (`Product_parcode`),
-  INDEX `fk_medicine_dosage_form1_idx` (`dosage_form_ID` ASC) ,
   CONSTRAINT `fk_Medicine_Product1`
     FOREIGN KEY (`Product_parcode`)
     REFERENCES `pms`.`product` (`parcode`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_medicine_dosage_form1`
-    FOREIGN KEY (`dosage_form_ID`)
-    REFERENCES `pms`.`dosage_form` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -435,6 +443,30 @@ CREATE TABLE IF NOT EXISTS `pms`.`treasury` (
   CONSTRAINT `fk_treasury_invoice1`
     FOREIGN KEY (`invoice_ID`)
     REFERENCES `pms`.`invoice` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `pms`.`medicine_has_dosage_form`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pms`.`medicine_has_dosage_form` (
+  `medicine_Product_parcode` VARCHAR(14) NOT NULL,
+  `dosage_form_ID` INT(11) NOT NULL,
+  `Strength` DOUBLE NOT NULL,
+  PRIMARY KEY (`medicine_Product_parcode`, `dosage_form_ID`),
+  INDEX `fk_medicine_has_dosage_form_dosage_form1_idx` (`dosage_form_ID` ASC) ,
+  INDEX `fk_medicine_has_dosage_form_medicine1_idx` (`medicine_Product_parcode` ASC) ,
+  CONSTRAINT `fk_medicine_has_dosage_form_medicine1`
+    FOREIGN KEY (`medicine_Product_parcode`)
+    REFERENCES `pms`.`medicine` (`Product_parcode`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_medicine_has_dosage_form_dosage_form1`
+    FOREIGN KEY (`dosage_form_ID`)
+    REFERENCES `pms`.`dosage_form` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
