@@ -28,126 +28,50 @@ USE PMS;
 -- Paste or execute the insertion script here
 ```
 
-✅ **Make sure both scripts run successfully before starting the app.**
+#### ➤ Add user for DataBase Connection
+
+1. Run the **(`setUser.sql`) script** to add the user used to connect to DB:
+
+```sql
+USE PMS;
+-- Paste or execute the insertion script here
+```
+---
+
+## 📦 Project Libraries (Required)
+
+This project uses external libraries that are **not included in the repository**.
+Download them here:
+
+👉 **[https://drive.proton.me/urls/DDDWG3WQSW#qvJnpDTn61TO](https://drive.proton.me/urls/DDDWG3WQSW#qvJnpDTn61TO)**
+
+You will get a ZIP file.
 
 ---
 
-### 🔗 2️⃣ Add MySQL Connector (JDBC)
+## 📁 How to Use
 
-To enable database connectivity between Java and MySQL, you need the **MySQL Connector/J** library.
+1. **Download the ZIP file** from the link above.
+2. **Extract it** — you will get a folder named `lib`.
+3. **Place the `lib` folder in the project root** (same folder as `src`).
 
-* **Download it from the official MySQL website:**
-  👉 [MySQL Connector/J Download Page](https://dev.mysql.com/downloads/connector/j/)
-
-#### Steps:
-
-1. Extract the ZIP file.
-2. Locate the `.jar` file (e.g., `mysql-connector-j-8.4.0.jar`).
-3. In **NetBeans / IntelliJ / Eclipse**, go to:
-   `Project → Properties → Libraries → Add JAR/Folder` → select the `.jar` file.
-
----
-
-### 📊 3️⃣ Add JFreeChart Library (for Report Generator)
-
-To enable the **Report Generator** and financial chart features, add the **JFreeChart** library.
-
-* **Download from SourceForge:**
-  👉 [JFreeChart Download Page](https://sourceforge.net/projects/jfreechart/files/)
-
-#### Steps:
-
-1. Extract the ZIP file.
-2. Locate these main JARs:
-
-   * `jfreechart-x.x.x.jar`
-   * `jcommon-x.x.x.jar`
-3. Add them both to your project libraries (same way as MySQL connector).
-
----
-
-### ▶️ 4️⃣ Run the Application
-
-Once libraries and the database are ready:
-
-1. Open the project in **NetBeans** or **IntelliJ**.
-2. Ensure your folder structure looks like this:
+Your project should look like:
 
 ```
-pharmacy-management-system/
-│
-├── src/
-│   ├── application/
-│   │   └── Main.java                
-│   │
-│   ├── model/                       
-│   │   ├── Products/                
-│   │   │   ├── Product.java
-│   │   │   ├── Medicine.java
-│   │   │   ├── Cosmetic.java
-│   │   │   ├── DosageForm.java
-│   │   │   └── Inventory.java
-│   │   │
-│   │   ├── people/                   
-│   │   │   ├── Person.java
-│   │   │   ├── Customer.java
-│   │   │   ├── Employee.java
-│   │   │   └── UserAccount.java
-│   │   │
-│   │   ├── invoices/                
-│   │   │   ├── Invoice.java
-│   │   │   ├── PurchaseInvoice.java
-│   │   │   ├── SaleInvoice.java
-│   │   │   ├── InvoiceItem.java
-│   │   │   ├── Supplier.java
-│   │   │   └── Batch.java
-│   │   │
-│   │   ├── returns/                 
-│   │   │   ├── ReturnItem.java
-│   │   │   ├── SaleReturn.java
-│   │   │   └── PurchaseReturn.java
-│   │   │
-│   │   ├── finance/                 
-│   │   │   ├── Treasury.java
-│   │   │   ├── Transaction.java
-│   │   │   ├── ReportGenerator.java
-│   │   │   └── AlertSystem.java
-│   │   │
-│   │   └── branch/                   
-│   │       └── Branch.java
-│   │
-│   ├── view/                         
-│   │   ├── fxml/                    
-│   │   │   ├── login.fxml
-│   │   │   ├── inventory.fxml
-│   │   │   ├── sales.fxml
-│   │   │   ├── reports.fxml
-│   │   │   └── main.fxml
-│   │   │
-│   │   └── controllers/         
-│   │       ├── LoginViewController.java
-│   │       ├── InventoryViewController.java
-│   │       ├── SaleViewController.java
-│   │       └── ReportsViewController.java
-│   │
-│   ├── enums/                        
-│   │   ├── Category.java
-│   │   └── Role.java
-│   │
-│   │   
-│   └── dao/                  
-│       ├── ProductDAO.java
-│       ├── InvoiceDAO.java
-│       └── EmployeeDAO.java
-│
-├── resources/
-│   ├── css/                     
-│   └── images/                       
-│
-│
-└── SQL/                              
+project/
+ ├── src/
+ ├── lib/
+ └── ...
 ```
 
+4. Open the project in your IDE and make sure the libraries are added to the project:
+
+* **IntelliJ:** Right-click `lib` → *Add as Library*
+* **NetBeans/Eclipse:** Add JARs from the `lib` folder to the project’s build path
+
+---
+
+That's it — the project will now compile and run correctly.
 
 ---
 
