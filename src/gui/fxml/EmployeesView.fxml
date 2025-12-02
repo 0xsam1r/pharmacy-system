@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      spacing="20" style="-fx-background-color: transparent;" alignment="CENTER">
+    
+    <VBox styleClass="card" spacing="20" alignment="CENTER" maxWidth="600">
+        <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+        
+        <Label text="👔" style="-fx-font-size: 64px;"/>
+        <Label text="Employees Management" styleClass="label-header"/>
+        <Label text="This feature is under development" style="-fx-text-fill: #7f8c8d;"/>
+        
+        <Separator prefWidth="400"/>
+        
+        <Label text="Coming soon:" style="-fx-font-weight: bold;"/>
+        <VBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="✓ Employee records management"/>
+            <Label text="✓ Attendance tracking"/>
+            <Label text="✓ Salary management"/>
+            <Label text="✓ Performance reviews"/>
+            <Label text="✓ Role and permissions management"/>
+        </VBox>
+    </VBox>
+</VBox>
