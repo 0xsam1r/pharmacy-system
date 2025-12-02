@@ -1,3 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+            fx:controller="gui.controllers.DashboardController" 
+            styleClass="dashboard-container" 
+            prefWidth="1400" prefHeight="900">
+    
+    <!-- Top Menu Bar -->
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Logout" onAction="#handleLogout"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Exit" onAction="#handleExit"/>
+            </Menu>
+            <Menu text="Help">
                 <MenuItem text="About" onAction="#handleAbout"/>
             </Menu>
         </MenuBar>
@@ -17,21 +37,21 @@
             <!-- Navigation Buttons -->
             <VBox spacing="0" VBox.vgrow="ALWAYS">
                 <Button fx:id="btnDashboard" text="Dashboard" styleClass="sidebar-button, sidebar-button-active" 
-                        maxWidth="Infinity" onAction="#showDashboardView"/>
+                        prefWidth="220" onAction="#showDashboardView"/>
                 <Button fx:id="btnProducts" text="Products" styleClass="sidebar-button" 
-                        maxWidth="Infinity" onAction="#showProductsView"/>
+                        prefWidth="220" onAction="#showProductsView"/>
                 <Button fx:id="btnInventory" text="Inventory" styleClass="sidebar-button" 
-                        maxWidth="Infinity" onAction="#showInventoryView"/>
+                        prefWidth="220" onAction="#showInventoryView"/>
                 <Button fx:id="btnSales" text="Sales" styleClass="sidebar-button" 
-                        maxWidth="Infinity" onAction="#showSalesView"/>
+                        prefWidth="220" onAction="#showSalesView"/>
                 <Button fx:id="btnCustomers" text="Customers" styleClass="sidebar-button" 
-                        maxWidth="Infinity" onAction="#showCustomersView"/>
+                        prefWidth="220" onAction="#showCustomersView"/>
                 <Button fx:id="btnEmployees" text="Employees" styleClass="sidebar-button" 
-                        maxWidth="Infinity" onAction="#showEmployeesView"/>
+                        prefWidth="220" onAction="#showEmployeesView"/>
                 <Button fx:id="btnReports" text="Reports" styleClass="sidebar-button" 
-                        maxWidth="Infinity" onAction="#showReportsView"/>
+                        prefWidth="220" onAction="#showReportsView"/>
                 <Button fx:id="btnSettings" text="Settings" styleClass="sidebar-button" 
-                        maxWidth="Infinity" onAction="#showSettingsView"/>
+                        prefWidth="220" onAction="#showSettingsView"/>
             </VBox>
             
             <!-- User Info at Bottom -->
