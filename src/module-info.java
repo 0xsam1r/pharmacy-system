@@ -17,5 +17,15 @@ module PharmacySystem {
     requires jfx.incubator.richtext;
     requires mysql.connector.j;
     requires java.sql;
+    requires hamcrest.core;
+    requires jcommon;
+    requires jfreechart;
+    requires jfreesvg;
+    requires junit;
+    requires orsoncharts;
+    requires orsonpdf;
+    requires servlet;
+    requires swtgraphics2d;
+    requires org.jfree.jfreechart;
     
 }

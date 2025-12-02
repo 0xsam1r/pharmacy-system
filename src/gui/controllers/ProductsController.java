@@ -19,6 +19,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.scene.layout.GridPane;
 
 /**
  * Controller for Products Management View
