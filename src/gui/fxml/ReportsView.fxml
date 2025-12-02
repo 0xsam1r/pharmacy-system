@@ -3,19 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
-      fx:controller="gui.controllers.ReportsController"
-      spacing="20" style="-fx-background-color: transparent;">
-    
-    <HBox alignment="CENTER_LEFT" spacing="15">
-        <Label text="📈 Reports & Analytics" styleClass="label-header"/>
-    </HBox>
-    
-    <GridPane hgap="20" vgap="20">
-        <columnConstraints>
-            <ColumnConstraints percentWidth="50"/>
-            <ColumnConstraints percentWidth="50"/>
         </columnConstraints>
         
         <VBox styleClass="card" spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="0">

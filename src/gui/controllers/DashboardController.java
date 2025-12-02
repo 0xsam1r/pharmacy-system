@@ -70,21 +70,21 @@ public class DashboardController implements Initializable {
             currentActiveButton = btnDashboard;
             
             // Start clock
-            startClock();
+            // startClock();
             
             // Load dashboard data
-            loadDashboardData();
+            // loadDashboardData();
             
             // Setup table columns
-            setupTableColumns();
+            // setupTableColumns();
             
             // Load recent transactions
-            loadRecentTransactions();
+            // loadRecentTransactions();
             
             // Load system alerts
-            loadSystemAlerts();
+            // loadSystemAlerts();
             
-            ExceptionLogger.logInfo("Dashboard initialized successfully");
+            ExceptionLogger.logInfo("Dashboard initialized successfully (Simplified)");
             
         } catch (Exception e) {
             ExceptionLogger.logException(e, "Error initializing dashboard");

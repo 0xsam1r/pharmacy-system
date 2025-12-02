@@ -127,19 +127,55 @@ public class LoginController implements Initializable {
     
     private void navigateToDashboard() {
         try {
+            System.out.println("Loading dashboard...");
+            ExceptionLogger.logInfo("Attempting to load dashboard");
+            
+            // Load FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/Dashboard.fxml"));
+            // FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/SimpleDashboard.fxml"));
+            
+            if (loader.getLocation() == null) {
+                throw new Exception("Dashboard.fxml not found in resources");
+            }
+            
+            System.out.println("FXML loaded from: " + loader.getLocation());
             Parent root = loader.load();
+            System.out.println("Dashboard loaded successfully");
             
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/gui/css/styles.css").toExternalForm());
+            
+            // Try to load CSS, but don't fail if it's missing
+            try {
+                URL cssUrl = getClass().getResource("/gui/css/styles.css");
+                if (cssUrl != null) {
+                    scene.getStylesheets().add(cssUrl.toExternalForm());
+                    System.out.println("CSS loaded successfully");
+                } else {
+                    System.out.println("WARNING: CSS file not found, using default styles");
+                    ExceptionLogger.logWarning("CSS file not found at /gui/css/styles.css");
+                }
+            } catch (Exception cssEx) {
+                System.out.println("WARNING: Failed to load CSS: " + cssEx.getMessage());
+                ExceptionLogger.logException(cssEx, "CSS loading failed - continuing without styles");
+                // Continue anyway - CSS is not critical
+            }
             
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(scene);
             stage.setMaximized(true);
             
+            ExceptionLogger.logInfo("Dashboard displayed successfully");
+            
+        } catch (java.io.IOException e) {
+            System.err.println("IOException while loading dashboard: " + e.getMessage());
+            e.printStackTrace();
+            ExceptionLogger.logException(e, "IOException - Failed to load Dashboard.fxml");
+            showError("Failed to load dashboard file. Please check FXML file exists.");
         } catch (Exception e) {
+            System.err.println("Error loading dashboard: " + e.getMessage());
+            e.printStackTrace();
             ExceptionLogger.logException(e, "Failed to load dashboard");
-            showError("Failed to load dashboard. Please contact support.");
+            showError("Failed to load dashboard: " + e.getMessage() + "\nPlease check the console for details.");
         }
     }
     
