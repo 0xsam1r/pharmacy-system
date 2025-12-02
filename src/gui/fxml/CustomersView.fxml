@@ -9,9 +9,9 @@
       spacing="20" style="-fx-background-color: transparent;">
     
     <HBox alignment="CENTER_LEFT" spacing="15">
-        <Label text="👥 Customers Management" styleClass="label-header"/>
+        <Label text="Customers Management" styleClass="label-header"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="➕ Add New Customer" styleClass="btn, btn-success" onAction="#handleAddCustomer"/>
+        <Button text="Add New Customer" styleClass="btn, btn-success" onAction="#handleAddCustomer"/>
     </HBox>
     
     <HBox styleClass="card" spacing="15" alignment="CENTER_LEFT">
@@ -21,7 +21,7 @@
         <TextField fx:id="searchField" promptText="Search by name, phone, or ID..." prefWidth="350" 
                    onKeyReleased="#handleSearch"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="🔄 Refresh" styleClass="btn, btn-secondary" onAction="#handleRefresh"/>
+        <Button text="Refresh" styleClass="btn, btn-secondary" onAction="#handleRefresh"/>
     </HBox>
     
     <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="10">
