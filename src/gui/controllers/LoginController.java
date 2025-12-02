@@ -130,12 +130,12 @@ public class LoginController implements Initializable {
             System.out.println("Loading dashboard...");
             ExceptionLogger.logInfo("Attempting to load dashboard");
             
-            // DEBUG: Try loading simple dashboard first
-            // FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/Dashboard.fxml"));
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/SimpleDashboard.fxml"));
+            // Load FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/Dashboard.fxml"));
+            // FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/SimpleDashboard.fxml"));
             
             if (loader.getLocation() == null) {
-                throw new Exception("SimpleDashboard.fxml not found in resources");
+                throw new Exception("Dashboard.fxml not found in resources");
             }
             
             System.out.println("FXML loaded from: " + loader.getLocation());
