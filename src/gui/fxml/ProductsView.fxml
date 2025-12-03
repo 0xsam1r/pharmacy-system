@@ -8,11 +8,15 @@
       fx:controller="gui.controllers.ProductsController" 
       spacing="20" style="-fx-background-color: transparent;">
     
-    <!-- Header -->
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!--Header -->
     <HBox alignment="CENTER_LEFT" spacing="15">
         <Label text="Products Management" styleClass="label-header"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="Add New Product" styleClass="btn, btn-success" onAction="#handleAddProduct"/>
+        <Button text="➕ Add New Product" styleClass="btn, btn-success" onAction="#handleAddProduct"/>
     </HBox>
     
     <!-- Search and Filter Bar -->
@@ -21,10 +25,22 @@
             <Insets top="15" right="15" bottom="15" left="15"/>
         </padding>
         
-        <Label text="Search:"/>
+        <Label text="🔍 Search:"/>
         <TextField fx:id="searchField" promptText="Search by name or barcode..." prefWidth="300" 
                    onKeyReleased="#handleSearch"/>
         
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <Label text="Category:"/>
+        <ComboBox fx:id="categoryComboBox" prefWidth="150" onAction="#handleCategoryFilter"/>
+        
+        <Button text="🔄 Refresh" styleClass="btn, btn-secondary" onAction="#handleRefresh"/>
+    </HBox>
+    
+    <!-- Products Table -->
+    <VBox styleClass="card" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
         </padding>
         
         <HBox alignment="CENTER_LEFT">

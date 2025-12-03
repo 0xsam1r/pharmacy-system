@@ -50,16 +50,18 @@
                         prefWidth="220" onAction="#showEmployeesView"/>
                 <Button fx:id="btnReports" text="Reports" styleClass="sidebar-button" 
                         prefWidth="220" onAction="#showReportsView"/>
+                <Button fx:id="btnSuppliers" text="Suppliers" styleClass="sidebar-button" 
+                        prefWidth="220" onAction="#showSuppliersView"/>
                 <Button fx:id="btnSettings" text="Settings" styleClass="sidebar-button" 
                         prefWidth="220" onAction="#showSettingsView"/>
             </VBox>
             
             <!-- User Info at Bottom -->
-            <VBox style="-fx-padding: 15; -fx-background-color: #1a252f;" spacing="5">
+            <VBox style="-fx-padding: 15; -fx-background-color: #1a252f;" spacing="8">
                 <Label fx:id="userLabel" text="Welcome, User" 
-                       style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                       style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;" wrapText="true" maxWidth="190"/>
                 <Label fx:id="roleLabel" text="Role: Admin" 
-                       style="-fx-text-fill: #95a5a6; -fx-font-size: 10px;"/>
+                       style="-fx-text-fill: #95a5a6; -fx-font-size: 11px;" wrapText="true" maxWidth="190"/>
             </VBox>
         </VBox>
     </left>

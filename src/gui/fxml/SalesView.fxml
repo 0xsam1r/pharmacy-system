@@ -5,24 +5,73 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
-      spacing="20" style="-fx-background-color: transparent;" alignment="CENTER">
+      fx:controller="gui.controllers.SalesController" 
+      spacing="20" style="-fx-background-color: transparent;">
     
-    <VBox styleClass="card" spacing="20" alignment="CENTER" maxWidth="600">
-        <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
         
-        <Label text="🛒" style="-fx-font-size: 64px;"/>
-        <Label text="Sales Management" styleClass="label-header"/>
-        <Label text="This feature is under development" style="-fx-text-fill: #7f8c8d;"/>
-        
-        <Separator prefWidth="400"/>
-        
-        <Label text="Coming soon:" style="-fx-font-weight: bold;"/>
-        <VBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="✓ Point of Sale (POS) interface"/>
-            <Label text="✓ Invoice generation"/>
-            <Label text="✓ Payment processing"/>
-            <Label text="✓ Customer loyalty points"/>
-            <Label text="✓ Sales reports and analytics"/>
+        <!-- Left Side: Product Search & List -->
+        <VBox spacing="15" HBox.hgrow="ALWAYS" styleClass="card">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            
+            <Label text="New Sale" styleClass="label-header"/>
+            
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Product:"/>
+                <TextField fx:id="barcodeField" promptText="Scan Barcode or Enter Name..." HBox.hgrow="ALWAYS" 
+                           onAction="#handleAddItem"/>
+                <Button text="➕ Add" styleClass="btn, btn-primary" onAction="#handleAddItem"/>
+            </HBox>
+            
+            <TableView fx:id="cartTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="Product" prefWidth="200" fx:id="colName"/>
+                    <TableColumn text="Price" prefWidth="80" fx:id="colPrice"/>
+                    <TableColumn text="Qty" prefWidth="80" fx:id="colQty"/>
+                    <TableColumn text="Total" prefWidth="100" fx:id="colTotal"/>
+                    <TableColumn text="Action" prefWidth="80" fx:id="colAction"/>
+                </columns>
+            </TableView>
         </VBox>
-    </VBox>
+        
+        <!-- Right Side: Checkout Details -->
+        <VBox spacing="15" prefWidth="350" styleClass="card">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            
+            <Label text="Checkout Details" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            
+            <GridPane vgap="10" hgap="10">
+                <Label text="Subtotal:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="subtotalLabel" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                
+                <Label text="Tax (0%):" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="Discount:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="discountField" text="0" prefWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                
+                <Separator GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+                
+                <Label text="TOTAL:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <Label fx:id="totalLabel" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="4" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;"/>
+            </GridPane>
+            
+            <Separator/>
+            
+            <VBox spacing="10">
+                <Label text="Customer (Optional):"/>
+                <TextField fx:id="customerField" promptText="Customer ID / Phone"/>
+            </VBox>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            
+            <Button text="✅ Complete Sale" styleClass="btn, btn-success" maxWidth="Infinity" 
+                    style="-fx-font-size: 16px; -fx-padding: 15;" onAction="#handleCheckout"/>
+            <Button text="❌ Cancel" styleClass="btn, btn-danger" maxWidth="Infinity" onAction="#handleCancel"/>
+        </VBox>
+    </HBox>
 </VBox>

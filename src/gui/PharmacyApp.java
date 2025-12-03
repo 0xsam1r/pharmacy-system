@@ -39,6 +39,21 @@ public class PharmacyApp extends Application {
                 // Icon not found, continue without it
             }
             
+            // Add exit confirmation dialog
+            primaryStage.setOnCloseRequest(event -> {
+                javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Exit Confirmation");
+                alert.setHeaderText("Are you sure you want to exit?");
+                alert.setContentText("Click OK to close the Pharmacy Management System.");
+                
+                java.util.Optional<javafx.scene.control.ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == javafx.scene.control.ButtonType.OK) {
+                    ExceptionLogger.logInfo("Application closed by user");
+                } else {
+                    event.consume(); // Cancel the close request
+                }
+            });
+            
             primaryStage.show();
             
             ExceptionLogger.logInfo("Application started successfully");

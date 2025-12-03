@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import util.ExceptionLogger;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,6 +35,7 @@ public class DashboardController implements Initializable {
     @FXML private Button btnCustomers;
     @FXML private Button btnEmployees;
     @FXML private Button btnReports;
+    @FXML private Button btnSuppliers;
     @FXML private Button btnSettings;
     
     // User Info
@@ -68,6 +70,22 @@ public class DashboardController implements Initializable {
         try {
             // Set current active button
             currentActiveButton = btnDashboard;
+            
+            // Set user info from session
+            try {
+                util.SessionManager session = util.SessionManager.getInstance();
+                if (session.isLoggedIn()) {
+                    userLabel.setText("Welcome, " + session.getFullName());
+                    roleLabel.setText("Role: " + session.getUserRole());
+                } else {
+                    userLabel.setText("Welcome, User");
+                    roleLabel.setText("Role: Unknown");
+                }
+            } catch (Exception e) {
+                ExceptionLogger.logException(e, "Error loading session info");
+                userLabel.setText("Welcome, User");
+                roleLabel.setText("Role: Guest");
+            }
             
             // Start clock
             // startClock();
@@ -194,6 +212,12 @@ public class DashboardController implements Initializable {
     }
     
     @FXML
+    private void showSuppliersView() {
+        setActiveButton(btnSuppliers);
+        loadView("/gui/fxml/SuppliersView.fxml");
+    }
+    
+    @FXML
     private void showSettingsView() {
         setActiveButton(btnSettings);
         loadView("/gui/fxml/SettingsView.fxml");
@@ -209,15 +233,34 @@ public class DashboardController implements Initializable {
     
     private void loadView(String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            URL resource = getClass().getResource(fxmlPath);
+            if (resource == null) {
+                throw new IOException("FXML file not found: " + fxmlPath);
+            }
+            
+            FXMLLoader loader = new FXMLLoader(resource);
             Parent view = loader.load();
             
             contentArea.getChildren().clear();
             contentArea.getChildren().add(view);
             
-        } catch (Exception e) {
+        } catch (IOException e) {
             ExceptionLogger.logException(e, "Error loading view: " + fxmlPath);
-            showErrorAlert("Error Loading View", "Could not load the requested view. Please try again.");
+            
+            // Create a more detailed error message
+            StringBuilder errorMessage = new StringBuilder("Could not load view: " + fxmlPath + "\n\n");
+            errorMessage.append("Reason: ").append(e.getMessage());
+            
+            if (e.getCause() != null) {
+                errorMessage.append("\nCaused by: ").append(e.getCause().getMessage());
+            }
+            
+            showErrorAlert("View Loading Error", errorMessage.toString());
+            e.printStackTrace(); // Print to console for immediate debugging
+        } catch (Exception e) {
+            ExceptionLogger.logException(e, "Unexpected error loading view: " + fxmlPath);
+            showErrorAlert("Unexpected Error", "An unexpected error occurred while loading the view.\n" + e.getMessage());
+            e.printStackTrace();
         }
     }
     

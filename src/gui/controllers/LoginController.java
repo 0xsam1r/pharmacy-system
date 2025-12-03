@@ -105,7 +105,12 @@ public class LoginController implements Initializable {
     }
     
     private boolean authenticateUser(String username, String password) {
-        String sql = "SELECT COUNT(*) FROM employee WHERE User_name = ? AND Password = ?";
+        // Join employee with person table to get the name
+        // Using Creation2 schema where employee only has Person_ID (no Person_Phone)
+        String sql = "SELECT e.User_name, e.Password, e.Person_ID, p.name " +
+                    "FROM employee e " +
+                    "JOIN person p ON e.Person_ID = p.ID " +
+                    "WHERE e.User_name = ? AND e.Password = ?";
         
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -115,11 +120,32 @@ public class LoginController implements Initializable {
             
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1) > 0;
+                // User authenticated - store session info
+                String userId = rs.getString("Person_ID");
+                String fullName = rs.getString("name");
+                
+                // Deduce role from ID prefix
+                String role = "Employee"; // Default
+                if (userId != null && !userId.isEmpty()) {
+                    char prefix = Character.toUpperCase(userId.charAt(0));
+                    if (prefix == 'A') {
+                        role = "Admin";
+                    } else if (prefix == 'M') {
+                        role = "Manager";
+                    } else if (prefix == 'P') {
+                        role = "Pharmacist";
+                    }
+                }
+                
+                // Store in session
+                util.SessionManager.getInstance().setUserSession(username, fullName, role, userId);
+                
+                return true;
             }
             
         } catch (SQLException e) {
             ExceptionLogger.logException(e, "Authentication query failed");
+            e.printStackTrace(); // Print stack trace for debugging
         }
         
         return false;

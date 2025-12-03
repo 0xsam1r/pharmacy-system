@@ -5,24 +5,57 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
-      spacing="20" style="-fx-background-color: transparent;" alignment="CENTER">
+      fx:controller="gui.controllers.InventoryController" 
+      spacing="20" style="-fx-background-color: transparent;">
     
-    <VBox styleClass="card" spacing="20" alignment="CENTER" maxWidth="600">
-        <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
-        
-        <Label text="📦" style="-fx-font-size: 64px;"/>
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
         <Label text="Inventory Management" styleClass="label-header"/>
-        <Label text="This feature is under development" style="-fx-text-fill: #7f8c8d;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="➕ Add Stock" styleClass="btn, btn-success" onAction="#handleAddStock"/>
+    </HBox>
+    
+    <!-- Search Bar -->
+    <HBox styleClass="card" spacing="15" alignment="CENTER_LEFT">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
         
-        <Separator prefWidth="400"/>
+        <Label text="🔍 Search:"/>
+        <TextField fx:id="searchField" promptText="Search by product name or barcode..." prefWidth="300" 
+                   onKeyReleased="#handleSearch"/>
         
-        <Label text="Coming soon:" style="-fx-font-weight: bold;"/>
-        <VBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="✓ Real-time stock tracking"/>
-            <Label text="✓ Batch management"/>
-            <Label text="✓ Expiry date monitoring"/>
-            <Label text="✓ Automatic reorder alerts"/>
-            <Label text="✓ Stock transfer between branches"/>
-        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <CheckBox fx:id="lowStockFilter" text="Show Low Stock Only" onAction="#handleFilter"/>
+        <Button text="🔄 Refresh" styleClass="btn, btn-secondary" onAction="#handleRefresh"/>
+    </HBox>
+    
+    <!-- Inventory Table -->
+    <VBox styleClass="card" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+        
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Stock List" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="itemCountLabel" text="Total: 0 items" style="-fx-text-fill: #7f8c8d;"/>
+        </HBox>
+        
+        <TableView fx:id="inventoryTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="Barcode" prefWidth="120" fx:id="colBarcode"/>
+                <TableColumn text="Product Name" prefWidth="250" fx:id="colName"/>
+                <TableColumn text="Quantity" prefWidth="100" fx:id="colQuantity"/>
+                <TableColumn text="Reorder Level" prefWidth="120" fx:id="colReorderLevel"/>
+                <TableColumn text="Status" prefWidth="120" fx:id="colStatus"/>
+                <TableColumn text="Actions" prefWidth="150" fx:id="colActions"/>
+            </columns>
+        </TableView>
     </VBox>
 </VBox>

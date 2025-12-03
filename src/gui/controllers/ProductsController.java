@@ -51,6 +51,11 @@ public class ProductsController implements Initializable {
             loadCategories();
             loadProducts();
             
+            // Add listener for category filter
+            if (categoryComboBox != null) {
+                categoryComboBox.setOnAction(event -> handleCategoryFilter());
+            }
+            
             ExceptionLogger.logInfo("Products view initialized");
         } catch (Exception e) {
             ExceptionLogger.logException(e, "Error initializing products view");
@@ -107,10 +112,25 @@ public class ProductsController implements Initializable {
         try {
             ObservableList<String> categories = FXCollections.observableArrayList();
             categories.add("All Categories");
-            categories.add("Medicine");
-            categories.add("Cosmetic");
-            categories.add("Medical Equipment");
-            categories.add("Others");
+            
+            // Load categories from database
+            String query = "SELECT name FROM category ORDER BY name";
+            try (Connection conn = DB.DBConnection.getConnection();
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(query)) {
+                
+                while (rs.next()) {
+                    String categoryName = rs.getString("name");
+                    if (categoryName != null && !categoryName.trim().isEmpty()) {
+                        categories.add(categoryName);
+                    }
+                }
+            } catch (SQLException e) {
+                ExceptionLogger.logException(e, "Error fetching categories from database");
+                // Fallback to default categories if database query fails
+                categories.add("Medicine");
+                categories.add("Cosmetic");
+            }
             
             categoryComboBox.setItems(categories);
             categoryComboBox.getSelectionModel().selectFirst();

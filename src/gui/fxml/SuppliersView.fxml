@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
-      fx:controller="gui.controllers.EmployeesController" 
+      fx:controller="gui.controllers.SuppliersController" 
       spacing="20" style="-fx-background-color: transparent;">
     
     <padding>
@@ -14,9 +14,9 @@
     
     <!-- Header -->
     <HBox alignment="CENTER_LEFT" spacing="15">
-        <Label text="Employees Management" styleClass="label-header"/>
+        <Label text="Suppliers Management" styleClass="label-header"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="➕ Add New Employee" styleClass="btn, btn-success" onAction="#handleAddEmployee"/>
+        <Button text="➕ Add New Supplier" styleClass="btn, btn-success" onAction="#handleAddSupplier"/>
     </HBox>
     
     <!-- Search Bar -->
@@ -34,27 +34,26 @@
         <Button text="🔄 Refresh" styleClass="btn, btn-secondary" onAction="#handleRefresh"/>
     </HBox>
     
-    <!-- Employees Table -->
+    <!-- Suppliers Table -->
     <VBox styleClass="card" VBox.vgrow="ALWAYS">
         <padding>
             <Insets top="15" right="15" bottom="15" left="15"/>
         </padding>
         
         <HBox alignment="CENTER_LEFT">
-            <Label text="Employees List" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label text="Suppliers List" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="employeeCountLabel" text="Total: 0 employees" style="-fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="supplierCountLabel" text="Total: 0 suppliers" style="-fx-text-fill: #7f8c8d;"/>
         </HBox>
         
-        <TableView fx:id="employeesTable" VBox.vgrow="ALWAYS">
+        <TableView fx:id="suppliersTable" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn text="ID" prefWidth="100" fx:id="colId"/>
+                <TableColumn text="Supplier ID" prefWidth="100" fx:id="colSupplierId"/>
                 <TableColumn text="Name" prefWidth="200" fx:id="colName"/>
                 <TableColumn text="Phone" prefWidth="120" fx:id="colPhone"/>
-                <TableColumn text="Username" prefWidth="150" fx:id="colUsername"/>
-                <TableColumn text="Role" prefWidth="120" fx:id="colRole"/>
-                <TableColumn text="Salary ($)" prefWidth="100" fx:id="colSalary"/>
-                <TableColumn text="Start Date" prefWidth="120" fx:id="colStartDate"/>
+                <TableColumn text="Email" prefWidth="150" fx:id="colEmail"/>
+                <TableColumn text="Address" prefWidth="200" fx:id="colAddress"/>
+                <TableColumn text="Total Debt ($)" prefWidth="120" fx:id="colTotalDebt"/>
                 <TableColumn text="Actions" prefWidth="200" fx:id="colActions"/>
             </columns>
         </TableView>
