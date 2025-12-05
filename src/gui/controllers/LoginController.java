@@ -125,15 +125,16 @@ public class LoginController implements Initializable {
                 String fullName = rs.getString("name");
                 
                 // Deduce role from ID prefix
-                String role = "Employee"; // Default
+                // Deduce role from ID prefix
+                String role = "Cashier"; // Default fallback
                 if (userId != null && !userId.isEmpty()) {
                     char prefix = Character.toUpperCase(userId.charAt(0));
-                    if (prefix == 'A') {
-                        role = "Admin";
-                    } else if (prefix == 'M') {
+                    if (prefix == 'M') {
                         role = "Manager";
                     } else if (prefix == 'P') {
                         role = "Pharmacist";
+                    } else if (prefix == 'C' || Character.isDigit(prefix)) {
+                        role = "Cashier";
                     }
                 }
                 

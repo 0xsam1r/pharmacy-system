@@ -80,6 +80,7 @@ public class DashboardController implements Initializable {
                 if (session.isLoggedIn()) {
                     userLabel.setText("Welcome, " + session.getFullName());
                     roleLabel.setText("Role: " + session.getUserRole());
+                    applyRoleBaseAccess(); // Apply Rules
                 } else {
                     userLabel.setText("Welcome, User");
                     roleLabel.setText("Role: Unknown");
@@ -89,27 +90,53 @@ public class DashboardController implements Initializable {
                 userLabel.setText("Welcome, User");
                 roleLabel.setText("Role: Guest");
             }
-            
-            // Start clock
-            // startClock();
-            
-            // Load dashboard data
-            // loadDashboardData();
-            
-            // Setup table columns
-            // setupTableColumns();
-            
-            // Load recent transactions
-            // loadRecentTransactions();
-            
-            // Load system alerts
-            // loadSystemAlerts();
-            
-            ExceptionLogger.logInfo("Dashboard initialized successfully (Simplified)");
+
+            ExceptionLogger.logInfo("Dashboard initialized successfully");
             
         } catch (Exception e) {
             ExceptionLogger.logException(e, "Error initializing dashboard");
             showErrorAlert("Failed to initialize dashboard", e.getMessage());
+        }
+    }
+
+    private void applyRoleBaseAccess() {
+        String role = util.SessionManager.getInstance().getUserRole();
+        if (role == null) role = "Cashier"; // Default safety
+
+        if (role.equalsIgnoreCase("Manager")) {
+            // Full Access
+            return; 
+        } 
+        
+        if (role.equalsIgnoreCase("Pharmacist")) {
+            // See all except Treasury and Reports
+            setButtonVisible(btnTreasury, false);
+            setButtonVisible(btnReports, false);
+        } 
+        else if (role.equalsIgnoreCase("Cashier") || role.equals("Unknown")) {
+            // Only: Products, Inventory, Sales, Customers
+            
+            // Visible
+            setButtonVisible(btnProducts, true);
+            setButtonVisible(btnInventory, true);
+            setButtonVisible(btnSales, true);
+            setButtonVisible(btnCustomers, true);
+            
+            // Hidden
+            setButtonVisible(btnBatches, false);
+            setButtonVisible(btnPurchases, false);
+            setButtonVisible(btnEmployees, false);
+            setButtonVisible(btnReports, false);
+            setButtonVisible(btnSuppliers, false);
+            setButtonVisible(btnSettings, false);
+            setButtonVisible(btnTreasury, false);
+        }
+    }
+    
+    private void setButtonVisible(Button btn, boolean visible) {
+        if (btn != null) {
+            btn.setVisible(visible);
+            btn.setManaged(visible); // Collapse space if hidden
         }
     }
     
