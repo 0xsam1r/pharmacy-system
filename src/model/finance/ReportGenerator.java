@@ -86,18 +86,18 @@ public class ReportGenerator {
                 COALESCE(si.Discount, 0) AS Discount,
                 per.name AS customer_name,
                 p.Name AS product_name,
-                (ihp.units * p.Price) AS line_total,
+                (ihp.units * (p.Price / CASE WHEN p.Uints > 0 THEN p.Uints ELSE 1 END)) AS line_total,
                 emp.User_name
             FROM invoice i
             JOIN sell_invoice si ON i.ID = si.Invoice_ID
             LEFT JOIN customer c ON si.Customer_Person_ID = c.Person_ID
             LEFT JOIN person per ON c.Person_ID = per.ID
-            JOIN employee emp ON i.employee_User_name = emp.User_name 
+            LEFT JOIN employee emp ON i.employee_User_name = emp.User_name 
                              AND i.employee_Person_ID = emp.Person_ID 
                              AND i.employee_bransh_ID = emp.bransh_ID
             JOIN invoice_has_product ihp ON i.ID = ihp.Invoice_ID
             JOIN product p ON ihp.Product_parcode = p.parcode
-            WHERE DATE(i.date) = ?
+            WHERE i.date >= ? AND i.date <= ?
             ORDER BY i.ID, ihp.Product_parcode
             """;
 
@@ -109,7 +109,8 @@ public class ReportGenerator {
         bw.write("-".repeat(80) + "\n");
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, date.toString());
+            ps.setString(1, date.toString() + " 00:00:00");
+            ps.setString(2, date.toString() + " 23:59:59");
             ResultSet rs = ps.executeQuery();
 
             int currentInvoice = -1;
@@ -137,7 +138,7 @@ public class ReportGenerator {
                         "",
                         rs.getString("product_name"),
                         rs.getDouble("line_total"),
-                        rs.getString("User_name")));
+                        rs.getString("User_name") != null ? rs.getString("User_name") : "N/A"));
 
                 invoiceTotal += rs.getDouble("line_total");
             }
@@ -165,7 +166,7 @@ public class ReportGenerator {
             FROM invoice i
             JOIN purchase_invoce pi ON i.ID = pi.Invoice_ID
             JOIN supplier s ON pi.Supplier_nane = s.nane AND pi.Supplier_phone = s.phone
-            WHERE DATE(i.date) = ?
+            WHERE i.date >= ? AND i.date <= ?
             ORDER BY i.ID
             """;
 
@@ -178,7 +179,8 @@ public class ReportGenerator {
         bw.write("-".repeat(80) + "\n");
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, date.toString());
+            ps.setString(1, date.toString() + " 00:00:00");
+            ps.setString(2, date.toString() + " 23:59:59");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -211,17 +213,17 @@ public class ReportGenerator {
     }
 
     private static double getTotalSales(Connection conn, LocalDate date) throws SQLException {
+        // Updated to use the total price stored in the invoice header (more accurate & faster)
         String sql = """
-            SELECT COALESCE(SUM(ihp.units * p.Price), 0)
+            SELECT COALESCE(SUM(i.price), 0)
             FROM invoice i
             JOIN sell_invoice si ON i.ID = si.Invoice_ID
-            JOIN invoice_has_product ihp ON i.ID = ihp.Invoice_ID
-            JOIN product p ON ihp.Product_parcode = p.parcode
-            WHERE DATE(i.date) = ?
+            WHERE i.date >= ? AND i.date <= ?
             """;
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, date.toString());
+            ps.setString(1, date.toString() + " 00:00:00");
+            ps.setString(2, date.toString() + " 23:59:59");
             ResultSet rs = ps.executeQuery();
             return rs.next() ? rs.getDouble(1) : 0;
         }
@@ -232,11 +234,12 @@ public class ReportGenerator {
             SELECT COALESCE(SUM(i.price), 0)
             FROM invoice i
             JOIN purchase_invoce pi ON i.ID = pi.Invoice_ID
-            WHERE DATE(i.date) = ?
+            WHERE i.date >= ? AND i.date <= ?
             """;
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, date.toString());
+            ps.setString(1, date.toString() + " 00:00:00");
+            ps.setString(2, date.toString() + " 23:59:59");
             ResultSet rs = ps.executeQuery();
             return rs.next() ? rs.getDouble(1) : 0;
         }

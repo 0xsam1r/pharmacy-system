@@ -78,7 +78,12 @@
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
-            <Label text="Dashboard Loaded (Simplified Version)" style="-fx-font-size: 24px;"/>
+            <!-- <Label text="Dashboard Loaded (Simplified Version)" style="-fx-font-size: 24px;"/> -->
+            <javafx.scene.image.ImageView preserveRatio="true" fitHeight="600">
+                 <image>
+                     <javafx.scene.image.Image url="@../images/dashboard_welcome.jpeg"/>
+                 </image>
+            </javafx.scene.image.ImageView>
         </StackPane>
     </center>
 </BorderPane>
