@@ -18,11 +18,11 @@ public class BatchManager {
     public static class Batch {
         private String batchNumber;
         private String productParcode;
-        private int quantity;
+        private double quantity;
         private Date expireDate;
         private double cost;
         
-        public Batch(String batchNumber, String productParcode, int quantity, Date expireDate, double cost) {
+        public Batch(String batchNumber, String productParcode, double quantity, Date expireDate, double cost) {
             this.batchNumber = batchNumber;
             this.productParcode = productParcode;
             this.quantity = quantity;
@@ -32,10 +32,10 @@ public class BatchManager {
         
         public String getBatchNumber() { return batchNumber; }
         public String getProductParcode() { return productParcode; }
-        public int getQuantity() { return quantity; }
+        public double getQuantity() { return quantity; }
         public Date getExpireDate() { return expireDate; }
         public double getCost() { return cost; }
-        public void setQuantity(int quantity) { this.quantity = quantity; }
+        public void setQuantity(double quantity) { this.quantity = quantity; }
     }
     
     /**
@@ -53,24 +53,30 @@ public class BatchManager {
                       "WHERE Product_parcode = ? AND Quantaty > 0 " +
                       "ORDER BY expire_date ASC"; // FEFO: earliest expiry first
         
+        ExceptionLogger.logInfo("🔍 Searching batches for parcode: " + productParcode);
+        
         // Note: We use try-with-resources for PreparedStatement and ResultSet, 
         // BUT NOT for Connection, as it is passed from outside
         try (PreparedStatement pstmt = conn.prepareStatement(query)) {
             
-            pstmt.setString(1, productParcode);
+            pstmt.setString(1, productParcode.trim());
             
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Batch batch = new Batch(
                         rs.getString("Batch_number"),
                         productParcode,
-                        rs.getInt("Quantaty"),
+                        rs.getDouble("Quantaty"),
                         rs.getDate("expire_date"),
                         rs.getDouble("cost")
                     );
                     batches.add(batch);
+                    ExceptionLogger.logInfo(String.format("   ✓ Found batch: %s, Qty: %.2f", 
+                        batch.getBatchNumber(), batch.getQuantity()));
                 }
             }
+            
+            ExceptionLogger.logInfo("📦 Total batches found: " + batches.size());
             
         } catch (SQLException e) {
             ExceptionLogger.logException(e, "Error fetching batches for product: " + productParcode);
@@ -100,8 +106,8 @@ public class BatchManager {
      * @param inventoryId Inventory ID
      * @return true if successful
      */
-    public static boolean reduceQuantityFromBatches(Connection conn, String productParcode, int quantityToReduce, int inventoryId) throws SQLException {
-        ExceptionLogger.logInfo(String.format("🔵 FEFO START: Reducing %d units of %s", quantityToReduce, productParcode));
+    public static boolean reduceQuantityFromBatches(Connection conn, String productParcode, double quantityToReduce, int inventoryId) throws SQLException {
+        ExceptionLogger.logInfo(String.format("🔵 FEFO START: Reducing %.2f boxes of %s", quantityToReduce, productParcode));
 
         // Get batches ordered by expiry date (FEFO) using the SAME connection
         List<Batch> batches = getBatchesForProduct(conn, productParcode);
@@ -111,42 +117,42 @@ public class BatchManager {
             return false;
         }
         
-        int totalAvailable = batches.stream().mapToInt(Batch::getQuantity).sum();
+        double totalAvailable = batches.stream().mapToDouble(Batch::getQuantity).sum();
         if (totalAvailable < quantityToReduce) {
-            ExceptionLogger.logInfo(String.format("❌ Insufficient Stock: Need %d, Have %d", quantityToReduce, totalAvailable));
+            ExceptionLogger.logInfo(String.format("❌ Insufficient Stock: Need %.2f, Have %.2f", quantityToReduce, totalAvailable));
             return false;
         }
         
-        int remainingToReduce = quantityToReduce;
+        double remainingToReduce = quantityToReduce;
         
         // Log batches found
         for (Batch b : batches) {
-             ExceptionLogger.logInfo(String.format("   📦 Batch %s (Qty: %d, Exp: %s)", b.getBatchNumber(), b.getQuantity(), b.getExpireDate()));
+             ExceptionLogger.logInfo(String.format("   📦 Batch %s (Qty: %.2f, Exp: %s)", b.getBatchNumber(), b.getQuantity(), b.getExpireDate()));
         }
 
         for (Batch batch : batches) {
             if (remainingToReduce <= 0) break;
             
-            int currentQty = batch.getQuantity();
-            int take = Math.min(remainingToReduce, currentQty);
-            int newQty = currentQty - take;
+            double currentQty = batch.getQuantity();
+            double take = Math.min(remainingToReduce, currentQty);
+            double newQty = currentQty - take;
             
             String sql = "UPDATE batch SET Quantaty = ? WHERE Batch_number = ? AND Product_parcode = ?";
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setInt(1, newQty);
+                ps.setDouble(1, newQty);
                 ps.setString(2, batch.getBatchNumber());
                 ps.setString(3, productParcode);
                 ps.executeUpdate();
             }
             
             remainingToReduce -= take;
-            ExceptionLogger.logInfo(String.format("✅ Taken %d from batch %s (New Qty: %d)", take, batch.getBatchNumber(), newQty));
+            ExceptionLogger.logInfo(String.format("✅ Taken %.2f from batch %s (New Qty: %.2f)", take, batch.getBatchNumber(), newQty));
         }
         
         // Update Inventory Total
         String sqlInv = "UPDATE inventory_has_product SET Quntaty = Quntaty - ? WHERE Inventory_ID = ? AND Product_parcode = ?";
         try (PreparedStatement ps = conn.prepareStatement(sqlInv)) {
-            ps.setInt(1, quantityToReduce);
+            ps.setDouble(1, quantityToReduce);
             ps.setInt(2, inventoryId);
             ps.setString(3, productParcode);
             int rows = ps.executeUpdate();
@@ -163,7 +169,7 @@ public class BatchManager {
     /**
      * Helper wrapper for standalone usage (Creates its own transaction)
      */
-    public static boolean reduceQuantityFromBatches(String productParcode, int quantityToReduce, int inventoryId) {
+    public static boolean reduceQuantityFromBatches(String productParcode, double quantityToReduce, int inventoryId) {
         try (Connection conn = DBConnection.getConnection()) {
             conn.setAutoCommit(false);
             if (reduceQuantityFromBatches(conn, productParcode, quantityToReduce, inventoryId)) {
@@ -182,7 +188,42 @@ public class BatchManager {
     /**
      * Add quantity to a specific batch
      */
-    public static boolean addQuantityToBatch(String batchNumber, String productParcode, int quantityToAdd, int inventoryId) {
+    /**
+     * Add quantity to a specific batch (Uses existing connection)
+     */
+    public static boolean addQuantityToBatch(Connection conn, String batchNumber, String productParcode, double quantityToAdd, int inventoryId) throws SQLException {
+        // Update batch quantity
+        String updateBatchQuery = "UPDATE batch SET Quantaty = Quantaty + ? WHERE Batch_number = ? AND Product_parcode = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(updateBatchQuery)) {
+            pstmt.setDouble(1, quantityToAdd);
+            pstmt.setString(2, batchNumber);
+            pstmt.setString(3, productParcode);
+            int rowsAffected = pstmt.executeUpdate();
+            
+            if (rowsAffected == 0) {
+                ExceptionLogger.logInfo("Batch not found for adding quantity");
+                return false;
+            }
+        }
+        
+        // Update total quantity in inventory
+        String updateInventoryQuery = "UPDATE inventory_has_product SET Quntaty = Quntaty + ? " +
+                                     "WHERE Inventory_ID = ? AND Product_parcode = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(updateInventoryQuery)) {
+            pstmt.setDouble(1, quantityToAdd);
+            pstmt.setInt(2, inventoryId);
+            pstmt.setString(3, productParcode);
+            pstmt.executeUpdate();
+        }
+        
+        ExceptionLogger.logInfo(String.format("Added %.2f boxes to batch %s", quantityToAdd, batchNumber));
+        return true;
+    }
+
+    /**
+     * Add quantity to a specific batch (Standalone - manages connection)
+     */
+    public static boolean addQuantityToBatch(String batchNumber, String productParcode, double quantityToAdd, int inventoryId) {
         Connection conn = null;
         try {
             conn = DBConnection.getConnection();
@@ -191,7 +232,7 @@ public class BatchManager {
             // Update batch quantity
             String updateBatchQuery = "UPDATE batch SET Quantaty = Quantaty + ? WHERE Batch_number = ? AND Product_parcode = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(updateBatchQuery)) {
-                pstmt.setInt(1, quantityToAdd);
+                pstmt.setDouble(1, quantityToAdd);
                 pstmt.setString(2, batchNumber);
                 pstmt.setString(3, productParcode);
                 int rowsAffected = pstmt.executeUpdate();
@@ -207,14 +248,14 @@ public class BatchManager {
             String updateInventoryQuery = "UPDATE inventory_has_product SET Quntaty = Quntaty + ? " +
                                          "WHERE Inventory_ID = ? AND Product_parcode = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(updateInventoryQuery)) {
-                pstmt.setInt(1, quantityToAdd);
+                pstmt.setDouble(1, quantityToAdd);
                 pstmt.setInt(2, inventoryId);
                 pstmt.setString(3, productParcode);
                 pstmt.executeUpdate();
             }
             
             conn.commit();
-            ExceptionLogger.logInfo(String.format("Added %d units to batch %s", quantityToAdd, batchNumber));
+            ExceptionLogger.logInfo(String.format("Added %.2f boxes to batch %s", quantityToAdd, batchNumber));
             return true;
             
         } catch (SQLException e) {
@@ -238,9 +279,77 @@ public class BatchManager {
             }
         }
     }
+
+    /**
+     * Reduce quantity from a specific batch (Uses existing connection)
+     * Critical for Purchase Returns where we return specific items from a batch
+     */
+    public static boolean reduceQuantityFromSpecificBatch(Connection conn, String batchNumber, String productParcode, double quantityToReduce, int inventoryId) throws SQLException {
+        // 1. Check if batch has enough quantity
+        String  checkQuery = "SELECT Quantaty FROM batch WHERE Batch_number = ? AND Product_parcode = ?";
+        double currentQty = 0;
+        try (PreparedStatement ps = conn.prepareStatement(checkQuery)) {
+            ps.setString(1, batchNumber);
+            ps.setString(2, productParcode);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    currentQty = rs.getDouble("Quantaty");
+                } else {
+                    ExceptionLogger.logInfo("❌ Batch not found: " + batchNumber);
+                    return false;
+                }
+            }
+        }
+        
+        if (currentQty < quantityToReduce) {
+            ExceptionLogger.logInfo(String.format("❌ Insufficient Stock in Batch %s: Has %.2f, Trying to remove %.2f", batchNumber, currentQty, quantityToReduce));
+            return false;
+        }
+
+        // 2. Reduce from Batch
+        String updateBatchQuery = "UPDATE batch SET Quantaty = Quantaty - ? WHERE Batch_number = ? AND Product_parcode = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(updateBatchQuery)) {
+            pstmt.setDouble(1, quantityToReduce);
+            pstmt.setString(2, batchNumber);
+            pstmt.setString(3, productParcode);
+            pstmt.executeUpdate();
+        }
+        
+        // 3. Update total quantity in inventory
+        String updateInventoryQuery = "UPDATE inventory_has_product SET Quntaty = Quntaty - ? " +
+                                     "WHERE Inventory_ID = ? AND Product_parcode = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(updateInventoryQuery)) {
+            pstmt.setDouble(1, quantityToReduce);
+            pstmt.setInt(2, inventoryId);
+            pstmt.setString(3, productParcode);
+            pstmt.executeUpdate();
+        }
+        
+        ExceptionLogger.logInfo(String.format("✅ Removed %.2f boxes from batch %s", quantityToReduce, batchNumber));
+        return true;
+    }
     
     /**
-     * Get total available quantity for a product across all batches
+     * Get total available quantity for a product across all batches (Using existing connection)
+     */
+    public static double getTotalAvailableQuantity(Connection conn, String productParcode) {
+        double total = 0;
+        String query = "SELECT SUM(Quantaty) as total FROM batch WHERE Product_parcode = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, productParcode.trim());
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    total = rs.getDouble("total");
+                }
+            }
+        } catch (SQLException e) {
+            ExceptionLogger.logException(e, "Error getting total quantity for product: " + productParcode);
+        }
+        return total;
+    }
+
+    /**
+     * Get total available quantity for a product across all batches (New Connection)
      */
     public static int getTotalAvailableQuantity(String productParcode) {
         int total = 0;

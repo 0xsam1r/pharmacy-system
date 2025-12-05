@@ -245,6 +245,29 @@ public class SalesController implements Initializable {
         return null;
     }
     
+    /**
+     * Get the number of units (strips) per box for a product using active connection
+     * @param conn Active DB connection
+     * @param barcode Product barcode
+     * @return Units per product (e.g., 10 strips per box), defaults to 1
+     */
+    private int getUnitsPerProduct(Connection conn, String barcode) {
+        String sql = "SELECT Uints FROM product WHERE parcode = ?";
+        // Do NOT use try-with-resources on conn here!
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, barcode);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int units = rs.getInt("Uints");
+                    return units > 0 ? units : 1;
+                }
+            }
+        } catch (SQLException e) {
+            ExceptionLogger.logException(e, "Error fetching units per product");
+        }
+        return 1; // Default to 1 if not found
+    }
+    
     private void updateTotals() {
         double subtotal = cartList.stream().mapToDouble(CartItem::getTotal).sum();
         subtotalLabel.setText(String.format("$%.2f", subtotal));
@@ -431,22 +454,67 @@ public class SalesController implements Initializable {
             try (PreparedStatement psItems = conn.prepareStatement(sqlItems)) {
                 
                 for (CartItem item : cartList) {
-                    // Add to invoice
+                    // Trim Barcode to ensure accuracy
+                    String cleanBarcode = item.getBarcode().trim();
+                    
+                    // Add to invoice (quantity is in strips/units)
                     psItems.setInt(1, invoiceId);
-                    psItems.setString(2, item.getBarcode());
+                    psItems.setString(2, cleanBarcode);
                     psItems.setDouble(3, item.getQuantity());
                     psItems.addBatch();
                     
-                    // ✅ FEFO: Reduce from batches that expire first (using SAME connection)
+                    // Get UnitsPerProduct to convert strips to boxes
+                    int unitsPerBox = getUnitsPerProduct(conn, cleanBarcode);
+                    if (unitsPerBox <= 0) unitsPerBox = 1; // Fallback to 1 if not found
+                    
+                    // Calculate boxes to deduct: strips / unitsPerBox
+                    // e.g., 2 strips from a box of 10 = 0.2 boxes
+                    double boxesToDeduct = (double) item.getQuantity() / unitsPerBox;
+                    
+                    // Debug logging
+                    ExceptionLogger.logInfo(String.format(
+                        "🛒 CHECKOUT: Product=%s, Barcode='%s' (Len:%d), CartQty=%d strips, UnitsPerBox=%d, BoxesToDeduct=%.3f",
+                        item.getName(), cleanBarcode, cleanBarcode.length(), item.getQuantity(), unitsPerBox, boxesToDeduct
+                    ));
+                    
+                    // ✅ FEFO: Reduce BOXES from batches that expire first (using SAME connection)
                     boolean reduced = BatchManager.reduceQuantityFromBatches(
                         conn, // Pass the active connection!
-                        item.getBarcode(),
-                        item.getQuantity(),
+                        cleanBarcode,
+                        boxesToDeduct, // Deduct in BOXES, not strips!
                         1 // Inventory ID
                     );
                     
                     if (!reduced) {
-                        throw new SQLException("Insufficient stock in batches for product: " + item.getName());
+                        // Gather debug info
+                        double totalAvailable = BatchManager.getTotalAvailableQuantity(conn, cleanBarcode);
+                        
+                        // Deep Diagnostic
+                        StringBuilder diag = new StringBuilder();
+                        try {
+                            java.sql.DatabaseMetaData meta = conn.getMetaData();
+                            diag.append("\n\n--- SERVER DIAGNOSTICS ---");
+                            diag.append("\nConnected to: ").append(meta.getURL());
+                            diag.append("\nUser: ").append(meta.getUserName());
+                            
+                            java.sql.Statement st = conn.createStatement();
+                            java.sql.ResultSet rsOne = st.executeQuery("SELECT count(*) FROM batch");
+                            if (rsOne.next()) diag.append("\nTotal Batches in Table: ").append(rsOne.getInt(1));
+                            
+                            diag.append("\n\nSample Batches (First 3):");
+                            java.sql.ResultSet rsSample = st.executeQuery("SELECT Batch_number, Product_parcode, Quantaty FROM batch LIMIT 3");
+                            while(rsSample.next()) {
+                                diag.append("\n• ").append(rsSample.getString("Batch_number"))
+                                    .append(" | ").append(rsSample.getString("Product_parcode"))
+                                    .append(" | Qty: ").append(rsSample.getDouble("Quantaty"));
+                            }
+                        } catch (Exception ex) { diag.append("\nDiag Error: ").append(ex.getMessage()); }
+
+                        String msg = String.format(
+                            "Insufficient stock for: %s\nBarcode: '%s' (Len:%d)\nAvailable: %.2f boxes\nRequired: %.2f boxes%s", 
+                            item.getName(), cleanBarcode, cleanBarcode.length(), totalAvailable, boxesToDeduct, diag.toString()
+                        );
+                        throw new SQLException(msg);
                     }
                 }
                 psItems.executeBatch();
@@ -514,7 +582,7 @@ public class SalesController implements Initializable {
     private void processReturn(int invoiceId) {
         // Fetch items
         ObservableList<CartItem> returnableItems = FXCollections.observableArrayList();
-        String sql = "SELECT ip.Product_parcode, ip.units, p.Name, p.Price " +
+        String sql = "SELECT ip.Product_parcode, ip.units, p.Name, p.Price, p.Uints as UnitsPerBox " +
                      "FROM invoice_has_product ip " +
                      "JOIN product p ON ip.Product_parcode = p.parcode " +
                      "WHERE ip.Invoice_ID = ?";
@@ -527,7 +595,15 @@ public class SalesController implements Initializable {
                 CartItem item = new CartItem();
                 item.setBarcode(rs.getString("Product_parcode"));
                 item.setName(rs.getString("Name"));
-                item.setPrice(rs.getDouble("Price"));
+                
+                // Fix: Calculate Unit Price (Strip Price) instead of using Box Price directly
+                double boxPrice = rs.getDouble("Price");
+                int unitsPerBox = rs.getInt("UnitsPerBox");
+                if (unitsPerBox <= 0) unitsPerBox = 1;
+                
+                double unitPrice = boxPrice / unitsPerBox;
+                
+                item.setPrice(unitPrice);
                 item.setQuantity((int)rs.getDouble("units"));
                 returnableItems.add(item);
             }
@@ -583,18 +659,31 @@ public class SalesController implements Initializable {
             // 1. Update Inventory & Batch (Add back to nearest expiring batch)
             for (CartItem item : items) {
                 if (item.getQuantity() > 0) {
-                    // Get the batch that expires first (to add returns there)
-                    List<BatchManager.Batch> batches = BatchManager.getBatchesForProduct(item.getBarcode());
+                    // Get UnitsPerProduct to convert strips to boxes (Pass conn!)
+                    int unitsPerBox = getUnitsPerProduct(conn, item.getBarcode());
+                    if (unitsPerBox <= 0) unitsPerBox = 1;
+                    
+                    // Calculate boxes to return: strips / unitsPerBox
+                    double boxesToReturn = (double) item.getQuantity() / unitsPerBox;
+                    
+                    // Get the batch that expires first (Pass conn!)
+                    List<BatchManager.Batch> batches = BatchManager.getBatchesForProduct(conn, item.getBarcode());
                     
                     if (!batches.isEmpty()) {
                         // Add to the batch that expires first (logical for returns)
                         BatchManager.Batch nearestBatch = batches.get(0);
+                        // Use the OVERLOADED method that takes 'conn'
                         boolean added = BatchManager.addQuantityToBatch(
+                            conn,
                             nearestBatch.getBatchNumber(),
                             item.getBarcode(),
-                            item.getQuantity(),
+                            boxesToReturn, 
                             1 // Inventory ID
                         );
+                        
+                        if (!added) {
+                            throw new SQLException("Failed to add quantity back to batch for: " + item.getName());
+                        }
                         
                         if (!added) {
                             throw new SQLException("Failed to add quantity back to batch for: " + item.getName());
@@ -603,7 +692,7 @@ public class SalesController implements Initializable {
                         // Fallback: Update inventory directly if no batches found
                         String sqlInv = "UPDATE inventory_has_product SET Quntaty = Quntaty + ? WHERE Product_parcode = ? AND Inventory_ID = 1";
                         try (PreparedStatement ps = conn.prepareStatement(sqlInv)) {
-                            ps.setDouble(1, item.getQuantity());
+                            ps.setDouble(1, boxesToReturn); // Add BOXES, not strips!
                             ps.setString(2, item.getBarcode());
                             ps.executeUpdate();
                         }

@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `pms`.`batch` (
   `Batch_number` VARCHAR(14) NOT NULL,
   `cost` FLOAT NOT NULL,
   `expire_date` DATE NOT NULL,
-  `Quantaty` INT(11) NOT NULL,
+  `Quantaty` DOUBLE NOT NULL,
   `Product_parcode` VARCHAR(14) NOT NULL,
   PRIMARY KEY (`Batch_number`, `Product_parcode`),
   INDEX `fk_Batch_Product1` (`Product_parcode` ASC) ,

@@ -46,6 +46,8 @@
                         prefWidth="220" onAction="#showBatchView"/>
                 <Button fx:id="btnSales" text="Sales" styleClass="sidebar-button" 
                         prefWidth="220" onAction="#showSalesView"/>
+                <Button fx:id="btnPurchases" text="Purchases" styleClass="sidebar-button" 
+                        prefWidth="220" onAction="#showPurchasesView"/>
                 <Button fx:id="btnCustomers" text="Customers" styleClass="sidebar-button" 
                         prefWidth="220" onAction="#showCustomersView"/>
                 <Button fx:id="btnEmployees" text="Employees" styleClass="sidebar-button" 

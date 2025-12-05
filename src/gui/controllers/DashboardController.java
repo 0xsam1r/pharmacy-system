@@ -33,6 +33,7 @@ public class DashboardController implements Initializable {
     @FXML private Button btnInventory;
     @FXML private Button btnBatches;
     @FXML private Button btnSales;
+    @FXML private Button btnPurchases; // Added new button
     @FXML private Button btnCustomers;
     @FXML private Button btnEmployees;
     @FXML private Button btnReports;
@@ -193,6 +194,12 @@ public class DashboardController implements Initializable {
     private void showSalesView() {
         setActiveButton(btnSales);
         loadView("/gui/fxml/SalesView.fxml");
+    }
+    
+    @FXML
+    private void showPurchasesView() {
+        setActiveButton(btnPurchases);
+        loadView("/gui/fxml/PurchasesView.fxml");
     }
     
     @FXML
