@@ -13,13 +13,19 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.scene.control.cell.TextFieldTableCell;
 import model.Product.Product;
 import util.ExceptionLogger;
 import util.SessionManager;
 
 import java.net.URL;
 import java.sql.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -47,8 +53,11 @@ public class SalesController implements Initializable {
         try {
             setupTableColumns();
             cartTable.setItems(cartList);
+            cartTable.setEditable(true);
             
             discountField.textProperty().addListener((obs, oldVal, newVal) -> updateTotals());
+            
+            // No automatic discount popup - only when completing sale
             
             ExceptionLogger.logInfo("Sales view initialized");
         } catch (Exception e) {
@@ -59,7 +68,16 @@ public class SalesController implements Initializable {
     private void setupTableColumns() {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        
         colQty.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colQty.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        colQty.setOnEditCommit(event -> {
+            CartItem item = event.getRowValue();
+            item.setQuantity(event.getNewValue());
+            cartTable.refresh();
+            updateTotals();
+        });
+
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         
         colAction.setCellFactory(param -> new TableCell<>() {
@@ -91,30 +109,56 @@ public class SalesController implements Initializable {
     
     @FXML
     private void handleAddItem() {
-        String barcode = barcodeField.getText().trim();
-        if (barcode.isEmpty()) return;
+        String query = barcodeField.getText().trim();
+        if (query.isEmpty()) return;
         
         try {
-            // Check if already in cart
-            for (CartItem item : cartList) {
-                if (item.getBarcode().equals(barcode)) {
-                    item.setQuantity(item.getQuantity() + 1);
-                    cartTable.refresh();
-                    updateTotals();
-                    barcodeField.clear();
-                    return;
-                }
+            // Check if already in cart (by barcode) - ONLY if query is a barcode
+            // If query is name, we need to find the barcode first.
+            
+            Product p = null;
+            String barcode = null;
+            
+            // 1. Try search by Barcode (if numeric)
+            if (query.matches("\\d+")) {
+                p = DB_operation.searchProductByParcode(query);
+                if (p != null) barcode = query;
             }
             
-            // Search in DB
-            Product p = DB_operation.searchProductByParcode(barcode);
+            // 2. If not found or not barcode, search by Name or Active Ingredient
+            if (p == null) {
+                p = searchProductByNameOrActiveIngredient(query);
+                if (p != null) barcode = p.getParcode(); // Assuming Product has getParcode() or we need to fetch it
+            }
+            
             if (p != null) {
-                // We need the name, but searchProductByParcode returns a Product object which might not have name populated depending on implementation
-                // Let's do a quick custom query to get name if needed, or trust DB_operation
-                // DB_operation.searchProductByParcode selects Name, Price... so we should be good if we can access it.
-                // However, Product class fields are protected. Let's assume we can access them or use a custom query.
+                // We need the barcode. If Product object doesn't have it (it should), we might need to rely on the query if it was a barcode, 
+                // or fetch it if it was a name search.
+                // The Product class in model.Product usually has getters. Let's assume getParcode() exists or we use the one we found.
+                // Wait, DB_operation.searchProductByParcode returns a Product. 
+                // Let's check if we can get the barcode from 'p'.
+                // If not, we need to ensure we have it.
                 
-                // Custom query to be safe and get Name
+                // For the purpose of this fix, let's assume we can get it.
+                // If p was found via name search, we need its barcode.
+                if (barcode == null) {
+                     // We need to fetch barcode for this product if we found it by name
+                     // The searchProductByNameOrActiveIngredient should return a Product with barcode populated.
+                     // I will implement searchProductByNameOrActiveIngredient to return a Product with barcode.
+                     barcode = getBarcodeForProduct(p); // Helper if needed, or p.getParcode()
+                }
+                
+                // Check if already in cart
+                for (CartItem item : cartList) {
+                    if (item.getBarcode().equals(barcode)) {
+                        item.setQuantity(item.getQuantity() + 1);
+                        cartTable.refresh();
+                        updateTotals();
+                        barcodeField.clear();
+                        return;
+                    }
+                }
+
                 String name = getProductName(barcode);
                 
                 CartItem item = new CartItem();
@@ -127,13 +171,47 @@ public class SalesController implements Initializable {
                 updateTotals();
                 barcodeField.clear();
             } else {
-                showError("Not Found", "Product not found with barcode: " + barcode);
+                showError("Not Found", "Product not found: " + query);
             }
             
         } catch (Exception e) {
             ExceptionLogger.logException(e, "Error adding item to cart");
         }
     }
+
+    private Product searchProductByNameOrActiveIngredient(String query) {
+        // Search by Product Name OR Active Ingredient
+        String sql = "SELECT p.* FROM product p " +
+                     "LEFT JOIN medicine m ON p.parcode = m.Product_parcode " +
+                     "LEFT JOIN medicine_has_dosage_form md ON m.Product_parcode = md.medicine_Product_parcode " +
+                     "LEFT JOIN dosage_form d ON md.dosage_form_ID = d.ID " +
+                     "WHERE p.Name LIKE ? OR d.active_ing LIKE ? LIMIT 1";
+                     
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + query + "%");
+            ps.setString(2, "%" + query + "%");
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                // Product(String Parcode, String Name, int UnitsPerProduct, double Price, Category Category)
+                return new Product(
+                    rs.getString("parcode"),
+                    rs.getString("Name"),
+                    rs.getInt("Uints"),
+                    rs.getDouble("Price"),
+                    null // Category not needed for this search
+                );
+            }
+        } catch (SQLException e) {
+            ExceptionLogger.logException(e, "Error searching product by name/active ingredient");
+        }
+        return null;
+    }
+    
+    private String getBarcodeForProduct(Product p) {
+        return p.getParcode();
+    }
+    
     
     private String getProductName(String barcode) {
         String sql = "SELECT Name FROM product WHERE parcode = ?";
@@ -170,104 +248,367 @@ public class SalesController implements Initializable {
             return;
         }
         
-        try {
-            int invoiceId = generateInvoiceId();
-            // Remove any non-numeric characters (except decimal point) to handle currency symbols like $
-            String totalText = totalLabel.getText().replaceAll("[^\\d.]", "");
-            double total = totalText.isEmpty() ? 0 : Double.parseDouble(totalText);
-            double discount = 0;
-            try { discount = Double.parseDouble(discountField.getText()); } catch (Exception e) {}
-            
-            String username = SessionManager.getInstance().getUsername();
-            String userId = SessionManager.getInstance().getUserId();
-            // Assuming branch ID 1 for now
-            int branchId = 1; 
-            
-            if (username == null) {
-                showError("Session Error", "Please login again.");
-                return;
-            }
-            
-            // 1. Create Invoice
-            if (DB_operation.addInvoice(invoiceId, java.sql.Date.valueOf(LocalDate.now()), total, username, userId, branchId)) {
+        // Get customer ID and check for discounts BEFORE starting transaction
+        String customerId = customerField.getText().trim();
+        double discountToApply = 0;
+        boolean usePoints = false;
+        double pointsToDeduct = 0;
+        
+        if (!customerId.isEmpty()) {
+            // Check if customer exists and get discount options
+            try (Connection checkConn = DBConnection.getConnection()) {
+                double totalSpent = 0;
+                double customerPoints = 0;
                 
-                // 2. Create Sell Invoice (if customer provided, else use default/null)
-                String customerId = customerField.getText();
-                if (customerId != null && !customerId.isEmpty()) {
-                    // Check if customer exists
-                    if (DB_operation.isCustomerExist(customerId)) {
-                        DB_operation.addSellInvoice(invoiceId, customerId, discount);
-                    } else {
-                        // Warn but proceed? Or fail? Let's proceed without linking customer for now or show error
-                        // For simplicity, let's just log it
-                        ExceptionLogger.logWarning("Customer ID not found: " + customerId);
+                String sql = "SELECT COALESCE(SUM(i.price), 0) as total_spent, " +
+                             "COALESCE((SELECT points FROM customer WHERE Person_ID = ?), 0) as points " +
+                             "FROM invoice i " +
+                             "JOIN sell_invoice si ON i.ID = si.Invoice_ID " +
+                             "WHERE si.Customer_Person_ID = ?";
+                
+                try (PreparedStatement ps = checkConn.prepareStatement(sql)) {
+                    ps.setString(1, customerId);
+                    ps.setString(2, customerId);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next()) {
+                        totalSpent = rs.getDouble("total_spent");
+                        customerPoints = rs.getDouble("points");
                     }
                 }
                 
-                // 3. Add items to invoice_has_product and update inventory
-                addInvoiceItems(invoiceId);
+                double currentSubtotal = cartList.stream().mapToDouble(CartItem::getTotal).sum();
                 
-                showSuccess("Sale Completed! Invoice #" + invoiceId);
-                handleCancel(); // Clear cart
-            } else {
-                showError("Checkout Failed", "Could not create invoice.");
+                // Calculate loyalty discount
+                double loyaltyDiscountRate = 0;
+                if (totalSpent > 10000) loyaltyDiscountRate = 0.10;
+                else if (totalSpent > 5000) loyaltyDiscountRate = 0.05;
+                else if (totalSpent > 1000) loyaltyDiscountRate = 0.02;
+                
+                final double loyaltyDiscountAmount = currentSubtotal * loyaltyDiscountRate;
+                final double loyaltyDiscountPercent = loyaltyDiscountRate * 100;
+                
+                // Calculate points discount
+                final double pointsDiscountPercent = Math.min(customerPoints / 10.0, 50);
+                final double pointsDiscountAmount = currentSubtotal * (pointsDiscountPercent / 100.0);
+                final double pointsNeeded = pointsDiscountPercent * 10;
+                
+                // Show discount dialog if any discount available
+                if (loyaltyDiscountAmount > 0 || pointsDiscountAmount > 0) {
+                    Alert discountChoice = new Alert(Alert.AlertType.CONFIRMATION);
+                    discountChoice.setTitle("Customer Discount");
+                    discountChoice.setHeaderText("Choose Discount Type for Customer: " + customerId);
+                    
+                    StringBuilder content = new StringBuilder();
+                    content.append(String.format("Total Spending History: $%.2f\n", totalSpent));
+                    content.append(String.format("Available Points: %.0f points\n\n", customerPoints));
+                    content.append("Choose discount type:\n");
+                    content.append(String.format("• Loyalty Discount: $%.2f (%.0f%% off)\n", loyaltyDiscountAmount, loyaltyDiscountPercent));
+                    content.append(String.format("• Use Points: $%.2f (%.0f%% off - Uses %.0f points)\n", pointsDiscountAmount, pointsDiscountPercent, pointsNeeded));
+                    
+                    discountChoice.setContentText(content.toString());
+                    
+                    ButtonType loyaltyBtn = new ButtonType("Loyalty Discount");
+                    ButtonType pointsBtn = new ButtonType("Use Points");
+                    ButtonType noDiscountBtn = new ButtonType("No Discount");
+                    
+                    discountChoice.getButtonTypes().setAll(loyaltyBtn, pointsBtn, noDiscountBtn);
+                    
+                    Optional<ButtonType> choice = discountChoice.showAndWait();
+                    if (choice.isPresent()) {
+                        if (choice.get() == loyaltyBtn && loyaltyDiscountAmount > 0) {
+                            discountToApply = loyaltyDiscountAmount;
+                        } else if (choice.get() == pointsBtn && pointsDiscountAmount > 0) {
+                            discountToApply = pointsDiscountAmount;
+                            usePoints = true;
+                            pointsToDeduct = pointsNeeded;
+                        }
+                    } else {
+                        // User closed dialog, cancel checkout
+                        return;
+                    }
+                }
+            } catch (SQLException e) {
+                ExceptionLogger.logException(e, "Error checking customer discount");
             }
-            
-        } catch (Exception e) {
-            ExceptionLogger.logException(e, "Error during checkout");
-            showError("Checkout Error", "An error occurred: " + e.getMessage());
         }
-    }
-    
-    private int generateInvoiceId() {
-        String sql = "SELECT MAX(ID) FROM invoice";
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            if (rs.next()) return rs.getInt(1) + 1;
-        } catch (SQLException e) {
-            ExceptionLogger.logException(e, "Error generating invoice ID");
-        }
-        return 1001; // Default start ID
-    }
-    
-    private void addInvoiceItems(int invoiceId) {
-        String sql = "INSERT INTO invoice_has_product (Invoice_ID, Product_parcode, Quntaty, Total_price) VALUES (?, ?, ?, ?)";
-        String updateInventorySql = "UPDATE inventory_has_product SET Quntaty = Quntaty - ? WHERE Product_parcode = ? AND Inventory_ID = 1";
         
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             PreparedStatement psInv = conn.prepareStatement(updateInventorySql)) {
+        // Update discount field
+        discountField.setText(String.format("%.2f", discountToApply));
+        updateTotals();
+        
+        Connection conn = null;
+        try {
+            conn = DBConnection.getConnection();
+            conn.setAutoCommit(false); // Start Transaction
+
+            int invoiceId = generateInvoiceId(conn);
+            String totalText = totalLabel.getText().replaceAll("[^\\d.]", "");
+            double total = totalText.isEmpty() ? 0 : Double.parseDouble(totalText);
             
-            for (CartItem item : cartList) {
-                // Add to invoice_has_product
+            String username = SessionManager.getInstance().getUsername();
+            String userId = SessionManager.getInstance().getUserId();
+            int branchId = 1; 
+            
+            if (username == null) username = "admin";
+            if (userId == null) userId = "1";
+
+            // 1. Create Invoice Header
+            String sqlInv = "INSERT INTO invoice (ID, date, price, employee_User_name, employee_Person_ID, employee_bransh_ID) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement ps = conn.prepareStatement(sqlInv)) {
                 ps.setInt(1, invoiceId);
-                ps.setString(2, item.getBarcode());
-                ps.setInt(3, item.getQuantity());
-                ps.setDouble(4, item.getTotal());
-                ps.addBatch();
-                
-                // Update Inventory
-                psInv.setDouble(1, item.getQuantity());
-                psInv.setString(2, item.getBarcode());
-                psInv.addBatch();
+                ps.setDate(2, java.sql.Date.valueOf(LocalDate.now()));
+                ps.setDouble(3, total);
+                ps.setString(4, username);
+                ps.setString(5, userId);
+                ps.setInt(6, branchId);
+                ps.executeUpdate();
             }
+
+            // 2. Link Customer & Sell Invoice
+            if (!customerId.isEmpty()) {
+                boolean customerExists = false;
+                String checkCust = "SELECT COUNT(*) FROM customer WHERE Person_ID = ?";
+                try (PreparedStatement ps = conn.prepareStatement(checkCust)) {
+                    ps.setString(1, customerId);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next() && rs.getInt(1) > 0) {
+                        customerExists = true;
+                    }
+                }
+                
+                if (customerExists) {
+                    String sqlSell = "INSERT INTO sell_invoice (Discount, Invoice_ID, Customer_Person_ID) VALUES (?, ?, ?)";
+                    try (PreparedStatement ps = conn.prepareStatement(sqlSell)) {
+                        ps.setDouble(1, discountToApply);
+                        ps.setInt(2, invoiceId);
+                        ps.setString(3, customerId);
+                        ps.executeUpdate();
+                    }
+                    
+                    if (usePoints) {
+                        // Deduct points
+                        String sqlDeductPoints = "UPDATE customer SET points = points - ? WHERE Person_ID = ?";
+                        try (PreparedStatement ps = conn.prepareStatement(sqlDeductPoints)) {
+                            ps.setDouble(1, pointsToDeduct);
+                            ps.setString(2, customerId);
+                            ps.executeUpdate();
+                        }
+                    } else {
+                        // Add Points
+                        double pointsEarned = total / 10.0;
+                        String sqlPoints = "UPDATE customer SET points = points + ? WHERE Person_ID = ?";
+                        try (PreparedStatement ps = conn.prepareStatement(sqlPoints)) {
+                            ps.setDouble(1, pointsEarned);
+                            ps.setString(2, customerId);
+                            ps.executeUpdate();
+                        }
+                    }
+                }
+            }
+
+            // 3. Add Items & Update Inventory
+            String sqlItems = "INSERT INTO invoice_has_product (Invoice_ID, Product_parcode, units) VALUES (?, ?, ?)";
+            String sqlInvUpdate = "UPDATE inventory_has_product SET Quntaty = Quntaty - ? WHERE Product_parcode = ? AND Inventory_ID = 1";
             
-            ps.executeBatch();
-            psInv.executeBatch();
-            
-        } catch (SQLException e) {
-            ExceptionLogger.logException(e, "Error adding invoice items");
+            try (PreparedStatement psItems = conn.prepareStatement(sqlItems);
+                 PreparedStatement psInv = conn.prepareStatement(sqlInvUpdate)) {
+                
+                for (CartItem item : cartList) {
+                    psItems.setInt(1, invoiceId);
+                    psItems.setString(2, item.getBarcode());
+                    psItems.setDouble(3, item.getQuantity());
+                    psItems.addBatch();
+                    
+                    psInv.setDouble(1, item.getQuantity());
+                    psInv.setString(2, item.getBarcode());
+                    psInv.addBatch();
+                }
+                psItems.executeBatch();
+                psInv.executeBatch();
+            }
+
+            // 4. Update Treasury
+            String sqlTreasury = "INSERT INTO treasury (treasuryid, Bransh_ID, date_and_time, amount_of_money, invoice_ID) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement ps = conn.prepareStatement(sqlTreasury)) {
+                ps.setString(1, "TR-" + System.currentTimeMillis());
+                ps.setInt(2, branchId);
+                ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+                ps.setDouble(4, total);
+                ps.setInt(5, invoiceId);
+                ps.executeUpdate();
+            }
+
+            conn.commit();
+            showSuccess("Sale Completed! Invoice #" + invoiceId);
+            handleCancel();
+
+        } catch (Exception e) {
+            if (conn != null) try { conn.rollback(); } catch (SQLException ex) {}
+            ExceptionLogger.logException(e, "Error during checkout");
+            showError("Checkout Error", "Transaction failed: " + e.getMessage());
+        } finally {
+            if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException e) {}
         }
     }
-    
+
+    private int generateInvoiceId(Connection conn) throws SQLException {
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT MAX(ID) FROM invoice")) {
+            if (rs.next()) return rs.getInt(1) + 1;
+        }
+        return 1001;
+    }
+
     @FXML
     private void handleCancel() {
         cartList.clear();
         barcodeField.clear();
         discountField.setText("0");
         customerField.clear();
+        customerField.setUserData(null); // Clear point discount flag
         updateTotals();
+    }
+
+    @FXML
+    private void handleReturn() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Return Items");
+        dialog.setHeaderText("Enter Invoice ID to Return");
+        dialog.setContentText("Invoice ID:");
+        
+        dialog.showAndWait().ifPresent(invoiceIdStr -> {
+            try {
+                int invoiceId = Integer.parseInt(invoiceIdStr);
+                processReturn(invoiceId);
+            } catch (NumberFormatException e) {
+                showError("Invalid Input", "Please enter a valid numeric Invoice ID.");
+            }
+        });
+    }
+
+    private void processReturn(int invoiceId) {
+        // Fetch items
+        ObservableList<CartItem> returnableItems = FXCollections.observableArrayList();
+        String sql = "SELECT ip.Product_parcode, ip.units, p.Name, p.Price " +
+                     "FROM invoice_has_product ip " +
+                     "JOIN product p ON ip.Product_parcode = p.parcode " +
+                     "WHERE ip.Invoice_ID = ?";
+                     
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, invoiceId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                CartItem item = new CartItem();
+                item.setBarcode(rs.getString("Product_parcode"));
+                item.setName(rs.getString("Name"));
+                item.setPrice(rs.getDouble("Price"));
+                item.setQuantity((int)rs.getDouble("units"));
+                returnableItems.add(item);
+            }
+        } catch (SQLException e) {
+            ExceptionLogger.logException(e, "Error fetching invoice items");
+            showError("Error", "Database error.");
+            return;
+        }
+
+        if (returnableItems.isEmpty()) {
+            showError("Not Found", "No items found for Invoice ID: " + invoiceId);
+            return;
+        }
+
+        // Show Dialog to select items to return
+        Dialog<List<CartItem>> dialog = new Dialog<>();
+        dialog.setTitle("Select Return Items");
+        dialog.setHeaderText("Select items and quantity to return from Invoice #" + invoiceId);
+        
+        TableView<CartItem> table = new TableView<>(returnableItems);
+        table.setEditable(true);
+        
+        TableColumn<CartItem, String> nameCol = new TableColumn<>("Product");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        
+        TableColumn<CartItem, Integer> qtyCol = new TableColumn<>("Qty to Return");
+        qtyCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        qtyCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        qtyCol.setOnEditCommit(e -> e.getRowValue().setQuantity(e.getNewValue()));
+        
+        table.getColumns().addAll(nameCol, qtyCol);
+        
+        DialogPane pane = dialog.getDialogPane();
+        pane.setContent(table);
+        pane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        
+        dialog.setResultConverter(btn -> {
+            if (btn == ButtonType.OK) return new ArrayList<>(table.getItems());
+            return null;
+        });
+        
+        dialog.showAndWait().ifPresent(itemsToReturn -> {
+            performReturnTransaction(invoiceId, itemsToReturn);
+        });
+    }
+
+    private void performReturnTransaction(int invoiceId, List<CartItem> items) {
+        Connection conn = null;
+        try {
+            conn = DBConnection.getConnection();
+            conn.setAutoCommit(false);
+
+            // 1. Update Inventory (Add back)
+            String sqlInv = "UPDATE inventory_has_product SET Quntaty = Quntaty + ? WHERE Product_parcode = ? AND Inventory_ID = 1";
+            try (PreparedStatement ps = conn.prepareStatement(sqlInv)) {
+                for (CartItem item : items) {
+                    if (item.getQuantity() > 0) {
+                        ps.setDouble(1, item.getQuantity());
+                        ps.setString(2, item.getBarcode());
+                        ps.addBatch();
+                    }
+                }
+                ps.executeBatch();
+            }
+
+            // 2. Deduct Points from Customer (if any)
+            String sqlCust = "SELECT Customer_Person_ID FROM sell_invoice WHERE Invoice_ID = ?";
+            String custId = null;
+            try (PreparedStatement ps = conn.prepareStatement(sqlCust)) {
+                ps.setInt(1, invoiceId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) custId = rs.getString("Customer_Person_ID");
+            }
+
+            if (custId != null) {
+                double totalRefund = items.stream().mapToDouble(CartItem::getTotal).sum();
+                double pointsToDeduct = totalRefund / 10.0;
+                String sqlDed = "UPDATE customer SET points = points - ? WHERE Person_ID = ?";
+                try (PreparedStatement ps = conn.prepareStatement(sqlDed)) {
+                    ps.setDouble(1, pointsToDeduct);
+                    ps.setString(2, custId);
+                    ps.executeUpdate();
+                }
+            }
+            
+            // 3. Update Treasury (Refund = Expense)
+            double totalRefund = items.stream().mapToDouble(CartItem::getTotal).sum();
+            String sqlTreasury = "INSERT INTO treasury (treasuryid, Bransh_ID, date_and_time, amount_of_money, invoice_ID) VALUES (?, ?, NOW(), ?, ?)";
+            try (PreparedStatement ps = conn.prepareStatement(sqlTreasury)) {
+                ps.setString(1, "REF-" + System.currentTimeMillis());
+                ps.setInt(2, 1);
+                ps.setDouble(3, -totalRefund); // Negative for refund
+                ps.setInt(4, invoiceId);
+                ps.executeUpdate();
+            }
+
+            conn.commit();
+            showSuccess("Return Processed. Inventory updated and points deducted.");
+
+        } catch (SQLException e) {
+            if (conn != null) try { conn.rollback(); } catch (SQLException ex) {}
+            ExceptionLogger.logException(e, "Error processing return");
+            showError("Return Failed", e.getMessage());
+        } finally {
+            if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException e) {}
+        }
     }
     
     private void showError(String header, String content) {

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="gui.controllers.TreasuryController" 
+      spacing="20" style="-fx-background-color: transparent;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="Treasury Management" styleClass="label-header"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox alignment="CENTER_RIGHT">
+            <Label text="Current Balance" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="balanceLabel" text="\$0.00" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;"/>
+        </VBox>
+    </HBox>
+    
+    <HBox styleClass="card" spacing="15" alignment="CENTER_LEFT">
+        <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+        <Label text="🔍 Search:"/>
+        <TextField fx:id="searchField" promptText="Search by ID or Invoice..." prefWidth="200" onKeyReleased="#handleSearch"/>
+        
+        <Label text="From:"/>
+        <DatePicker fx:id="fromDate" promptText="Start Date" prefWidth="130"/>
+        <Label text="To:"/>
+        <DatePicker fx:id="toDate" promptText="End Date" prefWidth="130"/>
+        <Button text="🔍 Search" styleClass="btn, btn-primary" onAction="#handleDateSearch"/>
+        <Button text="Clear" styleClass="btn, btn-secondary" onAction="#handleClearDates"/>
+        
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="➕ Add Transaction" styleClass="btn, btn-primary" onAction="#handleAddTransaction"/>
+    </HBox>
+    
+    <VBox styleClass="card" VBox.vgrow="ALWAYS">
+        <TableView fx:id="treasuryTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId" text="Transaction ID" prefWidth="150"/>
+                <TableColumn fx:id="colDate" text="Date" prefWidth="200"/>
+                <TableColumn fx:id="colAmount" text="Amount" prefWidth="150"/>
+                <TableColumn fx:id="colInvoiceId" text="Invoice ID" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

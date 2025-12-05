@@ -17,6 +17,7 @@
         <Label text="Suppliers Management" styleClass="label-header"/>
         <Region HBox.hgrow="ALWAYS"/>
         <Button text="➕ Add New Supplier" styleClass="btn, btn-success" onAction="#handleAddSupplier"/>
+        <Button text="💰 New Purchase" styleClass="btn, btn-primary" onAction="#handleAddPurchase"/>
     </HBox>
     
     <!-- Search Bar -->
@@ -48,7 +49,6 @@
         
         <TableView fx:id="suppliersTable" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn text="Supplier ID" prefWidth="100" fx:id="colSupplierId"/>
                 <TableColumn text="Name" prefWidth="200" fx:id="colName"/>
                 <TableColumn text="Phone" prefWidth="120" fx:id="colPhone"/>
                 <TableColumn text="Email" prefWidth="150" fx:id="colEmail"/>

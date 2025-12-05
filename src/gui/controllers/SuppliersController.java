@@ -202,6 +202,141 @@ public class SuppliersController implements Initializable {
     }
     
     @FXML
+    private void handleAddPurchase() {
+        try {
+            // Create custom dialog for Purchase
+            Dialog<PurchaseData> dialog = new Dialog<>();
+            dialog.setTitle("New Purchase Invoice");
+            dialog.setHeaderText("Create Purchase Invoice");
+            
+            ButtonType saveButtonType = new ButtonType("Create Invoice", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
+            
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+            
+            ComboBox<SupplierData> supplierCombo = new ComboBox<>(suppliersList);
+            supplierCombo.setPromptText("Select Supplier");
+            // Show name in combo
+            supplierCombo.setCellFactory(param -> new ListCell<>() {
+                @Override
+                protected void updateItem(SupplierData item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) setText(null);
+                    else setText(item.getName());
+                }
+            });
+            supplierCombo.setButtonCell(supplierCombo.getCellFactory().call(null));
+            
+            TextField totalAmountField = new TextField();
+            TextField paidAmountField = new TextField();
+            
+            grid.add(new Label("Supplier:"), 0, 0);
+            grid.add(supplierCombo, 1, 0);
+            grid.add(new Label("Total Amount:"), 0, 1);
+            grid.add(totalAmountField, 1, 1);
+            grid.add(new Label("Paid Amount:"), 0, 2);
+            grid.add(paidAmountField, 1, 2);
+            
+            dialog.getDialogPane().setContent(grid);
+            
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == saveButtonType) {
+                    if (supplierCombo.getValue() == null) return null;
+                    try {
+                        double total = Double.parseDouble(totalAmountField.getText());
+                        double paid = Double.parseDouble(paidAmountField.getText());
+                        return new PurchaseData(supplierCombo.getValue(), total, paid);
+                    } catch (NumberFormatException e) {
+                        return null;
+                    }
+                }
+                return null;
+            });
+            
+            Optional<PurchaseData> result = dialog.showAndWait();
+            result.ifPresent(data -> {
+                createPurchaseInvoice(data);
+            });
+            
+        } catch (Exception e) {
+            ExceptionLogger.logException(e, "Error in add purchase dialog");
+            showError("Error", "Failed to open purchase dialog");
+        }
+    }
+
+    private void createPurchaseInvoice(PurchaseData data) {
+        Connection conn = null;
+        try {
+            conn = DBConnection.getConnection();
+            conn.setAutoCommit(false); // Transaction
+            
+            // 1. Create Invoice Record
+            // We need a new Invoice ID.
+            int invoiceId = 0;
+            try (Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery("SELECT MAX(ID) FROM invoice")) {
+                if (rs.next()) invoiceId = rs.getInt(1) + 1;
+                else invoiceId = 1;
+            }
+            
+            // Insert into invoice
+            // Assuming current user is logged in. If not, use defaults.
+            util.SessionManager session = util.SessionManager.getInstance();
+            String username = session.getUsername() != null ? session.getUsername() : "admin";
+            String userId = session.getUserId() != null ? session.getUserId() : "1";
+            int branchId = 1; // Default
+            
+            String insertInvoice = "INSERT INTO invoice (ID, date, price, employee_User_name, employee_Person_ID, employee_bransh_ID) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement ps = conn.prepareStatement(insertInvoice)) {
+                ps.setInt(1, invoiceId);
+                ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
+                ps.setDouble(3, data.totalAmount);
+                ps.setString(4, username);
+                ps.setString(5, userId);
+                ps.setInt(6, branchId);
+                ps.executeUpdate();
+            }
+            
+            // 2. Insert into purchase_invoce
+            String insertPurchase = "INSERT INTO purchase_invoce (money_paid, remaing_money, Invoice_ID, Supplier_nane, Supplier_phone) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement ps = conn.prepareStatement(insertPurchase)) {
+                ps.setDouble(1, data.paidAmount);
+                ps.setDouble(2, data.totalAmount - data.paidAmount);
+                ps.setInt(3, invoiceId);
+                ps.setString(4, data.supplier.getName());
+                ps.setString(5, data.supplier.getPhone());
+                ps.executeUpdate();
+            }
+            
+            conn.commit();
+            showSuccess("Purchase Invoice #" + invoiceId + " created successfully!");
+            loadSuppliers(); // Refresh debt
+            
+        } catch (SQLException e) {
+            try { if (conn != null) conn.rollback(); } catch (SQLException ex) {}
+            ExceptionLogger.logException(e, "Error creating purchase invoice");
+            showError("Database Error", "Failed to create purchase invoice: " + e.getMessage());
+        } finally {
+            try { if (conn != null) { conn.setAutoCommit(true); conn.close(); } } catch (SQLException e) {}
+        }
+    }
+
+    private static class PurchaseData {
+        SupplierData supplier;
+        double totalAmount;
+        double paidAmount;
+        
+        public PurchaseData(SupplierData supplier, double total, double paid) {
+            this.supplier = supplier;
+            this.totalAmount = total;
+            this.paidAmount = paid;
+        }
+    }
+
+    @FXML
     private void handleAddSupplier() {
         try {
             Dialog<SupplierData> dialog = createSupplierDialog("Add New Supplier", null);

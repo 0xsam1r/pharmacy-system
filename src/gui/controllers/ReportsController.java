@@ -138,80 +138,35 @@ public class ReportsController implements Initializable {
                 return;
             }
             
-            // Fetch data from DB
-            double sales = 0;
-            double purchases = 0;
+            String dateStr = date.toString();
             
-            String salesSql = "SELECT COALESCE(SUM(ihp.units * p.Price), 0) " +
-                             "FROM invoice i " +
-                             "JOIN invoice_has_product ihp ON i.ID = ihp.Invoice_ID " +
-                             "JOIN product p ON ihp.Product_parcode = p.parcode " +
-                             "WHERE DATE(i.date) = ?";
-                             
-            String purchSql = "SELECT COALESCE(SUM(i.price), 0) " +
-                             "FROM invoice i " +
-                             "JOIN purchase_invoce pi ON i.ID = pi.Invoice_ID " +
-                             "WHERE DATE(i.date) = ?";
+            // Generate the graph using ReportGenerator (saves as PNG)
+            ReportGenerator.generateProfitGraph(dateStr);
             
-            try (java.sql.Connection conn = DB.DBConnection.getConnection();
-                 java.sql.PreparedStatement psSales = conn.prepareStatement(salesSql);
-                 java.sql.PreparedStatement psPurch = conn.prepareStatement(purchSql)) {
+            // Load the generated image
+            String imagePath = "reports/profit_graph_" + dateStr + ".png";
+            File imageFile = new File(imagePath);
+            
+            if (imageFile.exists()) {
+                javafx.scene.image.Image image = new javafx.scene.image.Image(imageFile.toURI().toString());
+                javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView(image);
+                imageView.setPreserveRatio(true);
+                imageView.setFitWidth(600);
+                imageView.setFitHeight(400);
                 
-                psSales.setString(1, date.toString());
-                java.sql.ResultSet rsSales = psSales.executeQuery();
-                if (rsSales.next()) sales = rsSales.getDouble(1);
+                chartContainer.getChildren().clear();
+                chartContainer.getChildren().add(imageView);
                 
-                psPurch.setString(1, date.toString());
-                java.sql.ResultSet rsPurch = psPurch.executeQuery();
-                if (rsPurch.next()) purchases = rsPurch.getDouble(1);
-                
-            } catch (Exception e) {
-                ExceptionLogger.logException(e, "Error fetching chart data");
-                showError("Data Error", "Failed to fetch data for chart");
-                return;
-            }
-            
-            double profit = sales - purchases;
-            
-            // Create Chart
-            javafx.scene.chart.CategoryAxis xAxis = new javafx.scene.chart.CategoryAxis();
-            javafx.scene.chart.NumberAxis yAxis = new javafx.scene.chart.NumberAxis();
-            xAxis.setLabel("Category");
-            yAxis.setLabel("Amount (EGP)");
-            
-            javafx.scene.chart.BarChart<String, Number> barChart = new javafx.scene.chart.BarChart<>(xAxis, yAxis);
-            barChart.setTitle("Profit & Loss - " + date.toString());
-            
-            javafx.scene.chart.XYChart.Series<String, Number> series = new javafx.scene.chart.XYChart.Series<>();
-            series.setName("Financials");
-            series.getData().add(new javafx.scene.chart.XYChart.Data<>("Sales", sales));
-            series.getData().add(new javafx.scene.chart.XYChart.Data<>("Purchases", purchases));
-            series.getData().add(new javafx.scene.chart.XYChart.Data<>("Profit", profit));
-            
-            barChart.getData().add(series);
-            
-            // Color customization
-            for (javafx.scene.chart.XYChart.Data<String, Number> data : series.getData()) {
-                javafx.scene.Node node = data.getNode();
-                if (data.getXValue().equals("Sales")) {
-                    node.setStyle("-fx-bar-fill: #2ecc71;");
-                } else if (data.getXValue().equals("Purchases")) {
-                    node.setStyle("-fx-bar-fill: #e74c3c;");
-                } else {
-                    node.setStyle(profit >= 0 ? "-fx-bar-fill: #3498db;" : "-fx-bar-fill: #e67e22;");
+                // Switch to graph tab
+                if (chartContainer.getParent().getParent() instanceof TabPane) {
+                    ((TabPane) chartContainer.getParent().getParent()).getSelectionModel().select(1);
                 }
+                
+                showSuccess("Graph generated successfully!");
+                loadRecentReports();
+            } else {
+                showError("Error", "Graph image file was not created.");
             }
-            
-            // Display chart
-            chartContainer.getChildren().clear();
-            chartContainer.getChildren().add(barChart);
-            
-            // Switch to graph tab (assuming it's the second tab)
-            if (chartContainer.getParent().getParent() instanceof TabPane) {
-                ((TabPane) chartContainer.getParent().getParent()).getSelectionModel().select(1);
-            }
-            
-            showSuccess("Graph generated successfully!");
             
         } catch (Exception e) {
             ExceptionLogger.logException(e, "Error generating profit graph");

@@ -19,7 +19,7 @@
 
 /* Login Screen - Medical Gradient Theme */
 .login-container {
-    -fx-background: linear-gradient(135deg, #4A9FBF 0%, #5DBEA3 50%, #7DD4C3 100%);
+    -fx-background-color: linear-gradient(135deg, #4A9FBF 0%, #5DBEA3 50%, #7DD4C3 100%);
     -fx-padding: 20;
 }
 
@@ -303,19 +303,6 @@
 
 .scroll-pane .viewport {
     -fx-background-color: transparent;
-}
-
-/* Menu Bar */
-.menu-bar {
-    -fx-background-color: linear-gradient(to right, #2C3E50 0%, #34495e 100%);
-}
-
-.menu-bar .label {
-    -fx-text-fill: white;
-}
-
-.menu-item {
-    -fx-background-color: white;
 }
 
 .menu-item:hover {

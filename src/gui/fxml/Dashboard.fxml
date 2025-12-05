@@ -42,6 +42,8 @@
                         prefWidth="220" onAction="#showProductsView"/>
                 <Button fx:id="btnInventory" text="Inventory" styleClass="sidebar-button" 
                         prefWidth="220" onAction="#showInventoryView"/>
+                <Button fx:id="btnBatches" text="Batches" styleClass="sidebar-button" 
+                        prefWidth="220" onAction="#showBatchView"/>
                 <Button fx:id="btnSales" text="Sales" styleClass="sidebar-button" 
                         prefWidth="220" onAction="#showSalesView"/>
                 <Button fx:id="btnCustomers" text="Customers" styleClass="sidebar-button" 
@@ -52,6 +54,8 @@
                         prefWidth="220" onAction="#showReportsView"/>
                 <Button fx:id="btnSuppliers" text="Suppliers" styleClass="sidebar-button" 
                         prefWidth="220" onAction="#showSuppliersView"/>
+                <Button fx:id="btnTreasury" text="Treasury" styleClass="sidebar-button" 
+                        prefWidth="220" onAction="#showTreasuryView"/>
                 <Button fx:id="btnSettings" text="Settings" styleClass="sidebar-button" 
                         prefWidth="220" onAction="#showSettingsView"/>
             </VBox>

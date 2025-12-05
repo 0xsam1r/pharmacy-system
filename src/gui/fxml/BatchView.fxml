@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="gui.controllers.BatchController" 
+      spacing="20" style="-fx-background-color: transparent;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <Label text="Batch Management" styleClass="label-header"/>
+    
+    <HBox styleClass="card" spacing="15" alignment="CENTER_LEFT">
+        <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+        <Label text="🔍 Search:"/>
+        <TextField fx:id="searchField" promptText="Search by Product or Batch..." prefWidth="300" onKeyReleased="#handleSearch"/>
+    </HBox>
+    
+    <VBox styleClass="card" VBox.vgrow="ALWAYS">
+        <TableView fx:id="batchTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colProduct" text="Product Name" prefWidth="200"/>
+                <TableColumn fx:id="colBatch" text="Batch Number" prefWidth="150"/>
+                <TableColumn fx:id="colExpire" text="Expiry Date" prefWidth="150"/>
+                <TableColumn fx:id="colQty" text="Quantity" prefWidth="100"/>
+                <TableColumn fx:id="colCost" text="Cost" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

@@ -79,9 +79,7 @@
         <Tab text="About">
             <VBox spacing="20" style="-fx-padding: 20;" alignment="TOP_CENTER">
                 <Label text="PMS - Pharmacy Management System" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-                <Label text="Version 1.0.0" style="-fx-font-size: 14px;"/>
-                <Label text="Developed by: Google Deepmind Team" style="-fx-text-fill: #7f8c8d;"/>
-                <Label text="© 2025 All Rights Reserved"/>
+                <Label text="Developed by: ERROR 404 TEAM" style="-fx-text-fill: #7f8c8d;"/>
             </VBox>
         </Tab>
     </TabPane>

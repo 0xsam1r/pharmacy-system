@@ -72,6 +72,7 @@
             <Button text="✅ Complete Sale" styleClass="btn, btn-success" maxWidth="Infinity" 
                     style="-fx-font-size: 16px; -fx-padding: 15;" onAction="#handleCheckout"/>
             <Button text="❌ Cancel" styleClass="btn, btn-danger" maxWidth="Infinity" onAction="#handleCancel"/>
+            <Button text="↩ Return Items" styleClass="btn, btn-warning" maxWidth="Infinity" onAction="#handleReturn"/>
         </VBox>
     </HBox>
 </VBox>

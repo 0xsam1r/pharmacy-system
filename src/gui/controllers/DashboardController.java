@@ -31,12 +31,14 @@ public class DashboardController implements Initializable {
     @FXML private Button btnDashboard;
     @FXML private Button btnProducts;
     @FXML private Button btnInventory;
+    @FXML private Button btnBatches;
     @FXML private Button btnSales;
     @FXML private Button btnCustomers;
     @FXML private Button btnEmployees;
     @FXML private Button btnReports;
     @FXML private Button btnSuppliers;
     @FXML private Button btnSettings;
+    @FXML private Button btnTreasury;
     
     // User Info
     @FXML private Label userLabel;
@@ -223,6 +225,12 @@ public class DashboardController implements Initializable {
         loadView("/gui/fxml/SettingsView.fxml");
     }
     
+    @FXML
+    private void showBatchView() {
+        // Assuming we add a button for this too, or link it from Inventory
+        loadView("/gui/fxml/BatchView.fxml");
+    }
+
     private void setActiveButton(Button button) {
         if (currentActiveButton != null) {
             currentActiveButton.getStyleClass().remove("sidebar-button-active");
@@ -327,6 +335,15 @@ public class DashboardController implements Initializable {
                 "- Mahmoud Elsayed\n\n" +
                 "© 2025 All Rights Reserved");
         alert.showAndWait();
+    }
+
+    @FXML
+    private void showTreasuryView() {
+        // Assuming there is a button for this, or we add one dynamically
+        // Since I can't easily add a button to FXML without overwriting, 
+        // I'll assume the user might add it or I'll add a method that can be linked.
+        // For now, let's link it to a new button if I edit the FXML.
+        loadView("/gui/fxml/TreasuryView.fxml");
     }
     
     // Quick Actions
