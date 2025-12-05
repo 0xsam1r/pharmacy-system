@@ -53,11 +53,9 @@
             <columns>
                 <TableColumn text="Barcode" prefWidth="120" fx:id="colBarcode"/>
                 <TableColumn text="Name" prefWidth="250" fx:id="colName"/>
-                <TableColumn text="Category" prefWidth="120" fx:id="colCategory"/>
-                <TableColumn text="Price" prefWidth="100" fx:id="colPrice"/>
-                <TableColumn text="Stock" prefWidth="100" fx:id="colStock"/>
-                <TableColumn text="Unit" prefWidth="80" fx:id="colUnit"/>
-                <TableColumn text="Status" prefWidth="100" fx:id="colStatus"/>
+                <TableColumn text="Category" prefWidth="150" fx:id="colCategory"/>
+                <TableColumn text="Price" prefWidth="120" fx:id="colPrice"/>
+                <TableColumn text="Units Per Product" prefWidth="150" fx:id="colUnit"/>
                 <TableColumn text="Actions" prefWidth="150" fx:id="colActions"/>
             </columns>
         </TableView>

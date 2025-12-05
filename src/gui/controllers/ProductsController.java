@@ -37,9 +37,7 @@ public class ProductsController implements Initializable {
     @FXML private TableColumn<ProductData, String> colName;
     @FXML private TableColumn<ProductData, String> colCategory;
     @FXML private TableColumn<ProductData, Double> colPrice;
-    @FXML private TableColumn<ProductData, Integer> colStock;
-    @FXML private TableColumn<ProductData, String> colUnit;
-    @FXML private TableColumn<ProductData, String> colStatus;
+    @FXML private TableColumn<ProductData, Integer> colUnit;
     @FXML private TableColumn<ProductData, Void> colActions;
     
     private ObservableList<ProductData> productsList = FXCollections.observableArrayList();
@@ -68,9 +66,7 @@ public class ProductsController implements Initializable {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        colStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
         colUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
-        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         
         // Add action buttons column
         colActions.setCellFactory(param -> new TableCell<>() {
@@ -157,19 +153,8 @@ public class ProductsController implements Initializable {
                     product.setBarcode(rs.getString("parcode"));
                     product.setName(rs.getString("Name"));
                     product.setPrice(rs.getDouble("Price"));
-                    product.setStock(rs.getInt("Uints"));
+                    product.setUnit(rs.getInt("Uints")); // Units per product from database
                     product.setCategory(rs.getString("category"));
-                    product.setUnit("pcs");
-                    
-                    // Determine status based on stock
-                    int stock = rs.getInt("Uints");
-                    if (stock == 0) {
-                        product.setStatus("Out of Stock");
-                    } else if (stock < 10) {
-                        product.setStatus("Low Stock");
-                    } else {
-                        product.setStatus("In Stock");
-                    }
                     
                     productsList.add(product);
                 }
@@ -202,13 +187,20 @@ public class ProductsController implements Initializable {
                     // Validate product data
                     validateProduct(product);
                     
+                    // Get category ID from category name
+                    int categoryId = getCategoryIdByName(product.getCategory());
+                    if (categoryId == -1) {
+                        showError("Category Error", "Invalid category selected");
+                        return;
+                    }
+                    
                     // Add to database
                     boolean success = DB_operation.addProduct(
                         product.getBarcode(),
                         product.getName(),
                         product.getPrice(),
-                        product.getStock(),
-                        1 // Default category ID
+                        product.getUnit(),
+                        categoryId
                     );
                     
                     if (success) {
@@ -357,24 +349,53 @@ public class ProductsController implements Initializable {
         TextField barcodeField = new TextField();
         TextField nameField = new TextField();
         TextField priceField = new TextField();
-        TextField stockField = new TextField();
+        TextField unitField = new TextField();
+        ComboBox<String> categoryCombo = new ComboBox<>();
+        
+        // Load categories from database
+        try {
+            ObservableList<String> categories = FXCollections.observableArrayList();
+            String query = "SELECT ID, name FROM category ORDER BY name";
+            try (Connection conn = DB.DBConnection.getConnection();
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(query)) {
+                
+                while (rs.next()) {
+                    String categoryName = rs.getString("name");
+                    if (categoryName != null && !categoryName.trim().isEmpty()) {
+                        categories.add(categoryName);
+                    }
+                }
+            }
+            categoryCombo.setItems(categories);
+            if (!categories.isEmpty()) {
+                categoryCombo.getSelectionModel().selectFirst();
+            }
+        } catch (SQLException e) {
+            ExceptionLogger.logException(e, "Error loading categories for dialog");
+        }
         
         if (existingProduct != null) {
             barcodeField.setText(existingProduct.getBarcode());
             barcodeField.setDisable(true);
             nameField.setText(existingProduct.getName());
             priceField.setText(String.valueOf(existingProduct.getPrice()));
-            stockField.setText(String.valueOf(existingProduct.getStock()));
+            unitField.setText(String.valueOf(existingProduct.getUnit()));
+            if (existingProduct.getCategory() != null) {
+                categoryCombo.setValue(existingProduct.getCategory());
+            }
         }
         
         grid.add(new Label("Barcode:"), 0, 0);
         grid.add(barcodeField, 1, 0);
         grid.add(new Label("Name:"), 0, 1);
         grid.add(nameField, 1, 1);
-        grid.add(new Label("Price:"), 0, 2);
-        grid.add(priceField, 1, 2);
-        grid.add(new Label("Stock:"), 0, 3);
-        grid.add(stockField, 1, 3);
+        grid.add(new Label("Category:"), 0, 2);
+        grid.add(categoryCombo, 1, 2);
+        grid.add(new Label("Price:"), 0, 3);
+        grid.add(priceField, 1, 3);
+        grid.add(new Label("Units Per Product:"), 0, 4);
+        grid.add(unitField, 1, 4);
         
         dialog.getDialogPane().setContent(grid);
         
@@ -383,9 +404,10 @@ public class ProductsController implements Initializable {
                 ProductData product = new ProductData();
                 product.setBarcode(barcodeField.getText());
                 product.setName(nameField.getText());
+                product.setCategory(categoryCombo.getValue());
                 try {
                     product.setPrice(Double.parseDouble(priceField.getText()));
-                    product.setStock(Integer.parseInt(stockField.getText()));
+                    product.setUnit(Integer.parseInt(unitField.getText()));
                 } catch (NumberFormatException e) {
                     return null;
                 }
@@ -404,12 +426,39 @@ public class ProductsController implements Initializable {
         if (product.getName() == null || product.getName().trim().isEmpty()) {
             throw new ValidationException("Product name is required", "name");
         }
+        if (product.getCategory() == null || product.getCategory().trim().isEmpty()) {
+            throw new ValidationException("Category is required", "category");
+        }
         if (product.getPrice() <= 0) {
             throw new ValidationException("Price must be greater than 0", "price");
         }
-        if (product.getStock() < 0) {
-            throw new ValidationException("Stock cannot be negative", "stock");
+        if (product.getUnit() <= 0) {
+            throw new ValidationException("Units per product must be greater than 0", "unit");
         }
+    }
+    
+    private int getCategoryIdByName(String categoryName) {
+        if (categoryName == null || categoryName.trim().isEmpty()) {
+            return -1;
+        }
+        
+        try {
+            String query = "SELECT ID FROM category WHERE name = ?";
+            try (Connection conn = DB.DBConnection.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(query)) {
+                
+                pstmt.setString(1, categoryName);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getInt("ID");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            ExceptionLogger.logException(e, "Error getting category ID for: " + categoryName);
+        }
+        
+        return -1;
     }
     
     private void updateProductCount() {
@@ -446,9 +495,7 @@ public class ProductsController implements Initializable {
         private SimpleStringProperty name = new SimpleStringProperty();
         private SimpleStringProperty category = new SimpleStringProperty();
         private SimpleDoubleProperty price = new SimpleDoubleProperty();
-        private SimpleStringProperty unit = new SimpleStringProperty();
-        private SimpleStringProperty status = new SimpleStringProperty();
-        private int stock;
+        private int unit; // Units per product
         
         public String getBarcode() { return barcode.get(); }
         public void setBarcode(String value) { barcode.set(value); }
@@ -466,15 +513,7 @@ public class ProductsController implements Initializable {
         public void setPrice(double value) { price.set(value); }
         public SimpleDoubleProperty priceProperty() { return price; }
         
-        public String getUnit() { return unit.get(); }
-        public void setUnit(String value) { unit.set(value); }
-        public SimpleStringProperty unitProperty() { return unit; }
-        
-        public String getStatus() { return status.get(); }
-        public void setStatus(String value) { status.set(value); }
-        public SimpleStringProperty statusProperty() { return status; }
-        
-        public int getStock() { return stock; }
-        public void setStock(int stock) { this.stock = stock; }
+        public int getUnit() { return unit; }
+        public void setUnit(int value) { unit = value; }
     }
 }

@@ -2,6 +2,7 @@ package gui.controllers;
 
 import DB.DBConnection;
 import DB.DB_operation;
+import DB.BatchManager;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -406,25 +407,31 @@ public class SalesController implements Initializable {
                 }
             }
 
-            // 3. Add Items & Update Inventory
+            // 3. Add Items & Update Inventory using FEFO Batch Logic
             String sqlItems = "INSERT INTO invoice_has_product (Invoice_ID, Product_parcode, units) VALUES (?, ?, ?)";
-            String sqlInvUpdate = "UPDATE inventory_has_product SET Quntaty = Quntaty - ? WHERE Product_parcode = ? AND Inventory_ID = 1";
             
-            try (PreparedStatement psItems = conn.prepareStatement(sqlItems);
-                 PreparedStatement psInv = conn.prepareStatement(sqlInvUpdate)) {
+            try (PreparedStatement psItems = conn.prepareStatement(sqlItems)) {
                 
                 for (CartItem item : cartList) {
+                    // Add to invoice
                     psItems.setInt(1, invoiceId);
                     psItems.setString(2, item.getBarcode());
                     psItems.setDouble(3, item.getQuantity());
                     psItems.addBatch();
                     
-                    psInv.setDouble(1, item.getQuantity());
-                    psInv.setString(2, item.getBarcode());
-                    psInv.addBatch();
+                    // ✅ FEFO: Reduce from batches that expire first (using SAME connection)
+                    boolean reduced = BatchManager.reduceQuantityFromBatches(
+                        conn, // Pass the active connection!
+                        item.getBarcode(),
+                        item.getQuantity(),
+                        1 // Inventory ID
+                    );
+                    
+                    if (!reduced) {
+                        throw new SQLException("Insufficient stock in batches for product: " + item.getName());
+                    }
                 }
                 psItems.executeBatch();
-                psInv.executeBatch();
             }
 
             // 4. Update Treasury
@@ -555,17 +562,35 @@ public class SalesController implements Initializable {
             conn = DBConnection.getConnection();
             conn.setAutoCommit(false);
 
-            // 1. Update Inventory (Add back)
-            String sqlInv = "UPDATE inventory_has_product SET Quntaty = Quntaty + ? WHERE Product_parcode = ? AND Inventory_ID = 1";
-            try (PreparedStatement ps = conn.prepareStatement(sqlInv)) {
-                for (CartItem item : items) {
-                    if (item.getQuantity() > 0) {
-                        ps.setDouble(1, item.getQuantity());
-                        ps.setString(2, item.getBarcode());
-                        ps.addBatch();
+            // 1. Update Inventory & Batch (Add back to nearest expiring batch)
+            for (CartItem item : items) {
+                if (item.getQuantity() > 0) {
+                    // Get the batch that expires first (to add returns there)
+                    List<BatchManager.Batch> batches = BatchManager.getBatchesForProduct(item.getBarcode());
+                    
+                    if (!batches.isEmpty()) {
+                        // Add to the batch that expires first (logical for returns)
+                        BatchManager.Batch nearestBatch = batches.get(0);
+                        boolean added = BatchManager.addQuantityToBatch(
+                            nearestBatch.getBatchNumber(),
+                            item.getBarcode(),
+                            item.getQuantity(),
+                            1 // Inventory ID
+                        );
+                        
+                        if (!added) {
+                            throw new SQLException("Failed to add quantity back to batch for: " + item.getName());
+                        }
+                    } else {
+                        // Fallback: Update inventory directly if no batches found
+                        String sqlInv = "UPDATE inventory_has_product SET Quntaty = Quntaty + ? WHERE Product_parcode = ? AND Inventory_ID = 1";
+                        try (PreparedStatement ps = conn.prepareStatement(sqlInv)) {
+                            ps.setDouble(1, item.getQuantity());
+                            ps.setString(2, item.getBarcode());
+                            ps.executeUpdate();
+                        }
                     }
                 }
-                ps.executeBatch();
             }
 
             // 2. Deduct Points from Customer (if any)
