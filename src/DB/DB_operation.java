@@ -416,6 +416,7 @@ public class DB_operation {
                 // Product class fields are protected; set via reflection or add setters.
                 // Here assuming setters exist for demonstration (if not, adapt to your Product constructors).
                 p.setPrice(rs.getDouble("Price"));
+                p.setUnitsPerProduct(rs.getInt("Uints"));
                 // p.setParcode(rs.getString("parcode")); // adapt if setter exists
                 return p;
             }

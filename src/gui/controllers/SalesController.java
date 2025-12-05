@@ -162,11 +162,29 @@ public class SalesController implements Initializable {
 
                 String name = getProductName(barcode);
                 
+                // --- Unit-based Logic Start ---
+                int unitsPerBox = p.getUnitsPerProduct();
+                // If units is 0 or 1, we treat it as selling the whole box (QTY=1)
+                // If units > 1, we default to selling by units (QTY = Total Units in Box)
+                // and Price becomes Price Per Unit.
+                
+                int defaultQty;
+                double unitPrice;
+                
+                if (unitsPerBox > 1) {
+                    defaultQty = unitsPerBox;
+                    unitPrice = p.getPrice() / unitsPerBox;
+                } else {
+                    defaultQty = 1;
+                    unitPrice = p.getPrice();
+                }
+                // --- Unit-based Logic End ---
+                
                 CartItem item = new CartItem();
                 item.setBarcode(barcode);
                 item.setName(name != null ? name : "Unknown Product");
-                item.setPrice(p.getPrice());
-                item.setQuantity(1);
+                item.setPrice(unitPrice);
+                item.setQuantity(defaultQty);
                 
                 cartList.add(item);
                 updateTotals();

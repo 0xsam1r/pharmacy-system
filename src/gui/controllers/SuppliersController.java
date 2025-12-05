@@ -31,7 +31,6 @@ public class SuppliersController implements Initializable {
     @FXML private Label supplierCountLabel;
     
     // Table Columns
-    @FXML private TableColumn<SupplierData, String> colSupplierId;
     @FXML private TableColumn<SupplierData, String> colName;
     @FXML private TableColumn<SupplierData, String> colPhone;
     @FXML private TableColumn<SupplierData, String> colEmail;
@@ -55,7 +54,6 @@ public class SuppliersController implements Initializable {
     }
     
     private void setupTableColumns() {
-        colSupplierId.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
