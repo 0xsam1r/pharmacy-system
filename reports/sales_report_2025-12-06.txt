@@ -6,26 +6,41 @@
 --------------------------------------------------------------------------------
 Invoice    Date         Disc.    Customer             Product                   Line Total Employee    
 --------------------------------------------------------------------------------
+2002       2025-12-06   0.00     Walk-in             
+                                                           Panadol                        35.00   ziad        
+                                                           Augmentin 625                 155.00   ziad        
+                                                                     Invoice Total:     190.00
+2003       2025-12-06   0.00     Ahmed Saleh         
+                                                           Zyrtec                         60.00   ziad        
+                                                           Adol Extra                     45.00   ziad        
+                                                                     Invoice Total:     105.00
+2004       2025-12-06   0.00     Dina Farid          
+                                                           Nivea Soft Cream 100ml        120.00   ziad        
+                                                                     Invoice Total:     120.00
+2006       2025-12-06   0.00     Mona Nasser         
+                                                           Vitamin C 1000                 95.00   ziad        
+                                                           Vicks Cough Syrup              90.00   ziad        
+                                                           Glucophage 500                 95.00   ziad        
+                                                                     Invoice Total:     280.00
 --------------------------------------------------------------------------------
-                                                                     GRAND TOTAL SALES:       0.00
+                                                                     GRAND TOTAL SALES:     695.00
 
 
 2. PURCHASES
 --------------------------------------------------------------------------------
 Invoice    Date         Total        Paid         Remaining    Supplier            
 --------------------------------------------------------------------------------
-2028       2025-12-06   460.00       200.00       260.00       Al-Motaheda Distribution
-2029       2025-12-06   -450.00      -450.00      0.00         Al-Motaheda Distribution
+2005       2025-12-06   8400.00      4000.00      4400.00      PharmaTrade Egypt   
 --------------------------------------------------------------------------------
-                                                                     TOTAL PURCHASES:      10.00
+                                                                     TOTAL PURCHASES:    8400.00
 
 
 3. PROFIT & LOSS SUMMARY
 --------------------------------------------------
-Total Sales:                         0.00 EGP
-Total Purchases:                    10.00 EGP
+Total Sales:                       695.00 EGP
+Total Purchases:                  8400.00 EGP
 --------------------------------------------------
-NET PROFIT:                        -10.00 EGP
+NET PROFIT:                      -7705.00 EGP
 --------------------------------------------------
 
 ================================================================================
