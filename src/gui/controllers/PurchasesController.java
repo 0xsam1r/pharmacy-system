@@ -12,9 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
+import javafx.util.converter.DoubleStringConverter;
 import util.ExceptionLogger;
 import util.SessionManager;
+import gui.util.TransactionSummary;
 
 import java.net.URL;
 import java.sql.*;
@@ -28,7 +31,7 @@ public class PurchasesController implements Initializable {
     @FXML private DatePicker invoiceDate;
     
     @FXML private TextField barcodeField;
-    @FXML private TextField productNameField;
+    @FXML private ComboBox<String> productNameCombo; // Changed to ComboBox
     @FXML private ComboBox<String> batchCombo; // Changed from TextField
     @FXML private DatePicker expiryDate;
     @FXML private TextField quantityField;
@@ -48,12 +51,16 @@ public class PurchasesController implements Initializable {
     @FXML private Label remainingLabel;
     
     private ObservableList<PurchaseItem> itemList = FXCollections.observableArrayList();
+    private boolean isReturnMode = false;
+    private double returnPaidRatio = 1.0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setupTable();
         loadSuppliers();
         setupListeners();
+        setupProductSearch();
+        setupProductSearch();
         
         invoiceDate.setValue(LocalDate.now());
         paidField.setText("0");
@@ -84,12 +91,20 @@ public class PurchasesController implements Initializable {
             }
         });
         
-        colQty.setCellFactory(tc -> new TableCell<>() {
-            @Override
-            protected void updateItem(Double item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty || item == null ? "" : String.format("%.1f", item));
+        colQty.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        colQty.setOnEditCommit(event -> {
+            PurchaseItem item = event.getRowValue();
+            double newQty = event.getNewValue();
+            if (newQty <= 0) {
+                 showError("Invalid Quantity", "Quantity must be positive.");
+                 purchaseTable.refresh(); // Revert
+                 return;
             }
+            item.setQuantity(newQty);
+            // Recalculate Total for this item
+            item.setTotalCost(item.getUnitCost() * newQty);
+            purchaseTable.refresh();
+            updateTotals();
         });
         
         colCostRate.setCellFactory(tc -> new TableCell<>() {
@@ -140,6 +155,13 @@ public class PurchasesController implements Initializable {
                  fetchBatchDetails(newVal);
             }
         });
+        
+        // When Product Name is selected via Mouse/Enter (Not just typing)
+        productNameCombo.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null && !newVal.isEmpty()) {
+                 fetchBarcodeByName(newVal);
+            }
+        });
     }
     
     private void fetchBatchDetails(String batchNo) {
@@ -167,6 +189,60 @@ public class PurchasesController implements Initializable {
         }
     }
     
+    private void setupProductSearch() {
+        productNameCombo.getEditor().textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal == null || newVal.length() < 2) return;
+            
+            // Debounce or just query (simple query for now)
+            // Avoid querying if the text matches exact selection
+            if (productNameCombo.getSelectionModel().getSelectedItem() != null && 
+                productNameCombo.getSelectionModel().getSelectedItem().equals(newVal)) return;
+
+            String sql = "SELECT Name FROM product WHERE Name LIKE ? LIMIT 10";
+            try (Connection conn = DBConnection.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, "%" + newVal + "%");
+                try (ResultSet rs = ps.executeQuery()) {
+                    ObservableList<String> suggestions = FXCollections.observableArrayList();
+                    while (rs.next()) {
+                        suggestions.add(rs.getString("Name"));
+                    }
+                    
+                    // Update items without stealing focus/interrupting typing too much?
+                    // JavaFX ComboBox auto-complete is tricky. 
+                    // Simple approach: show popup.
+                    if (!suggestions.isEmpty()) {
+                        productNameCombo.setItems(suggestions);
+                        productNameCombo.show();
+                    }
+                }
+            } catch (SQLException e) {
+                // Ignore silent errors during typing
+            }
+        });
+    }
+
+    private void fetchBarcodeByName(String name) {
+        String sql = "SELECT parcode FROM product WHERE Name = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, name);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String barcode = rs.getString("parcode");
+                    if (!barcode.equals(barcodeField.getText())) {
+                        barcodeField.setText(barcode);
+                        // Trigger standard fetch logic
+                        loadProductBatches(barcode);
+                        generateBatchNumber();
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            ExceptionLogger.logException(e, "Error fetching barcode");
+        }
+    }
+
     private void loadProductBatches(String barcode) {
         batchCombo.getItems().clear();
         String sql = "SELECT Batch_number FROM batch WHERE Product_parcode = ? ORDER BY expire_date ASC";
@@ -193,12 +269,16 @@ public class PurchasesController implements Initializable {
             ps.setString(1, barcode);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    productNameField.setText(rs.getString("Name"));
+                    String name = rs.getString("Name");
+                    productNameCombo.setValue(name); // Set combo
+                    productNameCombo.getEditor().setText(name);
+                    
                     loadProductBatches(barcode); // Populate existing batches
                     generateBatchNumber(); // Auto-suggest NEW batch
                     expiryDate.requestFocus(); // Focus expiry
                 } else {
-                    productNameField.setText("Not Found");
+                    productNameCombo.setValue(null);
+                    productNameCombo.getEditor().clear();
                 }
             }
         } catch (SQLException e) {
@@ -220,7 +300,8 @@ public class PurchasesController implements Initializable {
     private void handleAddItem() {
         try {
             String barcode = barcodeField.getText().trim();
-            String name = productNameField.getText();
+            String name = productNameCombo.getValue();
+            if (name == null || name.isEmpty()) name = productNameCombo.getEditor().getText();
             // Get from Combo (Editable)
             String batch = batchCombo.getSelectionModel().getSelectedItem();
             if (batch == null || batch.isEmpty()) {
@@ -242,7 +323,8 @@ public class PurchasesController implements Initializable {
             
             // Clear inputs for next item
             barcodeField.clear();
-            productNameField.clear();
+            productNameCombo.setValue(null);
+            productNameCombo.getEditor().clear();
             batchCombo.getEditor().clear();
             batchCombo.getItems().clear();
             quantityField.clear();
@@ -258,6 +340,14 @@ public class PurchasesController implements Initializable {
         double total = itemList.stream().mapToDouble(PurchaseItem::getTotalCost).sum();
         totalLabel.setText(String.format("%.2f", total));
         
+        // Auto-suggest Paid (Refund) Amount if in Return Mode
+        if (isReturnMode) {
+             double suggestedRefund = total * returnPaidRatio;
+             // Only update if it differs significantly to avoid overriding user manual edits too aggressively?
+             // Actually, for "Systemizing", we force it on total change, user can edit after
+             paidField.setText(String.format("%.2f", suggestedRefund));
+        }
+
         try {
             double paid = Double.parseDouble(paidField.getText());
             double remaining = total - paid;
@@ -274,6 +364,17 @@ public class PurchasesController implements Initializable {
             return;
         }
         
+        // Snapshot Before Transaction
+        // Snapshot Before Transaction
+        TransactionSummary.clearSnapshots();
+        double initialDebt = 0;
+        try (Connection preConn = DBConnection.getConnection()) {
+            for (PurchaseItem item : itemList) {
+                TransactionSummary.snapshotState(preConn, item.getBarcode());
+            }
+            initialDebt = getSupplierDebt(preConn, supplierCombo.getValue());
+        } catch (SQLException e) { ExceptionLogger.logException(e, "Error snapshotting purchase state"); }
+
         Connection conn = null;
         try {
             conn = DBConnection.getConnection();
@@ -325,11 +426,6 @@ public class PurchasesController implements Initializable {
             try (PreparedStatement psLink = conn.prepareStatement(sqlBatchLink)) {
                 for (PurchaseItem item : itemList) {
                     // A. Create/Update Batch
-                    // Check if batch exists first?
-                    // Actually, if it's a new purchase, it might be a new batch or adding to existing.
-                    // The BatchManager.addQuantityToBatch updates qty, but doesn't CREATE a new batch row if not exists.
-                    // We need a method to create a batch.
-                    
                     boolean batchExists = checkBatchExists(conn, item.getBatchNumber(), item.getBarcode());
                     
                     if (batchExists) {
@@ -340,21 +436,33 @@ public class PurchasesController implements Initializable {
                         String sqlNewBatch = "INSERT INTO batch (Batch_number, cost, expire_date, Quantaty, Product_parcode) VALUES (?, ?, ?, ?, ?)";
                         try (PreparedStatement psBatch = conn.prepareStatement(sqlNewBatch)) {
                             psBatch.setString(1, item.getBatchNumber());
-                            psBatch.setDouble(2, item.getUnitCost()); // Cost per unit/box
+                            psBatch.setDouble(2, item.getUnitCost());
                             psBatch.setDate(3, java.sql.Date.valueOf(item.getExpiryDate()));
                             psBatch.setDouble(4, item.getQuantity());
                             psBatch.setString(5, item.getBarcode());
                             psBatch.executeUpdate();
                         }
                         
-                        // Also update Inventory total
-                         String updateInv = "UPDATE inventory_has_product SET Quntaty = Quntaty + ? WHERE Inventory_ID = ? AND Product_parcode = ?";
-                         try (PreparedStatement psInv = conn.prepareStatement(updateInv)) {
-                             psInv.setDouble(1, item.getQuantity());
-                             psInv.setInt(2, 1); 
-                             psInv.setString(3, item.getBarcode());
-                             psInv.executeUpdate();
-                         }
+                         // Update or Insert logic for Inventory
+                          String updateInv = "UPDATE inventory_has_product SET Quntaty = Quntaty + ? WHERE Inventory_ID = ? AND Product_parcode = ?";
+                          try (PreparedStatement psInv = conn.prepareStatement(updateInv)) {
+                              psInv.setDouble(1, item.getQuantity());
+                              psInv.setInt(2, 1); 
+                              psInv.setString(3, item.getBarcode());
+                              int rowsInv = psInv.executeUpdate();
+                              
+                              if (rowsInv == 0) {
+                                  // Product not in inventory yet, INSERT it
+                                  String insertInv = "INSERT INTO inventory_has_product (Inventory_ID, Product_parcode, Quntaty, reordr_level) VALUES (?, ?, ?, ?)";
+                                  try (PreparedStatement psInsert = conn.prepareStatement(insertInv)) {
+                                      psInsert.setInt(1, 1);
+                                      psInsert.setString(2, item.getBarcode());
+                                      psInsert.setDouble(3, item.getQuantity());
+                                      psInsert.setInt(4, 10); // Default reorder level
+                                      psInsert.executeUpdate();
+                                  }
+                              }
+                          }
                     }
                     
                     // B. Link Batch to Purchase Invoice
@@ -381,8 +489,14 @@ public class PurchasesController implements Initializable {
                      int rows = ps.executeUpdate();
                      if (rows == 0) throw new SQLException("Treasury insert failed, no rows affected.");
                  }
-            }
-            
+            } // End if(paidAmount > 0.001)
+
+            // Show Summary
+            double finalDebt = getSupplierDebt(conn, supplierName);
+            String finSummary = String.format("Purchase Invoice: #%d\nTotal: $%.2f\nPaid: $%.2f\nDebt Added: $%.2f\nSupplier: %s\nTotal Debt: $%.2f ➔ $%.2f", 
+                                              invoiceId, totalAmount, paidAmount, remaining, supplierName, initialDebt, finalDebt);
+            TransactionSummary.showSummary(conn, "Purchase Transaction Complete", finSummary);
+
             conn.commit();
             showSuccess("Purchase Completed! Invoice #" + invoiceId);
             handleClear();
@@ -430,13 +544,17 @@ public class PurchasesController implements Initializable {
     private void handleClear() {
         itemList.clear();
         barcodeField.clear();
-        productNameField.clear();
+        barcodeField.clear();
+        productNameCombo.setValue(null);
+        productNameCombo.getEditor().clear();
         batchCombo.getItems().clear();
         batchCombo.getEditor().clear();
         batchCombo.setValue(null);
         quantityField.clear();
         costField.clear();
         paidField.setText("0");
+        isReturnMode = false;
+        returnPaidRatio = 1.0;
         updateTotals();
     }
     
@@ -446,6 +564,16 @@ public class PurchasesController implements Initializable {
             showError("Missing Info", "Please ensure items are added and a Supplier is selected.");
             return;
         }
+
+        // Snapshot Before Return
+        TransactionSummary.clearSnapshots();
+        double initialDebt = 0;
+        try (Connection preConn = DBConnection.getConnection()) {
+             for (PurchaseItem item : itemList) {
+                 TransactionSummary.snapshotState(preConn, item.getBarcode());
+             }
+             initialDebt = getSupplierDebt(preConn, supplierCombo.getValue());
+        } catch (Exception e) {}
 
         Connection conn = null;
         try {
@@ -520,13 +648,19 @@ public class PurchasesController implements Initializable {
                      // Use UUID for unique transaction ID
                      String treasId = "TR-PR-" + java.util.UUID.randomUUID().toString().substring(0, 8);
                      ps.setString(1, treasId);
-                     ps.setInt(2, 1);
+                     ps.setInt(2, 1); // Branch ID
                      ps.setDouble(3, paidAmount); // Positive Value = Income (Refund received)
                      ps.setInt(4, invoiceId);
                      int rows = ps.executeUpdate();
                      if (rows == 0) throw new SQLException("Treasury return insert failed.");
                  }
-            }
+            } // Close if (paidAmount > 0)
+            
+            // Show Summary
+            double finalDebt = getSupplierDebt(conn, supplierName);
+            String finSummary = String.format("Return Invoice: #%d\nReturn Value: $%.2f\nRefund Recvd: $%.2f\nDebt Reduced: $%.2f\nSupplier: %s\nTotal Debt: $%.2f ➔ $%.2f", 
+                                              invoiceId, totalAmount, paidAmount, remaining, supplierName, initialDebt, finalDebt);
+            TransactionSummary.showSummary(conn, "Return Transaction Complete", finSummary);
 
             conn.commit();
             showSuccess("Return Processed Successfully! Invoice #" + invoiceId);
@@ -560,63 +694,77 @@ public class PurchasesController implements Initializable {
 
     private void loadInvoiceItems(int invoiceId) {
         itemList.clear();
-        // Updated Query: Fetch directly from purchase_invoce_has_batch
-        // We link to 'batch' to get cost and expiry, and 'product' for name.
-        String sql = "SELECT bLink.Batch_Product_parcode as Parcode, " +
-                     "       p.Name, " +
-                     "       bLink.Batch_Batch_number as BatchNo, " +
-                     "       batch.expire_date, " +
-                     "       batch.cost, " +
-                     "       batch.Quantaty " + // Note: This is CURRENT batch quantity, not necessarily what was bought.
-                     // But purchase doesn't store 'Quantity Purchased' explicitly in this link table?
-                     // Wait, 'purchase_invoce_has_Batchcol' might be it? Schema said VARCHAR(45).
-                     // Let's check if we store quantity anywhere.
-                     // In handleConfirmPurchase, we insert into purchase_invoce_has_batch.
-                     // param 4 is 'Standard Purchase'.
-                     // WE ARE NOT STORING THE PURCHASED QUANTITY in the link table!
-                     // This is a design flaw in the DB Schema or insertion logic.
-                     // However, for RETURNING, we usually return what is currently in the batch?
-                     // Or we just fetch the batch details and let user input quantity.
-                     // Let's fetch the CURRENT batch quantity as a default/max.
-                     "FROM purchase_invoce_has_batch bLink " +
-                     "JOIN product p ON bLink.Batch_Product_parcode = p.parcode " +
-                     "JOIN batch ON batch.Batch_number = bLink.Batch_Batch_number AND batch.Product_parcode = bLink.Batch_Product_parcode " +
-                     "WHERE bLink.purchase_invoce_Invoice_ID = ?";
-                     
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, invoiceId);
-            ResultSet rs = ps.executeQuery();
-            
-            boolean found = false;
-            while(rs.next()) {
-                found = true;
-                String barcode = rs.getString("Parcode");
-                String name = rs.getString("Name");
-                String batchNo = rs.getString("BatchNo");
-                Date expDate = rs.getDate("expire_date");
-                double cost = rs.getDouble("cost"); 
-                
-                // Problem: We don't know the original purchased quantity from the DB.
-                // We only know the CURRENT quantity in the batch.
-                // For a Return, it's safe to show current batch quantity as "Available to Return".
-                double currentQty = rs.getDouble("Quantaty");
-                
-                LocalDate exp = (expDate != null) ? expDate.toLocalDate() : LocalDate.now();
-                double total = currentQty * cost; // Estimate total value of remaining stock
-                
-                // Add to list
-                itemList.add(new PurchaseItem(barcode, name, batchNo, exp, currentQty, total));
+        
+        // 1. Fetch Invoice Header to calculate Paid Ratio
+        String sqlHeader = "SELECT i.price, pi.money_paid FROM invoice i " +
+                           "JOIN purchase_invoce pi ON i.ID = pi.Invoice_ID " +
+                           "WHERE i.ID = ?";
+                           
+        try (Connection conn = DBConnection.getConnection()) {
+            try (PreparedStatement psH = conn.prepareStatement(sqlHeader)) {
+                psH.setInt(1, invoiceId);
+                try (ResultSet rsH = psH.executeQuery()) {
+                   if (rsH.next()) {
+                       double origTotal = rsH.getDouble("price");
+                       // If price is negative (already a return), use abs? 
+                       // Usually purchasing is positive price.
+                       origTotal = Math.abs(origTotal);
+                       
+                       double origPaid = rsH.getDouble("money_paid");
+                       // Paid is usually positive expense.
+                       
+                       if (origTotal != 0) {
+                           returnPaidRatio = origPaid / origTotal;
+                       } else {
+                           returnPaidRatio = 1.0;
+                       }
+                       isReturnMode = true;
+                   }
+                }
+            } catch (SQLException e) {
+                 ExceptionLogger.logException(e, "Error fetching invoice header");
             }
             
-            if (found) {
-                updateTotals();
-                paidField.setText(totalLabel.getText());
-                showSuccess("Invoice Loaded. Quantity shown is CURRENT batch stock.");
-            } else {
-                showError("Not Found", "No items found for Invoice ID: " + invoiceId);
+            // 2. Fetch Items
+            String sql = "SELECT bLink.Batch_Product_parcode as Parcode, " +
+                         "       p.Name, " +
+                         "       bLink.Batch_Batch_number as BatchNo, " +
+                         "       batch.expire_date, " +
+                         "       batch.cost, " +
+                         "       batch.Quantaty " + 
+                         "FROM purchase_invoce_has_batch bLink " +
+                         "JOIN product p ON bLink.Batch_Product_parcode = p.parcode " +
+                         "JOIN batch ON batch.Batch_number = bLink.Batch_Batch_number AND batch.Product_parcode = bLink.Batch_Product_parcode " +
+                         "WHERE bLink.purchase_invoce_Invoice_ID = ?";
+                         
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, invoiceId);
+                ResultSet rs = ps.executeQuery();
+                
+                boolean found = false;
+                while(rs.next()) {
+                    found = true;
+                    String barcode = rs.getString("Parcode");
+                    String name = rs.getString("Name");
+                    String batchNo = rs.getString("BatchNo");
+                    Date expDate = rs.getDate("expire_date");
+                    double cost = rs.getDouble("cost"); 
+                    
+                    double currentQty = rs.getDouble("Quantaty");
+                    
+                    LocalDate exp = (expDate != null) ? expDate.toLocalDate() : LocalDate.now();
+                    double total = currentQty * cost; 
+                    
+                    itemList.add(new PurchaseItem(barcode, name, batchNo, exp, currentQty, total));
+                }
+                
+                if (found) {
+                    updateTotals(); // This will trigger paidField update based on ratio
+                    showSuccess("Invoice Loaded. Quantity shown is CURRENT batch stock.");
+                } else {
+                    showError("Not Found", "No items found for Invoice ID: " + invoiceId);
+                }
             }
-            
         } catch (SQLException e) {
             ExceptionLogger.logException(e, "Error loading invoice");
             showError("Database Error", e.getMessage());
@@ -661,8 +809,23 @@ public class PurchasesController implements Initializable {
         public String getProductName() { return productName; }
         public String getBatchNumber() { return batchNumber; }
         public LocalDate getExpiryDate() { return expiryDate; }
+        public void setQuantity(double quantity) { this.quantity = quantity; }
+        public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
+        
         public double getQuantity() { return quantity; }
         public double getTotalCost() { return totalCost; }
         public double getUnitCost() { return totalCost / quantity; }
+    }
+    private double getSupplierDebt(Connection conn, String supplierName) {
+        String sql = "SELECT SUM(remaing_money) FROM purchase_invoce WHERE Supplier_nane = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, supplierName);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getDouble(1);
+            }
+        } catch (SQLException e) {
+            ExceptionLogger.logException(e, "Error calculating supplier debt");
+        }
+        return 0.0;
     }
 }

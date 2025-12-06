@@ -46,7 +46,7 @@
                 
                 <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0" HBox.hgrow="ALWAYS" GridPane.columnSpan="2">
                     <Label text="Product Name:"/>
-                    <TextField fx:id="productNameField" promptText="Name (Auto-filled)" editable="false"/>
+                    <ComboBox fx:id="productNameCombo" promptText="Type Name to Search" editable="true" maxWidth="Infinity"/>
                 </VBox>
                 
                 <VBox spacing="5" GridPane.columnIndex="3" GridPane.rowIndex="0">
@@ -76,7 +76,7 @@
             
             <Separator/>
             
-            <TableView fx:id="purchaseTable" VBox.vgrow="ALWAYS">
+            <TableView fx:id="purchaseTable" VBox.vgrow="ALWAYS" editable="true">
                 <columns>
                     <TableColumn text="Product" prefWidth="200" fx:id="colName"/>
                     <TableColumn text="Batch" prefWidth="120" fx:id="colBatch"/>
