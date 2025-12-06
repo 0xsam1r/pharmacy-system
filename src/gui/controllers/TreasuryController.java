@@ -143,19 +143,75 @@ public class TreasuryController implements Initializable {
     }
 
     private void addTransactionToDB(double amount) {
-        String sql = "INSERT INTO treasury (treasuryid, Bransh_ID, date_and_time, amount_of_money, invoice_ID) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        Connection conn = null;
+        try {
+            conn = DBConnection.getConnection();
+            conn.setAutoCommit(false); // Start Transaction
+
+            // 1. Gather Required Data (Auto-Fill Missing Values)
+            String username = util.SessionManager.getInstance().getUsername();
+            String userId = util.SessionManager.getInstance().getUserId();
+            int branchId = util.SessionManager.getInstance().getBranchId(); // Assuming added in previous steps
             
-            ps.setString(1, "TR-" + System.currentTimeMillis()); // Simple ID generation
-            ps.setInt(2, 1); // Default Branch
-            ps.setTimestamp(3, new java.sql.Timestamp(System.currentTimeMillis()));
-            ps.setDouble(4, amount);
-            ps.setObject(5, null); // No invoice for manual
-            
-            ps.executeUpdate();
+            // Fallbacks if session is empty (e.g. during dev/testing)
+            if (username == null) username = "admin";
+            if (userId == null) {
+                // Try to find a valid Person_ID for "admin" or first available employee
+                try (java.sql.Statement st = conn.createStatement();
+                     ResultSet rs = st.executeQuery("SELECT Person_ID FROM employee LIMIT 1")) {
+                     if (rs.next()) userId = rs.getString(1);
+                     else userId = "1"; // Ultimate fallback, might fail FK
+                }
+            }
+            if (branchId == 0) branchId = 1;
+
+            // 2. Generate New Invoice ID
+            int invoiceId = 1;
+            try (java.sql.Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery("SELECT MAX(ID) FROM invoice")) {
+                if (rs.next()) invoiceId = rs.getInt(1) + 1;
+            }
+            // Ensure unique range for manual transactions if needed? 
+            // Just incrementing MAX is fine for now, assuming single-threaded usage or DB lock.
+
+            // 3. Create Supporting Invoice Record (Required by FK constraint)
+            String sqlInv = "INSERT INTO invoice (ID, date, price, employee_User_name, employee_Person_ID, employee_bransh_ID) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement psInv = conn.prepareStatement(sqlInv)) {
+                psInv.setInt(1, invoiceId);
+                psInv.setDate(2, java.sql.Date.valueOf(LocalDate.now()));
+                psInv.setDouble(3, amount); // The amount of the manual transaction
+                psInv.setString(4, username);
+                psInv.setString(5, userId);
+                psInv.setInt(6, branchId);
+                psInv.executeUpdate();
+            }
+
+            // 4. Insert Treasury Record
+            String sqlTreasury = "INSERT INTO treasury (treasuryid, Bransh_ID, date_and_time, amount_of_money, invoice_ID) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement ps = conn.prepareStatement(sqlTreasury)) {
+                
+                String treasuryId = "TR-MAN-" + System.currentTimeMillis(); // Distinct ID for manual
+                
+                ps.setString(1, treasuryId);
+                ps.setInt(2, branchId);
+                ps.setTimestamp(3, new java.sql.Timestamp(System.currentTimeMillis()));
+                ps.setDouble(4, amount);
+                ps.setInt(5, invoiceId); // Linked to the manual invoice created above
+                
+                ps.executeUpdate();
+            }
+
+            conn.commit();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Transaction Added Successfully!");
+            alert.show();
+
         } catch (SQLException e) {
+            if (conn != null) try { conn.rollback(); } catch (SQLException ex) {}
             ExceptionLogger.logException(e, "Error adding treasury transaction");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to add transaction: " + e.getMessage());
+            alert.show();
+        } finally {
+            if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException e) {}
         }
     }
 
