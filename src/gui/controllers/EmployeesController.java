@@ -17,6 +17,7 @@ import model.branch.Branch;
 import model.people.Employee;
 import model.people.UserAccount;
 import util.ExceptionLogger;
+import util.SessionManager;
 
 import java.net.URL;
 import java.sql.*;
@@ -109,13 +110,25 @@ public class EmployeesController implements Initializable {
                 
                 while (rs.next()) {
                     EmployeeData emp = new EmployeeData();
-                    emp.setId(rs.getString("ID"));
+                    String id = rs.getString("ID");
+                    emp.setId(id);
                     emp.setName(rs.getString("name"));
                     emp.setPhone(rs.getString("Phone"));
                     emp.setUsername(rs.getString("User_name"));
                     emp.setSalary(rs.getDouble("salary"));
                     emp.setStartDate(rs.getString("StartDate"));
-                    emp.setRole("Employee");  
+                    
+                    // Derive role from ID prefix
+                    String role = "Employee";
+                    if (id != null && !id.isEmpty()) {
+                        char prefix = Character.toLowerCase(id.charAt(0));
+                        switch (prefix) {
+                            case 'm': role = "Manager"; break;
+                            case 'p': role = "Pharmacist"; break;
+                            case 'c': role = "Cashier"; break;
+                        }
+                    }
+                    emp.setRole(role);
                     
                     employeesList.add(emp);
                 }
@@ -200,27 +213,78 @@ public class EmployeesController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Delete");
         alert.setHeaderText("Delete Employee");
-        alert.setContentText("Are you sure you want to delete " + employee.getName() + "?");
+        alert.setContentText("Are you sure you want to delete " + employee.getName() + "?\nThis will remove their user account and personal data.");
         
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
+                Connection conn = null;
                 try {
-                     
-                    String sql = "DELETE FROM employee WHERE Person_ID = ?";
-                    try (Connection conn = DBConnection.getConnection();
-                         PreparedStatement ps = conn.prepareStatement(sql)) {
-                        ps.setString(1, employee.getId());
-                        int rows = ps.executeUpdate();
-                        if (rows > 0) {
-                            showSuccess("Employee deleted successfully");
-                            loadEmployees();
-                        } else {
-                            showError("Delete Failed", "Failed to delete employee");
+                    conn = DBConnection.getConnection();
+                    conn.setAutoCommit(false);
+                    
+                    // 1. Check for sales/invoices first
+                    String checkSql = "SELECT 1 FROM invoice WHERE employee_Person_ID = ? LIMIT 1";
+                    try (PreparedStatement psCheck = conn.prepareStatement(checkSql)) {
+                        psCheck.setString(1, employee.getId());
+                        ResultSet rs = psCheck.executeQuery();
+                        if (rs.next()) {
+                            // Instead of blocking, ask to Transfer
+                            Alert transferAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                            transferAlert.setTitle("Action Required");
+                            transferAlert.setHeaderText("Employee has associated sales records.");
+                            transferAlert.setContentText("You cannot simply delete this employee because they have financial history.\n\n" +
+                                                       "Do you want to TRANSFER all their sales to YOUR account (the current user) and then delete the employee?");
+                            
+                            java.util.Optional<ButtonType> result = transferAlert.showAndWait();
+                            if (result.isPresent() && result.get() == ButtonType.OK) {
+                                // Transfer invoices to Current User
+                                String currentUserStr = SessionManager.getInstance().getUsername();
+                                String currentUserId = SessionManager.getInstance().getUserId();
+                                int currentBranchId = SessionManager.getInstance().getBranchId();
+                                
+                                // Default fallback if session missing (shouldn't happen in normal flow)
+                                if (currentUserStr == null) currentUserStr = "admin";
+                                if (currentUserId == null) currentUserId = "1";
+                                if (currentBranchId == 0) currentBranchId = 1;
+
+                                String transferSql = "UPDATE invoice SET employee_Person_ID = ?, employee_User_name = ?, employee_bransh_ID = ? WHERE employee_Person_ID = ?";
+                                try (PreparedStatement psTrans = conn.prepareStatement(transferSql)) {
+                                    psTrans.setString(1, currentUserId);
+                                    psTrans.setString(2, currentUserStr);
+                                    psTrans.setInt(3, currentBranchId);
+                                    psTrans.setString(4, employee.getId());
+                                    psTrans.executeUpdate();
+                                }
+                            } else {
+                                return; // User cancelled
+                            }
                         }
                     }
+                    
+                    // 2. Delete from Employee (This contains the user account info)
+                    String delEmp = "DELETE FROM employee WHERE Person_ID = ?";
+                    try (PreparedStatement psEmp = conn.prepareStatement(delEmp)) {
+                        psEmp.setString(1, employee.getId());
+                        psEmp.executeUpdate();
+                    }
+                    
+                    // 4. Delete from Person
+                    String delPerson = "DELETE FROM person WHERE ID = ?";
+                    try (PreparedStatement psPerson = conn.prepareStatement(delPerson)) {
+                        psPerson.setString(1, employee.getId());
+                        psPerson.executeUpdate();
+                    }
+                    
+                    conn.commit();
+                    showSuccess("Employee deleted successfully");
+                    loadEmployees();
+                    
                 } catch (SQLException e) {
+                    if (conn != null) try { conn.rollback(); } catch (SQLException ex) {}
                     ExceptionLogger.logException(e, "Error deleting employee");
-                    showError("Delete Failed", "Cannot delete employee. They may have associated records.");
+                    showError("Delete Failed", "Database Error: " + e.getMessage());
+                } finally {
+                    if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException e) {}
                 }
             }
         });

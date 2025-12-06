@@ -39,7 +39,7 @@
                 <TableColumn text="Name" prefWidth="200" fx:id="colName"/>
                 <TableColumn text="Phone" prefWidth="150" fx:id="colPhone"/>
                 <TableColumn text="Points" prefWidth="100" fx:id="colPoints"/>
-                <TableColumn text="Total Purchases" prefWidth="130" fx:id="colPurchases"/>
+                <!-- <TableColumn text="Total Purchases" prefWidth="130" fx:id="colPurchases"/> -->
                 <TableColumn text="Actions" prefWidth="150" fx:id="colActions"/>
             </columns>
         </TableView>

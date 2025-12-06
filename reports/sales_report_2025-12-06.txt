@@ -6,26 +6,87 @@
 --------------------------------------------------------------------------------
 Invoice    Date         Disc.    Customer             Product                   Line Total Employee    
 --------------------------------------------------------------------------------
+2002       2025-12-06   0.00     Walk-in             
+                                                           Panadol                        35.00   ziad        
+                                                           Augmentin 625                 155.00   ziad        
+                                                                     Invoice Total:     190.00
+2003       2025-12-06   0.00     Ahmed Saleh         
+                                                           Zyrtec                         60.00   ziad        
+                                                           Adol Extra                     45.00   ziad        
+                                                                     Invoice Total:     105.00
+2004       2025-12-06   0.00     Dina Farid          
+                                                           Nivea Soft Cream 100ml        120.00   ziad        
+                                                                     Invoice Total:     120.00
+2006       2025-12-06   0.00     Mona Nasser         
+                                                           Vitamin C 1000                 95.00   ziad        
+                                                           Vicks Cough Syrup              90.00   ziad        
+                                                           Glucophage 500                 95.00   ziad        
+                                                                     Invoice Total:     280.00
+2009       2025-12-06   0.00     Walk-in             
+                                                           Panadol                        35.00   ziad        
+                                                                     Invoice Total:      35.00
+2010       2025-12-06   0.00     Walk-in             
+                                                           Panadol Cold & Flu             55.00   ziad        
+                                                                     Invoice Total:      55.00
+2011       2025-12-06   0.00     Walk-in             
+                                                           Panadol Cold & Flu             27.50   ziad        
+                                                                     Invoice Total:      27.50
+2012       2025-12-06   6.60     Mona Nasser         
+                                                           Cataflam 50                    75.00   ziad        
+                                                                     Invoice Total:      75.00
+2013       2025-12-06   5.28     Mona Nasser         
+                                                           Zyrtec                         60.00   ziad        
+                                                                     Invoice Total:      60.00
+2014       2025-12-06   0.00     Mona Nasser         
+                                                           Panadol                        35.00   ziad        
+                                                                     Invoice Total:      35.00
+2015       2025-12-06   0.00     Mona Nasser         
+                                                           Cataflam 50                    75.00   ziad        
+                                                                     Invoice Total:      75.00
+2016       2025-12-06   0.00     Walk-in             
+                                                           Panadol                        35.00   ziad        
+                                                                     Invoice Total:      35.00
+2017       2025-12-06   10.00    Mona Nasser         
+                                                           Panadol Cold & Flu             55.00   ziad        
+                                                                     Invoice Total:      55.00
+2018       2025-12-06   10.00    Mona Nasser         
+                                                           Panadol                        35.00   ziad        
+                                                                     Invoice Total:      35.00
+2019       2025-12-06   10.00    Mona Nasser         
+                                                           Panadol                        35.00   ziad        
+                                                                     Invoice Total:      35.00
 --------------------------------------------------------------------------------
-                                                                     GRAND TOTAL SALES:       0.00
+                                                                     GRAND TOTAL SALES:    1217.50
 
 
 2. PURCHASES
 --------------------------------------------------------------------------------
 Invoice    Date         Total        Paid         Remaining    Supplier            
 --------------------------------------------------------------------------------
-2028       2025-12-06   460.00       200.00       260.00       Al-Motaheda Distribution
-2029       2025-12-06   -450.00      -450.00      0.00         Al-Motaheda Distribution
+2005       2025-12-06   8400.00      4000.00      4400.00      PharmaTrade Egypt   
+2007       2025-12-06   230.00       100.00       130.00       Al-Motaheda Distribution
+2008       2025-12-06   -230.00      -100.00      -130.00      Al-Motaheda Distribution
+2020       2025-12-06   450.00       0.00         450.00       PharmaTrade Egypt   
+2021       2025-12-06   -450.00      0.00         -450.00      Al-Motaheda Distribution
+2022       2025-12-06   400.00       400.00       0.00         PharmaTrade Egypt   
+2023       2025-12-06   -400.00      -400.00      0.00         Al-Motaheda Distribution
+2024       2025-12-06   600.00       200.00       400.00       PharmaTrade Egypt   
+2025       2025-12-06   -600.00      -200.00      -400.00      PharmaTrade Egypt   
+2026       2025-12-06   525.00       200.00       325.00       Al-Motaheda Distribution
+2027       2025-12-06   200.00       150.00       50.00        Al-Motaheda Distribution
+2028       2025-12-06   -200.00      -75.00       -125.00      Al-Motaheda Distribution
+2029       2025-12-06   950.00       200.00       750.00       Al-Motaheda Distribution
+2030       2025-12-06   -475.00      -100.00      -375.00      Al-Motaheda Distribution
 --------------------------------------------------------------------------------
-                                                                     TOTAL PURCHASES:      10.00
+                                                                     TOTAL PURCHASES:    9400.00
 
 
 3. PROFIT & LOSS SUMMARY
 --------------------------------------------------
-Total Sales:                         0.00 EGP
-Total Purchases:                    10.00 EGP
+Total Sales:                      1217.50 EGP
+Total Purchases:                  9400.00 EGP
 --------------------------------------------------
-NET PROFIT:                        -10.00 EGP
+NET PROFIT:                      -8182.50 EGP
 --------------------------------------------------
 
 ================================================================================

@@ -334,28 +334,87 @@ private void setupAutocompletion() {
             
             Optional<ProductData> result = dialog.showAndWait();
             result.ifPresent(editedProduct -> {
+                Connection conn = null;
                 try {
                     validateProduct(editedProduct);
                     
-                     
-                    boolean success = DB_operation.updateProductPrice(
-                        editedProduct.getBarcode(),
-                        editedProduct.getPrice()
-                    );
-                    
-                    if (success) {
-                        showSuccess("Product updated successfully!");
-                        loadProducts();
-                        ExceptionLogger.logInfo("Product updated: " + editedProduct.getName());
-                    } else {
-                        showError("Update Failed", "Failed to update product");
+                    // Resolve Category ID
+                    int categoryId = getCategoryIdByName(editedProduct.getCategory());
+                    if (categoryId == -1) {
+                        showError("Category Error", "Invalid category selected");
+                        return;
                     }
+
+                    conn = DB.DBConnection.getConnection();
+                    conn.setAutoCommit(false);
+                    
+                    String barcode = editedProduct.getBarcode();
+                    
+                    // 1. Update Product Basic Info
+                    String updateProductSql = "UPDATE product SET Name = ?, Price = ?, Uints = ?, Category_ID = ? WHERE parcode = ?";
+                    try (PreparedStatement ps = conn.prepareStatement(updateProductSql)) {
+                        ps.setString(1, editedProduct.getName());
+                        ps.setDouble(2, editedProduct.getPrice());
+                        ps.setInt(3, editedProduct.getUnit());
+                        ps.setInt(4, categoryId);
+                        ps.setString(5, barcode);
+                        ps.executeUpdate();
+                    }
+                    
+                    // 2. Handle Dosage Form Update
+                    String newDosage = editedProduct.getDosage();
+                    if (newDosage != null && !newDosage.isEmpty()) {
+                        // Ensure it's treated as Medicine
+                        try (PreparedStatement ps = conn.prepareStatement("INSERT IGNORE INTO medicine (Product_parcode) VALUES (?)")) {
+                            ps.setString(1, barcode);
+                            ps.executeUpdate();
+                        }
+                        
+                        // Get Dosage ID
+                        int dosageId = -1;
+                        try (PreparedStatement ps = conn.prepareStatement("SELECT ID FROM dosage_form WHERE active_ing = ?")) {
+                            ps.setString(1, newDosage);
+                            ResultSet rs = ps.executeQuery();
+                            if (rs.next()) dosageId = rs.getInt("ID");
+                        }
+                        
+                        if (dosageId != -1) {
+                            // Remove old dosage links for this medicine
+                            try (PreparedStatement ps = conn.prepareStatement("DELETE FROM medicine_has_dosage_form WHERE medicine_Product_parcode = ?")) {
+                                ps.setString(1, barcode);
+                                ps.executeUpdate();
+                            }
+                            
+                            // Add new link
+                            try (PreparedStatement ps = conn.prepareStatement("INSERT INTO medicine_has_dosage_form (medicine_Product_parcode, dosage_form_ID, Strength) VALUES (?, ?, ?)")) {
+                                ps.setString(1, barcode);
+                                ps.setInt(2, dosageId);
+                                ps.setDouble(3, 0); // Default strength
+                                ps.executeUpdate();
+                            }
+                        }
+                    } else {
+                        // If dosage cleared/empty, maybe remove from medicine? 
+                        // For now, just remove dosage link
+                         try (PreparedStatement ps = conn.prepareStatement("DELETE FROM medicine_has_dosage_form WHERE medicine_Product_parcode = ?")) {
+                            ps.setString(1, barcode);
+                            ps.executeUpdate();
+                        }
+                    }
+
+                    conn.commit();
+                    showSuccess("Product updated successfully!");
+                    loadProducts();
+                    ExceptionLogger.logInfo("Product updated: " + editedProduct.getName());
                     
                 } catch (ValidationException e) {
                     showError("Validation Error", e.getMessage());
-                } catch (Exception e) {
+                } catch (SQLException e) {
+                    if (conn != null) try { conn.rollback(); } catch (SQLException ex) {}
                     ExceptionLogger.logException(e, "Error updating product");
-                    showError("Error", "Failed to update product");
+                    showError("Update Error", "Failed to update product details: " + e.getMessage());
+                } finally {
+                    if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException e) {}
                 }
             });
             
@@ -365,30 +424,125 @@ private void setupAutocompletion() {
     }
     
     private void handleDeleteProduct(ProductData product) {
-        try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirm Delete");
-            alert.setHeaderText("Delete Product");
-            alert.setContentText("Are you sure you want to delete: " + product.getName() + "?");
-            
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    try {
-                         
-                        showSuccess("Product deleted successfully!");
-                        loadProducts();
-                        ExceptionLogger.logInfo("Product deleted: " + product.getName());
-                        
-                    } catch (Exception e) {
-                        ExceptionLogger.logException(e, "Error deleting product");
-                        showError("Delete Failed", "Failed to delete product");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Delete");
+        alert.setHeaderText("Delete Product");
+        alert.setContentText("Are you sure you want to delete: " + product.getName() + "?\n\n" +
+                           "This will remove the product and all its inventory/batch records if no sales exist.");
+        
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // Resolve Category ID BEFORE opening the transaction connection
+                // This prevents 'getCategoryIdByName' from closing the connection if it uses the same singleton/helper
+                int catId = getCategoryIdByName(product.getCategory());
+                
+                Connection conn = null;
+                try {
+                    conn = DB.DBConnection.getConnection();
+                    conn.setAutoCommit(false);
+                    
+                    String barcode = product.getBarcode().trim();
+                    
+                    // 1. Check Sales/Purchase History (Blocking)
+                    try (PreparedStatement ps = conn.prepareStatement("SELECT 1 FROM invoice_has_product WHERE Product_parcode = ? LIMIT 1")) {
+                        ps.setString(1, barcode);
+                        if (ps.executeQuery().next()) {
+                            showError("Cannot Delete", "This product has sales history (Invoices). Cannot delete.");
+                            return;
+                        }
                     }
+                    try (PreparedStatement ps = conn.prepareStatement("SELECT 1 FROM customer_buy_product WHERE Product_parcode = ? LIMIT 1")) {
+                        ps.setString(1, barcode);
+                        if (ps.executeQuery().next()) {
+                            showError("Cannot Delete", "This product has customer purchase history. Cannot delete.");
+                            return;
+                        }
+                    }
+                    
+                    // 2. Clear Dependencies
+                    
+                    // Medicine / Dosage Link
+                    try (PreparedStatement ps = conn.prepareStatement("DELETE FROM medicine_has_dosage_form WHERE medicine_Product_parcode = ?")) {
+                        ps.setString(1, barcode);
+                        ps.executeUpdate();
+                    }
+                    // Medicine / Cosmetic
+                    try (PreparedStatement ps = conn.prepareStatement("DELETE FROM medicine WHERE Product_parcode = ?")) {
+                        ps.setString(1, barcode);
+                        ps.executeUpdate();
+                    }
+                    try (PreparedStatement ps = conn.prepareStatement("DELETE FROM cosmetic WHERE Product_parcode = ?")) {
+                        ps.setString(1, barcode);
+                        ps.executeUpdate();
+                    }
+                    
+                    // Supplier / Branch / Inventory Links
+                    try (PreparedStatement ps = conn.prepareStatement("DELETE FROM supplier_has_product WHERE Product_parcode = ?")) {
+                        ps.setString(1, barcode);
+                        ps.executeUpdate();
+                    }
+                    try (PreparedStatement ps = conn.prepareStatement("DELETE FROM bransh_has_product WHERE Product_parcode = ?")) {
+                        ps.setString(1, barcode);
+                        ps.executeUpdate();
+                    }
+                    try (PreparedStatement ps = conn.prepareStatement("DELETE FROM inventory_has_product WHERE Product_parcode = ?")) {
+                        ps.setString(1, barcode);
+                        ps.executeUpdate();
+                    }
+                    
+                    // Batches
+                    try (PreparedStatement ps = conn.prepareStatement("DELETE FROM batch WHERE Product_parcode = ?")) {
+                        ps.setString(1, barcode);
+                        ps.executeUpdate();
+                    }
+                    
+                    // 3. Delete Product (Using Composite Key if possible, else Barcode)
+                    int rows = 0;
+                    
+                    if (catId != -1) {
+                        try (PreparedStatement ps = conn.prepareStatement("DELETE FROM product WHERE parcode = ? AND Category_ID = ?")) {
+                            ps.setString(1, barcode);
+                            ps.setInt(2, catId);
+                            rows = ps.executeUpdate();
+                        }
+                    }
+                    
+                    // Fallback: If Category mismatch or generic delete needed
+                    if (rows == 0) {
+                        try (PreparedStatement ps = conn.prepareStatement("DELETE FROM product WHERE parcode = ?")) {
+                             ps.setString(1, barcode);
+                             rows = ps.executeUpdate();
+                        }
+                    }
+                    
+                    if (rows > 0) {
+                        conn.commit();
+                        showSuccess("Product deleted successfully!");
+                        
+                        // Force UI refresh on JavaFX thread
+                        javafx.application.Platform.runLater(() -> {
+                            handleRefresh();
+                        });
+                        
+                        ExceptionLogger.logInfo("Product deleted: " + product.getName());
+                    } else {
+                        conn.rollback();
+                        showError("Delete Failed", "Could not delete product record (Row not found).");
+                    }
+                    
+                } catch (SQLException e) {
+                    if(conn!=null) try { conn.rollback(); } catch(SQLException ex){}
+                    ExceptionLogger.logException(e, "Error deleting product");
+                    if (e.getMessage().contains("constraint")) {
+                         showError("Cannot Delete", "Product has associated records preventing deletion (e.g. constraints).");
+                    } else {
+                         showError("Delete Failed", "Database Error: " + e.getMessage());
+                    }
+                } finally {
+                    if(conn!=null) try { conn.setAutoCommit(true); conn.close(); } catch(SQLException ex){}
                 }
-            });
-            
-        } catch (Exception e) {
-            ExceptionLogger.logException(e, "Error in delete product");
-        }
+            }
+        });
     }
     
     @FXML private TextField activeIngredientSearchField;  
@@ -552,16 +706,62 @@ private void setupAutocompletion() {
         grid.add(priceField, 1, 3);
         grid.add(new Label("Units Per Product:"), 0, 4);
         grid.add(unitField, 1, 4);
-        
+
+        HBox dosageBox = new HBox(10);
         ComboBox<String> dosageCombo = new ComboBox<>();
+        Button addDosageBtn = new Button("+");
+        addDosageBtn.setOnAction(e -> {
+            TextInputDialog newDosageDialog = new TextInputDialog();
+            newDosageDialog.setTitle("Add Dosage Form");
+            newDosageDialog.setHeaderText("Create New Dosage Form");
+            newDosageDialog.setContentText("Name (e.g., Tablet, Syrup):");
+            
+            newDosageDialog.showAndWait().ifPresent(newName -> {
+                if (newName.trim().isEmpty()) return;
+                
+                try (Connection conn = DB.DBConnection.getConnection()) {
+                    // Check existence
+                    try (PreparedStatement check = conn.prepareStatement("SELECT 1 FROM dosage_form WHERE active_ing = ?")) {
+                        check.setString(1, newName.trim());
+                        if (check.executeQuery().next()) {
+                            showError("Duplicate", "Dosage form already exists.");
+                            return;
+                        }
+                    }
+                    
+                    // Insert
+                    // Get Max ID
+                    int nextId = 1;
+                    try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("SELECT MAX(ID) FROM dosage_form")) {
+                        if (rs.next()) nextId = rs.getInt(1) + 1;
+                    }
+                    
+                    try (PreparedStatement insert = conn.prepareStatement("INSERT INTO dosage_form (ID, active_ing) VALUES (?, ?)")) {
+                        insert.setInt(1, nextId);
+                        insert.setString(2, newName.trim());
+                        insert.executeUpdate();
+                    }
+                    
+                    showSuccess("Dosage Form '" + newName + "' added.");
+                    dosageCombo.getItems().add(newName.trim());
+                    dosageCombo.setValue(newName.trim());
+                    
+                } catch (SQLException ex) {
+                    ExceptionLogger.logException(ex, "Error adding dosage form");
+                    showError("Error", "Failed to add dosage form: " + ex.getMessage());
+                }
+            });
+        });
+        
         try (Connection conn = DB.DBConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT active_ing FROM dosage_form ORDER BY active_ing")) {
              while (rs.next()) dosageCombo.getItems().add(rs.getString("active_ing"));
         } catch(SQLException e) {}
         
+        dosageBox.getChildren().addAll(dosageCombo, addDosageBtn);
         grid.add(new Label("Dosage Form:"), 0, 5);
-        grid.add(dosageCombo, 1, 5);
+        grid.add(dosageBox, 1, 5);
         
         if (existingProduct != null && existingProduct.getDosage() != null) {
             dosageCombo.setValue(existingProduct.getDosage());
@@ -607,7 +807,7 @@ private void setupAutocompletion() {
             throw new ValidationException("Units per product must be greater than 0", "unit");
         }
     }
-    
+
     private int getCategoryIdByName(String categoryName) {
         if (categoryName == null || categoryName.trim().isEmpty()) {
             return -1;

@@ -80,6 +80,7 @@ public class PurchasesController implements Initializable {
             {
                 removeBtn.setOnAction(event -> {
                     itemList.remove(getIndex());
+                    updateSuggestedRefund();
                     updateTotals();
                 });
                 removeBtn.setStyle("-fx-text-fill: red; -fx-background-color: transparent; -fx-cursor: hand;");
@@ -102,8 +103,8 @@ public class PurchasesController implements Initializable {
             }
             item.setQuantity(newQty);
              
-            item.setTotalCost(item.getUnitCost() * newQty);
             purchaseTable.refresh();
+            updateSuggestedRefund();
             updateTotals();
         });
         
@@ -339,14 +340,6 @@ public class PurchasesController implements Initializable {
     private void updateTotals() {
         double total = itemList.stream().mapToDouble(PurchaseItem::getTotalCost).sum();
         totalLabel.setText(String.format("%.2f", total));
-        
-         
-        if (isReturnMode) {
-             double suggestedRefund = total * returnPaidRatio;
-              
-              
-             paidField.setText(String.format("%.2f", suggestedRefund));
-        }
 
         try {
             double paid = Double.parseDouble(paidField.getText());
@@ -354,6 +347,17 @@ public class PurchasesController implements Initializable {
             remainingLabel.setText(String.format("%.2f", remaining));
         } catch (NumberFormatException e) {
             remainingLabel.setText("0.00");
+        }
+    }
+    
+    private void updateSuggestedRefund() {
+        if (isReturnMode) {
+            double total = itemList.stream().mapToDouble(PurchaseItem::getTotalCost).sum();
+            double suggestedRefund = total * returnPaidRatio;
+            
+            // Only update if the difference is significant to avoid fighting manual edits during minor rounding
+            // But here we want to offer the suggestion whenever the cart content changes significantly
+            paidField.setText(String.format("%.2f", suggestedRefund));
         }
     }
     
@@ -794,6 +798,7 @@ public class PurchasesController implements Initializable {
         private String batchNumber;
         private LocalDate expiryDate;
         private double quantity;
+        private double unitCost; // Store unit cost explicitly
         private double totalCost;
         
         public PurchaseItem(String barcode, String productName, String batchNumber, LocalDate expiryDate, double quantity, double totalCost) {
@@ -803,18 +808,29 @@ public class PurchasesController implements Initializable {
             this.expiryDate = expiryDate;
             this.quantity = quantity;
             this.totalCost = totalCost;
+            this.unitCost = (quantity != 0) ? totalCost / quantity : 0;
         }
         
         public String getBarcode() { return barcode; }
         public String getProductName() { return productName; }
         public String getBatchNumber() { return batchNumber; }
         public LocalDate getExpiryDate() { return expiryDate; }
-        public void setQuantity(double quantity) { this.quantity = quantity; }
-        public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
+        
+        public void setQuantity(double quantity) { 
+            this.quantity = quantity; 
+            // Recalculate total based on fixed unit cost
+            this.totalCost = this.unitCost * quantity;
+        }
+        
+        public void setTotalCost(double totalCost) { 
+            this.totalCost = totalCost; 
+            // Recalculate unit cost if total changes (e.g. manual edit of total, though not exposed in UI currently for that column specific logic)
+            if (this.quantity != 0) this.unitCost = totalCost / this.quantity;
+        }
         
         public double getQuantity() { return quantity; }
         public double getTotalCost() { return totalCost; }
-        public double getUnitCost() { return totalCost / quantity; }
+        public double getUnitCost() { return unitCost; }
     }
     private double getSupplierDebt(Connection conn, String supplierName) {
         String sql = "SELECT SUM(remaing_money) FROM purchase_invoce WHERE Supplier_nane = ?";

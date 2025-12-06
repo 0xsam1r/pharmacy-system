@@ -402,47 +402,99 @@ public class SuppliersController implements Initializable {
     }
     
     private void handleDeleteSupplier(SupplierData supplier) {
-        try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirm Delete");
-            alert.setHeaderText("Delete Supplier");
-            alert.setContentText("Are you sure you want to delete: " + supplier.getName() + "?\n" +
-                               "This action cannot be undone.");
-            
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    try {
-                        String sql = "DELETE FROM supplier WHERE nane = ? AND phone = ?";
-                        try (Connection conn = DBConnection.getConnection();
-                             PreparedStatement ps = conn.prepareStatement(sql)) {
-                            
-                            ps.setString(1, supplier.getName());
-                            ps.setString(2, supplier.getPhone());
-                            int rows = ps.executeUpdate();
-                            
-                            if (rows > 0) {
-                                showSuccess("Supplier deleted successfully!");
-                                loadSuppliers();
-                                ExceptionLogger.logInfo("Supplier deleted: " + supplier.getName());
-                            } else {
-                                showError("Delete Failed", "Failed to delete supplier");
-                            }
-                        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Delete");
+        alert.setHeaderText("Delete Supplier");
+        alert.setContentText("Are you sure you want to delete: " + supplier.getName() + "?\nThis action cannot be undone.");
+        
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                Connection conn = null;
+                try {
+                    conn = DBConnection.getConnection();
+                    conn.setAutoCommit(false);
+                    
+                    // 1. Check for linked purchase invoices
+                    boolean hasInvoices = false;
+                    String checkSql = "SELECT 1 FROM purchase_invoce WHERE Supplier_nane = ? AND Supplier_phone = ? LIMIT 1";
+                    
+                    try (PreparedStatement psCheck = conn.prepareStatement(checkSql)) {
+                        psCheck.setString(1, supplier.getName());
+                        psCheck.setString(2, supplier.getPhone());
+                        ResultSet rs = psCheck.executeQuery();
+                        if (rs.next()) hasInvoices = true;
+                    }
+                    
+                    if (hasInvoices) {
+                        Alert transferAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                        transferAlert.setTitle("Action Required");
+                        transferAlert.setHeaderText("Supplier has associated purchase records.");
+                        transferAlert.setContentText("To delete this supplier, their invoice history must be archived.\n\n" +
+                                                   "Click OK to transfer history to 'Archived Supplier' and delete.\n" +
+                                                   "Click Cancel to abort.");
                         
-                    } catch (SQLException e) {
-                        ExceptionLogger.logException(e, "Error deleting supplier");
-                        if (e.getMessage().contains("foreign key constraint")) {
-                            showError("Cannot Delete", "This supplier has associated purchase invoices and cannot be deleted.");
+                        Optional<ButtonType> transferResult = transferAlert.showAndWait();
+                        if (transferResult.isPresent() && transferResult.get() == ButtonType.OK) {
+                            // Ensure archive user exists
+                             String checkArchived = "SELECT 1 FROM supplier WHERE nane = 'Archived Supplier'";
+                             boolean archiveExists = false;
+                             try (Statement stmt = conn.createStatement(); ResultSet rsArch = stmt.executeQuery(checkArchived)) {
+                                 if (rsArch.next()) archiveExists = true;
+                             }
+                             if (!archiveExists) {
+                                 try (Statement stmt = conn.createStatement()) {
+                                     stmt.executeUpdate("INSERT INTO supplier (nane, phone, adress) VALUES ('Archived Supplier', '00000000000', 'Archive')");
+                                 }
+                             }
+                             
+                             // Transfer invoices
+                             String transSql = "UPDATE purchase_invoce SET Supplier_nane = 'Archived Supplier', Supplier_phone = '00000000000' WHERE Supplier_nane = ? AND Supplier_phone = ?";
+                             try (PreparedStatement psTrans = conn.prepareStatement(transSql)) {
+                                 psTrans.setString(1, supplier.getName());
+                                 psTrans.setString(2, supplier.getPhone());
+                                 psTrans.executeUpdate();
+                             }
+                             
                         } else {
-                            showError("Delete Failed", "Failed to delete supplier");
+                            conn.rollback();
+                            return;
                         }
                     }
+                    
+                    // 2. CRITICAL: Remove products linked to this supplier FIRST
+                    String delProds = "DELETE FROM supplier_has_product WHERE Supplier_nane = ? AND Supplier_phone = ?";
+                    try (PreparedStatement psDelProd = conn.prepareStatement(delProds)) {
+                        psDelProd.setString(1, supplier.getName());
+                        psDelProd.setString(2, supplier.getPhone());
+                        psDelProd.executeUpdate();
+                    }
+                    
+                    // 3. Now delete the supplier
+                    String delSup = "DELETE FROM supplier WHERE nane = ? AND phone = ?";
+                    try (PreparedStatement psDelSup = conn.prepareStatement(delSup)) {
+                        psDelSup.setString(1, supplier.getName());
+                        psDelSup.setString(2, supplier.getPhone());
+                        int rows = psDelSup.executeUpdate();
+                        
+                        if (rows > 0) {
+                            conn.commit();
+                            showSuccess("Supplier deleted successfully");
+                            loadSuppliers();
+                        } else {
+                            conn.rollback();
+                            showError("Delete Failed", "Could not delete supplier record.");
+                        }
+                    }
+
+                } catch (SQLException e) {
+                    if (conn != null) try { conn.rollback(); } catch (SQLException ex) {}
+                    ExceptionLogger.logException(e, "Error deleting supplier");
+                    showError("Start Error", "Database Error: " + e.getMessage());
+                } finally {
+                    if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException e) {}
                 }
-            });
-            
-        } catch (Exception e) {
-            ExceptionLogger.logException(e, "Error in delete supplier");
-        }
+            }
+        });
     }
     
     @FXML

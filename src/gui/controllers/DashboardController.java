@@ -110,6 +110,7 @@ public class DashboardController implements Initializable {
              
             setButtonVisible(btnTreasury, false);
             setButtonVisible(btnReports, false);
+            setButtonVisible(btnEmployees, false);
         } 
         else if (role.equalsIgnoreCase("Cashier") || role.equals("Unknown")) {
              

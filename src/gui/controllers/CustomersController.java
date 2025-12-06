@@ -54,7 +54,7 @@ public class CustomersController implements Initializable {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colPoints.setCellValueFactory(new PropertyValueFactory<>("points"));
-        colPurchases.setCellValueFactory(new PropertyValueFactory<>("totalPurchases"));
+
         
         colActions.setCellFactory(param -> new TableCell<>() {
             private final Button editBtn = new Button("Edit");
@@ -197,8 +197,7 @@ public class CustomersController implements Initializable {
         alert.setContentText(
             "ID: " + customer.getCustomerId() + "\n" +
             "Phone: " + customer.getPhone() + "\n" +
-            "Points: " + customer.getPoints() + "\n" +
-            "Total Purchases: $" + customer.getTotalPurchases()
+            "Points: " + customer.getPoints()
         );
         alert.showAndWait();
     }
@@ -252,6 +251,10 @@ public class CustomersController implements Initializable {
             nameField.setText(existingCustomer.getName());
             phoneField.setText(existingCustomer.getPhone());
             pointsField.setText(String.valueOf(existingCustomer.getPoints()));
+        } else {
+             // Generate 5-digit unique ID automatically
+             idField.setText(generateUniqueCustomerId());
+             idField.setDisable(true);
         }
         
         grid.add(new Label("Customer ID:"), 0, 0);
@@ -338,5 +341,23 @@ public class CustomersController implements Initializable {
         
         public double getTotalPurchases() { return totalPurchases.get(); }
         public void setTotalPurchases(double value) { totalPurchases.set(value); }
+    }
+    private String generateUniqueCustomerId() {
+        java.util.Random rand = new java.util.Random();
+        String newId;
+        boolean exists;
+        do {
+            // Generate a random 5-digit number (10000 - 99999)
+            int num = 10000 + rand.nextInt(90000); 
+            newId = String.valueOf(num);
+            String finalId = newId;
+            
+            // Check if this ID already exists in the loaded list
+            exists = customersList.stream()
+                .anyMatch(c -> c.getCustomerId().equals(finalId));
+                
+        } while (exists);
+        
+        return newId;
     }
 }

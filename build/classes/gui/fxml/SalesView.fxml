@@ -48,8 +48,7 @@
                 <Label text="Subtotal:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                 <Label fx:id="subtotalLabel" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
                 
-                <Label text="Tax (0%):" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <Label text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
                 
                 <Label text="Discount:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <TextField fx:id="discountField" text="0" prefWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="2"/>

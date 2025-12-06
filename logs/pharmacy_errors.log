@@ -18188,3 +18188,2023 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 =======
 >>>>>>> 964aee984e2cba9848bb3162127e289b05098c1e
 >>>>>>> 725fee0856e852b620359c009458afb6607a85e9
+[INFO] 2025-12-06 20:07:44 - Application started successfully
+[INFO] 2025-12-06 20:07:48 - Application closed by user
+[INFO] 2025-12-06 20:09:24 - Application started successfully
+[INFO] 2025-12-06 20:09:32 - Session started for user: ziad (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 20:09:32 - User logged in successfully: ziad
+[INFO] 2025-12-06 20:09:32 - Attempting to load dashboard
+[INFO] 2025-12-06 20:09:32 - Dashboard initialized successfully
+[INFO] 2025-12-06 20:09:33 - Dashboard displayed successfully
+[INFO] 2025-12-06 20:17:41 - Sales view initialized
+[INFO] 2025-12-06 20:19:16 - Application closed by user
+[INFO] 2025-12-06 20:19:22 - Application started successfully
+[INFO] 2025-12-06 20:19:27 - Session started for user: ziad (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 20:19:27 - User logged in successfully: ziad
+[INFO] 2025-12-06 20:19:27 - Attempting to load dashboard
+[INFO] 2025-12-06 20:19:27 - Dashboard initialized successfully
+[INFO] 2025-12-06 20:19:28 - Dashboard displayed successfully
+[INFO] 2025-12-06 20:19:33 - Products view initialized
+[INFO] 2025-12-06 20:20:23 - Inventory view initialized
+[INFO] 2025-12-06 20:20:53 - ✅ Removed 3.00 boxes from batch B-251206-2016
+[INFO] 2025-12-06 20:21:28 - Inventory view initialized
+[INFO] 2025-12-06 20:21:42 - Sales view initialized
+[INFO] 2025-12-06 20:21:54 - 🛒 CHECKOUT: Product=Panadol, Barcode='62230000000123' (Len:14), CartQty=4 strips, UnitsPerBox=4, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:21:54 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000123
+[INFO] 2025-12-06 20:21:54 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 20:21:54 -    ✓ Found batch: BN202501014, Qty: 39.00
+[INFO] 2025-12-06 20:21:54 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 20:21:54 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 20:21:54 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 20:21:54 - 📦 Total batches found: 4
+[INFO] 2025-12-06 20:21:54 -    📦 Batch BN202501014 (Qty: 39.00, Exp: 2026-03-15)
+[INFO] 2025-12-06 20:21:54 -    📦 Batch BN202501001 (Qty: 50.00, Exp: 2026-06-30)
+[INFO] 2025-12-06 20:21:54 -    📦 Batch BN202501015 (Qty: 30.00, Exp: 2026-09-20)
+[INFO] 2025-12-06 20:21:54 -    📦 Batch B-251206-2016 (Qty: 7.00, Exp: 2026-12-17)
+[INFO] 2025-12-06 20:21:54 - ✅ Taken 1.00 from batch BN202501014 (New Qty: 38.00)
+[INFO] 2025-12-06 20:21:54 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:22:15 - Sales view initialized
+[INFO] 2025-12-06 20:22:25 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 20:22:25 -    ✓ Found batch: BN202501014, Qty: 38.00
+[INFO] 2025-12-06 20:22:25 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 20:22:25 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 20:22:25 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 20:22:25 - 📦 Total batches found: 4
+[INFO] 2025-12-06 20:22:25 - Added 1.00 boxes to batch BN202501014
+[INFO] 2025-12-06 20:22:47 - Sales view initialized
+[INFO] 2025-12-06 20:22:56 - 🛒 CHECKOUT: Product=Panadol Cold & Flu, Barcode='62230000000133' (Len:14), CartQty=2 strips, UnitsPerBox=2, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:22:56 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000133
+[INFO] 2025-12-06 20:22:56 - 🔍 Searching batches for parcode: 62230000000133
+[INFO] 2025-12-06 20:22:56 -    ✓ Found batch: BN202501021, Qty: 60.00
+[INFO] 2025-12-06 20:22:56 -    ✓ Found batch: BN202501009, Qty: 50.00
+[INFO] 2025-12-06 20:22:56 - 📦 Total batches found: 2
+[INFO] 2025-12-06 20:22:56 -    📦 Batch BN202501021 (Qty: 60.00, Exp: 2026-02-20)
+[INFO] 2025-12-06 20:22:56 -    📦 Batch BN202501009 (Qty: 50.00, Exp: 2026-06-15)
+[INFO] 2025-12-06 20:22:56 - ✅ Taken 1.00 from batch BN202501021 (New Qty: 59.00)
+[INFO] 2025-12-06 20:22:56 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:23:11 - Sales view initialized
+[INFO] 2025-12-06 20:23:24 - 🔍 Searching batches for parcode: 62230000000133
+[INFO] 2025-12-06 20:23:24 -    ✓ Found batch: BN202501021, Qty: 59.00
+[INFO] 2025-12-06 20:23:24 -    ✓ Found batch: BN202501009, Qty: 50.00
+[INFO] 2025-12-06 20:23:24 - 📦 Total batches found: 2
+[INFO] 2025-12-06 20:23:24 - Added 0.50 boxes to batch BN202501021
+[INFO] 2025-12-06 20:23:48 - Sales view initialized
+[INFO] 2025-12-06 20:24:04 - 🛒 CHECKOUT: Product=Panadol Cold & Flu, Barcode='62230000000133' (Len:14), CartQty=1 strips, UnitsPerBox=2, BoxesToDeduct=0.500
+[INFO] 2025-12-06 20:24:04 - 🔵 FEFO START: Reducing 0.50 boxes of 62230000000133
+[INFO] 2025-12-06 20:24:04 - 🔍 Searching batches for parcode: 62230000000133
+[INFO] 2025-12-06 20:24:04 -    ✓ Found batch: BN202501021, Qty: 59.50
+[INFO] 2025-12-06 20:24:04 -    ✓ Found batch: BN202501009, Qty: 50.00
+[INFO] 2025-12-06 20:24:04 - 📦 Total batches found: 2
+[INFO] 2025-12-06 20:24:04 -    📦 Batch BN202501021 (Qty: 59.50, Exp: 2026-02-20)
+[INFO] 2025-12-06 20:24:04 -    📦 Batch BN202501009 (Qty: 50.00, Exp: 2026-06-15)
+[INFO] 2025-12-06 20:24:04 - ✅ Taken 0.50 from batch BN202501021 (New Qty: 59.00)
+[INFO] 2025-12-06 20:24:04 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:25:08 - 🛒 CHECKOUT: Product=Cataflam 50, Barcode='62230000000125' (Len:14), CartQty=2 strips, UnitsPerBox=2, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:25:08 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000125
+[INFO] 2025-12-06 20:25:08 - 🔍 Searching batches for parcode: 62230000000125
+[INFO] 2025-12-06 20:25:08 -    ✓ Found batch: BN202501017, Qty: 50.00
+[INFO] 2025-12-06 20:25:08 -    ✓ Found batch: BN202501003, Qty: 40.00
+[INFO] 2025-12-06 20:25:08 - 📦 Total batches found: 2
+[INFO] 2025-12-06 20:25:08 -    📦 Batch BN202501017 (Qty: 50.00, Exp: 2026-02-28)
+[INFO] 2025-12-06 20:25:08 -    📦 Batch BN202501003 (Qty: 40.00, Exp: 2026-05-31)
+[INFO] 2025-12-06 20:25:08 - ✅ Taken 1.00 from batch BN202501017 (New Qty: 49.00)
+[INFO] 2025-12-06 20:25:08 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:26:51 - Sales view initialized
+[INFO] 2025-12-06 20:27:02 - 🔍 Searching batches for parcode: 62230000000125
+[INFO] 2025-12-06 20:27:02 -    ✓ Found batch: BN202501017, Qty: 49.00
+[INFO] 2025-12-06 20:27:02 -    ✓ Found batch: BN202501003, Qty: 40.00
+[INFO] 2025-12-06 20:27:02 - 📦 Total batches found: 2
+[INFO] 2025-12-06 20:27:02 - Added 1.00 boxes to batch BN202501017
+[INFO] 2025-12-06 20:31:41 - 🛒 CHECKOUT: Product=Zyrtec, Barcode='62230000000127' (Len:14), CartQty=2 strips, UnitsPerBox=2, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:31:41 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000127
+[INFO] 2025-12-06 20:31:41 - 🔍 Searching batches for parcode: 62230000000127
+[INFO] 2025-12-06 20:31:41 -    ✓ Found batch: BN202501019, Qty: 39.00
+[INFO] 2025-12-06 20:31:41 -    ✓ Found batch: BN202501005, Qty: 40.00
+[INFO] 2025-12-06 20:31:41 -    ✓ Found batch: B-251206-1929, Qty: 10.00
+[INFO] 2025-12-06 20:31:41 - 📦 Total batches found: 3
+[INFO] 2025-12-06 20:31:41 -    📦 Batch BN202501019 (Qty: 39.00, Exp: 2026-05-20)
+[INFO] 2025-12-06 20:31:41 -    📦 Batch BN202501005 (Qty: 40.00, Exp: 2026-08-31)
+[INFO] 2025-12-06 20:31:41 -    📦 Batch B-251206-1929 (Qty: 10.00, Exp: 2027-12-02)
+[INFO] 2025-12-06 20:31:41 - ✅ Taken 1.00 from batch BN202501019 (New Qty: 38.00)
+[INFO] 2025-12-06 20:31:41 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:31:57 - Sales view initialized
+[INFO] 2025-12-06 20:32:07 - 🔍 Searching batches for parcode: 62230000000127
+[INFO] 2025-12-06 20:32:07 -    ✓ Found batch: BN202501019, Qty: 38.00
+[INFO] 2025-12-06 20:32:07 -    ✓ Found batch: BN202501005, Qty: 40.00
+[INFO] 2025-12-06 20:32:07 -    ✓ Found batch: B-251206-1929, Qty: 10.00
+[INFO] 2025-12-06 20:32:07 - 📦 Total batches found: 3
+[INFO] 2025-12-06 20:32:07 - Added 0.50 boxes to batch BN202501019
+[INFO] 2025-12-06 20:33:47 - 🛒 CHECKOUT: Product=Panadol, Barcode='62230000000123' (Len:14), CartQty=4 strips, UnitsPerBox=4, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:33:47 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000123
+[INFO] 2025-12-06 20:33:47 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 20:33:47 -    ✓ Found batch: BN202501014, Qty: 39.00
+[INFO] 2025-12-06 20:33:47 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 20:33:47 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 20:33:47 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 20:33:47 - 📦 Total batches found: 4
+[INFO] 2025-12-06 20:33:47 -    📦 Batch BN202501014 (Qty: 39.00, Exp: 2026-03-15)
+[INFO] 2025-12-06 20:33:47 -    📦 Batch BN202501001 (Qty: 50.00, Exp: 2026-06-30)
+[INFO] 2025-12-06 20:33:47 -    📦 Batch BN202501015 (Qty: 30.00, Exp: 2026-09-20)
+[INFO] 2025-12-06 20:33:47 -    📦 Batch B-251206-2016 (Qty: 7.00, Exp: 2026-12-17)
+[INFO] 2025-12-06 20:33:47 - ✅ Taken 1.00 from batch BN202501014 (New Qty: 38.00)
+[INFO] 2025-12-06 20:33:47 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:34:10 - Sales view initialized
+[INFO] 2025-12-06 20:34:31 - 🛒 CHECKOUT: Product=Cataflam 50, Barcode='62230000000125' (Len:14), CartQty=2 strips, UnitsPerBox=2, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:34:31 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000125
+[INFO] 2025-12-06 20:34:31 - 🔍 Searching batches for parcode: 62230000000125
+[INFO] 2025-12-06 20:34:31 -    ✓ Found batch: BN202501017, Qty: 50.00
+[INFO] 2025-12-06 20:34:31 -    ✓ Found batch: BN202501003, Qty: 40.00
+[INFO] 2025-12-06 20:34:31 - 📦 Total batches found: 2
+[INFO] 2025-12-06 20:34:31 -    📦 Batch BN202501017 (Qty: 50.00, Exp: 2026-02-28)
+[INFO] 2025-12-06 20:34:31 -    📦 Batch BN202501003 (Qty: 40.00, Exp: 2026-05-31)
+[INFO] 2025-12-06 20:34:31 - ✅ Taken 1.00 from batch BN202501017 (New Qty: 49.00)
+[INFO] 2025-12-06 20:34:31 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:37:17 - Application closed by user
+[INFO] 2025-12-06 20:38:36 - Application started successfully
+[INFO] 2025-12-06 20:38:42 - Session started for user: ziad (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 20:38:42 - User logged in successfully: ziad
+[INFO] 2025-12-06 20:38:42 - Attempting to load dashboard
+[INFO] 2025-12-06 20:38:42 - Dashboard initialized successfully
+[INFO] 2025-12-06 20:38:42 - Dashboard displayed successfully
+[INFO] 2025-12-06 20:38:44 - Products view initialized
+[INFO] 2025-12-06 20:38:47 - Sales view initialized
+[INFO] 2025-12-06 20:39:03 - 🛒 CHECKOUT: Product=Panadol, Barcode='62230000000123' (Len:14), CartQty=4 strips, UnitsPerBox=4, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:39:03 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000123
+[INFO] 2025-12-06 20:39:03 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 20:39:03 -    ✓ Found batch: BN202501014, Qty: 38.00
+[INFO] 2025-12-06 20:39:03 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 20:39:03 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 20:39:03 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 20:39:03 - 📦 Total batches found: 4
+[INFO] 2025-12-06 20:39:03 -    📦 Batch BN202501014 (Qty: 38.00, Exp: 2026-03-15)
+[INFO] 2025-12-06 20:39:03 -    📦 Batch BN202501001 (Qty: 50.00, Exp: 2026-06-30)
+[INFO] 2025-12-06 20:39:03 -    📦 Batch BN202501015 (Qty: 30.00, Exp: 2026-09-20)
+[INFO] 2025-12-06 20:39:03 -    📦 Batch B-251206-2016 (Qty: 7.00, Exp: 2026-12-17)
+[INFO] 2025-12-06 20:39:03 - ✅ Taken 1.00 from batch BN202501014 (New Qty: 37.00)
+[INFO] 2025-12-06 20:39:03 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:39:50 - 🛒 CHECKOUT: Product=Panadol Cold & Flu, Barcode='62230000000133' (Len:14), CartQty=2 strips, UnitsPerBox=2, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:39:50 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000133
+[INFO] 2025-12-06 20:39:50 - 🔍 Searching batches for parcode: 62230000000133
+[INFO] 2025-12-06 20:39:50 -    ✓ Found batch: BN202501021, Qty: 59.00
+[INFO] 2025-12-06 20:39:50 -    ✓ Found batch: BN202501009, Qty: 50.00
+[INFO] 2025-12-06 20:39:50 - 📦 Total batches found: 2
+[INFO] 2025-12-06 20:39:50 -    📦 Batch BN202501021 (Qty: 59.00, Exp: 2026-02-20)
+[INFO] 2025-12-06 20:39:50 -    📦 Batch BN202501009 (Qty: 50.00, Exp: 2026-06-15)
+[INFO] 2025-12-06 20:39:50 - ✅ Taken 1.00 from batch BN202501021 (New Qty: 58.00)
+[INFO] 2025-12-06 20:39:50 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:40:48 - Sales view initialized
+[INFO] 2025-12-06 20:40:54 - Sales view initialized
+[INFO] 2025-12-06 20:40:59 - 🔍 Searching batches for parcode: 62230000000133
+[INFO] 2025-12-06 20:40:59 -    ✓ Found batch: BN202501021, Qty: 58.00
+[INFO] 2025-12-06 20:40:59 -    ✓ Found batch: BN202501009, Qty: 50.00
+[INFO] 2025-12-06 20:40:59 - 📦 Total batches found: 2
+[INFO] 2025-12-06 20:40:59 - Added 1.00 boxes to batch BN202501021
+[INFO] 2025-12-06 20:41:31 - Customers view initialized
+[INFO] 2025-12-06 20:41:33 - Employees view initialized
+[INFO] 2025-12-06 20:41:34 - Sales view initialized
+[INFO] 2025-12-06 20:44:40 - 🛒 CHECKOUT: Product=Panadol, Barcode='62230000000123' (Len:14), CartQty=4 strips, UnitsPerBox=4, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:44:40 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000123
+[INFO] 2025-12-06 20:44:40 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 20:44:40 -    ✓ Found batch: BN202501014, Qty: 37.00
+[INFO] 2025-12-06 20:44:40 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 20:44:40 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 20:44:40 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 20:44:40 - 📦 Total batches found: 4
+[INFO] 2025-12-06 20:44:40 -    📦 Batch BN202501014 (Qty: 37.00, Exp: 2026-03-15)
+[INFO] 2025-12-06 20:44:40 -    📦 Batch BN202501001 (Qty: 50.00, Exp: 2026-06-30)
+[INFO] 2025-12-06 20:44:40 -    📦 Batch BN202501015 (Qty: 30.00, Exp: 2026-09-20)
+[INFO] 2025-12-06 20:44:40 -    📦 Batch B-251206-2016 (Qty: 7.00, Exp: 2026-12-17)
+[INFO] 2025-12-06 20:44:40 - ✅ Taken 1.00 from batch BN202501014 (New Qty: 36.00)
+[INFO] 2025-12-06 20:44:40 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:44:49 - Application closed by user
+[INFO] 2025-12-06 20:44:57 - Application started successfully
+[WARNING] 2025-12-06 20:45:05 - Failed login attempt for username: ziad
+[INFO] 2025-12-06 20:45:07 - Session started for user: ziad (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 20:45:07 - User logged in successfully: ziad
+[INFO] 2025-12-06 20:45:07 - Attempting to load dashboard
+[INFO] 2025-12-06 20:45:07 - Dashboard initialized successfully
+[INFO] 2025-12-06 20:45:07 - Dashboard displayed successfully
+[INFO] 2025-12-06 20:45:10 - Sales view initialized
+[INFO] 2025-12-06 20:45:10 - Sales view initialized
+[INFO] 2025-12-06 20:45:31 - 🛒 CHECKOUT: Product=Panadol, Barcode='62230000000123' (Len:14), CartQty=4 strips, UnitsPerBox=4, BoxesToDeduct=1.000
+[INFO] 2025-12-06 20:45:31 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000123
+[INFO] 2025-12-06 20:45:31 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 20:45:31 -    ✓ Found batch: BN202501014, Qty: 36.00
+[INFO] 2025-12-06 20:45:31 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 20:45:31 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 20:45:31 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 20:45:31 - 📦 Total batches found: 4
+[INFO] 2025-12-06 20:45:31 -    📦 Batch BN202501014 (Qty: 36.00, Exp: 2026-03-15)
+[INFO] 2025-12-06 20:45:31 -    📦 Batch BN202501001 (Qty: 50.00, Exp: 2026-06-30)
+[INFO] 2025-12-06 20:45:31 -    📦 Batch BN202501015 (Qty: 30.00, Exp: 2026-09-20)
+[INFO] 2025-12-06 20:45:31 -    📦 Batch B-251206-2016 (Qty: 7.00, Exp: 2026-12-17)
+[INFO] 2025-12-06 20:45:31 - ✅ Taken 1.00 from batch BN202501014 (New Qty: 35.00)
+[INFO] 2025-12-06 20:45:31 - ✅ Inventory total updated
+[INFO] 2025-12-06 20:45:44 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 20:45:44 -    ✓ Found batch: BN202501014, Qty: 35.00
+[INFO] 2025-12-06 20:45:44 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 20:45:44 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 20:45:44 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 20:45:44 - 📦 Total batches found: 4
+[INFO] 2025-12-06 20:45:44 - Added 0.50 boxes to batch BN202501014
+[INFO] 2025-12-06 20:49:27 - ✅ Removed 5.00 boxes from batch B-251206-2046
+[INFO] 2025-12-06 20:50:26 - Employees view initialized
+================================================================================
+TIME: 2025-12-06 20:50:58
+CONTEXT: Error loading recent reports
+EXCEPTION: java.lang.NullPointerException
+MESSAGE: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+STACK TRACE:
+java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+	at gui.controllers.ReportsController.loadRecentReports(ReportsController.java:269)
+	at gui.controllers.ReportsController.initialize(ReportsController.java:46)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2640)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2533)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2503)
+	at gui.controllers.DashboardController.loadView(DashboardController.java:282)
+	at gui.controllers.DashboardController.showReportsView(DashboardController.java:245)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:65)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at javafx.base@25.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:112)
+	at javafx.fxml@25.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:78)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1847)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1718)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 20:50:58 - Automatic alert check completed: 8 alerts found
+[INFO] 2025-12-06 20:50:58 - Periodic alert check started (every 6 hours)
+[INFO] 2025-12-06 20:50:58 - Reports view initialized
+[INFO] 2025-12-06 20:51:03 - Application closed by user
+[INFO] 2025-12-06 20:51:09 - Application started successfully
+[INFO] 2025-12-06 20:51:15 - Session started for user: ziad (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 20:51:15 - User logged in successfully: ziad
+[INFO] 2025-12-06 20:51:15 - Attempting to load dashboard
+[INFO] 2025-12-06 20:51:15 - Dashboard initialized successfully
+[INFO] 2025-12-06 20:51:15 - Dashboard displayed successfully
+================================================================================
+TIME: 2025-12-06 20:51:15
+CONTEXT: Error loading dashboard data
+EXCEPTION: java.lang.NullPointerException
+MESSAGE: Cannot invoke "javafx.scene.control.Label.setText(String)" because "this.totalSalesLabel" is null
+STACK TRACE:
+java.lang.NullPointerException: Cannot invoke "javafx.scene.control.Label.setText(String)" because "this.totalSalesLabel" is null
+	at gui.controllers.DashboardController.loadDashboardData(DashboardController.java:155)
+	at gui.controllers.DashboardController.showDashboardView(DashboardController.java:203)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:65)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at javafx.base@25.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:112)
+	at javafx.fxml@25.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:78)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1847)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1718)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.keyReleased(ButtonBehavior.java:163)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processKeyEvent(Scene.java:2257)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.keyEvent(Scene.java:2791)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.get(GlassViewEventHandler.java:176)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.get(GlassViewEventHandler.java:120)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleKeyEvent(GlassViewEventHandler.java:204)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleKeyEvent(View.java:563)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyKey(View.java:1004)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 20:51:35 - Suppliers view initialized
+[INFO] 2025-12-06 20:53:32 - ✅ Removed 10.00 boxes from batch B-251206-2052
+[INFO] 2025-12-06 21:02:05 - ✅ Removed 5.00 boxes from batch B-251206-2100
+[INFO] 2025-12-06 21:12:35 - Application closed by user
+[INFO] 2025-12-06 21:12:43 - Application started successfully
+[INFO] 2025-12-06 21:12:52 - Session started for user: ziad (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:12:52 - User logged in successfully: ziad
+[INFO] 2025-12-06 21:12:52 - Attempting to load dashboard
+[INFO] 2025-12-06 21:12:52 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:12:53 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:12:54 - Products view initialized
+[INFO] 2025-12-06 21:12:59 - Sales view initialized
+[INFO] 2025-12-06 21:13:02 - Sales view initialized
+[INFO] 2025-12-06 21:15:26 - ✅ Removed 5.00 boxes from batch B-251206-2113
+[INFO] 2025-12-06 21:24:44 - Application closed by user
+[INFO] 2025-12-06 21:24:52 - Application started successfully
+[INFO] 2025-12-06 21:25:00 - Session started for user: ziad (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:25:00 - User logged in successfully: ziad
+[INFO] 2025-12-06 21:25:00 - Attempting to load dashboard
+[INFO] 2025-12-06 21:25:00 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:25:01 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:25:02 - Products view initialized
+[INFO] 2025-12-06 21:25:04 - Inventory view initialized
+[INFO] 2025-12-06 21:25:19 - Products view initialized
+[INFO] 2025-12-06 21:27:47 - ✅ Removed 5.00 boxes from batch B-251206-2125
+[INFO] 2025-12-06 21:29:04 - Customers view initialized
+[INFO] 2025-12-06 21:30:36 - Customer updated: Ahmed Saleh
+[INFO] 2025-12-06 21:30:44 - Employees view initialized
+[INFO] 2025-12-06 21:30:47 - Customers view initialized
+[INFO] 2025-12-06 21:31:13 - Customers view initialized
+[INFO] 2025-12-06 21:31:37 - Application closed by user
+[INFO] 2025-12-06 21:31:45 - Application started successfully
+[INFO] 2025-12-06 21:31:51 - Session started for user: ziad (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:31:51 - User logged in successfully: ziad
+[INFO] 2025-12-06 21:31:51 - Attempting to load dashboard
+[INFO] 2025-12-06 21:31:51 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:31:51 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:31:56 - Customers view initialized
+[INFO] 2025-12-06 21:34:33 - Application closed by user
+[INFO] 2025-12-06 21:34:44 - Application started successfully
+[INFO] 2025-12-06 21:34:52 - Session started for user: ziad (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:34:52 - User logged in successfully: ziad
+[INFO] 2025-12-06 21:34:52 - Attempting to load dashboard
+[INFO] 2025-12-06 21:34:52 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:34:53 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:34:55 - Products view initialized
+[INFO] 2025-12-06 21:34:56 - Inventory view initialized
+[INFO] 2025-12-06 21:34:59 - Sales view initialized
+[INFO] 2025-12-06 21:35:01 - Customers view initialized
+[INFO] 2025-12-06 21:35:34 - Customer added: Bayoumi
+[INFO] 2025-12-06 21:35:37 - Employees view initialized
+================================================================================
+TIME: 2025-12-06 21:35:54
+CONTEXT: Error deleting employee
+EXCEPTION: java.sql.SQLIntegrityConstraintViolationException
+MESSAGE: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`invoice`, CONSTRAINT `fk_invoice_employee1` FOREIGN KEY (`employee_User_name`, `employee_Person_ID`, `employee_bransh_ID`) REFERENCES `employee` (`User_name`, `Person_ID`, `bransh_ID`))
+STACK TRACE:
+java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`invoice`, CONSTRAINT `fk_invoice_employee1` FOREIGN KEY (`employee_User_name`, `employee_Person_ID`, `employee_bransh_ID`) REFERENCES `employee` (`User_name`, `Person_ID`, `bransh_ID`))
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.EmployeesController.lambda$handleDeleteEmployee$0(EmployeesController.java:213)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.EmployeesController.handleDeleteEmployee(EmployeesController.java:205)
+	at gui.controllers.EmployeesController$1.lambda$new$1(EmployeesController.java:76)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+================================================================================
+TIME: 2025-12-06 21:36:04
+CONTEXT: Error deleting employee
+EXCEPTION: java.sql.SQLIntegrityConstraintViolationException
+MESSAGE: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`invoice`, CONSTRAINT `fk_invoice_employee1` FOREIGN KEY (`employee_User_name`, `employee_Person_ID`, `employee_bransh_ID`) REFERENCES `employee` (`User_name`, `Person_ID`, `bransh_ID`))
+STACK TRACE:
+java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`invoice`, CONSTRAINT `fk_invoice_employee1` FOREIGN KEY (`employee_User_name`, `employee_Person_ID`, `employee_bransh_ID`) REFERENCES `employee` (`User_name`, `Person_ID`, `bransh_ID`))
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.EmployeesController.lambda$handleDeleteEmployee$0(EmployeesController.java:213)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.EmployeesController.handleDeleteEmployee(EmployeesController.java:205)
+	at gui.controllers.EmployeesController$1.lambda$new$1(EmployeesController.java:76)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+================================================================================
+TIME: 2025-12-06 21:36:13
+CONTEXT: Error deleting employee
+EXCEPTION: java.sql.SQLIntegrityConstraintViolationException
+MESSAGE: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`invoice`, CONSTRAINT `fk_invoice_employee1` FOREIGN KEY (`employee_User_name`, `employee_Person_ID`, `employee_bransh_ID`) REFERENCES `employee` (`User_name`, `Person_ID`, `bransh_ID`))
+STACK TRACE:
+java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`invoice`, CONSTRAINT `fk_invoice_employee1` FOREIGN KEY (`employee_User_name`, `employee_Person_ID`, `employee_bransh_ID`) REFERENCES `employee` (`User_name`, `Person_ID`, `bransh_ID`))
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.EmployeesController.lambda$handleDeleteEmployee$0(EmployeesController.java:213)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.EmployeesController.handleDeleteEmployee(EmployeesController.java:205)
+	at gui.controllers.EmployeesController$1.lambda$new$1(EmployeesController.java:76)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 21:38:34 - Customers view initialized
+[INFO] 2025-12-06 21:38:38 - Employees view initialized
+[INFO] 2025-12-06 21:39:25 - Customers view initialized
+[INFO] 2025-12-06 21:39:31 - Employees view initialized
+[INFO] 2025-12-06 21:39:46 - Customers view initialized
+[INFO] 2025-12-06 21:40:43 - Employees view initialized
+[INFO] 2025-12-06 21:46:29 - Application closed by user
+[INFO] 2025-12-06 21:46:39 - Application started successfully
+[WARNING] 2025-12-06 21:46:52 - Failed login attempt for username: bayoumi
+[INFO] 2025-12-06 21:46:52 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:46:52 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 21:46:52 - Attempting to load dashboard
+[INFO] 2025-12-06 21:46:53 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:46:53 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:46:57 - Customers view initialized
+[INFO] 2025-12-06 21:47:45 - Application closed by user
+[INFO] 2025-12-06 21:47:51 - Application started successfully
+[WARNING] 2025-12-06 21:48:00 - Failed login attempt for username: baoumi
+[INFO] 2025-12-06 21:48:04 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:48:04 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 21:48:04 - Attempting to load dashboard
+[INFO] 2025-12-06 21:48:04 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:48:04 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:48:11 - Customers view initialized
+[INFO] 2025-12-06 21:48:28 - Employees view initialized
+[INFO] 2025-12-06 21:49:28 - Customers view initialized
+[INFO] 2025-12-06 21:49:35 - Employees view initialized
+[INFO] 2025-12-06 21:52:21 - Application closed by user
+[INFO] 2025-12-06 21:52:31 - Application started successfully
+[INFO] 2025-12-06 21:52:40 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:52:40 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 21:52:40 - Attempting to load dashboard
+[INFO] 2025-12-06 21:52:40 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:52:41 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:52:42 - Customers view initialized
+[INFO] 2025-12-06 21:52:44 - Employees view initialized
+================================================================================
+TIME: 2025-12-06 21:53:05
+CONTEXT: Error deleting employee
+EXCEPTION: java.sql.SQLIntegrityConstraintViolationException
+MESSAGE: Cannot add or update a child row: a foreign key constraint fails (`pms`.`invoice`, CONSTRAINT `fk_invoice_employee1` FOREIGN KEY (`employee_User_name`, `employee_Person_ID`, `employee_bransh_ID`) REFERENCES `employee` (`User_name`, `Person_ID`, `bransh_ID`))
+STACK TRACE:
+java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`pms`.`invoice`, CONSTRAINT `fk_invoice_employee1` FOREIGN KEY (`employee_User_name`, `employee_Person_ID`, `employee_bransh_ID`) REFERENCES `employee` (`User_name`, `Person_ID`, `bransh_ID`))
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.EmployeesController.lambda$handleDeleteEmployee$0(EmployeesController.java:243)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.EmployeesController.handleDeleteEmployee(EmployeesController.java:217)
+	at gui.controllers.EmployeesController$1.lambda$new$1(EmployeesController.java:76)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 21:55:22 - Application closed by user
+[INFO] 2025-12-06 21:55:33 - Application started successfully
+[INFO] 2025-12-06 21:55:38 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:55:38 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 21:55:38 - Attempting to load dashboard
+[INFO] 2025-12-06 21:55:39 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:55:39 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:55:42 - Customers view initialized
+[INFO] 2025-12-06 21:55:44 - Employees view initialized
+================================================================================
+TIME: 2025-12-06 21:55:56
+CONTEXT: Error deleting employee
+EXCEPTION: java.sql.SQLSyntaxErrorException
+MESSAGE: Table 'pms.user_account' doesn't exist
+STACK TRACE:
+java.sql.SQLSyntaxErrorException: Table 'pms.user_account' doesn't exist
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.EmployeesController.lambda$handleDeleteEmployee$0(EmployeesController.java:269)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.EmployeesController.handleDeleteEmployee(EmployeesController.java:218)
+	at gui.controllers.EmployeesController$1.lambda$new$1(EmployeesController.java:77)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+================================================================================
+TIME: 2025-12-06 21:56:18
+CONTEXT: Error deleting employee
+EXCEPTION: java.sql.SQLSyntaxErrorException
+MESSAGE: Table 'pms.user_account' doesn't exist
+STACK TRACE:
+java.sql.SQLSyntaxErrorException: Table 'pms.user_account' doesn't exist
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.EmployeesController.lambda$handleDeleteEmployee$0(EmployeesController.java:269)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.EmployeesController.handleDeleteEmployee(EmployeesController.java:218)
+	at gui.controllers.EmployeesController$1.lambda$new$1(EmployeesController.java:77)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 22:00:05 - Application closed by user
+[INFO] 2025-12-06 22:00:15 - Application started successfully
+[INFO] 2025-12-06 22:00:21 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:00:21 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:00:21 - Attempting to load dashboard
+[INFO] 2025-12-06 22:00:22 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:00:22 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:00:24 - Customers view initialized
+[INFO] 2025-12-06 22:00:24 - Employees view initialized
+[INFO] 2025-12-06 22:00:40 - Employees view initialized
+================================================================================
+TIME: 2025-12-06 22:00:51
+CONTEXT: Error loading recent reports
+EXCEPTION: java.lang.NullPointerException
+MESSAGE: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+STACK TRACE:
+java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+	at gui.controllers.ReportsController.loadRecentReports(ReportsController.java:269)
+	at gui.controllers.ReportsController.initialize(ReportsController.java:46)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2640)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2533)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2503)
+	at gui.controllers.DashboardController.loadView(DashboardController.java:282)
+	at gui.controllers.DashboardController.showReportsView(DashboardController.java:245)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:65)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at javafx.base@25.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:112)
+	at javafx.fxml@25.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:78)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1847)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1718)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 22:00:51 - Automatic alert check completed: 12 alerts found
+[INFO] 2025-12-06 22:00:51 - Periodic alert check started (every 6 hours)
+[INFO] 2025-12-06 22:00:51 - Reports view initialized
+[INFO] 2025-12-06 22:00:59 - Alerts checked: 12 found
+[INFO] 2025-12-06 22:01:12 - Alerts checked: 12 found
+================================================================================
+TIME: 2025-12-06 22:01:49
+CONTEXT: Error loading recent reports
+EXCEPTION: java.lang.NullPointerException
+MESSAGE: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+STACK TRACE:
+java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+	at gui.controllers.ReportsController.loadRecentReports(ReportsController.java:269)
+	at gui.controllers.ReportsController.handleGenerateProfitGraph(ReportsController.java:166)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:65)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at javafx.base@25.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:112)
+	at javafx.fxml@25.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:78)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1847)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1718)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 22:01:54 - Sales report generated for date: 2025-12-06
+================================================================================
+TIME: 2025-12-06 22:01:54
+CONTEXT: Error loading recent reports
+EXCEPTION: java.lang.NullPointerException
+MESSAGE: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+STACK TRACE:
+java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+	at gui.controllers.ReportsController.loadRecentReports(ReportsController.java:269)
+	at gui.controllers.ReportsController.handleGenerateSalesReport(ReportsController.java:109)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:65)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at javafx.base@25.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:112)
+	at javafx.fxml@25.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:78)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1847)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1718)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 22:01:59 - Suppliers view initialized
+[INFO] 2025-12-06 22:05:24 - Supplier added: Bayoumi
+[INFO] 2025-12-06 22:05:50 - Supplier updated: Bayoumi
+[INFO] 2025-12-06 22:05:59 - Supplier deleted: Bayoumi
+================================================================================
+TIME: 2025-12-06 22:06:07
+CONTEXT: Error deleting supplier
+EXCEPTION: java.sql.SQLIntegrityConstraintViolationException
+MESSAGE: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`purchase_invoce`, CONSTRAINT `fk_purchase invoce_Supplier1` FOREIGN KEY (`Supplier_nane`, `Supplier_phone`) REFERENCES `supplier` (`nane`, `phone`))
+STACK TRACE:
+java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`purchase_invoce`, CONSTRAINT `fk_purchase invoce_Supplier1` FOREIGN KEY (`Supplier_nane`, `Supplier_phone`) REFERENCES `supplier` (`nane`, `phone`))
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.SuppliersController.lambda$handleDeleteSupplier$0(SuppliersController.java:421)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.SuppliersController.handleDeleteSupplier(SuppliersController.java:412)
+	at gui.controllers.SuppliersController$1.lambda$new$2(SuppliersController.java:78)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+================================================================================
+TIME: 2025-12-06 22:06:54
+CONTEXT: Error deleting supplier
+EXCEPTION: java.sql.SQLIntegrityConstraintViolationException
+MESSAGE: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`purchase_invoce`, CONSTRAINT `fk_purchase invoce_Supplier1` FOREIGN KEY (`Supplier_nane`, `Supplier_phone`) REFERENCES `supplier` (`nane`, `phone`))
+STACK TRACE:
+java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`purchase_invoce`, CONSTRAINT `fk_purchase invoce_Supplier1` FOREIGN KEY (`Supplier_nane`, `Supplier_phone`) REFERENCES `supplier` (`nane`, `phone`))
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.SuppliersController.lambda$handleDeleteSupplier$0(SuppliersController.java:421)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.SuppliersController.handleDeleteSupplier(SuppliersController.java:412)
+	at gui.controllers.SuppliersController$1.lambda$new$2(SuppliersController.java:78)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 22:10:55 - Settings view initialized
+[INFO] 2025-12-06 22:12:23 - User logged out
+[WARNING] 2025-12-06 22:12:28 - Failed login attempt for username: bayoumi
+[INFO] 2025-12-06 22:12:30 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:12:30 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:12:30 - Attempting to load dashboard
+[INFO] 2025-12-06 22:12:30 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:12:30 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:12:32 - Settings view initialized
+[INFO] 2025-12-06 22:12:42 - Employees view initialized
+[INFO] 2025-12-06 22:12:44 - Suppliers view initialized
+[INFO] 2025-12-06 22:15:15 - User logged out
+[INFO] 2025-12-06 22:15:25 - Session started for user: cash1 (Role: Cashier, Branch: 2)
+[INFO] 2025-12-06 22:15:25 - User logged in successfully: cash1
+[INFO] 2025-12-06 22:15:25 - Attempting to load dashboard
+[INFO] 2025-12-06 22:15:25 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:15:26 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:15:27 - Products view initialized
+[INFO] 2025-12-06 22:16:51 - Product added: viagra
+[INFO] 2025-12-06 22:17:02 - User logged out
+[INFO] 2025-12-06 22:17:07 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:17:07 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:17:07 - Attempting to load dashboard
+[INFO] 2025-12-06 22:17:07 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:17:07 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:17:08 - Products view initialized
+[INFO] 2025-12-06 22:17:15 - User logged out
+[INFO] 2025-12-06 22:17:27 - Session started for user: cash1 (Role: Cashier, Branch: 2)
+[INFO] 2025-12-06 22:17:27 - User logged in successfully: cash1
+[INFO] 2025-12-06 22:17:27 - Attempting to load dashboard
+[INFO] 2025-12-06 22:17:27 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:17:28 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:17:29 - Inventory view initialized
+[INFO] 2025-12-06 22:17:30 - Products view initialized
+[INFO] 2025-12-06 22:17:31 - Inventory view initialized
+[INFO] 2025-12-06 22:17:38 - Products view initialized
+[INFO] 2025-12-06 22:17:51 - Product updated: viagra
+[INFO] 2025-12-06 22:17:58 - Product deleted: viagra
+[INFO] 2025-12-06 22:18:02 - Inventory view initialized
+[INFO] 2025-12-06 22:18:22 - Products view initialized
+[INFO] 2025-12-06 22:18:31 - Product deleted: viagra
+[INFO] 2025-12-06 22:18:40 - User logged out
+[INFO] 2025-12-06 22:18:45 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:18:45 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:18:45 - Attempting to load dashboard
+[INFO] 2025-12-06 22:18:46 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:18:46 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:18:47 - Products view initialized
+[INFO] 2025-12-06 22:18:53 - Product deleted: viagra
+[INFO] 2025-12-06 22:18:57 - Inventory view initialized
+[INFO] 2025-12-06 22:19:02 - Products view initialized
+[INFO] 2025-12-06 22:19:12 - Application closed by user
+[INFO] 2025-12-06 22:19:21 - Application started successfully
+[WARNING] 2025-12-06 22:19:27 - Failed login attempt for username: manager
+[WARNING] 2025-12-06 22:19:29 - Failed login attempt for username: manager
+[WARNING] 2025-12-06 22:19:32 - Failed login attempt for username: manager
+[INFO] 2025-12-06 22:19:40 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:19:40 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:19:40 - Attempting to load dashboard
+[INFO] 2025-12-06 22:19:41 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:19:41 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:19:43 - Products view initialized
+[INFO] 2025-12-06 22:19:47 - Suppliers view initialized
+================================================================================
+TIME: 2025-12-06 22:19:58
+CONTEXT: Error deleting supplier
+EXCEPTION: java.sql.SQLIntegrityConstraintViolationException
+MESSAGE: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`supplier_has_product`, CONSTRAINT `fk_Supplier_has_Product_Supplier1` FOREIGN KEY (`Supplier_nane`, `Supplier_phone`) REFERENCES `supplier` (`nane`, `phone`))
+STACK TRACE:
+java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`supplier_has_product`, CONSTRAINT `fk_Supplier_has_Product_Supplier1` FOREIGN KEY (`Supplier_nane`, `Supplier_phone`) REFERENCES `supplier` (`nane`, `phone`))
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.SuppliersController.lambda$handleDeleteSupplier$0(SuppliersController.java:474)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.SuppliersController.handleDeleteSupplier(SuppliersController.java:410)
+	at gui.controllers.SuppliersController$1.lambda$new$2(SuppliersController.java:78)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 22:20:18 - User logged out
+[INFO] 2025-12-06 22:20:33 - Session started for user: cash1 (Role: Cashier, Branch: 2)
+[INFO] 2025-12-06 22:20:33 - User logged in successfully: cash1
+[INFO] 2025-12-06 22:20:33 - Attempting to load dashboard
+[INFO] 2025-12-06 22:20:33 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:20:33 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:20:35 - Inventory view initialized
+[INFO] 2025-12-06 22:20:36 - Products view initialized
+[INFO] 2025-12-06 22:20:39 - Inventory view initialized
+[INFO] 2025-12-06 22:21:07 - Sales view initialized
+[INFO] 2025-12-06 22:21:23 - Customers view initialized
+[INFO] 2025-12-06 22:21:58 - Customer added: mohra
+[INFO] 2025-12-06 22:22:12 - Customer updated: mohra
+[INFO] 2025-12-06 22:22:16 - Sales view initialized
+[INFO] 2025-12-06 22:22:24 - 🛒 CHECKOUT: Product=Panadol, Barcode='62230000000123' (Len:14), CartQty=4 strips, UnitsPerBox=4, BoxesToDeduct=1.000
+[INFO] 2025-12-06 22:22:24 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000123
+[INFO] 2025-12-06 22:22:24 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 22:22:24 -    ✓ Found batch: BN202501014, Qty: 35.50
+[INFO] 2025-12-06 22:22:24 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 22:22:24 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 22:22:24 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 22:22:24 -    ✓ Found batch: B-251206-2113, Qty: 5.00
+[INFO] 2025-12-06 22:22:24 - 📦 Total batches found: 5
+[INFO] 2025-12-06 22:22:24 -    📦 Batch BN202501014 (Qty: 35.50, Exp: 2026-03-15)
+[INFO] 2025-12-06 22:22:24 -    📦 Batch BN202501001 (Qty: 50.00, Exp: 2026-06-30)
+[INFO] 2025-12-06 22:22:24 -    📦 Batch BN202501015 (Qty: 30.00, Exp: 2026-09-20)
+[INFO] 2025-12-06 22:22:24 -    📦 Batch B-251206-2016 (Qty: 7.00, Exp: 2026-12-17)
+[INFO] 2025-12-06 22:22:24 -    📦 Batch B-251206-2113 (Qty: 5.00, Exp: 2026-12-18)
+[INFO] 2025-12-06 22:22:24 - ✅ Taken 1.00 from batch BN202501014 (New Qty: 34.50)
+[INFO] 2025-12-06 22:22:24 - ✅ Inventory total updated
+[INFO] 2025-12-06 22:22:27 - Customers view initialized
+[INFO] 2025-12-06 22:22:29 - Sales view initialized
+[INFO] 2025-12-06 22:22:40 - User logged out
+[INFO] 2025-12-06 22:22:45 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:22:45 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:22:45 - Attempting to load dashboard
+[INFO] 2025-12-06 22:22:45 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:22:45 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:22:55 - User logged out
+[INFO] 2025-12-06 22:23:05 - Session started for user: cash1 (Role: Cashier, Branch: 2)
+[INFO] 2025-12-06 22:23:05 - User logged in successfully: cash1
+[INFO] 2025-12-06 22:23:05 - Attempting to load dashboard
+[INFO] 2025-12-06 22:23:05 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:23:05 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:23:07 - Sales view initialized
+[INFO] 2025-12-06 22:23:20 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 22:23:20 -    ✓ Found batch: BN202501014, Qty: 34.50
+[INFO] 2025-12-06 22:23:20 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 22:23:20 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 22:23:20 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 22:23:20 -    ✓ Found batch: B-251206-2113, Qty: 5.00
+[INFO] 2025-12-06 22:23:20 - 📦 Total batches found: 5
+[INFO] 2025-12-06 22:23:20 - Added 0.50 boxes to batch BN202501014
+[INFO] 2025-12-06 22:23:32 - Customers view initialized
+[INFO] 2025-12-06 22:24:09 - Sales view initialized
+[INFO] 2025-12-06 22:25:13 - 🛒 CHECKOUT: Product=Panadol, Barcode='62230000000123' (Len:14), CartQty=4 strips, UnitsPerBox=4, BoxesToDeduct=1.000
+[INFO] 2025-12-06 22:25:13 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000123
+[INFO] 2025-12-06 22:25:13 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 22:25:13 -    ✓ Found batch: BN202501014, Qty: 35.00
+[INFO] 2025-12-06 22:25:13 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 22:25:13 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 22:25:13 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 22:25:13 -    ✓ Found batch: B-251206-2113, Qty: 5.00
+[INFO] 2025-12-06 22:25:13 - 📦 Total batches found: 5
+[INFO] 2025-12-06 22:25:13 -    📦 Batch BN202501014 (Qty: 35.00, Exp: 2026-03-15)
+[INFO] 2025-12-06 22:25:13 -    📦 Batch BN202501001 (Qty: 50.00, Exp: 2026-06-30)
+[INFO] 2025-12-06 22:25:13 -    📦 Batch BN202501015 (Qty: 30.00, Exp: 2026-09-20)
+[INFO] 2025-12-06 22:25:13 -    📦 Batch B-251206-2016 (Qty: 7.00, Exp: 2026-12-17)
+[INFO] 2025-12-06 22:25:13 -    📦 Batch B-251206-2113 (Qty: 5.00, Exp: 2026-12-18)
+[INFO] 2025-12-06 22:25:13 - ✅ Taken 1.00 from batch BN202501014 (New Qty: 34.00)
+[INFO] 2025-12-06 22:25:13 - ✅ Inventory total updated
+[INFO] 2025-12-06 22:25:31 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 22:25:31 -    ✓ Found batch: BN202501014, Qty: 34.00
+[INFO] 2025-12-06 22:25:31 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 22:25:31 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 22:25:31 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 22:25:31 -    ✓ Found batch: B-251206-2113, Qty: 5.00
+[INFO] 2025-12-06 22:25:31 - 📦 Total batches found: 5
+[INFO] 2025-12-06 22:25:31 - Added 1.00 boxes to batch BN202501014
+[INFO] 2025-12-06 22:25:55 - Customers view initialized
+[INFO] 2025-12-06 22:27:31 - User logged out
+[INFO] 2025-12-06 22:27:59 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:27:59 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:27:59 - Attempting to load dashboard
+[INFO] 2025-12-06 22:27:59 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:27:59 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:28:02 - Employees view initialized
+================================================================================
+TIME: 2025-12-06 22:28:03
+CONTEXT: Error loading recent reports
+EXCEPTION: java.lang.NullPointerException
+MESSAGE: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+STACK TRACE:
+java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
+	at gui.controllers.ReportsController.loadRecentReports(ReportsController.java:269)
+	at gui.controllers.ReportsController.initialize(ReportsController.java:46)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2640)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2533)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2503)
+	at gui.controllers.DashboardController.loadView(DashboardController.java:282)
+	at gui.controllers.DashboardController.showReportsView(DashboardController.java:245)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:65)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at javafx.base@25.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:112)
+	at javafx.fxml@25.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:78)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1847)
+	at javafx.fxml@25.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1718)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 22:28:03 - Automatic alert check completed: 10 alerts found
+[INFO] 2025-12-06 22:28:03 - Periodic alert check started (every 6 hours)
+[INFO] 2025-12-06 22:28:03 - Reports view initialized
+[INFO] 2025-12-06 22:28:06 - Suppliers view initialized
+================================================================================
+TIME: 2025-12-06 22:28:12
+CONTEXT: Error deleting supplier
+EXCEPTION: java.sql.SQLIntegrityConstraintViolationException
+MESSAGE: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`supplier_has_product`, CONSTRAINT `fk_Supplier_has_Product_Supplier1` FOREIGN KEY (`Supplier_nane`, `Supplier_phone`) REFERENCES `supplier` (`nane`, `phone`))
+STACK TRACE:
+java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`pms`.`supplier_has_product`, CONSTRAINT `fk_Supplier_has_Product_Supplier1` FOREIGN KEY (`Supplier_nane`, `Supplier_phone`) REFERENCES `supplier` (`nane`, `phone`))
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at gui.controllers.SuppliersController.lambda$handleDeleteSupplier$0(SuppliersController.java:474)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.SuppliersController.handleDeleteSupplier(SuppliersController.java:410)
+	at gui.controllers.SuppliersController$1.lambda$new$2(SuppliersController.java:78)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+================================================================================
+
+[INFO] 2025-12-06 22:30:20 - Application closed by user
+[INFO] 2025-12-06 22:30:34 - Application started successfully
+[INFO] 2025-12-06 22:30:42 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:30:42 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:30:42 - Attempting to load dashboard
+[INFO] 2025-12-06 22:30:43 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:30:43 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:30:45 - Inventory view initialized
+[INFO] 2025-12-06 22:30:50 - Suppliers view initialized
+[INFO] 2025-12-06 22:31:40 - User logged out
+[WARNING] 2025-12-06 22:31:48 - Failed login attempt for username: pharm1
+[INFO] 2025-12-06 22:31:52 - Session started for user: pharma1 (Role: Pharmacist, Branch: 1)
+[INFO] 2025-12-06 22:31:52 - User logged in successfully: pharma1
+[INFO] 2025-12-06 22:31:52 - Attempting to load dashboard
+[INFO] 2025-12-06 22:31:52 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:31:52 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:31:54 - Products view initialized
+[INFO] 2025-12-06 22:33:41 - Product added: jonson
+[INFO] 2025-12-06 22:33:54 - Product updated: jonson
+[INFO] 2025-12-06 22:34:00 - Product deleted: jonson
+[INFO] 2025-12-06 22:34:14 - Inventory view initialized
+[INFO] 2025-12-06 22:35:09 - Sales view initialized
+[INFO] 2025-12-06 22:35:15 - 🛒 CHECKOUT: Product=Panadol, Barcode='62230000000123' (Len:14), CartQty=4 strips, UnitsPerBox=4, BoxesToDeduct=1.000
+[INFO] 2025-12-06 22:35:15 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000123
+[INFO] 2025-12-06 22:35:15 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 22:35:15 -    ✓ Found batch: BN202501014, Qty: 35.00
+[INFO] 2025-12-06 22:35:15 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 22:35:15 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 22:35:15 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 22:35:15 -    ✓ Found batch: B-251206-2113, Qty: 5.00
+[INFO] 2025-12-06 22:35:15 - 📦 Total batches found: 5
+[INFO] 2025-12-06 22:35:15 -    📦 Batch BN202501014 (Qty: 35.00, Exp: 2026-03-15)
+[INFO] 2025-12-06 22:35:15 -    📦 Batch BN202501001 (Qty: 50.00, Exp: 2026-06-30)
+[INFO] 2025-12-06 22:35:15 -    📦 Batch BN202501015 (Qty: 30.00, Exp: 2026-09-20)
+[INFO] 2025-12-06 22:35:15 -    📦 Batch B-251206-2016 (Qty: 7.00, Exp: 2026-12-17)
+[INFO] 2025-12-06 22:35:15 -    📦 Batch B-251206-2113 (Qty: 5.00, Exp: 2026-12-18)
+[INFO] 2025-12-06 22:35:15 - ✅ Taken 1.00 from batch BN202501014 (New Qty: 34.00)
+[INFO] 2025-12-06 22:35:15 - ✅ Inventory total updated
+[INFO] 2025-12-06 22:35:31 - 🔍 Searching batches for parcode: 62230000000123
+[INFO] 2025-12-06 22:35:31 -    ✓ Found batch: BN202501014, Qty: 34.00
+[INFO] 2025-12-06 22:35:31 -    ✓ Found batch: BN202501001, Qty: 50.00
+[INFO] 2025-12-06 22:35:31 -    ✓ Found batch: BN202501015, Qty: 30.00
+[INFO] 2025-12-06 22:35:31 -    ✓ Found batch: B-251206-2016, Qty: 7.00
+[INFO] 2025-12-06 22:35:31 -    ✓ Found batch: B-251206-2113, Qty: 5.00
+[INFO] 2025-12-06 22:35:31 - 📦 Total batches found: 5
+[INFO] 2025-12-06 22:35:31 - Added 1.00 boxes to batch BN202501014
+[INFO] 2025-12-06 22:35:56 - 🛒 CHECKOUT: Product=Cataflam 50, Barcode='62230000000125' (Len:14), CartQty=2 strips, UnitsPerBox=2, BoxesToDeduct=1.000
+[INFO] 2025-12-06 22:35:56 - 🔵 FEFO START: Reducing 1.00 boxes of 62230000000125
+[INFO] 2025-12-06 22:35:56 - 🔍 Searching batches for parcode: 62230000000125
+[INFO] 2025-12-06 22:35:56 -    ✓ Found batch: BN202501017, Qty: 49.00
+[INFO] 2025-12-06 22:35:56 -    ✓ Found batch: BN202501003, Qty: 40.00
+[INFO] 2025-12-06 22:35:56 - 📦 Total batches found: 2
+[INFO] 2025-12-06 22:35:56 -    📦 Batch BN202501017 (Qty: 49.00, Exp: 2026-02-28)
+[INFO] 2025-12-06 22:35:56 -    📦 Batch BN202501003 (Qty: 40.00, Exp: 2026-05-31)
+[INFO] 2025-12-06 22:35:56 - ✅ Taken 1.00 from batch BN202501017 (New Qty: 48.00)
+[INFO] 2025-12-06 22:35:56 - ✅ Inventory total updated
+[INFO] 2025-12-06 22:36:38 - 🔍 Searching batches for parcode: 62230000000125
+[INFO] 2025-12-06 22:36:38 -    ✓ Found batch: BN202501017, Qty: 48.00
+[INFO] 2025-12-06 22:36:38 -    ✓ Found batch: BN202501003, Qty: 40.00
+[INFO] 2025-12-06 22:36:38 - 📦 Total batches found: 2
+[INFO] 2025-12-06 22:36:38 - Added 0.50 boxes to batch BN202501017
+[INFO] 2025-12-06 22:37:59 - ✅ Removed 5.00 boxes from batch B-251206-2237
+[INFO] 2025-12-06 22:38:07 - Customers view initialized
+[INFO] 2025-12-06 22:38:20 - Customer updated: Dina Farid
+[INFO] 2025-12-06 22:38:53 - Customer added: salma
+[INFO] 2025-12-06 22:38:59 - Employees view initialized
+[INFO] 2025-12-06 22:39:22 - Settings view initialized
+[INFO] 2025-12-06 22:39:23 - Suppliers view initialized
+[INFO] 2025-12-06 22:39:57 - Settings view initialized
+[INFO] 2025-12-06 22:39:59 - Employees view initialized
+[INFO] 2025-12-06 22:41:24 - Application closed by user
+[INFO] 2025-12-06 22:41:35 - Application started successfully
+[INFO] 2025-12-06 22:41:46 - Session started for user: pharma1 (Role: Pharmacist, Branch: 1)
+[INFO] 2025-12-06 22:41:46 - User logged in successfully: pharma1
+[INFO] 2025-12-06 22:41:46 - Attempting to load dashboard
+[INFO] 2025-12-06 22:41:46 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:41:47 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:41:53 - Application closed by user
+[INFO] 2025-12-06 22:46:27 - Application started successfully
+[INFO] 2025-12-06 22:46:34 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:46:34 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:46:34 - Attempting to load dashboard
+[INFO] 2025-12-06 22:46:34 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:46:35 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:46:37 - Products view initialized
+[INFO] 2025-12-06 22:46:52 - Product deleted: jonson
+[INFO] 2025-12-06 22:47:26 - Product deleted: jonson
+[INFO] 2025-12-06 22:48:15 - Product updated: Nivea Soft Cream 100ml
+[INFO] 2025-12-06 22:49:58 - Product updated: Nivea Soft Cream 100ml
+[INFO] 2025-12-06 22:50:38 - Application closed by user
+[INFO] 2025-12-06 22:50:48 - Application started successfully
+[INFO] 2025-12-06 22:50:55 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:50:55 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:50:55 - Attempting to load dashboard
+[INFO] 2025-12-06 22:50:55 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:50:56 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:50:58 - Products view initialized
+[INFO] 2025-12-06 22:51:23 - Product updated: jonson
+[INFO] 2025-12-06 22:51:55 - Product updated: Sinutab
+[INFO] 2025-12-06 22:52:18 - Product updated: jonson
+[INFO] 2025-12-06 22:53:03 - Product added: cital
+================================================================================
+TIME: 2025-12-06 22:53:11
+CONTEXT: Error deleting product
+EXCEPTION: java.sql.SQLNonTransientConnectionException
+MESSAGE: No operations allowed after connection closed.
+STACK TRACE:
+java.sql.SQLNonTransientConnectionException: No operations allowed after connection closed.
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:81)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:55)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:65)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ConnectionImpl.prepareStatement(ConnectionImpl.java:1684)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ConnectionImpl.prepareStatement(ConnectionImpl.java:1574)
+	at gui.controllers.ProductsController.lambda$handleDeleteProduct$0(ProductsController.java:441)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.ProductsController.handleDeleteProduct(ProductsController.java:374)
+	at gui.controllers.ProductsController$1.lambda$new$1(ProductsController.java:143)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: com.mysql.cj.exceptions.ConnectionIsClosedException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at mysql.connector.j@9.5.0/com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52)
+	at mysql.connector.j@9.5.0/com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95)
+	at mysql.connector.j@9.5.0/com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140)
+	at mysql.connector.j@9.5.0/com.mysql.cj.NativeSession.checkClosed(NativeSession.java:929)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:558)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ConnectionImpl.prepareStatement(ConnectionImpl.java:1591)
+	... 64 more
+================================================================================
+
+================================================================================
+TIME: 2025-12-06 22:53:41
+CONTEXT: Error deleting product
+EXCEPTION: java.sql.SQLNonTransientConnectionException
+MESSAGE: No operations allowed after connection closed.
+STACK TRACE:
+java.sql.SQLNonTransientConnectionException: No operations allowed after connection closed.
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:81)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:55)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:65)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ConnectionImpl.prepareStatement(ConnectionImpl.java:1684)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ConnectionImpl.prepareStatement(ConnectionImpl.java:1574)
+	at gui.controllers.ProductsController.lambda$handleDeleteProduct$0(ProductsController.java:441)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at gui.controllers.ProductsController.handleDeleteProduct(ProductsController.java:374)
+	at gui.controllers.ProductsController$1.lambda$new$1(ProductsController.java:143)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Node.fireEvent(Node.java:9026)
+	at javafx.controls@25.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@25.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@25.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@25.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@25.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:4061)
+	at javafx.graphics@25.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1947)
+	at javafx.graphics@25.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2784)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:353)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.get(GlassViewEventHandler.java:255)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: com.mysql.cj.exceptions.ConnectionIsClosedException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at mysql.connector.j@9.5.0/com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52)
+	at mysql.connector.j@9.5.0/com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95)
+	at mysql.connector.j@9.5.0/com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140)
+	at mysql.connector.j@9.5.0/com.mysql.cj.NativeSession.checkClosed(NativeSession.java:929)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:558)
+	at mysql.connector.j@9.5.0/com.mysql.cj.jdbc.ConnectionImpl.prepareStatement(ConnectionImpl.java:1591)
+	... 64 more
+================================================================================
+
+[INFO] 2025-12-06 22:55:12 - Application closed by user
+[INFO] 2025-12-06 22:55:23 - Application started successfully
+[INFO] 2025-12-06 22:55:32 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:55:32 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:55:32 - Attempting to load dashboard
+[INFO] 2025-12-06 22:55:33 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:55:33 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:55:36 - Products view initialized
+[INFO] 2025-12-06 22:55:43 - Product deleted: cital
+[INFO] 2025-12-06 22:55:48 - Inventory view initialized
+[INFO] 2025-12-06 22:55:52 - Products view initialized
+[INFO] 2025-12-06 22:57:31 - Application closed by user
+[INFO] 2025-12-06 22:57:41 - Application started successfully
+[INFO] 2025-12-06 22:57:49 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:57:49 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 22:57:49 - Attempting to load dashboard
+[INFO] 2025-12-06 22:57:50 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:57:50 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:57:58 - Products view initialized
+[INFO] 2025-12-06 22:58:11 - Product updated: jonson
+[INFO] 2025-12-06 22:58:14 - Products view initialized
+[INFO] 2025-12-06 22:58:14 - Inventory view initialized
+[INFO] 2025-12-06 22:58:19 - Application closed by user

@@ -377,17 +377,24 @@ public class SalesController implements Initializable {
         
          
         String customerId = customerField.getText().trim();
-        double discountToApply = 0;
+        // Initialize variables
+        double discountToApply;
         boolean usePoints = false;
         double pointsToDeduct = 0;
-        
+
+        // Initialize discount with manual entry if present
+        try {
+            discountToApply = Double.parseDouble(discountField.getText());
+        } catch (NumberFormatException e) {
+            discountToApply = 0; 
+        }
+
         if (!customerId.isEmpty()) {
-             
+            // ... (Customer logic remains the same up to dialog choice) ...
             try (Connection checkConn = DBConnection.getConnection()) {
                 double totalSpent = 0;
                 double customerPoints = 0;
                 
-                 
                 String actualPersonId = customerId;
                 String findCustomerSql = "SELECT c.Person_ID FROM customer c JOIN person p ON c.Person_ID = p.ID WHERE c.Person_ID = ? OR p.Phone = ? LIMIT 1";
                 try (PreparedStatement psFind = checkConn.prepareStatement(findCustomerSql)) {
@@ -397,7 +404,6 @@ public class SalesController implements Initializable {
                     if (rsFind.next()) {
                         actualPersonId = rsFind.getString("Person_ID");
                     } else {
-                         
                         showError("Customer Not Found", "No customer found with ID/Phone: " + customerId);
                         return;
                     }
@@ -421,22 +427,11 @@ public class SalesController implements Initializable {
                 
                 double currentSubtotal = cartList.stream().mapToDouble(CartItem::getTotal).sum();
                 
-                 
-                double loyaltyDiscountRate = 0;
-                if (totalSpent > 10000) loyaltyDiscountRate = 0.10;
-                else if (totalSpent > 5000) loyaltyDiscountRate = 0.05;
-                else if (totalSpent > 1000) loyaltyDiscountRate = 0.02;
-                
-                final double loyaltyDiscountAmount = currentSubtotal * loyaltyDiscountRate;
-                final double loyaltyDiscountPercent = loyaltyDiscountRate * 100;
-                
-                 
                 final double pointsDiscountPercent = Math.min(customerPoints / 10.0, 50);
                 final double pointsDiscountAmount = currentSubtotal * (pointsDiscountPercent / 100.0);
                 final double pointsNeeded = pointsDiscountPercent * 10;
                 
-                 
-                if (loyaltyDiscountAmount > 0 || pointsDiscountAmount > 0) {
+                if (pointsDiscountAmount > 0) {
                     Alert discountChoice = new Alert(Alert.AlertType.CONFIRMATION);
                     discountChoice.setTitle("Customer Discount");
                     discountChoice.setHeaderText("Choose Discount Type for Customer: " + customerId);
@@ -444,30 +439,28 @@ public class SalesController implements Initializable {
                     StringBuilder content = new StringBuilder();
                     content.append(String.format("Total Spending History: $%.2f\n", totalSpent));
                     content.append(String.format("Available Points: %.0f points\n\n", customerPoints));
-                    content.append("Choose discount type:\n");
-                    content.append(String.format("• Loyalty Discount: $%.2f (%.0f%% off)\n", loyaltyDiscountAmount, loyaltyDiscountPercent));
+                    content.append("Available options:\n");
                     content.append(String.format("• Use Points: $%.2f (%.0f%% off - Uses %.0f points)\n", pointsDiscountAmount, pointsDiscountPercent, pointsNeeded));
-                    
+                    content.append(String.format("• Manual/Current Discount: $%.2f\n", discountToApply));
+
                     discountChoice.setContentText(content.toString());
                     
-                    ButtonType loyaltyBtn = new ButtonType("Loyalty Discount");
                     ButtonType pointsBtn = new ButtonType("Use Points");
-                    ButtonType noDiscountBtn = new ButtonType("No Discount");
+                    ButtonType keepManualBtn = new ButtonType("Keep Manual");
                     
-                    discountChoice.getButtonTypes().setAll(loyaltyBtn, pointsBtn, noDiscountBtn);
+                    discountChoice.getButtonTypes().setAll(pointsBtn, keepManualBtn);
                     
                     Optional<ButtonType> choice = discountChoice.showAndWait();
                     if (choice.isPresent()) {
-                        if (choice.get() == loyaltyBtn && loyaltyDiscountAmount > 0) {
-                            discountToApply = loyaltyDiscountAmount;
-                        } else if (choice.get() == pointsBtn && pointsDiscountAmount > 0) {
+                         if (choice.get() == pointsBtn) {
                             discountToApply = pointsDiscountAmount;
                             usePoints = true;
                             pointsToDeduct = pointsNeeded;
+                            discountField.setText(String.format("%.2f", discountToApply)); // Update field if system discount chosen
                         }
+                        // If keepManualBtn, we do nothing
                     } else {
-                         
-                        return;
+                        return; // Cancelled
                     }
                 }
             } catch (SQLException e) {
@@ -475,8 +468,10 @@ public class SalesController implements Initializable {
             }
         }
         
-         
-        discountField.setText(String.format("%.2f", discountToApply));
+        // Ensure the discount field reflects the final decision (though handled above for overrides, good to sync)
+        if(Math.abs(Double.parseDouble(discountField.getText()) - discountToApply) > 0.01) {
+             discountField.setText(String.format("%.2f", discountToApply));
+        }
         updateTotals();
         
          
