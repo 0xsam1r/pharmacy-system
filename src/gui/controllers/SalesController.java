@@ -609,33 +609,11 @@ public class SalesController implements Initializable {
                     );
                     
                     if (!reduced) {
-                         
                         double totalAvailable = BatchManager.getTotalAvailableQuantity(conn, cleanBarcode);
                         
-                         
-                        StringBuilder diag = new StringBuilder();
-                        try {
-                            java.sql.DatabaseMetaData meta = conn.getMetaData();
-                            diag.append("\n\n--- SERVER DIAGNOSTICS ---");
-                            diag.append("\nConnected to: ").append(meta.getURL());
-                            diag.append("\nUser: ").append(meta.getUserName());
-                            
-                            java.sql.Statement st = conn.createStatement();
-                            java.sql.ResultSet rsOne = st.executeQuery("SELECT count(*) FROM batch");
-                            if (rsOne.next()) diag.append("\nTotal Batches in Table: ").append(rsOne.getInt(1));
-                            
-                            diag.append("\n\nSample Batches (First 3):");
-                            java.sql.ResultSet rsSample = st.executeQuery("SELECT Batch_number, Product_parcode, Quantaty FROM batch LIMIT 3");
-                            while(rsSample.next()) {
-                                diag.append("\n• ").append(rsSample.getString("Batch_number"))
-                                    .append(" | ").append(rsSample.getString("Product_parcode"))
-                                    .append(" | Qty: ").append(rsSample.getDouble("Quantaty"));
-                            }
-                        } catch (Exception ex) { diag.append("\nDiag Error: ").append(ex.getMessage()); }
-
                         String msg = String.format(
-                            "Insufficient stock for: %s\nBarcode: '%s' (Len:%d)\nAvailable: %.2f boxes\nRequired: %.2f boxes%s", 
-                            item.getName(), cleanBarcode, cleanBarcode.length(), totalAvailable, boxesToDeduct, diag.toString()
+                            "Oops! Not enough stock for: %s\nAvailable: %.2f\nRequired: %.2f\nPlease update inventory or reduce quantity.", 
+                            item.getName(), totalAvailable, boxesToDeduct
                         );
                         throw new SQLException(msg);
                     }
