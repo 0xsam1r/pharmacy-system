@@ -10,6 +10,7 @@ public class SessionManager {
     private String userRole;
     private String userId;
     private String fullName;
+    private int branchId;
     
     private SessionManager() {
         // Private constructor for singleton
@@ -22,12 +23,13 @@ public class SessionManager {
        return instance;
     }
     
-    public void setUserSession(String username, String fullName, String role, String userId) {
+    public void setUserSession(String username, String fullName, String role, String userId, int branchId) {
         this.username = username;
         this.fullName = fullName;
         this.userRole = role;
         this.userId = userId;
-        ExceptionLogger.logInfo("Session started for user: " + username + " (Role: " + role + ")");
+        this.branchId = branchId;
+        ExceptionLogger.logInfo("Session started for user: " + username + " (Role: " + role + ", Branch: " + branchId + ")");
     }
     
     public void clearSession() {
@@ -36,6 +38,7 @@ public class SessionManager {
         this.fullName = null;
         this.userRole = null;
         this.userId = null;
+        this.branchId = 0;
     }
     
     public boolean isLoggedIn() {
@@ -56,6 +59,10 @@ public class SessionManager {
     
     public String getFullName() {
         return fullName != null ? fullName : username;
+    }
+    
+    public int getBranchId() {
+        return branchId;
     }
     
     public boolean hasRole(String role) {

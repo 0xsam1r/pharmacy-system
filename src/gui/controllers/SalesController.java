@@ -315,6 +315,22 @@ public class SalesController implements Initializable {
                 double totalSpent = 0;
                 double customerPoints = 0;
                 
+                // First, get the actual Person_ID (support both ID and phone lookup)
+                String actualPersonId = customerId;
+                String findCustomerSql = "SELECT c.Person_ID FROM customer c JOIN person p ON c.Person_ID = p.ID WHERE c.Person_ID = ? OR p.Phone = ? LIMIT 1";
+                try (PreparedStatement psFind = checkConn.prepareStatement(findCustomerSql)) {
+                    psFind.setString(1, customerId);
+                    psFind.setString(2, customerId);
+                    ResultSet rsFind = psFind.executeQuery();
+                    if (rsFind.next()) {
+                        actualPersonId = rsFind.getString("Person_ID");
+                    } else {
+                        // Customer not found
+                        showError("Customer Not Found", "No customer found with ID/Phone: " + customerId);
+                        return;
+                    }
+                }
+                
                 String sql = "SELECT COALESCE(SUM(i.price), 0) as total_spent, " +
                              "COALESCE((SELECT points FROM customer WHERE Person_ID = ?), 0) as points " +
                              "FROM invoice i " +
@@ -322,8 +338,8 @@ public class SalesController implements Initializable {
                              "WHERE si.Customer_Person_ID = ?";
                 
                 try (PreparedStatement ps = checkConn.prepareStatement(sql)) {
-                    ps.setString(1, customerId);
-                    ps.setString(2, customerId);
+                    ps.setString(1, actualPersonId);
+                    ps.setString(2, actualPersonId);
                     ResultSet rs = ps.executeQuery();
                     if (rs.next()) {
                         totalSpent = rs.getDouble("total_spent");
@@ -412,7 +428,10 @@ public class SalesController implements Initializable {
             
             String username = SessionManager.getInstance().getUsername();
             String userId = SessionManager.getInstance().getUserId();
-            int branchId = 1; 
+            int branchId = SessionManager.getInstance().getBranchId(); 
+            
+            // Fallback for testing or admin without proper session initialization
+            if (branchId == 0) branchId = 1; 
             
             if (username == null) username = "admin";
             if (userId == null) userId = "1";
@@ -430,14 +449,20 @@ public class SalesController implements Initializable {
             }
 
             // 2. Link Customer & Sell Invoice
+            double pointsBefore = 0;
+            boolean customerExists = false;
+            String actualCustomerId = customerId;
             if (!customerId.isEmpty()) {
-                boolean customerExists = false;
-                String checkCust = "SELECT COUNT(*) FROM customer WHERE Person_ID = ?";
-                try (PreparedStatement ps = conn.prepareStatement(checkCust)) {
+                // Resolve customer ID (support both ID and phone)
+                String findCust = "SELECT c.Person_ID, c.points FROM customer c JOIN person p ON c.Person_ID = p.ID WHERE c.Person_ID = ? OR p.Phone = ? LIMIT 1";
+                try (PreparedStatement ps = conn.prepareStatement(findCust)) {
                     ps.setString(1, customerId);
+                    ps.setString(2, customerId);
                     ResultSet rs = ps.executeQuery();
-                    if (rs.next() && rs.getInt(1) > 0) {
+                    if (rs.next()) {
                         customerExists = true;
+                        actualCustomerId = rs.getString("Person_ID");
+                        pointsBefore = rs.getDouble("points");
                     }
                 }
                 
@@ -446,7 +471,7 @@ public class SalesController implements Initializable {
                     try (PreparedStatement ps = conn.prepareStatement(sqlSell)) {
                         ps.setDouble(1, discountToApply);
                         ps.setInt(2, invoiceId);
-                        ps.setString(3, customerId);
+                        ps.setString(3, actualCustomerId);
                         ps.setDouble(4, usePoints ? pointsToDeduct : 0);
                         ps.executeUpdate();
                     }
@@ -456,7 +481,7 @@ public class SalesController implements Initializable {
                         String sqlDeductPoints = "UPDATE customer SET points = points - ? WHERE Person_ID = ?";
                         try (PreparedStatement ps = conn.prepareStatement(sqlDeductPoints)) {
                             ps.setDouble(1, pointsToDeduct);
-                            ps.setString(2, customerId);
+                            ps.setString(2, actualCustomerId);
                             ps.executeUpdate();
                         }
                     }
@@ -467,7 +492,7 @@ public class SalesController implements Initializable {
                         String sqlPoints = "UPDATE customer SET points = points + ? WHERE Person_ID = ?";
                         try (PreparedStatement ps = conn.prepareStatement(sqlPoints)) {
                             ps.setDouble(1, pointsEarned);
-                            ps.setString(2, customerId);
+                            ps.setString(2, actualCustomerId);
                             ps.executeUpdate();
                         }
                     }
@@ -557,9 +582,15 @@ public class SalesController implements Initializable {
                 ps.executeUpdate();
             }
 
-            // Show Summary Popup
-            String finSummary = String.format("Invoice: #%d\nTotal Amount: $%.2f\nCustomer: %s\nDiscount: $%.2f", 
-                                              invoiceId, total, customerId.isEmpty() ? "Walk-in" : customerId, discountToApply);
+            // Show Summary
+            double pointsAfter = pointsBefore;
+            if (usePoints) pointsAfter -= pointsToDeduct;
+            pointsAfter += (total / 10.0);
+            
+            String pointsMsg = customerExists ? String.format("\nPoints: %.0f -> %.0f", pointsBefore, pointsAfter) : "";
+            
+            String finSummary = String.format("Invoice: #%d\nTotal Amount: $%.2f\nCustomer: %s%s\nDiscount: $%.2f", 
+                                              invoiceId, total, customerId.isEmpty() ? "Walk-in" : actualCustomerId, pointsMsg, discountToApply);
             TransactionSummary.showSummary(conn, "Sales Transaction Complete", finSummary);
 
             conn.commit();
@@ -787,7 +818,14 @@ public class SalesController implements Initializable {
             }
 
             double pointsChange = 0;
+            double pointsBefore = 0;
             if (custId != null) {
+                 // Fetch current points for summary
+                try (PreparedStatement ps = conn.prepareStatement("SELECT points FROM customer WHERE Person_ID = ?")) {
+                    ps.setString(1, custId);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next()) pointsBefore = rs.getDouble("points");
+                }
                 double totalRefundPaid = items.stream().mapToDouble(CartItem::getTotal).sum();
                 
                 // A. Reverse Earning: Deduct points earned on the refunded amount
@@ -874,8 +912,10 @@ public class SalesController implements Initializable {
             }
 
             // Show Summary
-            String finSummary = String.format("Return Invoice: #%d\nRefund Amount: $%.2f\nPoints Adjusted: %+.0f", 
-                                              invoiceId, totalRefund, pointsChange);
+            String ptsMsg = (custId != null) ? String.format("\nPoints: %.0f -> %.0f (%+.0f)", pointsBefore, pointsBefore + pointsChange, pointsChange) : "";
+            
+            String finSummary = String.format("Return Invoice: #%d\nRefund Amount: $%.2f%s", 
+                                              invoiceId, totalRefund, ptsMsg);
             TransactionSummary.showSummary(conn, "Return Transaction Complete", finSummary);
 
             conn.commit();

@@ -18,6 +18,8 @@ import util.ExceptionLogger;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.layout.GridPane;
@@ -54,12 +56,69 @@ public class ProductsController implements Initializable {
                 categoryComboBox.setOnAction(event -> handleCategoryFilter());
             }
             
-            ExceptionLogger.logInfo("Products view initialized");
-        } catch (Exception e) {
-            ExceptionLogger.logException(e, "Error initializing products view");
-            showError("Initialization Error", "Failed to load products view");
-        }
+        productCountLabel.setText("Total: 0 products");
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.trim().isEmpty()) {
+                handleSearch();  // Basic Search
+            } else {
+                 productsTable.setItems(productsList); // Reset if empty
+                 updateProductCount();
+            }
+        });
+        
+        setupAutocompletion();
+
+        ExceptionLogger.logInfo("Products view initialized");
+    } catch (Exception e) {
+        ExceptionLogger.logException(e, "Error initializing products view");
+        showError("Initialization Error", "Failed to load products view");
     }
+}
+
+private void setupAutocompletion() {
+    ContextMenu suggestionsPopup = new ContextMenu();
+    
+    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+        if (newValue == null || newValue.length() < 2) {
+            suggestionsPopup.hide();
+            return;
+        }
+
+        List<String> matches = new ArrayList<>();
+        // Search in local list first for speed
+        for (ProductData p : productsList) {
+            if (p.getName().toLowerCase().contains(newValue.toLowerCase())) {
+                matches.add(p.getName());
+            }
+        }
+        
+        if (!matches.isEmpty()) {
+            suggestionsPopup.getItems().clear();
+            // Limit to 10
+            for (int i = 0; i < Math.min(matches.size(), 10); i++) {
+                String match = matches.get(i);
+                MenuItem item = new MenuItem(match);
+                item.setOnAction(e -> {
+                    searchField.setText(match);
+                    handleSearch();
+                    suggestionsPopup.hide();
+                });
+                suggestionsPopup.getItems().add(item);
+            }
+            if (!suggestionsPopup.isShowing()) {
+                suggestionsPopup.show(searchField, javafx.geometry.Side.BOTTOM, 0, 0);
+            }
+        } else {
+            suggestionsPopup.hide();
+        }
+    });
+
+    // Hide popup when focus lost
+    searchField.focusedProperty().addListener((obs, oldVal, newVal) -> {
+        if (!newVal) suggestionsPopup.hide();
+    });
+}
     
     private void setupTableColumns() {
         colBarcode.setCellValueFactory(new PropertyValueFactory<>("barcode"));
@@ -288,6 +347,8 @@ public class ProductsController implements Initializable {
         }
     }
     
+    @FXML private TextField activeIngredientSearchField; // New field for Active Ingredient
+
     @FXML
     private void handleSearch() {
         String searchText = searchField.getText().toLowerCase();
@@ -303,6 +364,61 @@ public class ProductsController implements Initializable {
         }
         
         updateProductCount();
+    }
+    
+    @FXML
+    private void handleActiveIngredientSearch() {
+        String ingredient = activeIngredientSearchField.getText().trim();
+        if (ingredient.isEmpty()) {
+            productsTable.setItems(productsList);
+            updateProductCount();
+            return;
+        }
+        
+        // Search in DB since active ingredient is not in ProductData model by default usually
+        // We need to query: product -> medicine -> medicine_has_dosage_form -> dosage_form (active_ing)
+        // Or simpler schema depending on DB. From SalesController we saw:
+        // product p JOIN medicine m ON ... JOIN medicine_has_dosage_form md ... JOIN dosage_form d WHERE d.active_ing LIKE ?
+        
+        try {
+            ObservableList<ProductData> ingredientMatches = FXCollections.observableArrayList();
+            
+            String sql = "SELECT p.parcode, p.Name, p.Price, p.Uints, c.name as category " +
+                         "FROM product p " +
+                         "LEFT JOIN category c ON p.Category_ID = c.ID " +
+                         "JOIN medicine m ON p.parcode = m.Product_parcode " +
+                         "JOIN medicine_has_dosage_form md ON m.Product_parcode = md.medicine_Product_parcode " +
+                         "JOIN dosage_form d ON md.dosage_form_ID = d.ID " +
+                         "WHERE d.active_ing LIKE ?";
+                         
+            try (Connection conn = DB.DBConnection.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, "%" + ingredient + "%");
+                ResultSet rs = ps.executeQuery();
+                 while (rs.next()) {
+                    ProductData product = new ProductData();
+                    product.setBarcode(rs.getString("parcode"));
+                    product.setName(rs.getString("Name"));
+                    product.setPrice(rs.getDouble("Price"));
+                    product.setUnit(rs.getInt("Uints"));
+                    product.setCategory(rs.getString("category"));
+                    
+                    // Avoid duplicates if multiple dosage forms match
+                    boolean exists = false;
+                    for(ProductData existing : ingredientMatches) {
+                        if(existing.getBarcode().equals(product.getBarcode())) { exists = true; break; }
+                    }
+                    if(!exists) ingredientMatches.add(product);
+                }
+            }
+            
+            productsTable.setItems(ingredientMatches);
+            updateProductCount();
+            
+        } catch (SQLException e) {
+            ExceptionLogger.logException(e, "Error searching by active ingredient");
+            showError("Search Error", "Failed to search by active ingredient");
+        }
     }
     
     @FXML

@@ -107,7 +107,7 @@ public class LoginController implements Initializable {
     private boolean authenticateUser(String username, String password) {
         // Join employee with person table to get the name
         // Using Creation2 schema where employee only has Person_ID (no Person_Phone)
-        String sql = "SELECT e.User_name, e.Password, e.Person_ID, p.name " +
+        String sql = "SELECT e.User_name, e.Password, e.Person_ID, e.bransh_ID, p.name " +
                     "FROM employee e " +
                     "JOIN person p ON e.Person_ID = p.ID " +
                     "WHERE e.User_name = ? AND e.Password = ?";
@@ -123,6 +123,7 @@ public class LoginController implements Initializable {
                 // User authenticated - store session info
                 String userId = rs.getString("Person_ID");
                 String fullName = rs.getString("name");
+                int branchId = rs.getInt("bransh_ID");
                 
                 // Deduce role from ID prefix
                 // Deduce role from ID prefix
@@ -139,7 +140,7 @@ public class LoginController implements Initializable {
                 }
                 
                 // Store in session
-                util.SessionManager.getInstance().setUserSession(username, fullName, role, userId);
+                util.SessionManager.getInstance().setUserSession(username, fullName, role, userId, branchId);
                 
                 return true;
             }

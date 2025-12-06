@@ -261,7 +261,7 @@ public class DashboardController implements Initializable {
     
     @FXML
     private void showBatchView() {
-        // Assuming we add a button for this too, or link it from Inventory
+        setActiveButton(btnBatches);
         loadView("/gui/fxml/BatchView.fxml");
     }
 
@@ -373,10 +373,7 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void showTreasuryView() {
-        // Assuming there is a button for this, or we add one dynamically
-        // Since I can't easily add a button to FXML without overwriting, 
-        // I'll assume the user might add it or I'll add a method that can be linked.
-        // For now, let's link it to a new button if I edit the FXML.
+        setActiveButton(btnTreasury);
         loadView("/gui/fxml/TreasuryView.fxml");
     }
     

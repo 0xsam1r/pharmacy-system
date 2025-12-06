@@ -28,6 +28,9 @@
         <Label text="🔍 Search:"/>
         <TextField fx:id="searchField" promptText="Search by name or barcode..." prefWidth="300" 
                    onKeyReleased="#handleSearch"/>
+                   
+        <TextField fx:id="activeIngredientSearchField" promptText="Active Ingredient..." prefWidth="200" 
+                   onKeyReleased="#handleActiveIngredientSearch"/>
         
         <Region HBox.hgrow="ALWAYS"/>
         

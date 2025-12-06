@@ -17,7 +17,6 @@
         <Label text="Suppliers Management" styleClass="label-header"/>
         <Region HBox.hgrow="ALWAYS"/>
         <Button text="➕ Add New Supplier" styleClass="btn, btn-success" onAction="#handleAddSupplier"/>
-        <Button text="💰 New Purchase" styleClass="btn, btn-primary" onAction="#handleAddPurchase"/>
     </HBox>
     
     <!-- Search Bar -->
@@ -51,7 +50,6 @@
             <columns>
                 <TableColumn text="Name" prefWidth="200" fx:id="colName"/>
                 <TableColumn text="Phone" prefWidth="120" fx:id="colPhone"/>
-                <TableColumn text="Email" prefWidth="150" fx:id="colEmail"/>
                 <TableColumn text="Address" prefWidth="200" fx:id="colAddress"/>
                 <TableColumn text="Total Debt ($)" prefWidth="120" fx:id="colTotalDebt"/>
                 <TableColumn text="Actions" prefWidth="200" fx:id="colActions"/>
