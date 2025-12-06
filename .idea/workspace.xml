@@ -35,6 +35,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Application.DBConnection.executor": "Run",
     "Application.PharmacyApp.executor": "Run",
     "Application.PharmacySystem.executor": "Run",
