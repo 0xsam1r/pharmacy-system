@@ -1,3 +1,55 @@
+# ========================================
+# Java general
+# ========================================
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# ========================================
+# IntelliJ IDEA
+# ========================================
+.idea/
+out/
+
+# ========================================
+# NetBeans
+# ========================================
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+*.nb-gradle/
+
+# ========================================
+# Build directories
+# ========================================
+bin/
+target/
+
+# ========================================
+# Temporary files
+# ========================================
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# ========================================
+# Ignore JavaFX SDK (very important) and lib
+# ========================================
+javafx-sdk*/
+lib/javafx*/   # ignore your local library folder
+
 /lib/
 lib.zip
 /out/

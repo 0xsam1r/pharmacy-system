@@ -53,6 +53,11 @@
     "project.structure.proportion": "0.22867738",
     "project.structure.side.proportion": "0.18051118",
     "settings.editor.selected.configurable": "preferences.lookFeel"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "GitIgnore"
+    ]
   }
 }]]></component>
   <component name="RunManager" selected="Application.PharmacyApp">
