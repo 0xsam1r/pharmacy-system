@@ -59,6 +59,7 @@
                 <TableColumn text="Category" prefWidth="150" fx:id="colCategory"/>
                 <TableColumn text="Price" prefWidth="120" fx:id="colPrice"/>
                 <TableColumn text="Units Per Product" prefWidth="150" fx:id="colUnit"/>
+                <TableColumn text="Dosage Form" prefWidth="150" fx:id="colDosage"/>
                 <TableColumn text="Actions" prefWidth="150" fx:id="colActions"/>
             </columns>
         </TableView>

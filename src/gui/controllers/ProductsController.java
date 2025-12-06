@@ -38,6 +38,7 @@ public class ProductsController implements Initializable {
     @FXML private TableColumn<ProductData, String> colCategory;
     @FXML private TableColumn<ProductData, Double> colPrice;
     @FXML private TableColumn<ProductData, Integer> colUnit;
+    @FXML private TableColumn<ProductData, String> colDosage;
     @FXML private TableColumn<ProductData, Void> colActions;
     
     private ObservableList<ProductData> productsList = FXCollections.observableArrayList();
@@ -124,6 +125,7 @@ private void setupAutocompletion() {
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        colDosage.setCellValueFactory(new PropertyValueFactory<>("dosage"));
         
          
         colActions.setCellFactory(param -> new TableCell<>() {
@@ -197,7 +199,11 @@ private void setupAutocompletion() {
         try {
             productsList.clear();
             
-            String query = "SELECT p.parcode, p.Name, p.Price, p.Uints, c.name as category " +
+            String query = "SELECT p.parcode, p.Name, p.Price, p.Uints, c.name as category, " +
+                          "(SELECT d.active_ing FROM dosage_form d " +
+                          " JOIN medicine_has_dosage_form md ON d.ID = md.dosage_form_ID " +
+                          " JOIN medicine m ON md.medicine_Product_parcode = m.Product_parcode " +
+                          " WHERE m.Product_parcode = p.parcode LIMIT 1) as dosage " +
                           "FROM product p " +
                           "LEFT JOIN category c ON p.Category_ID = c.ID";
             
@@ -210,8 +216,9 @@ private void setupAutocompletion() {
                     product.setBarcode(rs.getString("parcode"));
                     product.setName(rs.getString("Name"));
                     product.setPrice(rs.getDouble("Price"));
-                    product.setUnit(rs.getInt("Uints"));  
+                    product.setUnit(rs.getInt("Uints"));
                     product.setCategory(rs.getString("category"));
+                    product.setDosage(rs.getString("dosage"));
                     
                     productsList.add(product);
                 }
@@ -261,7 +268,46 @@ private void setupAutocompletion() {
                     );
                     
                     if (success) {
-                        showSuccess("Product added successfully!");
+                        // Handle Dosage Form linking
+                        String dosage = product.getDosage();
+                        if (dosage != null && !dosage.isEmpty()) {
+                            try (Connection conn = DB.DBConnection.getConnection()) {
+                                // 1. Ensure Medicine record
+                                String checkMed = "SELECT Product_parcode FROM medicine WHERE Product_parcode = ?";
+                                try (PreparedStatement ps = conn.prepareStatement(checkMed)) {
+                                    ps.setString(1, product.getBarcode());
+                                    if (!ps.executeQuery().next()) {
+                                        try (PreparedStatement startMed = conn.prepareStatement("INSERT INTO medicine (Product_parcode) VALUES (?)")) {
+                                            startMed.setString(1, product.getBarcode());
+                                            startMed.executeUpdate();
+                                        }
+                                    }
+                                }
+                                
+                                // 2. Get Dosage ID
+                                int dosageId = -1;
+                                try (PreparedStatement psDos = conn.prepareStatement("SELECT ID FROM dosage_form WHERE active_ing = ?")) {
+                                    psDos.setString(1, dosage);
+                                    ResultSet rsDos = psDos.executeQuery();
+                                    if (rsDos.next()) dosageId = rsDos.getInt("ID");
+                                }
+                                
+                                // 3. Link
+                                if (dosageId != -1) {
+                                    String linkSql = "INSERT INTO medicine_has_dosage_form (medicine_Product_parcode, dosage_form_ID, Strength) VALUES (?, ?, ?)";
+                                    try (PreparedStatement psLink = conn.prepareStatement(linkSql)) {
+                                        psLink.setString(1, product.getBarcode());
+                                        psLink.setInt(2, dosageId);
+                                        psLink.setDouble(3, 0); // Default strength
+                                        psLink.executeUpdate();
+                                    }
+                                }
+                            } catch (SQLException e) {
+                                ExceptionLogger.logException(e, "Error linking dosage form");
+                            }
+                        }
+                    
+                        showSuccess("Product and Dosage Info added successfully!");
                         loadProducts();
                         ExceptionLogger.logInfo("Product added: " + product.getName());
                     } else {
@@ -373,15 +419,10 @@ private void setupAutocompletion() {
             return;
         }
         
-         
-         
-         
-         
-        
         try {
             ObservableList<ProductData> ingredientMatches = FXCollections.observableArrayList();
             
-            String sql = "SELECT p.parcode, p.Name, p.Price, p.Uints, c.name as category " +
+            String sql = "SELECT p.parcode, p.Name, p.Price, p.Uints, c.name as category, d.active_ing as dosage " +
                          "FROM product p " +
                          "LEFT JOIN category c ON p.Category_ID = c.ID " +
                          "JOIN medicine m ON p.parcode = m.Product_parcode " +
@@ -400,8 +441,9 @@ private void setupAutocompletion() {
                     product.setPrice(rs.getDouble("Price"));
                     product.setUnit(rs.getInt("Uints"));
                     product.setCategory(rs.getString("category"));
+                    product.setDosage(rs.getString("dosage"));
                     
-                     
+                    // Avoid duplicates if multiple dosage forms match (though unlikely with this query struct per row)
                     boolean exists = false;
                     for(ProductData existing : ingredientMatches) {
                         if(existing.getBarcode().equals(product.getBarcode())) { exists = true; break; }
@@ -511,6 +553,20 @@ private void setupAutocompletion() {
         grid.add(new Label("Units Per Product:"), 0, 4);
         grid.add(unitField, 1, 4);
         
+        ComboBox<String> dosageCombo = new ComboBox<>();
+        try (Connection conn = DB.DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT active_ing FROM dosage_form ORDER BY active_ing")) {
+             while (rs.next()) dosageCombo.getItems().add(rs.getString("active_ing"));
+        } catch(SQLException e) {}
+        
+        grid.add(new Label("Dosage Form:"), 0, 5);
+        grid.add(dosageCombo, 1, 5);
+        
+        if (existingProduct != null && existingProduct.getDosage() != null) {
+            dosageCombo.setValue(existingProduct.getDosage());
+        }
+        
         dialog.getDialogPane().setContent(grid);
         
         dialog.setResultConverter(dialogButton -> {
@@ -525,6 +581,7 @@ private void setupAutocompletion() {
                 } catch (NumberFormatException e) {
                     return null;
                 }
+                product.setDosage(dosageCombo.getValue());
                 return product;
             }
             return null;
@@ -629,5 +686,10 @@ private void setupAutocompletion() {
         
         public int getUnit() { return unit; }
         public void setUnit(int value) { unit = value; }
+        
+        private SimpleStringProperty dosage = new SimpleStringProperty();
+        public String getDosage() { return dosage.get(); }
+        public void setDosage(String value) { dosage.set(value); }
+        public SimpleStringProperty dosageProperty() { return dosage; }
     }
 }
