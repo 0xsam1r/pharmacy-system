@@ -97,9 +97,7 @@ INSERT INTO `person` (`ID`, `Phone`, `name`) VALUES
 -- Employees (ID starts with role letter)
 ('m001',  '01098765432', 'Mohamed Hassan'),  -- Manager
 ('p002',  '01176543210', 'Sara Ali'),        -- Pharmacist
-('c003',  '01234567890', 'Omar Farouk'),     -- Cashier
-('a004',  '01033445566', 'Laila Hussein'),   -- Accountant
-('s005',  '01122334455', 'Mostafa Gamal');   -- Storekeeper
+('c003',  '01234567890', 'Omar Farouk');     -- Cashier
 
 -- 9) CUSTOMER
 INSERT INTO `customer` (`points`, `Person_ID`) VALUES
@@ -112,9 +110,7 @@ INSERT INTO `customer` (`points`, `Person_ID`) VALUES
 INSERT INTO `employee` (`User_name`, `salary`, `StartDate`, `Password`, `Person_ID`, `bransh_ID`) VALUES
 ('manager1',  18000.00, '2023-03-01', 'M@12345', 'm001', 1),
 ('pharma1',   12000.00, '2023-06-15', 'P@12345', 'p002', 1),
-('cash1',      8000.00, '2024-01-10', 'C@12345', 'c003', 2),
-('acct1',     10000.00, '2024-02-01', 'A@12345', 'a004', 3),
-('store1',     9000.00, '2024-03-12', 'S@12345', 's005', 3);
+('cash1',      8000.00, '2024-01-10', 'C@12345', 'c003', 2);
 
 -- 11) INVENTORY (one per branch)
 INSERT INTO `inventory` (`ID`, `Bransh_ID`) VALUES
