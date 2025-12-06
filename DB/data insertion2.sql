@@ -96,6 +96,7 @@ INSERT INTO `person` (`ID`, `Phone`, `name`) VALUES
 ('10004', '01055667722', 'Dina Farid'),
 -- Employees (ID starts with role letter)
 ('m001',  '01098765432', 'Mohamed Hassan'),  -- Manager
+('m1',  '01062959625', 'ziad ahmed'),
 ('p002',  '01176543210', 'Sara Ali'),        -- Pharmacist
 ('c003',  '01234567890', 'Omar Farouk');     -- Cashier
 
@@ -110,6 +111,7 @@ INSERT INTO `customer` (`points`, `Person_ID`) VALUES
 INSERT INTO `employee` (`User_name`, `salary`, `StartDate`, `Password`, `Person_ID`, `bransh_ID`) VALUES
 ('manager1',  18000.00, '2023-03-01', 'M@12345', 'm001', 1),
 ('pharma1',   12000.00, '2023-06-15', 'P@12345', 'p002', 1),
+('ziad',   20000.00, '2023-06-15', '12345', 'm1', 1),
 ('cash1',      8000.00, '2024-01-10', 'C@12345', 'c003', 2);
 
 -- 11) INVENTORY (one per branch)
@@ -210,30 +212,24 @@ INSERT INTO `supplier_has_product` (`Supplier_nane`, `Supplier_phone`, `Product_
 -- 17) INVOICE (linked to employees)
 INSERT INTO `invoice` (`ID`, `date`, `price`, `employee_User_name`, `employee_Person_ID`, `employee_bransh_ID`) VALUES
 (2001, '2025-11-20', 15000.00, 'manager1', 'm001', 1),  -- Purchase base
-(2002, '2025-11-23', 18000.00, 'acct1',    'a004', 3),  -- Purchase base
 (1001, '2025-11-21',   420.00, 'pharma1',  'p002', 1),  -- Sale Shoubra
 (1002, '2025-11-22',   310.00, 'cash1',    'c003', 2),  -- Sale Imbaba
-(1003, '2025-11-24',   375.00, 'pharma1',  'p002', 1),  -- Sale Shoubra
-(1004, '2025-11-25',   520.00, 'store1',   's005', 3);  -- Sale Nasr City
+(1003, '2025-11-24',   375.00, 'pharma1',  'p002', 1);  -- Sale Shoubra
 
 -- 18) PURCHASE_INVOCE (purchase details)
 INSERT INTO `purchase_invoce` (`money_paid`, `remaing_money`, `Invoice_ID`, `Supplier_nane`, `Supplier_phone`) VALUES
-(12000.00, 3000.00, 2001, 'Al-Motaheda Distribution', '01055667788'),
-(15000.00, 1000.00, 2002, 'United Pharma Supply',      '01277889900');
+(12000.00, 3000.00, 2001, 'Al-Motaheda Distribution', '01055667788');
 
 -- 19) PURCHASE_INVOCE_HAS_BATCH (link batches to purchases)
 INSERT INTO `purchase_invoce_has_batch` (`purchase_invoce_Invoice_ID`, `Batch_Batch_number`, `Batch_Product_parcode`, `purchase_invoce_has_Batchcol`) VALUES
 (2001, 'BN202501001', '62230000000123', 'Initial load'),
-(2001, 'BN202501002', '62230000000124', 'Initial load'),
-(2002, 'BN202501009', '62230000000133', 'Restock cold&flu'),
-(2002, 'BN202501012', '62230000000134', 'Restock antidiabetic');
+(2001, 'BN202501002', '62230000000124', 'Initial load');
 
 -- 20) SELL_INVOICE (discounts & customer links)
 INSERT INTO `sell_invoice` (`Discount`, `Invoice_ID`, `Customer_Person_ID`) VALUES
 (20.00, 1001, '10001'),
 (10.00, 1002, '10002'),
-(15.00, 1003, '10003'),
-(25.00, 1004, '10004');
+(15.00, 1003, '10003');
 
 -- 21) INVOICE_HAS_PRODUCT (line items)
 INSERT INTO `invoice_has_product` (`Invoice_ID`, `Product_parcode`, `units`) VALUES
@@ -247,14 +243,9 @@ INSERT INTO `invoice_has_product` (`Invoice_ID`, `Product_parcode`, `units`) VAL
 (1003, '62230000000133', 2),
 (1003, '62230000000125', 1),
 (1003, '62230000000136', 1),
-(1004, '62230000000132', 1),
-(1004, '62230000000134', 1),
-(1004, '62230000000135', 2),
 -- Purchases (stock in)
 (2001, '62230000000123', 200),
-(2001, '62230000000124', 120),
-(2002, '62230000000133', 130),
-(2002, '62230000000134', 100);
+(2001, '62230000000124', 120);
 
 -- 22) CUSTOMER_BUY_PRODUCT (customer purchase history)
 INSERT INTO `customer_buy_product` (`Customer_Person_ID`, `Product_parcode`, `Quantaty`) VALUES
@@ -266,19 +257,13 @@ INSERT INTO `customer_buy_product` (`Customer_Person_ID`, `Product_parcode`, `Qu
 ('10002', '62230000000129', 1),
 ('10003', '62230000000133', 2),
 ('10003', '62230000000125', 1),
-('10003', '62230000000136', 1),
-('10004', '62230000000132', 1),
-('10004', '62230000000134', 1),
-('10004', '62230000000135', 2);
+('10003', '62230000000136', 1);
 
 -- 23) TREASURY (cash movements)
 INSERT INTO `treasury` (`treasuryid`, `Bransh_ID`, `date_and_time`, `amount_of_money`, `invoice_ID`) VALUES
 ('TRS-2025-11-21-01', 1, '2025-11-21 12:15:00',   400.00, 1001),
 ('TRS-2025-11-22-01', 2, '2025-11-22 18:30:00',   300.00, 1002),
-('TRS-2025-11-24-01', 1, '2025-11-24 11:10:00',   360.00, 1003),
-('TRS-2025-11-25-01', 3, '2025-11-25 16:40:00',   500.00, 1004),
-('TRS-2025-11-20-01', 1, '2025-11-20 10:05:00', -12000.00, 2001),
-('TRS-2025-11-23-01', 3, '2025-11-23 09:30:00', -15000.00, 2002);
+('TRS-2025-11-20-01', 1, '2025-11-20 10:05:00', -12000.00, 2001);
 
 START TRANSACTION;
 
@@ -287,10 +272,6 @@ START TRANSACTION;
 UPDATE `invoice`
 SET `date` = '2025-11-20'
 WHERE `ID` = 2001;
-
-UPDATE `invoice`
-SET `date` = '2025-11-23'
-WHERE `ID` = 2002;
 
 -- فواتير البيع (IDs: 1001..1004)
 UPDATE `invoice`
@@ -305,9 +286,6 @@ UPDATE `invoice`
 SET `date` = '2025-11-24'
 WHERE `ID` = 1003;
 
-UPDATE `invoice`
-SET `date` = '2025-11-25'
-WHERE `ID` = 1004;
 
 -- ====== اختيارية: ضبط حركة الخزنة على نفس أيام الفواتير ======
 UPDATE `treasury`
@@ -322,16 +300,9 @@ UPDATE `treasury`
 SET `date_and_time` = '2025-11-24 11:10:00'
 WHERE `invoice_ID` = 1003;
 
-UPDATE `treasury`
-SET `date_and_time` = '2025-11-25 16:40:00'
-WHERE `invoice_ID` = 1004;
 
 UPDATE `treasury`
 SET `date_and_time` = '2025-11-20 10:05:00'
 WHERE `invoice_ID` = 2001;
-
-UPDATE `treasury`
-SET `date_and_time` = '2025-11-23 09:30:00'
-WHERE `invoice_ID` = 2002;
 
 COMMIT;
