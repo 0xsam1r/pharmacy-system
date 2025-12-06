@@ -17738,3 +17738,12 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 [INFO] 2025-12-06 19:21:36 - Products view initialized
 [INFO] 2025-12-06 19:21:37 - Inventory view initialized
 >>>>>>> 2ca183344374f8bc294748a7c5790d3da752bdef
+[INFO] 2025-12-06 19:30:17 - Application started successfully
+[INFO] 2025-12-06 19:30:34 - Session started for user: manager1 (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 19:30:34 - User logged in successfully: manager1
+[INFO] 2025-12-06 19:30:34 - Attempting to load dashboard
+[INFO] 2025-12-06 19:30:34 - Dashboard initialized successfully
+[INFO] 2025-12-06 19:30:35 - Dashboard displayed successfully
+[INFO] 2025-12-06 19:30:36 - Inventory view initialized
+[INFO] 2025-12-06 19:30:38 - Products view initialized
+[INFO] 2025-12-06 19:31:00 - Employees view initialized
