@@ -17473,3 +17473,5 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 [INFO] 2025-12-06 18:33:57 - Reports view initialized
 [INFO] 2025-12-06 18:33:58 - Products view initialized
 [INFO] 2025-12-06 18:33:59 - Inventory view initialized
+[INFO] 2025-12-06 19:14:09 - Application started successfully
+[INFO] 2025-12-06 19:14:14 - Application closed by user
