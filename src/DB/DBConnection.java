@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/PMS";
+    private static final String URL = "jdbc:mysql://localhost:3306/pms";
     private static final String USER = "pmsadmin";
     private static final String PASSWORD = "1234";  
 
