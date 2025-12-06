@@ -21,16 +21,14 @@ import java.sql.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/**
- * Controller for Suppliers Management View
- */
+ 
 public class SuppliersController implements Initializable {
     
     @FXML private TextField searchField;
     @FXML private TableView<SupplierData> suppliersTable;
     @FXML private Label supplierCountLabel;
     
-    // Table Columns
+     
     @FXML private TableColumn<SupplierData, String> colName;
     @FXML private TableColumn<SupplierData, String> colPhone;
     @FXML private TableColumn<SupplierData, String> colAddress;
@@ -58,7 +56,7 @@ public class SuppliersController implements Initializable {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colTotalDebt.setCellValueFactory(new PropertyValueFactory<>("totalDebt"));
         
-        // Add action buttons column
+         
         colActions.setCellFactory(param -> new TableCell<>() {
             private final Button payBtn = new Button("💸 Pay");
             private final Button editBtn = new Button("✏️ Edit");
@@ -112,18 +110,18 @@ public class SuppliersController implements Initializable {
             conn = DBConnection.getConnection();
             stmt = conn.createStatement();
             
-            // Use LEFT JOIN to get suppliers AND their total debt in ONE query
-            // This avoids opening a second connection inside the loop which caused the "ResultSet closed" error
+             
+             
             String query;
             try {
-                // Try with typo names first (nane, adress)
+                 
                 query = "SELECT s.nane, s.phone, s.adress, COALESCE(SUM(p.remaing_money), 0) as total_debt " +
                         "FROM supplier s " +
                         "LEFT JOIN purchase_invoce p ON s.nane = p.Supplier_nane AND s.phone = p.Supplier_phone " +
                         "GROUP BY s.nane, s.phone, s.adress";
                 rs = stmt.executeQuery(query);
             } catch (SQLException e) {
-                // If failed, try with correct spelling (name, address)
+                 
                 ExceptionLogger.logInfo("Query with typos failed, trying correct spelling...");
                 query = "SELECT s.name, s.phone, s.address, COALESCE(SUM(p.remaing_money), 0) as total_debt " +
                         "FROM supplier s " +
@@ -135,7 +133,7 @@ public class SuppliersController implements Initializable {
             while (rs.next()) {
                 SupplierData supplier = new SupplierData();
                 
-                // Handle column names dynamically
+                 
                 ResultSetMetaData meta = rs.getMetaData();
                 String nameCol = "name";
                 String addrCol = "address";
@@ -226,7 +224,7 @@ public class SuppliersController implements Initializable {
             conn = DBConnection.getConnection();
             conn.setAutoCommit(false);
             
-            // 1. Generate New Payment Invoice ID to satisfy FK
+             
             int invoiceId = 0;
             try (Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery("SELECT MAX(ID) FROM invoice")) {
@@ -234,7 +232,7 @@ public class SuppliersController implements Initializable {
                 else invoiceId = 1;
             }
             
-            // 2. Create Invoice Record for this Payment (Required for Treasury FK)
+             
             util.SessionManager session = util.SessionManager.getInstance();
             String username = session.getUsername() != null ? session.getUsername() : "admin";
             String userId = session.getUserId() != null ? session.getUserId() : "1";
@@ -243,25 +241,25 @@ public class SuppliersController implements Initializable {
             try (PreparedStatement ps = conn.prepareStatement(insertInvoice)) {
                 ps.setInt(1, invoiceId);
                 ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
-                ps.setDouble(3, amount); // Amount Paid
+                ps.setDouble(3, amount);  
                 ps.setString(4, username);
                 ps.setString(5, userId);
-                ps.setInt(6, 1); // Branch
+                ps.setInt(6, 1);  
                 ps.executeUpdate();
             }
             
-            // 3. Insert Treasury Record (Expense)
+             
             String sqlTreasury = "INSERT INTO treasury (treasuryid, Bransh_ID, date_and_time, amount_of_money, invoice_ID) VALUES (?, ?, NOW(), ?, ?)";
             try (PreparedStatement ps = conn.prepareStatement(sqlTreasury)) {
                 ps.setString(1, "TR-PAY-" + System.currentTimeMillis());
                 ps.setInt(2, 1);
-                // Debt repayment is MONEY OUT -> Negative
+                 
                 ps.setDouble(3, -amount); 
-                ps.setInt(4, invoiceId); // Linked to the new payment invoice
+                ps.setInt(4, invoiceId);  
                 ps.executeUpdate();
             }
             
-            // 4. Reduce Debt from Invoices (FIFO: Pay oldest first)
+             
             String sqlGetInv = "SELECT Invoice_ID, remaing_money, money_paid FROM purchase_invoce WHERE Supplier_nane = ? AND Supplier_phone = ? AND remaing_money > 0.01 ORDER BY Invoice_ID ASC";
             
             double remainingToPay = amount;
@@ -314,7 +312,7 @@ public class SuppliersController implements Initializable {
                 try {
                     validateSupplier(supplier);
                     
-                    // Add to database using nane, phone, adress
+                     
                     String sql = "INSERT INTO supplier (nane, phone, adress) VALUES (?, ?, ?)";
                     try (Connection conn = DBConnection.getConnection();
                          PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -369,7 +367,7 @@ public class SuppliersController implements Initializable {
                 try {
                     validateSupplier(editedSupplier);
                     
-                    // Update in database - need to use old name+phone as key
+                     
                     String sql = "UPDATE supplier SET nane = ?, phone = ?, adress = ? WHERE nane = ? AND phone = ?";
                     try (Connection conn = DBConnection.getConnection();
                          PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -377,8 +375,8 @@ public class SuppliersController implements Initializable {
                         ps.setString(1, editedSupplier.getName());
                         ps.setString(2, editedSupplier.getPhone());
                         ps.setString(3, editedSupplier.getAddress());
-                        ps.setString(4, supplier.getName()); // old name
-                        ps.setString(5, supplier.getPhone()); // old phone
+                        ps.setString(4, supplier.getName());  
+                        ps.setString(5, supplier.getPhone());  
                         
                         int rows = ps.executeUpdate();
                         if (rows > 0) {
@@ -542,7 +540,7 @@ public class SuppliersController implements Initializable {
         alert.showAndWait();
     }
     
-    // Supplier Data Model
+     
     public static class SupplierData {
         private SimpleStringProperty name = new SimpleStringProperty();
         private SimpleStringProperty phone = new SimpleStringProperty();

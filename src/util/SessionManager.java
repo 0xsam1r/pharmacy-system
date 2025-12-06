@@ -1,8 +1,6 @@
 package util;
 
-/**
- * Session Manager to keep track of logged-in user information
- */
+ 
 public class SessionManager {
     private static SessionManager instance;
     
@@ -13,7 +11,7 @@ public class SessionManager {
     private int branchId;
     
     private SessionManager() {
-        // Private constructor for singleton
+         
     }
     
     public static SessionManager getInstance() {

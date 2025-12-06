@@ -101,7 +101,7 @@ public class SaleReturn {
             System.out.println("Points after refund: " + newPoints);
         }
 
-        // ✅ تحديث الخزنة
+         
         if (saleInvoice.getBranch() != null && saleInvoice.getBranch().getTreasury() != null) {
             Treasury treasury = saleInvoice.getBranch().getTreasury();
             double currentBalance = treasury.getCurrentBalance();

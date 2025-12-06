@@ -12,10 +12,10 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
     
-    <!-- Header -->
+    
     <Label text="Reports &amp; Analytics" styleClass="label-header"/>
     
-    <!-- Report Generation Cards -->
+    
     <GridPane hgap="20" vgap="20">
         <columnConstraints>
             <ColumnConstraints percentWidth="33.33"/>
@@ -51,7 +51,7 @@
         </VBox>
     </GridPane>
     
-    <!-- Report Output Display (TabPane for Text and Chart) -->
+    
     <VBox styleClass="card" spacing="15" VBox.vgrow="ALWAYS">
         <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
         

@@ -30,13 +30,13 @@ public class PharmacySystem {
         System.out.println("        STARTING COMPREHENSIVE SYSTEM TEST");
         System.out.println("==========================================");
 
-        // 1. Test Product and Inventory Classes
+         
         testProductAndInventory();
 
-        // 2. Test Sales and Return Cycle
+         
         testSaleCycle();
 
-        // 3. Test Alerts, Reports, and Treasury
+         
         testFinancialUtilities();
 
         System.out.println("\n" + "=".repeat(50));
@@ -49,28 +49,28 @@ public class PharmacySystem {
         System.out.println("      1. Testing Product and Inventory Classes");
         System.out.println("=".repeat(50));
 
-        // 1. DosageForm
+         
         DosageForm form1 = new DosageForm(500.0, "Paracetamol");
         System.out.println("DosageForm Created: " + form1);
 
-        // 2. Medicine
+         
         ArrayList<DosageForm> forms = new ArrayList<>();
         forms.add(form1);
         Medicine medicine = new Medicine("622300000001", "Panadol Extra", 10, 25.0, Category.MEDICINE, forms);
         medicine.setQuantityInStock(50.0);
         System.out.println(" Medicine Created: " + medicine.getName() + " | Stock: " + medicine.getQuantityInStock());
 
-        // 3. Cosmetic
+         
         Cosmetic cosmetic = new Cosmetic("622300000004", "Nivea Cream", 1, 60.0, Category.COSMETIC, "Nivea", 'F');
         cosmetic.setQuantityInStock(30.0);
         System.out.println(" Cosmetic Created: " + cosmetic.getName() + " | Stock: " + cosmetic.getQuantityInStock());
 
-        // 4. Inventory
+         
         List<Product> productsList = new ArrayList<>(Arrays.asList(medicine, cosmetic));
         Inventory inventory = new Inventory("INV001", 10.0, (ArrayList<Product>) productsList, new ArrayList<>());
         System.out.println(" Inventory initialized with Panadol Extra and Nivea Cream.");
 
-        // 5. Search
+         
         Product found = inventory.search("Panadol Extra");
         System.out.println(" Search result for Panadol: " + (found != null ? found.getName() : "Not Found"));
     }
@@ -80,14 +80,14 @@ public class PharmacySystem {
         System.out.println("      2. Testing Sale and Return Cycle Classes");
         System.out.println("=".repeat(50));
 
-        // --- Setup Core Entities ---
+         
         Branch testBranch = new Branch("B001", "Main Branch", "Cairo");
         UserAccount userAccount = new UserAccount("ahmedk", "ahm123", CASHIER);
 
         String startDate = LocalDate.now().minusMonths(6).toString();
         int salary = 8500;
 
-        // Employee from DB: P001
+         
         Employee employee = new Employee(
             "P001",
             "Ahmed Khaled",
@@ -98,22 +98,22 @@ public class PharmacySystem {
             testBranch
         );
 
-        // Customer from DB: P004
+         
         Customer customer = new Customer("P004", "Sarah Abdullah", "01099887766", 80);
         Product testProduct = new Cosmetic("622300000005", "Fair & Lovely", 1, 70.0, Category.COSMETIC, "Fair & Lovely", 'F');
         testProduct.setQuantityInStock(50.0);
 
         System.out.println(" Core entities (Employee, Customer, Product) set up.");
 
-        // --- Test SaleInvoice ---
+         
         SaleInvoice invoice = createSampleSaleInvoice(employee, customer, testBranch, testProduct);
         System.out.println("\n--- Sale Invoice Test ---");
         System.out.println(" Invoice ID: " + invoice.getInvoiceID() + " | Total: " + invoice.getTotalPrice());
 
-        // --- Test SaleReturn and ReturnItem ---
+         
         testSaleReturn(invoice, employee, customer, testProduct);
 
-        // --- Test Standalone Transaction ---
+         
         System.out.println("\n--- Standalone Transaction Test ---");
         testStandaloneTransaction(employee, testBranch, invoice);
     }
@@ -184,7 +184,7 @@ public class PharmacySystem {
             System.err.println("   Exception: " + e.getMessage());
         }
 
-        // --- Test AlertSystem ---
+         
         System.out.println("\n--- Alert System Test ---");
         try {
             List<String> alerts = AlertSystem.checkAll();
@@ -198,7 +198,7 @@ public class PharmacySystem {
             System.err.println("️ ERROR: AlertSystem failed. Ensure database setup is complete.");
         }
 
-        // --- Test ReportGenerator ---
+         
         System.out.println("\n--- Report Generator Test ---");
         String testDate = LocalDate.now().toString();
 

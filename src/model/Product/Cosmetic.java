@@ -1,7 +1,7 @@
 
 package model.Product;
 import enums.Category;
-// @author mahmoud Elsayed
+ 
 
  public class Cosmetic extends Product {
     private String brand;

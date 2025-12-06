@@ -1,6 +1,6 @@
 package model.Product;
 
-// @author mahmoud Elsayed
+ 
 public class DosageForm {
     private double Strength ;
     private String  Active_Ingredient ;

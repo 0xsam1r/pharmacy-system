@@ -1,8 +1,6 @@
 package exceptions;
 
-/**
- * Exception thrown when a requested entity is not found in the database
- */
+ 
 public class EntityNotFoundException extends Exception {
     
     private String entityType;

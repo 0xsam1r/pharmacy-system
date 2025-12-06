@@ -1,6 +1,6 @@
 package model.Product;
 
-// * @author mahmoud Elsayed
+ 
 import model.invoices.Batch ;
 import java.util.ArrayList ;
 import model.invoices.InvoiceItem;
@@ -97,7 +97,7 @@ public class Inventory {
         }
         return null ;
     }
-    // DISPLAY IS POWERFULL THAN tostring 
+     
      public void displayInventory() {
         System.out.println("Inventory ID: " + ID);
         for (Product p : products) {

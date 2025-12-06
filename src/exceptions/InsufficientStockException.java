@@ -1,8 +1,6 @@
 package exceptions;
 
-/**
- * Exception thrown when there is insufficient stock for a transaction
- */
+ 
 public class InsufficientStockException extends Exception {
     
     private String productId;

@@ -14,7 +14,7 @@
     
     <HBox spacing="20" VBox.vgrow="ALWAYS">
         
-        <!-- Left Side: Product Search & List -->
+        
         <VBox spacing="15" HBox.hgrow="ALWAYS" styleClass="card">
             <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
             
@@ -38,7 +38,7 @@
             </TableView>
         </VBox>
         
-        <!-- Right Side: Checkout Details -->
+        
         <VBox spacing="15" prefWidth="350" styleClass="card">
             <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
             

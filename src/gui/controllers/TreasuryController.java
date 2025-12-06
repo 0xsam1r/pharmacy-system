@@ -146,57 +146,57 @@ public class TreasuryController implements Initializable {
         Connection conn = null;
         try {
             conn = DBConnection.getConnection();
-            conn.setAutoCommit(false); // Start Transaction
+            conn.setAutoCommit(false);  
 
-            // 1. Gather Required Data (Auto-Fill Missing Values)
+             
             String username = util.SessionManager.getInstance().getUsername();
             String userId = util.SessionManager.getInstance().getUserId();
-            int branchId = util.SessionManager.getInstance().getBranchId(); // Assuming added in previous steps
+            int branchId = util.SessionManager.getInstance().getBranchId();  
             
-            // Fallbacks if session is empty (e.g. during dev/testing)
+             
             if (username == null) username = "admin";
             if (userId == null) {
-                // Try to find a valid Person_ID for "admin" or first available employee
+                 
                 try (java.sql.Statement st = conn.createStatement();
                      ResultSet rs = st.executeQuery("SELECT Person_ID FROM employee LIMIT 1")) {
                      if (rs.next()) userId = rs.getString(1);
-                     else userId = "1"; // Ultimate fallback, might fail FK
+                     else userId = "1";  
                 }
             }
             if (branchId == 0) branchId = 1;
 
-            // 2. Generate New Invoice ID
+             
             int invoiceId = 1;
             try (java.sql.Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery("SELECT MAX(ID) FROM invoice")) {
                 if (rs.next()) invoiceId = rs.getInt(1) + 1;
             }
-            // Ensure unique range for manual transactions if needed? 
-            // Just incrementing MAX is fine for now, assuming single-threaded usage or DB lock.
+             
+             
 
-            // 3. Create Supporting Invoice Record (Required by FK constraint)
+             
             String sqlInv = "INSERT INTO invoice (ID, date, price, employee_User_name, employee_Person_ID, employee_bransh_ID) VALUES (?, ?, ?, ?, ?, ?)";
             try (PreparedStatement psInv = conn.prepareStatement(sqlInv)) {
                 psInv.setInt(1, invoiceId);
                 psInv.setDate(2, java.sql.Date.valueOf(LocalDate.now()));
-                psInv.setDouble(3, amount); // The amount of the manual transaction
+                psInv.setDouble(3, amount);  
                 psInv.setString(4, username);
                 psInv.setString(5, userId);
                 psInv.setInt(6, branchId);
                 psInv.executeUpdate();
             }
 
-            // 4. Insert Treasury Record
+             
             String sqlTreasury = "INSERT INTO treasury (treasuryid, Bransh_ID, date_and_time, amount_of_money, invoice_ID) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement ps = conn.prepareStatement(sqlTreasury)) {
                 
-                String treasuryId = "TR-MAN-" + System.currentTimeMillis(); // Distinct ID for manual
+                String treasuryId = "TR-MAN-" + System.currentTimeMillis();  
                 
                 ps.setString(1, treasuryId);
                 ps.setInt(2, branchId);
                 ps.setTimestamp(3, new java.sql.Timestamp(System.currentTimeMillis()));
                 ps.setDouble(4, amount);
-                ps.setInt(5, invoiceId); // Linked to the manual invoice created above
+                ps.setInt(5, invoiceId);  
                 
                 ps.executeUpdate();
             }

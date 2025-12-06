@@ -27,8 +27,8 @@ public class app extends Application {
     public void start(Stage stage) throws Exception {
 
         Group root = new Group();
-        Scene scene = new Scene(root, 60,60, Color.LIGHTSKYBLUE); // part from root
-        // Stage stage1 = new Stage();
+        Scene scene = new Scene(root, 60,60, Color.LIGHTSKYBLUE);  
+         
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Pharmacy Management System");
@@ -44,7 +44,7 @@ public class app extends Application {
         root.getChildren().add(line);
 
 
- // add text to node root
+  
         root.getChildren().add(text);
 
     }

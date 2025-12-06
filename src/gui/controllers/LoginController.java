@@ -18,9 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Controller for Login Screen
- */
+ 
 public class LoginController implements Initializable {
     
     @FXML
@@ -40,36 +38,36 @@ public class LoginController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Add enter key listener for password field
+         
         passwordField.setOnAction(event -> handleLogin());
         
-        // Load saved credentials if any (from preferences)
+         
         loadSavedCredentials();
     }
     
     @FXML
     private void handleLogin() {
         try {
-            // Validate inputs
+             
             validateInputs();
             
-            // Clear previous error
+             
             errorLabel.setVisible(false);
             
             String username = usernameField.getText().trim();
             String password = passwordField.getText();
             
-            // Authenticate user
+             
             if (authenticateUser(username, password)) {
-                // Save credentials if remember me is checked
+                 
                 if (rememberMeCheckbox.isSelected()) {
                     saveCredentials(username);
                 }
                 
-                // Log successful login
+                 
                 ExceptionLogger.logInfo("User logged in successfully: " + username);
                 
-                // Navigate to dashboard
+                 
                 navigateToDashboard();
                 
             } else {
@@ -105,8 +103,8 @@ public class LoginController implements Initializable {
     }
     
     private boolean authenticateUser(String username, String password) {
-        // Join employee with person table to get the name
-        // Using Creation2 schema where employee only has Person_ID (no Person_Phone)
+         
+         
         String sql = "SELECT e.User_name, e.Password, e.Person_ID, e.bransh_ID, p.name " +
                     "FROM employee e " +
                     "JOIN person p ON e.Person_ID = p.ID " +
@@ -116,18 +114,18 @@ public class LoginController implements Initializable {
              PreparedStatement ps = conn.prepareStatement(sql)) {
             
             ps.setString(1, username);
-            ps.setString(2, password); // Note: In production, use hashed passwords!
+            ps.setString(2, password);  
             
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                // User authenticated - store session info
+                 
                 String userId = rs.getString("Person_ID");
                 String fullName = rs.getString("name");
                 int branchId = rs.getInt("bransh_ID");
                 
-                // Deduce role from ID prefix
-                // Deduce role from ID prefix
-                String role = "Cashier"; // Default fallback
+                 
+                 
+                String role = "Cashier";  
                 if (userId != null && !userId.isEmpty()) {
                     char prefix = Character.toUpperCase(userId.charAt(0));
                     if (prefix == 'M') {
@@ -139,7 +137,7 @@ public class LoginController implements Initializable {
                     }
                 }
                 
-                // Store in session
+                 
                 util.SessionManager.getInstance().setUserSession(username, fullName, role, userId, branchId);
                 
                 return true;
@@ -147,7 +145,7 @@ public class LoginController implements Initializable {
             
         } catch (SQLException e) {
             ExceptionLogger.logException(e, "Authentication query failed");
-            e.printStackTrace(); // Print stack trace for debugging
+            e.printStackTrace();  
         }
         
         return false;
@@ -158,9 +156,9 @@ public class LoginController implements Initializable {
             System.out.println("Loading dashboard...");
             ExceptionLogger.logInfo("Attempting to load dashboard");
             
-            // Load FXML
+             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/Dashboard.fxml"));
-            // FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/SimpleDashboard.fxml"));
+             
             
             if (loader.getLocation() == null) {
                 throw new Exception("Dashboard.fxml not found in resources");
@@ -172,7 +170,7 @@ public class LoginController implements Initializable {
             
             Scene scene = new Scene(root);
             
-            // Try to load CSS, but don't fail if it's missing
+             
             try {
                 URL cssUrl = getClass().getResource("/gui/css/styles.css");
                 if (cssUrl != null) {
@@ -185,7 +183,7 @@ public class LoginController implements Initializable {
             } catch (Exception cssEx) {
                 System.out.println("WARNING: Failed to load CSS: " + cssEx.getMessage());
                 ExceptionLogger.logException(cssEx, "CSS loading failed - continuing without styles");
-                // Continue anyway - CSS is not critical
+                 
             }
             
             Stage stage = (Stage) loginButton.getScene().getWindow();
@@ -213,12 +211,12 @@ public class LoginController implements Initializable {
     }
     
     private void loadSavedCredentials() {
-        // TODO: Implement loading from preferences
-        // For now, this is just a placeholder
+         
+         
     }
     
     private void saveCredentials(String username) {
-        // TODO: Implement saving to preferences
-        // For now, this is just a placeholder
+         
+         
     }
 }

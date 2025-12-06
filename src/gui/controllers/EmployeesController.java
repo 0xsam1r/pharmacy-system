@@ -23,9 +23,7 @@ import java.sql.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/**
- * Controller for Employees Management View
- */
+ 
 public class EmployeesController implements Initializable {
 
     @FXML private TextField searchField;
@@ -117,7 +115,7 @@ public class EmployeesController implements Initializable {
                     emp.setUsername(rs.getString("User_name"));
                     emp.setSalary(rs.getDouble("salary"));
                     emp.setStartDate(rs.getString("StartDate"));
-                    emp.setRole("Employee"); // Default role
+                    emp.setRole("Employee");  
                     
                     employeesList.add(emp);
                 }
@@ -149,11 +147,11 @@ public class EmployeesController implements Initializable {
                     
                     UserAccount acc = new UserAccount();
                     acc.setUsername(data.getUsername());
-                    acc.setPassword(data.getPassword()); // Should be hashed
+                    acc.setPassword(data.getPassword());  
                     emp.setAccount(acc);
                     
                     Branch branch = new Branch();
-                    branch.setId("1"); // Default branch 1
+                    branch.setId("1");  
                     emp.setBranch(branch);
                     
                     if (DB_operation.addEmployee(emp)) {
@@ -181,7 +179,7 @@ public class EmployeesController implements Initializable {
             Optional<EmployeeData> result = dialog.showAndWait();
             result.ifPresent(data -> {
                 try {
-                    // Only salary update is supported by DB_operation currently
+                     
                     if (DB_operation.updateEmployeeSalary(data.getId(), (int)data.getSalary())) {
                         showSuccess("Employee updated successfully!");
                         loadEmployees();
@@ -207,7 +205,7 @@ public class EmployeesController implements Initializable {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
-                    // Need to implement delete manually as DB_operation doesn't have it
+                     
                     String sql = "DELETE FROM employee WHERE Person_ID = ?";
                     try (Connection conn = DBConnection.getConnection();
                          PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -278,7 +276,7 @@ public class EmployeesController implements Initializable {
             idField.setText(existing.getId());
             idField.setDisable(true);
             nameField.setText(existing.getName());
-            nameField.setDisable(true); // Editing name not supported yet
+            nameField.setDisable(true);  
             phoneField.setText(existing.getPhone());
             phoneField.setDisable(true);
             usernameField.setText(existing.getUsername());
@@ -343,7 +341,7 @@ public class EmployeesController implements Initializable {
         private SimpleStringProperty role = new SimpleStringProperty();
         private SimpleDoubleProperty salary = new SimpleDoubleProperty();
         private SimpleStringProperty startDate = new SimpleStringProperty();
-        private String password; // Not a property, just for transport
+        private String password;  
         
         public String getId() { return id.get(); }
         public void setId(String v) { id.set(v); }

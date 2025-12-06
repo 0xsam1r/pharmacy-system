@@ -1,6 +1,6 @@
 package model.Product;
 
-// @author mahmoud Elsayed
+ 
 
 import java.util.ArrayList;
 import enums.Category;
@@ -31,7 +31,7 @@ public class Medicine extends Product {
         this.quantityInStock=0;
         this.forms = null; 
     }
-// this new to our structure
+ 
     public void addDosageForm(DosageForm form) {
         forms.add(form);
     }

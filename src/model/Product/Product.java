@@ -1,14 +1,14 @@
 package model.Product;
 import enums.Category;
 
-// @author mahmoud Elsayed
+ 
 public class Product {
     protected String Parcode ;
     protected String Name ;
     protected int UnitsPerProduct ;
     protected double Price ;
     protected  Category Category  ;
-    protected double quantityInStock;// comment => that to handel Qu in inventory  
+    protected double quantityInStock; 
 
     public Product(String Parcode, String Name, int UnitsPerProduct, double Price, Category Category) {
         this.Parcode = Parcode;
@@ -66,7 +66,7 @@ public class Product {
         this.Price = Price;
     }
 
-    //helper function
+     
     public Product displayproduct(){
         return this;
     } 

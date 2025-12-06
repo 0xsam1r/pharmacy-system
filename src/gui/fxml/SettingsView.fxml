@@ -15,7 +15,7 @@
     <Label text="System Settings" styleClass="label-header"/>
     
     <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="card">
-        <!-- Change Password Tab -->
+        
         <Tab text="Change Password">
             <VBox spacing="20" style="-fx-padding: 20;">
                 <Label text="Change Password" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
@@ -43,7 +43,7 @@
             </VBox>
         </Tab>
         
-        <!-- About -->
+        
         <Tab text="About">
             <VBox spacing="20" style="-fx-padding: 20;" alignment="TOP_CENTER">
                 <Label text="PMS - Pharmacy Management System" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>

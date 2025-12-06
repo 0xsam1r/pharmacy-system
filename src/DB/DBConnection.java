@@ -8,11 +8,11 @@ public class DBConnection {
 
     private static final String URL = "jdbc:mysql://localhost:3306/PMS";
     private static final String USER = "pmsadmin";
-    private static final String PASSWORD = "1234"; // ← غيرها لباسوردك
+    private static final String PASSWORD = "1234";  
 
     private static Connection connection = null;
 
-    // إنشاء الاتصال مرة واحدة فقط (Singleton)
+     
     public static Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
@@ -30,7 +30,7 @@ public class DBConnection {
         return connection;
     }
 
-    // اختبار الاتصال
+     
     public static void main(String[] args) {
         getConnection();
     }

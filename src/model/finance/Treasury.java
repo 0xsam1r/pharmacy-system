@@ -1,4 +1,4 @@
-// model/finance/Treasury.java
+ 
 package model.finance;
 
 import DB.DBConnection;
@@ -19,7 +19,7 @@ public class Treasury {
     private LocalDate lastUpdatedDate;
     private Branch branch;
 
-    // Constructors
+     
     public Treasury(int id, double currentBalance, LocalDate lastUpdatedDate, Branch branch) {
         this.id = id;
         this.currentBalance = currentBalance;
@@ -41,7 +41,7 @@ public class Treasury {
         this.branch = t.branch;
     }
 
-    // ====================== REAL DATABASE FUNCTIONS ======================
+     
     public double getTotalDailyPurchaseReturns() {
         if (branch == null) {
             return 0.0;
@@ -153,7 +153,7 @@ public class Treasury {
         return 0.0;
     }
 
-    //هيرجع ليست بالعمليات اللي حصلت ف الخزنة
+     
     public List<Transaction> getTransactionsHistory() {
         List<Transaction> transactions = new ArrayList<>();
         if (branch == null) {
@@ -202,7 +202,7 @@ public class Treasury {
                 t.setAmountOfMoney(amount);
 
                 int invoiceId = rs.getInt("invoice_id");
-                Branch branchObj = this.branch; // أو this.branch
+                Branch branchObj = this.branch;  
 
                 if ("SALE".equals(t.getType())) {
                     t.setInvoice(new SaleInvoice(
@@ -241,7 +241,7 @@ public class Treasury {
         return transactions;
     }
 
-    // ====================== GETTERS & SETTERS ======================
+     
     public int getId() {
         return id;
     }

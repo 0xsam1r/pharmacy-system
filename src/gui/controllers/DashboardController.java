@@ -22,18 +22,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-/**
- * Controller for Main Dashboard
- */
+ 
 public class DashboardController implements Initializable {
     
-    // Sidebar Buttons
+     
     @FXML private Button btnDashboard;
     @FXML private Button btnProducts;
     @FXML private Button btnInventory;
     @FXML private Button btnBatches;
     @FXML private Button btnSales;
-    @FXML private Button btnPurchases; // Added new button
+    @FXML private Button btnPurchases;  
     @FXML private Button btnCustomers;
     @FXML private Button btnEmployees;
     @FXML private Button btnReports;
@@ -41,18 +39,18 @@ public class DashboardController implements Initializable {
     @FXML private Button btnSettings;
     @FXML private Button btnTreasury;
     
-    // User Info
+     
     @FXML private Label userLabel;
     @FXML private Label roleLabel;
     @FXML private Label dateTimeLabel;
     
-    // Statistics
+     
     @FXML private Label totalSalesLabel;
     @FXML private Label totalProductsLabel;
     @FXML private Label lowStockLabel;
     @FXML private Label totalCustomersLabel;
     
-    // Tables and Lists
+     
     @FXML private TableView<Transaction> recentTransactionsTable;
     @FXML private TableColumn<Transaction, Integer> colInvoiceId;
     @FXML private TableColumn<Transaction, String> colDate;
@@ -63,7 +61,7 @@ public class DashboardController implements Initializable {
     
     @FXML private ListView<String> alertsList;
     
-    // Content Area
+     
     @FXML private StackPane contentArea;
     
     private Button currentActiveButton;
@@ -71,16 +69,16 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            // Set current active button
+             
             currentActiveButton = btnDashboard;
             
-            // Set user info from session
+             
             try {
                 util.SessionManager session = util.SessionManager.getInstance();
                 if (session.isLoggedIn()) {
                     userLabel.setText("Welcome, " + session.getFullName());
                     roleLabel.setText("Role: " + session.getUserRole());
-                    applyRoleBaseAccess(); // Apply Rules
+                    applyRoleBaseAccess();  
                 } else {
                     userLabel.setText("Welcome, User");
                     roleLabel.setText("Role: Unknown");
@@ -101,28 +99,28 @@ public class DashboardController implements Initializable {
 
     private void applyRoleBaseAccess() {
         String role = util.SessionManager.getInstance().getUserRole();
-        if (role == null) role = "Cashier"; // Default safety
+        if (role == null) role = "Cashier";  
 
         if (role.equalsIgnoreCase("Manager")) {
-            // Full Access
+             
             return; 
         } 
         
         if (role.equalsIgnoreCase("Pharmacist")) {
-            // See all except Treasury and Reports
+             
             setButtonVisible(btnTreasury, false);
             setButtonVisible(btnReports, false);
         } 
         else if (role.equalsIgnoreCase("Cashier") || role.equals("Unknown")) {
-            // Only: Products, Inventory, Sales, Customers
+             
             
-            // Visible
+             
             setButtonVisible(btnProducts, true);
             setButtonVisible(btnInventory, true);
             setButtonVisible(btnSales, true);
             setButtonVisible(btnCustomers, true);
             
-            // Hidden
+             
             setButtonVisible(btnBatches, false);
             setButtonVisible(btnPurchases, false);
             setButtonVisible(btnEmployees, false);
@@ -136,7 +134,7 @@ public class DashboardController implements Initializable {
     private void setButtonVisible(Button btn, boolean visible) {
         if (btn != null) {
             btn.setVisible(visible);
-            btn.setManaged(visible); // Collapse space if hidden
+            btn.setManaged(visible);  
         }
     }
     
@@ -152,8 +150,8 @@ public class DashboardController implements Initializable {
     
     private void loadDashboardData() {
         try {
-            // TODO: Load real data from database
-            // For now, using sample data
+             
+             
             totalSalesLabel.setText("$15,240");
             totalProductsLabel.setText("1,234");
             lowStockLabel.setText("23");
@@ -165,15 +163,15 @@ public class DashboardController implements Initializable {
     }
     
     private void setupTableColumns() {
-        // TODO: Setup table cell value factories
-        // This would map Transaction object properties to table columns
+         
+         
     }
     
     private void loadRecentTransactions() {
         try {
-            // TODO: Load from database
+             
             ObservableList<Transaction> transactions = FXCollections.observableArrayList();
-            // Sample data for demonstration
+             
             recentTransactionsTable.setItems(transactions);
             
         } catch (Exception e) {
@@ -185,7 +183,7 @@ public class DashboardController implements Initializable {
         try {
             ObservableList<String> alerts = FXCollections.observableArrayList();
             
-            // TODO: Load real alerts from AlertSystem
+             
             alerts.add("⚠️ 5 products are low in stock");
             alerts.add("⚠️ 3 products will expire in 30 days");
             alerts.add("✅ System backup completed successfully");
@@ -197,11 +195,11 @@ public class DashboardController implements Initializable {
         }
     }
     
-    // Navigation Methods
+     
     @FXML
     private void showDashboardView() {
         setActiveButton(btnDashboard);
-        // Dashboard is already showing - just refresh data
+         
         loadDashboardData();
     }
     
@@ -289,7 +287,7 @@ public class DashboardController implements Initializable {
         } catch (IOException e) {
             ExceptionLogger.logException(e, "Error loading view: " + fxmlPath);
             
-            // Create a more detailed error message
+             
             StringBuilder errorMessage = new StringBuilder("Could not load view: " + fxmlPath + "\n\n");
             errorMessage.append("Reason: ").append(e.getMessage());
             
@@ -298,7 +296,7 @@ public class DashboardController implements Initializable {
             }
             
             showErrorAlert("View Loading Error", errorMessage.toString());
-            e.printStackTrace(); // Print to console for immediate debugging
+            e.printStackTrace();  
         } catch (Exception e) {
             ExceptionLogger.logException(e, "Unexpected error loading view: " + fxmlPath);
             showErrorAlert("Unexpected Error", "An unexpected error occurred while loading the view.\n" + e.getMessage());
@@ -306,7 +304,7 @@ public class DashboardController implements Initializable {
         }
     }
     
-    // Menu Actions
+     
     @FXML
     private void handleLogout() {
         try {
@@ -319,7 +317,7 @@ public class DashboardController implements Initializable {
                 if (response == ButtonType.OK) {
                     ExceptionLogger.logInfo("User logged out");
                     
-                    // Navigate back to login screen
+                     
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/LoginScreen.fxml"));
                         Parent root = loader.load();
@@ -377,23 +375,23 @@ public class DashboardController implements Initializable {
         loadView("/gui/fxml/TreasuryView.fxml");
     }
     
-    // Quick Actions
+     
     @FXML
     private void createNewSale() {
         showSalesView();
-        // TODO: Open new sale dialog
+         
     }
     
     @FXML
     private void addNewProduct() {
         showProductsView();
-        // TODO: Open add product dialog
+         
     }
     
     @FXML
     private void addNewCustomer() {
         showCustomersView();
-        // TODO: Open add customer dialog
+         
     }
     
     @FXML
@@ -406,7 +404,7 @@ public class DashboardController implements Initializable {
         showSalesView();
     }
     
-    // Helper Methods
+     
     private void showErrorAlert(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -415,7 +413,7 @@ public class DashboardController implements Initializable {
         alert.showAndWait();
     }
     
-    // Inner class for table data (temporary - should use actual Transaction model)
+     
     public static class Transaction {
         private int invoiceId;
         private String date;
@@ -424,7 +422,7 @@ public class DashboardController implements Initializable {
         private double total;
         private String status;
         
-        // Getters and setters
+         
         public int getInvoiceId() { return invoiceId; }
         public void setInvoiceId(int invoiceId) { this.invoiceId = invoiceId; }
         

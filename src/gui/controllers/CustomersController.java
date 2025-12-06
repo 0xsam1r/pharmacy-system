@@ -22,9 +22,7 @@ import java.sql.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/**
- * Controller for Customers Management View
- */
+ 
 public class CustomersController implements Initializable {
     
     @FXML private TextField searchField;
@@ -110,7 +108,7 @@ public class CustomersController implements Initializable {
                     customer.setName(rs.getString("name"));
                     customer.setPhone(rs.getString("Phone"));
                     customer.setPoints(rs.getDouble("points"));
-                    customer.setTotalPurchases(0.0); // TODO: Calculate from invoices
+                    customer.setTotalPurchases(0.0);  
                     
                     customersList.add(customer);
                 }
@@ -318,7 +316,7 @@ public class CustomersController implements Initializable {
         alert.showAndWait();
     }
     
-    // Customer Data Model
+     
     public static class CustomerData {
         private SimpleStringProperty customerId = new SimpleStringProperty();
         private SimpleStringProperty name = new SimpleStringProperty();

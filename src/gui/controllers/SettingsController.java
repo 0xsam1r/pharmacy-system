@@ -15,9 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Controller for Settings View
- */
+ 
 public class SettingsController implements Initializable {
 
     @FXML private PasswordField currentPasswordField;
@@ -79,7 +77,7 @@ public class SettingsController implements Initializable {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String dbPass = rs.getString("Password");
-                return dbPass.equals(password); // In production, use hashing!
+                return dbPass.equals(password);  
             }
         }
         return false;
@@ -97,13 +95,13 @@ public class SettingsController implements Initializable {
 
     @FXML
     private void handleBackup() {
-        // Mock backup functionality
+         
         showInfo("Database Backup", "Database backup feature is coming soon.\nCurrently, please use MySQL Workbench to export your database.");
     }
 
     @FXML
     private void handleRestore() {
-        // Mock restore functionality
+         
         showInfo("Database Restore", "Database restore feature is coming soon.\nPlease contact administrator for database restoration.");
     }
 

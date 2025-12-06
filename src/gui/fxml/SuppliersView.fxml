@@ -12,14 +12,14 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
     
-    <!-- Header -->
+    
     <HBox alignment="CENTER_LEFT" spacing="15">
         <Label text="Suppliers Management" styleClass="label-header"/>
         <Region HBox.hgrow="ALWAYS"/>
         <Button text="➕ Add New Supplier" styleClass="btn, btn-success" onAction="#handleAddSupplier"/>
     </HBox>
     
-    <!-- Search Bar -->
+    
     <HBox styleClass="card" spacing="15" alignment="CENTER_LEFT">
         <padding>
             <Insets top="15" right="15" bottom="15" left="15"/>
@@ -34,7 +34,7 @@
         <Button text="🔄 Refresh" styleClass="btn, btn-secondary" onAction="#handleRefresh"/>
     </HBox>
     
-    <!-- Suppliers Table -->
+    
     <VBox styleClass="card" VBox.vgrow="ALWAYS">
         <padding>
             <Insets top="15" right="15" bottom="15" left="15"/>

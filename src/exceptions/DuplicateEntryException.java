@@ -1,8 +1,6 @@
 package exceptions;
 
-/**
- * Exception thrown when attempting to create a duplicate entry
- */
+ 
 public class DuplicateEntryException extends Exception {
     
     private String entityType;

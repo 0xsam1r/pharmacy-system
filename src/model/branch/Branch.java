@@ -9,7 +9,7 @@ import model.people.Employee;
 import model.Product.Inventory;
 import model.finance.Transaction;
 import model.finance.Treasury;
-//import model.finance.ReportGenerator; // Assuming Report is generated from ReportGenerator or similar; adjust if Report is a separate class
+ 
 
 public class Branch {
     private String id;
@@ -17,9 +17,9 @@ public class Branch {
     private String address;
     private List<Employee> employees;
     private Inventory inventory;
-    private Treasury treasury; // added to imporove 
+    private Treasury treasury;  
     private List<Transaction> transactions;
-    // Constructor
+     
 
     public Branch(String id, String name, String address, List<Employee> employees, Inventory inventory, Treasury treasury, List<Transaction> transactions) {
         this.id = id;
@@ -59,7 +59,7 @@ public class Branch {
         this.transactions = null;
     }
 
-    // Getters and Setters
+     
     public String getId() {
         return id;
     }
@@ -100,7 +100,7 @@ public class Branch {
         this.inventory = inventory;
     }
 
-    // Methods
+     
     public void addEmployee(Employee employee) {
        if( employees.contains(employee))
             System.out.println("error that employee was exiset");
@@ -111,11 +111,11 @@ public class Branch {
         employees.removeIf(emp -> emp.getId().equals(employeeId));
     }
 
-//    public ReportGenerator.Report getInventoryReport() {
-//        // Assuming ReportGenerator has a static method or instance to generate report
-//        // Adjust based on actual ReportGenerator implementation
-//        return ReportGenerator.generateInventoryReport(this.inventory);
-//    }
+ 
+ 
+ 
+ 
+ 
 
     public Treasury getTreasury() {
         return treasury;

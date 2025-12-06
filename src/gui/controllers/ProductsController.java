@@ -24,9 +24,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.layout.GridPane;
 
-/**
- * Controller for Products Management View
- */
+ 
 public class ProductsController implements Initializable {
     
     @FXML private TextField searchField;
@@ -34,7 +32,7 @@ public class ProductsController implements Initializable {
     @FXML private TableView<ProductData> productsTable;
     @FXML private Label productCountLabel;
     
-    // Table Columns
+     
     @FXML private TableColumn<ProductData, String> colBarcode;
     @FXML private TableColumn<ProductData, String> colName;
     @FXML private TableColumn<ProductData, String> colCategory;
@@ -51,7 +49,7 @@ public class ProductsController implements Initializable {
             loadCategories();
             loadProducts();
             
-            // Add listener for category filter
+             
             if (categoryComboBox != null) {
                 categoryComboBox.setOnAction(event -> handleCategoryFilter());
             }
@@ -60,9 +58,9 @@ public class ProductsController implements Initializable {
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && !newValue.trim().isEmpty()) {
-                handleSearch();  // Basic Search
+                handleSearch();   
             } else {
-                 productsTable.setItems(productsList); // Reset if empty
+                 productsTable.setItems(productsList);  
                  updateProductCount();
             }
         });
@@ -86,7 +84,7 @@ private void setupAutocompletion() {
         }
 
         List<String> matches = new ArrayList<>();
-        // Search in local list first for speed
+         
         for (ProductData p : productsList) {
             if (p.getName().toLowerCase().contains(newValue.toLowerCase())) {
                 matches.add(p.getName());
@@ -95,7 +93,7 @@ private void setupAutocompletion() {
         
         if (!matches.isEmpty()) {
             suggestionsPopup.getItems().clear();
-            // Limit to 10
+             
             for (int i = 0; i < Math.min(matches.size(), 10); i++) {
                 String match = matches.get(i);
                 MenuItem item = new MenuItem(match);
@@ -114,7 +112,7 @@ private void setupAutocompletion() {
         }
     });
 
-    // Hide popup when focus lost
+     
     searchField.focusedProperty().addListener((obs, oldVal, newVal) -> {
         if (!newVal) suggestionsPopup.hide();
     });
@@ -127,7 +125,7 @@ private void setupAutocompletion() {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
         
-        // Add action buttons column
+         
         colActions.setCellFactory(param -> new TableCell<>() {
             private final Button editBtn = new Button("✏️ Edit");
             private final Button deleteBtn = new Button("🗑️");
@@ -168,7 +166,7 @@ private void setupAutocompletion() {
             ObservableList<String> categories = FXCollections.observableArrayList();
             categories.add("All Categories");
             
-            // Load categories from database
+             
             String query = "SELECT name FROM category ORDER BY name";
             try (Connection conn = DB.DBConnection.getConnection();
                  Statement stmt = conn.createStatement();
@@ -182,7 +180,7 @@ private void setupAutocompletion() {
                 }
             } catch (SQLException e) {
                 ExceptionLogger.logException(e, "Error fetching categories from database");
-                // Fallback to default categories if database query fails
+                 
                 categories.add("Medicine");
                 categories.add("Cosmetic");
             }
@@ -212,7 +210,7 @@ private void setupAutocompletion() {
                     product.setBarcode(rs.getString("parcode"));
                     product.setName(rs.getString("Name"));
                     product.setPrice(rs.getDouble("Price"));
-                    product.setUnit(rs.getInt("Uints")); // Units per product from database
+                    product.setUnit(rs.getInt("Uints"));  
                     product.setCategory(rs.getString("category"));
                     
                     productsList.add(product);
@@ -237,23 +235,23 @@ private void setupAutocompletion() {
     @FXML
     private void handleAddProduct() {
         try {
-            // Create dialog for adding new product
+             
             Dialog<ProductData> dialog = createProductDialog("Add New Product", null);
             
             Optional<ProductData> result = dialog.showAndWait();
             result.ifPresent(product -> {
                 try {
-                    // Validate product data
+                     
                     validateProduct(product);
                     
-                    // Get category ID from category name
+                     
                     int categoryId = getCategoryIdByName(product.getCategory());
                     if (categoryId == -1) {
                         showError("Category Error", "Invalid category selected");
                         return;
                     }
                     
-                    // Add to database
+                     
                     boolean success = DB_operation.addProduct(
                         product.getBarcode(),
                         product.getName(),
@@ -293,7 +291,7 @@ private void setupAutocompletion() {
                 try {
                     validateProduct(editedProduct);
                     
-                    // Update in database
+                     
                     boolean success = DB_operation.updateProductPrice(
                         editedProduct.getBarcode(),
                         editedProduct.getPrice()
@@ -330,7 +328,7 @@ private void setupAutocompletion() {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        // TODO: Implement delete in DB_operation
+                         
                         showSuccess("Product deleted successfully!");
                         loadProducts();
                         ExceptionLogger.logInfo("Product deleted: " + product.getName());
@@ -347,7 +345,7 @@ private void setupAutocompletion() {
         }
     }
     
-    @FXML private TextField activeIngredientSearchField; // New field for Active Ingredient
+    @FXML private TextField activeIngredientSearchField;  
 
     @FXML
     private void handleSearch() {
@@ -375,10 +373,10 @@ private void setupAutocompletion() {
             return;
         }
         
-        // Search in DB since active ingredient is not in ProductData model by default usually
-        // We need to query: product -> medicine -> medicine_has_dosage_form -> dosage_form (active_ing)
-        // Or simpler schema depending on DB. From SalesController we saw:
-        // product p JOIN medicine m ON ... JOIN medicine_has_dosage_form md ... JOIN dosage_form d WHERE d.active_ing LIKE ?
+         
+         
+         
+         
         
         try {
             ObservableList<ProductData> ingredientMatches = FXCollections.observableArrayList();
@@ -403,7 +401,7 @@ private void setupAutocompletion() {
                     product.setUnit(rs.getInt("Uints"));
                     product.setCategory(rs.getString("category"));
                     
-                    // Avoid duplicates if multiple dosage forms match
+                     
                     boolean exists = false;
                     for(ProductData existing : ingredientMatches) {
                         if(existing.getBarcode().equals(product.getBarcode())) { exists = true; break; }
@@ -426,7 +424,7 @@ private void setupAutocompletion() {
         String category = categoryComboBox.getValue();
         
         if (category == null || category.equals("All Categories")) {
-            handleSearch(); // Apply search filter
+            handleSearch();  
         } else {
             ObservableList<ProductData> filtered = productsList.filtered(product ->
                 product.getCategory() != null && product.getCategory().equalsIgnoreCase(category)
@@ -445,7 +443,7 @@ private void setupAutocompletion() {
     
     @FXML
     private void handleExport() {
-        // TODO: Implement export functionality
+         
         showInfo("Export", "Export functionality coming soon!");
     }
     
@@ -468,7 +466,7 @@ private void setupAutocompletion() {
         TextField unitField = new TextField();
         ComboBox<String> categoryCombo = new ComboBox<>();
         
-        // Load categories from database
+         
         try {
             ObservableList<String> categories = FXCollections.observableArrayList();
             String query = "SELECT ID, name FROM category ORDER BY name";
@@ -605,13 +603,13 @@ private void setupAutocompletion() {
         alert.showAndWait();
     }
     
-    // Product Data Model
+     
     public static class ProductData {
         private SimpleStringProperty barcode = new SimpleStringProperty();
         private SimpleStringProperty name = new SimpleStringProperty();
         private SimpleStringProperty category = new SimpleStringProperty();
         private SimpleDoubleProperty price = new SimpleDoubleProperty();
-        private int unit; // Units per product
+        private int unit;  
         
         public String getBarcode() { return barcode.get(); }
         public void setBarcode(String value) { barcode.set(value); }

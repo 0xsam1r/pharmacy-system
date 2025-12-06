@@ -21,9 +21,7 @@ import java.sql.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/**
- * Controller for Inventory Management View
- */
+ 
 public class InventoryController implements Initializable {
 
     @FXML private TextField searchField;
@@ -106,7 +104,7 @@ public class InventoryController implements Initializable {
         try {
             inventoryList.clear();
             
-            // Assuming Inventory_ID = 1 for main branch
+             
             String query = "SELECT p.parcode, p.Name, i.Quntaty, i.reordr_level " +
                           "FROM product p " +
                           "LEFT JOIN inventory_has_product i ON p.parcode = i.Product_parcode " +
@@ -122,7 +120,7 @@ public class InventoryController implements Initializable {
                     item.setName(rs.getString("Name"));
                     
                     double qty = rs.getDouble("Quntaty");
-                    // Handle NULL quantity (product exists but not in inventory table yet)
+                     
                     if (rs.wasNull()) qty = 0;
                     
                     item.setQuantity(qty);
@@ -143,10 +141,10 @@ public class InventoryController implements Initializable {
     
     @FXML
     private void handleAddStock() {
-        // Dialog to add new product to inventory or update existing
-        // For simplicity, we'll just show update dialog for now or a simple add dialog
-        // Since we are listing ALL products (LEFT JOIN), "Add Stock" is effectively "Update Stock" for 0 qty items
-        // But let's make a dialog that allows entering barcode manually
+         
+         
+         
+         
         
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Add Stock");
@@ -154,9 +152,9 @@ public class InventoryController implements Initializable {
         dialog.setContentText("Barcode:");
         
         dialog.showAndWait().ifPresent(barcode -> {
-            // Check if product exists
+             
             if (DB_operation.isProductExist(barcode)) {
-                // Find item in list or create new
+                 
                 InventoryItem item = inventoryList.stream()
                         .filter(i -> i.getBarcode().equals(barcode))
                         .findFirst()
@@ -165,7 +163,7 @@ public class InventoryController implements Initializable {
                 if (item != null) {
                     handleUpdateStock(item);
                 } else {
-                    // Should not happen if we load all products, but just in case
+                     
                     showError("Error", "Product found but not in list. Try refreshing.");
                 }
             } else {
@@ -210,16 +208,16 @@ public class InventoryController implements Initializable {
             try {
                 int newReorder = Integer.parseInt(reorderField.getText());
                 
-                // Check if record exists in inventory_has_product
+                 
                 if (recordExists(item.getBarcode())) {
                      if (DB_operation.updateInventoryQuantity(1, item.getBarcode(), newQty)) {
-                         // Also update reorder level (custom query needed as DB_operation might not have it)
+                          
                          updateReorderLevel(1, item.getBarcode(), newReorder);
                          showSuccess("Stock updated successfully");
                          loadInventory();
                      }
                 } else {
-                    // Insert new record
+                     
                     if (DB_operation.addInventoryProduct(1, item.getBarcode(), newQty, newReorder)) {
                         showSuccess("Stock added successfully");
                         loadInventory();
@@ -232,7 +230,7 @@ public class InventoryController implements Initializable {
     }
     
     private boolean recordExists(String barcode) {
-        // Helper to check if inventory record exists
+         
         String sql = "SELECT COUNT(*) FROM inventory_has_product WHERE Inventory_ID = 1 AND Product_parcode = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

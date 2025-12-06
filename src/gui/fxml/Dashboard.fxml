@@ -9,7 +9,7 @@
             styleClass="dashboard-container" 
             prefWidth="1400" prefHeight="900">
     
-    <!-- Top Menu Bar -->
+    
     <top>
         <MenuBar>
             <Menu text="File">
@@ -23,10 +23,10 @@
         </MenuBar>
     </top>
     
-    <!-- Left Sidebar -->
+    
     <left>
         <VBox styleClass="sidebar" prefWidth="220" spacing="0">
-            <!-- Logo/Title -->
+            
             <VBox alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #1a252f;">
                 <Label text="PMS" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
                 <Label text="Pharmacy System" style="-fx-text-fill: #95a5a6; -fx-font-size: 12px;"/>
@@ -34,7 +34,7 @@
             
             <Separator style="-fx-background-color: #34495e;"/>
             
-            <!-- Navigation Buttons (Scrollable) -->
+            
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" 
                         style="-fx-background-color: #2c3e50; -fx-background: #2c3e50;" VBox.vgrow="ALWAYS">
                 <content>
@@ -67,7 +67,7 @@
                 </content>
             </ScrollPane>
             
-            <!-- User Info at Bottom -->
+            
             <VBox style="-fx-padding: 15; -fx-background-color: #1a252f;" spacing="8">
                 <Label fx:id="userLabel" text="Welcome, User" 
                        style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;" wrapText="true" maxWidth="190"/>
@@ -77,13 +77,13 @@
         </VBox>
     </left>
     
-    <!-- Center Content Area -->
+    
     <center>
         <StackPane fx:id="contentArea" styleClass="content-area">
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
-            <!-- <Label text="Dashboard Loaded (Simplified Version)" style="-fx-font-size: 24px;"/> -->
+            
             <javafx.scene.image.ImageView preserveRatio="true" fitHeight="600">
                  <image>
                      <javafx.scene.image.Image url="@../images/dashboard_welcome.jpeg"/>

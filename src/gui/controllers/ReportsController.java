@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
-//import javafx.scene.layout.TabPane;
+ 
 import javafx.util.Duration;
 import model.finance.AlertSystem;
 import model.finance.ReportGenerator;
@@ -24,9 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
-/**
- * Controller for Reports and Analytics View
- */
+ 
 public class ReportsController implements Initializable {
     
     @FXML private DatePicker salesReportDate;
@@ -41,16 +39,16 @@ public class ReportsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            // Set default dates to today
+             
             salesReportDate.setValue(LocalDate.now());
             profitReportDate.setValue(LocalDate.now());
             
             loadRecentReports();
             
-            // Check alerts on startup
+             
             checkAlertsAutomatically();
             
-            // Setup automatic alert checking every 6 hours
+             
             setupPeriodicAlertCheck();
             
             ExceptionLogger.logInfo("Reports view initialized");
@@ -60,7 +58,7 @@ public class ReportsController implements Initializable {
     }
     
     private void setupPeriodicAlertCheck() {
-        // Create timeline that runs every 6 hours (21,600,000 milliseconds)
+         
         alertCheckTimeline = new Timeline(new KeyFrame(Duration.hours(6), event -> {
             checkAlertsAutomatically();
         }));
@@ -77,7 +75,7 @@ public class ReportsController implements Initializable {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             lastAlertCheckLabel.setText("Last checked: " + LocalDateTime.now().format(formatter));
             
-            // Update button text with alert count
+             
             if (alerts.isEmpty()) {
                 checkAlertsButton.setText("🔔 Check System Alerts (0)");
             } else {
@@ -140,16 +138,16 @@ public class ReportsController implements Initializable {
             
             String dateStr = date.toString();
             
-            // Generate the graph using ReportGenerator (saves as PNG)
+             
             ReportGenerator.generateProfitGraph(dateStr);
             
-            // Load the generated image
+             
             String imagePath = "reports/profit_graph_" + dateStr + ".png";
             File imageFile = new File(imagePath);
             
             if (imageFile.exists()) {
                 javafx.scene.image.Image image = new javafx.scene.image.Image(imageFile.toURI().toString());
-                // Open in a new Popup Window
+                 
                 javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView(image);
                 imageView.setPreserveRatio(true);
                 imageView.setFitWidth(800);
@@ -199,10 +197,10 @@ public class ReportsController implements Initializable {
                     alertText.append("• ").append(alert).append("\n");
                 }
                 
-                // Display in output area
+                 
                 reportOutputArea.setText(alertText.toString());
                 
-                // Also show dialog
+                 
                 Alert alertDialog = new Alert(Alert.AlertType.WARNING);
                 alertDialog.setTitle("System Alerts");
                 alertDialog.setHeaderText("Active Alerts (" + alerts.size() + ")");
@@ -245,7 +243,7 @@ public class ReportsController implements Initializable {
         try {
             ObservableList<String> reports = FXCollections.observableArrayList();
             
-            // Load actual report files from reports directory
+             
             File reportsDir = new File("reports");
             if (reportsDir.exists() && reportsDir.isDirectory()) {
                 File[] reportFiles = reportsDir.listFiles((dir, name) -> 

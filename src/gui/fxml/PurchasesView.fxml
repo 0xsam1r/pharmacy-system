@@ -14,13 +14,13 @@
     
     <HBox spacing="20" VBox.vgrow="ALWAYS">
         
-        <!-- Left Side: Purchase Items -->
+        
         <VBox spacing="15" HBox.hgrow="ALWAYS" styleClass="card">
             <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
             
             <Label text="New Purchase (Stock In)" styleClass="label-header"/>
             
-            <!-- Invoice Header Info -->
+            
             <GridPane hgap="15" vgap="10">
                 <Label text="Supplier:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                 <ComboBox fx:id="supplierCombo" promptText="Select Supplier" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="250"/>
@@ -34,11 +34,11 @@
             
             <Separator/>
             
-            <!-- Add New Item Section (Split into 2 rows for better visibility) -->
+            
             <Label text="Add Item Details" style="-fx-font-weight: bold; -fx-text-fill: #3498db;"/>
             
             <GridPane hgap="15" vgap="15">
-                <!-- Row 1: Product Basics -->
+                
                 <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
                     <Label text="Product Barcode:"/>
                     <TextField fx:id="barcodeField" promptText="Scan/Enter Barcode"/>
@@ -54,7 +54,7 @@
                     <ComboBox fx:id="batchCombo" promptText="Select/Type Batch" editable="true" prefWidth="150"/>
                 </VBox>
                 
-                <!-- Row 2: Details & Action -->
+                
                 <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
                     <Label text="Expiry Date:"/>
                     <DatePicker fx:id="expiryDate" maxWidth="Infinity"/>
@@ -90,7 +90,7 @@
             </TableView>
         </VBox>
         
-        <!-- Right Side: Purchase Summary (Wider) -->
+        
         <VBox spacing="15" prefWidth="380" minWidth="380" styleClass="card">
             <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
             

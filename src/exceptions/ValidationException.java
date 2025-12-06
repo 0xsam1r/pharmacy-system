@@ -1,8 +1,6 @@
 package exceptions;
 
-/**
- * Exception thrown when data validation fails
- */
+ 
 public class ValidationException extends Exception {
     
     private String fieldName;

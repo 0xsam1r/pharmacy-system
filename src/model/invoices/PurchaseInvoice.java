@@ -1,4 +1,4 @@
-// model/invoices/PurchaseInvoice.java
+ 
 
 package model.invoices;
 

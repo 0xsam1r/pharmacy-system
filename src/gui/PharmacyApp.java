@@ -8,9 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import util.ExceptionLogger;
 
-/**
- * Main JavaFX Application Entry Point
- */
+ 
 public class PharmacyApp extends Application {
     
     private static Stage primaryStageObj;
@@ -20,7 +18,7 @@ public class PharmacyApp extends Application {
         try {
             primaryStageObj = primaryStage;
             
-            // Load login screen
+             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/LoginScreen.fxml"));
             Parent root = loader.load();
             
@@ -32,14 +30,14 @@ public class PharmacyApp extends Application {
             primaryStage.setMinWidth(1000);
             primaryStage.setMinHeight(700);
             
-            // Set icon (optional)
+             
             try {
                 primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/gui/images/icon.png")));
             } catch (Exception e) {
-                // Icon not found, continue without it
+                 
             }
             
-            // Add exit confirmation dialog
+             
             primaryStage.setOnCloseRequest(event -> {
                 javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Exit Confirmation");
@@ -50,7 +48,7 @@ public class PharmacyApp extends Application {
                 if (result.isPresent() && result.get() == javafx.scene.control.ButtonType.OK) {
                     ExceptionLogger.logInfo("Application closed by user");
                 } else {
-                    event.consume(); // Cancel the close request
+                    event.consume();  
                 }
             });
             

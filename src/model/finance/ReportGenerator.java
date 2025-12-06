@@ -213,7 +213,7 @@ public class ReportGenerator {
     }
 
     private static double getTotalSales(Connection conn, LocalDate date) throws SQLException {
-        // Updated to use the total price stored in the invoice header (more accurate & faster)
+         
         String sql = """
             SELECT COALESCE(SUM(i.price), 0)
             FROM invoice i

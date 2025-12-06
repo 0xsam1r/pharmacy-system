@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DB_operation {
 
-     /* ------------------ Helper existence checks ------------------ */
+      
 
     public static boolean isPersonExist(String id) {
         String sql = "SELECT COUNT(*) FROM person WHERE ID = ?";
@@ -135,7 +135,7 @@ public class DB_operation {
         return false;
     }
 
-    /* ------------------ Person / Customer operations ------------------ */
+     
 
     public static boolean addPersonIfNotExist(String id, String phone, String name) {
         if (isPersonExist(id)) {
@@ -181,7 +181,7 @@ public class DB_operation {
     }
 
     public static boolean addCustomer(Customer c) {
-        // uses transaction: insert person then customer
+         
         if (isPersonExist(c.getId())) {
             System.err.println("addCustomer: person already exists -> " + c.getId());
             return false;
@@ -211,10 +211,10 @@ public class DB_operation {
             return true;
         } catch (SQLException e) {
             System.err.println("addCustomer error (rollback): " + e.getMessage());
-            if (conn != null) try { conn.rollback(); } catch (SQLException ex) { /* ignore */ }
+            if (conn != null) try { conn.rollback(); } catch (SQLException ex) {   }
             return false;
         } finally {
-            if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException ex) { /* ignore */ }
+            if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException ex) {   }
         }
     }
 
@@ -235,7 +235,7 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ Employee operations ------------------ */
+     
 
     public static boolean addEmployee(Employee e) {
         if (isPersonExist(e.getId())) {
@@ -291,10 +291,10 @@ public class DB_operation {
             return true;
         } catch (SQLException ex) {
             System.err.println("addEmployee error (rollback): " + ex.getMessage());
-            if (conn != null) try { conn.rollback(); } catch (SQLException r) { /* ignore */ }
+            if (conn != null) try { conn.rollback(); } catch (SQLException r) {   }
             return false;
         } finally {
-            if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException ex) { /* ignore */ }
+            if (conn != null) try { conn.setAutoCommit(true); conn.close(); } catch (SQLException ex) {   }
         }
     }
 
@@ -340,7 +340,7 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ Product / Batch operations ------------------ */
+     
 
     public static boolean addProduct(String parcode, String name, double price, int units, int categoryId) {
         if (isProductExist(parcode)) {
@@ -413,11 +413,11 @@ public class DB_operation {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Product p = new Product();
-                // Product class fields are protected; set via reflection or add setters.
-                // Here assuming setters exist for demonstration (if not, adapt to your Product constructors).
+                 
+                 
                 p.setPrice(rs.getDouble("Price"));
                 p.setUnitsPerProduct(rs.getInt("Uints"));
-                // p.setParcode(rs.getString("parcode")); // adapt if setter exists
+                 
                 return p;
             }
         } catch (SQLException e) {
@@ -426,7 +426,7 @@ public class DB_operation {
         return null;
     }
 
-    /* ------------------ Supplier operations ------------------ */
+     
 
     public static boolean addSupplier(String name, String phone, String adress) {
         if (isSupplierExist(name, phone)) {
@@ -465,7 +465,7 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ Invoice operations (basic) ------------------ */
+     
 
     public static boolean addInvoice(int id, Date date, double price, String employeeUser, String employeePersonId, int employeeBranchId) {
         if (isInvoiceExist(id)) {
@@ -541,7 +541,7 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ Inventory operations (basic) ------------------ */
+     
 
     public static boolean addInventory(int branshId) {
         if (!isBranchExist(branshId)) {
@@ -594,7 +594,7 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ Utility search helpers ------------------ */
+     
 
     public static List<String> searchProductsByName(String keyword) {
         List<String> results = new ArrayList<>();
@@ -738,12 +738,12 @@ public class DB_operation {
         return false;
     }
 
-    /* ------------------ category ------------------ */
+     
 
     public static boolean addCategory(String name) {
         if (isCategoryExistByName(name)) {
             System.err.println("addCategory: category exists -> " + name);
-            return false; // strict
+            return false;  
         }
         String sql = "INSERT INTO category (name) VALUES (?)";
         try (Connection conn = DBConnection.getConnection();
@@ -777,7 +777,7 @@ public class DB_operation {
         }
         if (isCategoryExistByName(newName)) {
             System.err.println("updateCategoryName: new name already exists -> " + newName);
-            return false; // strict avoid duplicates
+            return false;  
         }
         String sql = "UPDATE category SET name = ? WHERE ID = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -791,7 +791,7 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ dosage_form ------------------ */
+     
 
     public static boolean addDosageForm(int id, String activeIngredient) {
         if (isDosageFormExist(id)) {
@@ -841,11 +841,11 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ medicine_has_dosage_form ------------------ */
-    // strict: refuse if relation exists
+     
+     
 
     public static boolean addMedicineDosageForm(String medicineParcode, int dosageFormId, double strength) {
-        // validate existence of medicine & dosage form
+         
         if (!isProductExist(medicineParcode) || !isMedicineExist(medicineParcode)) {
             System.err.println("addMedicineDosageForm: medicine not found -> " + medicineParcode);
             return false;
@@ -856,7 +856,7 @@ public class DB_operation {
         }
         if (isMedicineDosageExist(medicineParcode, dosageFormId)) {
             System.err.println("addMedicineDosageForm: relation already exists -> " + medicineParcode + " / " + dosageFormId);
-            return false; // strict
+            return false;  
         }
         String sql = "INSERT INTO medicine_has_dosage_form (medicine_Product_parcode, dosage_form_ID, Strength) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
@@ -904,8 +904,8 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ supplier_has_product ------------------ */
-    // strict mode — don't add duplicates
+     
+     
 
     public static boolean addSupplierProduct(String supplierName, String supplierPhone, String productParcode) {
         if (!isSupplierExist(supplierName, supplierPhone)) {
@@ -918,7 +918,7 @@ public class DB_operation {
         }
         if (isSupplierHasProductExist(supplierName, supplierPhone, productParcode)) {
             System.err.println("addSupplierProduct: relation exists -> " + supplierName + " / " + productParcode);
-            return false; // strict
+            return false;  
         }
         String sql = "INSERT INTO supplier_has_product (Supplier_nane, Supplier_phone, Product_parcode) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
@@ -968,8 +968,8 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ invoice_has_product ------------------ */
-    // strict: refuse if duplicate
+     
+     
 
     public static boolean addInvoiceHasProduct(int invoiceId, String productParcode, double units) {
         if (!isInvoiceExist(invoiceId)) {
@@ -982,7 +982,7 @@ public class DB_operation {
         }
         if (isInvoiceHasProductExist(invoiceId, productParcode)) {
             System.err.println("addInvoiceHasProduct: relation exists -> " + invoiceId + " / " + productParcode);
-            return false; // strict
+            return false;  
         }
         String sql = "INSERT INTO invoice_has_product (Invoice_ID, Product_parcode, units) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
@@ -1030,8 +1030,8 @@ public class DB_operation {
         }
     }
 
-    /* ------------------ purchase_invoce_has_batch ------------------ */
-    // strict mode: refuse duplicate relation
+     
+     
 
     public static boolean addPurchaseInvoiceHasBatch(int purchaseInvoiceId, String batchNumber, String productParcode, int quantity) {
         if (!isInvoiceExist(purchaseInvoiceId)) {
@@ -1044,17 +1044,17 @@ public class DB_operation {
         }
         if (isPurchaseInvoiceHasBatchExist(purchaseInvoiceId, batchNumber, productParcode)) {
             System.err.println("addPurchaseInvoiceHasBatch: relation exists -> " + purchaseInvoiceId + " / " + batchNumber);
-            return false; // strict
+            return false;  
         }
         String sql = "INSERT INTO purchase_invoce_has_batch (purchase_invoce_Invoice_ID, Batch_Batch_number, Batch_Product_parcode) VALUES (?, ?, ?)";
-        // Note: schema has optional column purchase_invoce_has_Batchcol (nullable default NULL) — we skip it
+         
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, purchaseInvoiceId);
             ps.setString(2, batchNumber);
             ps.setString(3, productParcode);
             ps.executeUpdate();
-            // If you want to record quantity in another table, do it separately (schema doesn't include quantity column here)
+             
             return true;
         } catch (SQLException e) {
             System.err.println("addPurchaseInvoiceHasBatch error: " + e.getMessage());

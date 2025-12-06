@@ -1,8 +1,6 @@
 package exceptions;
 
-/**
- * Custom exception for database-related errors
- */
+ 
 public class DatabaseException extends Exception {
     
     private String errorCode;
