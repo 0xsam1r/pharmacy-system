@@ -17999,6 +17999,17 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.Label.setTex
 [INFO] 2025-12-06 19:31:19 - Inventory view initialized
 =======
 >>>>>>> 2ca183344374f8bc294748a7c5790d3da752bdef
+<<<<<<< HEAD
+[INFO] 2025-12-06 19:30:17 - Application started successfully
+[INFO] 2025-12-06 19:30:34 - Session started for user: manager1 (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 19:30:34 - User logged in successfully: manager1
+[INFO] 2025-12-06 19:30:34 - Attempting to load dashboard
+[INFO] 2025-12-06 19:30:34 - Dashboard initialized successfully
+[INFO] 2025-12-06 19:30:35 - Dashboard displayed successfully
+[INFO] 2025-12-06 19:30:36 - Inventory view initialized
+[INFO] 2025-12-06 19:30:38 - Products view initialized
+[INFO] 2025-12-06 19:31:00 - Employees view initialized
+=======
 >>>>>>> ad2a01120510df4bdbb5787a07ba1097f824a54b
 [INFO] 2025-12-06 20:00:20 - Application closed by user
 [INFO] 2025-12-06 20:00:25 - Application started successfully
@@ -18172,4 +18183,8 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 [INFO] 2025-12-06 20:01:11 - Employees view initialized
 [INFO] 2025-12-06 20:01:13 - Inventory view initialized
 [INFO] 2025-12-06 20:01:14 - Products view initialized
+<<<<<<< HEAD
 [INFO] 2025-12-06 20:02:51 - Application closed by user
+=======
+>>>>>>> 964aee984e2cba9848bb3162127e289b05098c1e
+>>>>>>> 725fee0856e852b620359c009458afb6607a85e9
