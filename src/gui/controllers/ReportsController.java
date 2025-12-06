@@ -127,7 +127,7 @@ public class ReportsController implements Initializable {
         }
     }
     
-    @FXML private StackPane chartContainer;
+
     
     @FXML
     private void handleGenerateProfitGraph() {
@@ -149,18 +149,20 @@ public class ReportsController implements Initializable {
             
             if (imageFile.exists()) {
                 javafx.scene.image.Image image = new javafx.scene.image.Image(imageFile.toURI().toString());
+                // Open in a new Popup Window
                 javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView(image);
                 imageView.setPreserveRatio(true);
-                imageView.setFitWidth(600);
-                imageView.setFitHeight(400);
+                imageView.setFitWidth(800);
+                imageView.setFitHeight(600);
                 
-                chartContainer.getChildren().clear();
-                chartContainer.getChildren().add(imageView);
+                StackPane root = new StackPane(imageView);
+                root.setPadding(new javafx.geometry.Insets(10));
                 
-                // Switch to graph tab
-                if (chartContainer.getParent().getParent() instanceof TabPane) {
-                    ((TabPane) chartContainer.getParent().getParent()).getSelectionModel().select(1);
-                }
+                javafx.scene.Scene scene = new javafx.scene.Scene(root);
+                javafx.stage.Stage stage = new javafx.stage.Stage();
+                stage.setTitle("Profit Graph - " + dateStr);
+                stage.setScene(scene);
+                stage.show();
                 
                 showSuccess("Graph generated successfully!");
                 loadRecentReports();

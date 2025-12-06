@@ -63,13 +63,8 @@
         
         <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
             <Tab text="Text Report">
-                <TextArea fx:id="reportOutputArea" editable="false" wrapText="true"
+                <TextArea fx:id="reportOutputArea" editable="false" wrapText="true" prefHeight="500"
                           style="-fx-font-family: 'Courier New'; -fx-font-size: 12px;"/>
-            </Tab>
-            <Tab text="Visual Graph">
-                <StackPane fx:id="chartContainer">
-                    <Label text="Generate a profit graph to view chart" style="-fx-text-fill: #95a5a6;"/>
-                </StackPane>
             </Tab>
         </TabPane>
     </VBox>

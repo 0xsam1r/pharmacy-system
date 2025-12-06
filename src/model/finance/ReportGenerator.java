@@ -84,12 +84,12 @@ public class ReportGenerator {
                 i.ID, 
                 i.date, 
                 COALESCE(si.Discount, 0) AS Discount,
-                per.name AS customer_name,
+                COALESCE(per.name, 'Walk-in') AS customer_name,
                 p.Name AS product_name,
                 (ihp.units * (p.Price / CASE WHEN p.Uints > 0 THEN p.Uints ELSE 1 END)) AS line_total,
                 emp.User_name
             FROM invoice i
-            JOIN sell_invoice si ON i.ID = si.Invoice_ID
+            LEFT JOIN sell_invoice si ON i.ID = si.Invoice_ID
             LEFT JOIN customer c ON si.Customer_Person_ID = c.Person_ID
             LEFT JOIN person per ON c.Person_ID = per.ID
             LEFT JOIN employee emp ON i.employee_User_name = emp.User_name 
@@ -130,7 +130,7 @@ public class ReportGenerator {
                             invId,
                             rs.getDate("date"),
                             rs.getDouble("Discount"),
-                            rs.getString("customer_name") != null ? rs.getString("customer_name") : "Walk-in"));
+                            rs.getString("customer_name")));
                     currentInvoice = invId;
                 }
 
@@ -217,8 +217,8 @@ public class ReportGenerator {
         String sql = """
             SELECT COALESCE(SUM(i.price), 0)
             FROM invoice i
-            JOIN sell_invoice si ON i.ID = si.Invoice_ID
             WHERE i.date >= ? AND i.date <= ?
+            AND EXISTS (SELECT 1 FROM invoice_has_product ihp WHERE ihp.Invoice_ID = i.ID)
             """;
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
