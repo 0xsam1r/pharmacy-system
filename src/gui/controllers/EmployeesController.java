@@ -62,8 +62,8 @@ public class EmployeesController implements Initializable {
         colStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         
         colActions.setCellFactory(param -> new TableCell<>() {
-            private final Button editBtn = new Button("✏️ Edit");
-            private final Button deleteBtn = new Button("🗑️");
+            private final Button editBtn = new Button("Edit");
+            private final Button deleteBtn = new Button("Delete");
             
             {
                 editBtn.setOnAction(event -> {

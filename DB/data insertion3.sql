@@ -175,33 +175,44 @@ INSERT INTO medicine_has_dosage_form VALUES ('622014', 4, 10);
 -- ==========================================
 -- 7. BATCHES (FEFO Logic)
 -- ==========================================
--- Panadol: Mix of old (expiring soon) and new
-INSERT INTO batch VALUES ('B-PAN-001', 30.0, DATE_ADD(CURRENT_DATE, INTERVAL 1 MONTH), 50, '622001'); -- Expiring SOON
-INSERT INTO batch VALUES ('B-PAN-002', 32.0, DATE_ADD(CURRENT_DATE, INTERVAL 2 YEAR), 150, '622001'); -- Fresh
+-- Panadol (622001): 50 + 150 = 200 Total
+INSERT INTO batch VALUES ('B-PAN-001', 30.0, DATE_ADD(CURRENT_DATE, INTERVAL 1 MONTH), 50, '622001');
+INSERT INTO batch VALUES ('B-PAN-002', 32.0, DATE_ADD(CURRENT_DATE, INTERVAL 2 YEAR), 150, '622001');
 
--- Brufen: Solid stock
+-- Brufen (622002): 100 Total
 INSERT INTO batch VALUES ('B-BRU-100', 25.0, DATE_ADD(CURRENT_DATE, INTERVAL 1 YEAR), 100, '622002');
 
--- Augmentin: Low stock
+-- Cataflam (622003): 0 Total (Stock Out)
+
+-- Augmentin (622004): 15 Total
 INSERT INTO batch VALUES ('B-AUG-055', 70.0, DATE_ADD(CURRENT_DATE, INTERVAL 6 MONTH), 15, '622004');
 
--- Chronic Meds (Stable)
+-- Zithromax (622005): 0 Total
+
+-- Lipitor (622006): 60 Total
 INSERT INTO batch VALUES ('B-LIP-222', 90.0, DATE_ADD(CURRENT_DATE, INTERVAL 18 MONTH), 60, '622006');
+
+-- Glucophage (622007): 200 Total
 INSERT INTO batch VALUES ('B-GLU-333', 40.0, DATE_ADD(CURRENT_DATE, INTERVAL 18 MONTH), 200, '622007');
 
--- Insulin (Frige item)
+-- Insulin (622008): 10 Total
 INSERT INTO batch VALUES ('B-INS-001', 350.0, DATE_ADD(CURRENT_DATE, INTERVAL 5 MONTH), 10, '622008');
 
--- Cosmetics (Long expiry)
-INSERT INTO batch VALUES ('B-NIV-999', 45.0, DATE_ADD(CURRENT_DATE, INTERVAL 3 YEAR), 50, '622011');
-INSERT INTO batch VALUES ('B-REX-888', 35.0, DATE_ADD(CURRENT_DATE, INTERVAL 3 YEAR), 40, '622012');
-
--- Vitamins (One near expiry discount candidate?)
-INSERT INTO batch VALUES ('B-VITC-01', 15.0, DATE_ADD(CURRENT_DATE, INTERVAL 1 WEEK), 20, '622009'); -- Expiring VERY SOON
+-- C-Retard (622009): 20 + 100 = 120 Total
+INSERT INTO batch VALUES ('B-VITC-01', 15.0, DATE_ADD(CURRENT_DATE, INTERVAL 1 WEEK), 20, '622009');
 INSERT INTO batch VALUES ('B-VITC-02', 18.0, DATE_ADD(CURRENT_DATE, INTERVAL 1 YEAR), 100, '622009');
 
--- Zyrtec (Stock out test - No batch or 0 qty)
--- Intentionally adding 0 qty batch to see if it shows up
+-- Omega-3 (622010): 0 Total
+
+-- Nivea (622011): 50 Total
+INSERT INTO batch VALUES ('B-NIV-999', 45.0, DATE_ADD(CURRENT_DATE, INTERVAL 3 YEAR), 50, '622011');
+
+-- Rexona (622012): 40 Total
+INSERT INTO batch VALUES ('B-REX-888', 35.0, DATE_ADD(CURRENT_DATE, INTERVAL 3 YEAR), 40, '622012');
+
+-- Listerine (622013): 0 Total
+
+-- Zyrtec (622014): 0 Total (Explicit 0 batch)
 INSERT INTO batch VALUES ('B-ZYR-000', 25.0, '2025-01-01', 0, '622014');
 
 -- ==========================================
@@ -209,22 +220,22 @@ INSERT INTO batch VALUES ('B-ZYR-000', 25.0, '2025-01-01', 0, '622014');
 -- ==========================================
 INSERT INTO inventory (ID, Bransh_ID) VALUES (1, 1);
 
--- Summing up batches for Inventory Total
+-- SYNCHRONIZED INVENTORY COUNTS (Inventory = Sum of Batches)
 INSERT INTO inventory_has_product (Inventory_ID, Product_parcode, Quntaty, reordr_level) VALUES 
-(1, '622001', 200, 20), -- Panadol (50+150)
-(1, '622002', 100, 20), -- Brufen
-(1, '622003', 0, 10),   -- Cataflam (Product exists but no batch inserted yet = Out of Stock)
-(1, '622004', 15, 5),   -- Augmentin
-(1, '622005', 0, 5),    -- Zithromax (No stock)
-(1, '622006', 60, 10),  -- Lipitor
-(1, '622007', 200, 30), -- Glucophage
-(1, '622008', 10, 2),   -- Insulin
-(1, '622009', 120, 10), -- Vit C (20+100)
-(1, '622010', 0, 5),    -- Omega 3
-(1, '622011', 50, 5),   -- Nivea
-(1, '622012', 40, 5),   -- Rexona
-(1, '622013', 0, 5),    -- Listerine
-(1, '622014', 0, 10);   -- Zyrtec
+(1, '622001', 200, 20), -- Panadol (Batch 50 + 150 = 200)
+(1, '622002', 100, 20), -- Brufen (Batch 100)
+(1, '622003', 0, 10),   -- Cataflam (0 Batches)
+(1, '622004', 15, 5),   -- Augmentin (Batch 15)
+(1, '622005', 0, 5),    -- Zithromax (0 Batches)
+(1, '622006', 60, 10),  -- Lipitor (Batch 60)
+(1, '622007', 200, 30), -- Glucophage (Batch 200)
+(1, '622008', 10, 2),   -- Insulin (Batch 10)
+(1, '622009', 120, 10), -- Vit C (Batch 20 + 100 = 120)
+(1, '622010', 0, 5),    -- Omega 3 (0 Batches)
+(1, '622011', 50, 5),   -- Nivea (Batch 50)
+(1, '622012', 40, 5),   -- Rexona (Batch 40)
+(1, '622013', 0, 5),    -- Listerine (0 Batches)
+(1, '622014', 0, 10);   -- Zyrtec (Batch 0)
 
 -- ==========================================
 -- 9. INITIAL TREASURY & INVOICE
