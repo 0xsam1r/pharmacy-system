@@ -15,8 +15,8 @@
     <Label text="System Settings" styleClass="label-header"/>
     
     <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="card">
-        <!-- Security Settings -->
-        <Tab text="Security">
+        <!-- Change Password Tab -->
+        <Tab text="Change Password">
             <VBox spacing="20" style="-fx-padding: 20;">
                 <Label text="Change Password" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
                 
@@ -33,45 +33,13 @@
                     <Button text="Update Password" styleClass="btn, btn-primary" 
                             onAction="#handleChangePassword" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                 </GridPane>
-            </VBox>
-        </Tab>
-        
-        <!-- General Settings -->
-        <Tab text="General">
-            <VBox spacing="20" style="-fx-padding: 20;">
-                <Label text="Application Preferences" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-                
-                <CheckBox text="Enable Dark Mode (Coming Soon)" disable="true"/>
-                <CheckBox text="Show Notifications" selected="true"/>
-                <CheckBox text="Auto-Backup Database" selected="true"/>
                 
                 <Separator/>
                 
-                <Label text="Pharmacy Details" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-                <GridPane hgap="15" vgap="15" maxWidth="500">
-                    <Label text="Pharmacy Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <TextField text="My Pharmacy" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                    
-                    <Label text="Address:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                    <TextField text="123 Main St" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                    
-                    <Button text="Save Details" styleClass="btn, btn-secondary" 
-                            GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                </GridPane>
-            </VBox>
-        </Tab>
-        
-        <!-- Database Settings -->
-        <Tab text="Database">
-            <VBox spacing="20" style="-fx-padding: 20;">
-                <Label text="Database Management" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <Label text="Preferences" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <CheckBox text="Show Notifications" selected="true" fx:id="showNotificationsCheck"/>
+                <CheckBox text="Auto-Backup Database" selected="true" fx:id="autoBackupCheck"/>
                 
-                <HBox spacing="20">
-                    <Button text="Backup Database" styleClass="btn, btn-success" onAction="#handleBackup"/>
-                    <Button text="Restore Database" styleClass="btn, btn-warning" onAction="#handleRestore"/>
-                </HBox>
-                
-                <Label text="Last Backup: Never" style="-fx-text-fill: #7f8c8d;"/>
             </VBox>
         </Tab>
         

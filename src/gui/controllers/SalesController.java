@@ -63,9 +63,88 @@ public class SalesController implements Initializable {
             // No automatic discount popup - only when completing sale
             
             ExceptionLogger.logInfo("Sales view initialized");
+            
+            setupAutocompletion();
+            
         } catch (Exception e) {
             ExceptionLogger.logException(e, "Error initializing sales view");
         }
+    }
+    
+    private void setupAutocompletion() {
+        ContextMenu suggestionsPopup = new ContextMenu();
+        suggestionsPopup.setAutoHide(true);
+        suggestionsPopup.setPrefWidth(barcodeField.getPrefWidth()); // Attempt to match width
+        
+        // Add listener
+        barcodeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Hide if empty
+            if (newValue == null || newValue.trim().isEmpty()) {
+                suggestionsPopup.hide();
+                return;
+            }
+            
+            // Skip numeric (Barcode scanning)
+            if (newValue.matches("\\d+")) {
+                suggestionsPopup.hide();
+                return;
+            }
+
+            // Perform search
+            // NOTE: Ideally should use a background thread, but keeping it simple for now to avoid complexity issues with SQLite
+            // If performance is an issue, we can wrap in Task.
+            try (Connection conn = DBConnection.getConnection()) {
+                // Match names starting with or containing query
+                String sql = "SELECT Name, parcode FROM product WHERE Name LIKE ? LIMIT 10";
+                try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                    ps.setString(1, "%" + newValue + "%");
+                    
+                    List<MenuItem> items = new ArrayList<>();
+                    try (ResultSet rs = ps.executeQuery()) {
+                        while (rs.next()) {
+                            final String pName = rs.getString("Name");
+                            final String pBarcode = rs.getString("parcode");
+                            
+                            MenuItem item = new MenuItem(pName);
+                            item.setStyle("-fx-font-size: 14px; -fx-padding: 5;");
+                            item.setOnAction(e -> {
+                                // When clicked, set text and potentially add item?
+                                // Just set text to allow user to edit quantity or verify
+                                barcodeField.setText(pName); 
+                                barcodeField.positionCaret(pName.length());
+                                suggestionsPopup.hide();
+                                
+                                // Optional: Trigger search/add immediately?
+                                // handleAddItem(); 
+                            });
+                            items.add(item);
+                        }
+                    }
+                    
+                    if (!items.isEmpty()) {
+                        javafx.application.Platform.runLater(() -> {
+                            suggestionsPopup.getItems().setAll(items);
+                            if (!suggestionsPopup.isShowing()) {
+                                suggestionsPopup.show(barcodeField, javafx.geometry.Side.BOTTOM, 0, 0);
+                            }
+                        });
+                    } else {
+                        javafx.application.Platform.runLater(suggestionsPopup::hide);
+                    }
+                }
+            } catch (SQLException e) {
+                // Ignore transient errors
+            }
+        });
+
+        // Hide when focus lost
+        barcodeField.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal) {
+                // Delay hiding slightly to allow click to register on menu item? 
+                // ContextMenu autoHide usually handles this.
+                // suggestionsPopup.hide(); 
+            }
+        });
     }
 
     private void ensureSchemaColumns() {

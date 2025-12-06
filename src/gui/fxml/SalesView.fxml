@@ -69,10 +69,17 @@
             
             <Region VBox.vgrow="ALWAYS"/>
             
-            <Button text="✅ Complete Sale" styleClass="btn, btn-success" maxWidth="Infinity" 
-                    style="-fx-font-size: 16px; -fx-padding: 15;" onAction="#handleCheckout"/>
-            <Button text="❌ Cancel" styleClass="btn, btn-danger" maxWidth="Infinity" onAction="#handleCancel"/>
-            <Button text="↩ Return Items" styleClass="btn, btn-secondary" maxWidth="Infinity" onAction="#handleReturn"/>
+            <Button text="✓ Confirm Sale" styleClass="btn, btn-success" maxWidth="Infinity" 
+                    style="-fx-font-size: 16px; -fx-padding: 15; -fx-background-radius: 5; -fx-font-weight: bold;" onAction="#handleCheckout"/>
+            
+            <Button text="✕ Clear All" styleClass="btn, btn-danger" maxWidth="Infinity" 
+                    style="-fx-font-size: 16px; -fx-padding: 15; -fx-background-radius: 5; -fx-font-weight: bold;" onAction="#handleCancel"/>
+            
+            <Separator/>
+            
+            <Button text="↩ Sale Return" styleClass="btn" maxWidth="Infinity" 
+                    style="-fx-font-size: 16px; -fx-padding: 15; -fx-background-color: #f1c40f; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" 
+                    onAction="#handleReturn"/>
         </VBox>
     </HBox>
 </VBox>

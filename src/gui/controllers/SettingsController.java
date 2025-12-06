@@ -23,6 +23,9 @@ public class SettingsController implements Initializable {
     @FXML private PasswordField currentPasswordField;
     @FXML private PasswordField newPasswordField;
     @FXML private PasswordField confirmPasswordField;
+    
+    @FXML private javafx.scene.control.CheckBox showNotificationsCheck;
+    @FXML private javafx.scene.control.CheckBox autoBackupCheck;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
