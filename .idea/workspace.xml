@@ -4,65 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a53829b4-73a4-45b2-92d8-6cbae9b790b0" name="Changes" comment="" />
+    <list default="true" id="772317b0-2e3f-4f70-8360-b8de06e80f31" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfx_incubator_richtext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-        <option value="JavaFXApplication" />
-        <option value="FxmlFile" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
-}</component>
-  <component name="ProjectId" id="34hyVUwi2tguLAIFfskacA620Ms" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="36TvIy6LyP6YTxWIGqPeNa4XCwt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Application.DBConnection.executor": "Run",
     "Application.PharmacyApp.executor": "Run",
-    "Application.PharmacySystem.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "Application.app.executor": "Run",
-    "JAR Application.Unnamed.executor": "Run",
-    "JAR Application.run.executor": "Run",
+    "JUnit.All in pharmacy-system.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/spectre/code/pharmacy-system/lib/javafx-sdkLinux-25.0.1",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.22867738",
-    "project.structure.side.proportion": "0.18051118",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
-  },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "GitIgnore"
-    ]
+    "last_opened_file_path": "/home/spectre/Projects/pharmacy-system/lib/mysql-connector-j-9.5.0",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.23111111",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.PharmacyApp">
+  <component name="RunManager" selected="Application.DBConnection">
     <configuration name="DBConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DB.DBConnection" />
+      <module name="pharmacy-system" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="DB.*" />
@@ -74,10 +56,8 @@
       </method>
     </configuration>
     <configuration name="PharmacyApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="25" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="gui.PharmacyApp" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;$PROJECT_DIR$/lib/javafx-sdkLinux-25.0.1&quot; --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
+      <module name="pharmacy-system" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="gui.*" />
@@ -88,73 +68,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PharmacySystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="application.PharmacySystem" />
+    <configuration name="All in pharmacy-system" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="pharmacy-system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="application.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="/usr/lib/jvm/default" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="application.app" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="app" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="25" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="application.app" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;$PROJECT_DIR$/lib/javafx-sdkLinux-25.0.1&quot; --add-modules javafx.controls,javafx.fxml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.app" />
-      <item itemvalue="Application.Unnamed" />
-      <item itemvalue="Application.PharmacyApp" />
-      <item itemvalue="Application.PharmacySystem" />
-      <item itemvalue="Application.DBConnection" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PharmacyApp" />
         <item itemvalue="Application.DBConnection" />
-        <item itemvalue="Application.PharmacySystem" />
+        <item itemvalue="Application.PharmacyApp" />
+        <item itemvalue="JUnit.All in pharmacy-system" />
       </list>
     </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a53829b4-73a4-45b2-92d8-6cbae9b790b0" name="Changes" comment="" />
-      <created>1761680123843</created>
+      <changelist id="772317b0-2e3f-4f70-8360-b8de06e80f31" name="Changes" comment="" />
+      <created>1765043303916</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1761680123843</updated>
+      <updated>1765043303916</updated>
     </task>
     <servers />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/DB/DBConnection.java</url>
-          <line>33</line>
-          <properties class="DB.DBConnection" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
