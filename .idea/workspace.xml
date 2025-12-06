@@ -8,6 +8,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/jfx_incubator_richtext.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DB/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DB/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/app.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/fxml/Dashboard_Debug.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/fxml/LoginScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/fxml/LoginScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/fxml/SimpleDashboard.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +48,7 @@
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.DBConnection">
+  <component name="RunManager" selected="Application.PharmacyApp">
     <configuration name="DBConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DB.DBConnection" />
       <module name="pharmacy-system" />
@@ -58,6 +65,7 @@
     <configuration name="PharmacyApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui.PharmacyApp" />
       <module name="pharmacy-system" />
+      <option name="VM_PARAMETERS" value="--module-path lib/javafx-sdkLinux-25.0.1 --add-modules javafx.controls,javafx.fxml,javafx.swing,javafx.media,javafx.web" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="gui.*" />
@@ -76,10 +84,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.DBConnection" />
+      <item itemvalue="Application.PharmacyApp" />
+      <item itemvalue="JUnit.All in pharmacy-system" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DBConnection" />
         <item itemvalue="Application.PharmacyApp" />
+        <item itemvalue="Application.DBConnection" />
         <item itemvalue="JUnit.All in pharmacy-system" />
       </list>
     </recent_temporary>

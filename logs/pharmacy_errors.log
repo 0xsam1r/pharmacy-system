@@ -18188,6 +18188,7 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 =======
 >>>>>>> 964aee984e2cba9848bb3162127e289b05098c1e
 >>>>>>> 725fee0856e852b620359c009458afb6607a85e9
+<<<<<<< HEAD
 [INFO] 2025-12-06 20:07:44 - Application started successfully
 [INFO] 2025-12-06 20:07:48 - Application closed by user
 [INFO] 2025-12-06 20:09:24 - Application started successfully
@@ -18411,6 +18412,39 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 [INFO] 2025-12-06 20:50:26 - Employees view initialized
 ================================================================================
 TIME: 2025-12-06 20:50:58
+=======
+[INFO] 2025-12-06 20:25:17 - Application started successfully
+[INFO] 2025-12-06 20:25:34 - Session started for user: manager1 (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 20:25:34 - User logged in successfully: manager1
+[INFO] 2025-12-06 20:25:34 - Attempting to load dashboard
+[INFO] 2025-12-06 20:25:34 - Dashboard initialized successfully
+[INFO] 2025-12-06 20:25:34 - Dashboard displayed successfully
+[INFO] 2025-12-06 20:25:41 - Products view initialized
+[INFO] 2025-12-06 20:26:01 - Settings view initialized
+[INFO] 2025-12-06 20:26:12 - Customers view initialized
+[INFO] 2025-12-06 20:26:20 - Customers view initialized
+[INFO] 2025-12-06 20:36:20 - Application closed by user
+[INFO] 2025-12-06 21:10:09 - Application started successfully
+[INFO] 2025-12-06 21:10:28 - Session started for user: Manager1 (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:10:28 - User logged in successfully: Manager1
+[INFO] 2025-12-06 21:10:28 - Attempting to load dashboard
+[INFO] 2025-12-06 21:10:28 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:10:29 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:10:57 - Customers view initialized
+[INFO] 2025-12-06 21:10:58 - Customers view initialized
+[INFO] 2025-12-06 21:12:45 - Customer added: Samir Ahmed
+[INFO] 2025-12-06 21:12:54 - Employees view initialized
+[INFO] 2025-12-06 21:14:11 - User logged out
+[INFO] 2025-12-06 21:14:23 - Session started for user: 0xsam1r (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 21:14:23 - User logged in successfully: 0xsam1r
+[INFO] 2025-12-06 21:14:23 - Attempting to load dashboard
+[INFO] 2025-12-06 21:14:23 - Dashboard initialized successfully
+[INFO] 2025-12-06 21:14:23 - Dashboard displayed successfully
+[INFO] 2025-12-06 21:14:32 - Settings view initialized
+[INFO] 2025-12-06 21:14:38 - Employees view initialized
+================================================================================
+TIME: 2025-12-06 21:14:44
+>>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
 CONTEXT: Error loading recent reports
 EXCEPTION: java.lang.NullPointerException
 MESSAGE: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
@@ -18480,6 +18514,7 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+<<<<<<< HEAD
 	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
 	at java.base/java.lang.Thread.run(Thread.java:1447)
@@ -19227,6 +19262,20 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 [INFO] 2025-12-06 22:01:12 - Alerts checked: 12 found
 ================================================================================
 TIME: 2025-12-06 22:01:49
+=======
+	at javafx.graphics@25.0.1/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$0(GtkApplication.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+================================================================================
+
+[INFO] 2025-12-06 21:14:44 - Automatic alert check completed: 6 alerts found
+[INFO] 2025-12-06 21:14:44 - Periodic alert check started (every 6 hours)
+[INFO] 2025-12-06 21:14:44 - Reports view initialized
+[INFO] 2025-12-06 21:14:50 - Alerts checked: 6 found
+[INFO] 2025-12-06 21:15:00 - Alerts checked: 6 found
+================================================================================
+TIME: 2025-12-06 21:15:39
+>>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
 CONTEXT: Error loading recent reports
 EXCEPTION: java.lang.NullPointerException
 MESSAGE: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
@@ -19283,6 +19332,7 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+<<<<<<< HEAD
 	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
 	at java.base/java.lang.Thread.run(Thread.java:1447)
@@ -19291,6 +19341,16 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 [INFO] 2025-12-06 22:01:54 - Sales report generated for date: 2025-12-06
 ================================================================================
 TIME: 2025-12-06 22:01:54
+=======
+	at javafx.graphics@25.0.1/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$0(GtkApplication.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+================================================================================
+
+[INFO] 2025-12-06 21:16:04 - Sales report generated for date: 2025-12-06
+================================================================================
+TIME: 2025-12-06 21:16:04
+>>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
 CONTEXT: Error loading recent reports
 EXCEPTION: java.lang.NullPointerException
 MESSAGE: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
@@ -19347,6 +19407,7 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+<<<<<<< HEAD
 	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
 	at java.base/java.lang.Thread.run(Thread.java:1447)
@@ -19745,6 +19806,26 @@ java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a par
 [INFO] 2025-12-06 22:28:02 - Employees view initialized
 ================================================================================
 TIME: 2025-12-06 22:28:03
+=======
+	at javafx.graphics@25.0.1/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$0(GtkApplication.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+================================================================================
+
+[INFO] 2025-12-06 21:42:37 - Application closed by user
+[INFO] 2025-12-06 22:04:10 - Application started successfully
+[INFO] 2025-12-06 22:04:23 - Session started for user: 0xsam1r (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:04:23 - User logged in successfully: 0xsam1r
+[INFO] 2025-12-06 22:04:23 - Attempting to load dashboard
+[INFO] 2025-12-06 22:04:23 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:04:23 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:04:32 - Products view initialized
+[INFO] 2025-12-06 22:04:34 - Inventory view initialized
+[INFO] 2025-12-06 22:04:36 - Customers view initialized
+[INFO] 2025-12-06 22:04:37 - Employees view initialized
+================================================================================
+TIME: 2025-12-06 22:04:37
+>>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
 CONTEXT: Error loading recent reports
 EXCEPTION: java.lang.NullPointerException
 MESSAGE: Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.recentReportsList" is null
@@ -19814,6 +19895,7 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 	at javafx.graphics@25.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:387)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:573)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.View.notifyMouse(View.java:975)
+<<<<<<< HEAD
 	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics@25.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$0(WinApplication.java:168)
 	at java.base/java.lang.Thread.run(Thread.java:1447)
@@ -20208,3 +20290,28 @@ Caused by: com.mysql.cj.exceptions.ConnectionIsClosedException: No operations al
 [INFO] 2025-12-06 22:58:14 - Products view initialized
 [INFO] 2025-12-06 22:58:14 - Inventory view initialized
 [INFO] 2025-12-06 22:58:19 - Application closed by user
+=======
+	at javafx.graphics@25.0.1/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics@25.0.1/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$0(GtkApplication.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+================================================================================
+
+[INFO] 2025-12-06 22:04:37 - Automatic alert check completed: 6 alerts found
+[INFO] 2025-12-06 22:04:37 - Periodic alert check started (every 6 hours)
+[INFO] 2025-12-06 22:04:37 - Reports view initialized
+[INFO] 2025-12-06 22:04:38 - Suppliers view initialized
+[INFO] 2025-12-06 22:13:46 - Application started successfully
+[INFO] 2025-12-06 22:13:58 - Session started for user: 0xsam1r (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:13:58 - User logged in successfully: 0xsam1r
+[INFO] 2025-12-06 22:13:58 - Attempting to load dashboard
+[INFO] 2025-12-06 22:13:58 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:13:58 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:14:16 - Application closed by user
+[INFO] 2025-12-06 22:19:13 - Application started successfully
+[INFO] 2025-12-06 22:19:26 - Session started for user: 0xsam1r (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:19:26 - User logged in successfully: 0xsam1r
+[INFO] 2025-12-06 22:19:26 - Attempting to load dashboard
+[INFO] 2025-12-06 22:19:26 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:19:26 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:20:50 - User logged out
+>>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f

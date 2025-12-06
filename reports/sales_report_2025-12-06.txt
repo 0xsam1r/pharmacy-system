@@ -22,6 +22,7 @@ Invoice    Date         Disc.    Customer             Product                   
                                                            Vicks Cough Syrup              90.00   ziad        
                                                            Glucophage 500                 95.00   ziad        
                                                                      Invoice Total:     280.00
+<<<<<<< HEAD
 2009       2025-12-06   0.00     Walk-in             
                                                            Panadol                        35.00   ziad        
                                                                      Invoice Total:      35.00
@@ -57,6 +58,10 @@ Invoice    Date         Disc.    Customer             Product                   
                                                                      Invoice Total:      35.00
 --------------------------------------------------------------------------------
                                                                      GRAND TOTAL SALES:    1217.50
+=======
+--------------------------------------------------------------------------------
+                                                                     GRAND TOTAL SALES:     695.00
+>>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
 
 
 2. PURCHASES
@@ -64,6 +69,7 @@ Invoice    Date         Disc.    Customer             Product                   
 Invoice    Date         Total        Paid         Remaining    Supplier            
 --------------------------------------------------------------------------------
 2005       2025-12-06   8400.00      4000.00      4400.00      PharmaTrade Egypt   
+<<<<<<< HEAD
 2007       2025-12-06   230.00       100.00       130.00       Al-Motaheda Distribution
 2008       2025-12-06   -230.00      -100.00      -130.00      Al-Motaheda Distribution
 2020       2025-12-06   450.00       0.00         450.00       PharmaTrade Egypt   
@@ -79,14 +85,25 @@ Invoice    Date         Total        Paid         Remaining    Supplier
 2030       2025-12-06   -475.00      -100.00      -375.00      Al-Motaheda Distribution
 --------------------------------------------------------------------------------
                                                                      TOTAL PURCHASES:    9400.00
+=======
+--------------------------------------------------------------------------------
+                                                                     TOTAL PURCHASES:    8400.00
+>>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
 
 
 3. PROFIT & LOSS SUMMARY
 --------------------------------------------------
+<<<<<<< HEAD
 Total Sales:                      1217.50 EGP
 Total Purchases:                  9400.00 EGP
 --------------------------------------------------
 NET PROFIT:                      -8182.50 EGP
+=======
+Total Sales:                       695.00 EGP
+Total Purchases:                  8400.00 EGP
+--------------------------------------------------
+NET PROFIT:                      -7705.00 EGP
+>>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
 --------------------------------------------------
 
 ================================================================================
