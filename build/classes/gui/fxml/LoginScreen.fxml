@@ -31,13 +31,8 @@
                 <Label text="Password" style="-fx-font-weight: bold;"/>
                 <PasswordField fx:id="passwordField" promptText="Enter your password" prefWidth="350"/>
             </VBox>
-            
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <CheckBox fx:id="rememberMeCheckbox" text="Remember me"/>
-            </HBox>
-            
-            
+
+
             <Label fx:id="errorLabel" textFill="red" wrapText="true" visible="false" 
                    style="-fx-font-size: 12px; -fx-padding: 5;"/>
             
@@ -55,9 +50,6 @@
                 <Insets top="20" right="40" bottom="20" left="40"/>
             </VBox.margin>
         </VBox>
-        
-        
-        <Label text="Version 1.0" style="-fx-text-fill: white; -fx-opacity: 0.7; -fx-padding: 20;" 
-               StackPane.alignment="BOTTOM_RIGHT"/>
+
     </VBox>
 </StackPane>

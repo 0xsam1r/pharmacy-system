@@ -443,23 +443,65 @@ private void setupAutocompletion() {
                     
                     String barcode = product.getBarcode().trim();
                     
-                    // 1. Check Sales/Purchase History (Blocking)
+                    // 1. Check Sales/Purchase History (Blocking/Warning)
+                    boolean hasHistory = false;
                     try (PreparedStatement ps = conn.prepareStatement("SELECT 1 FROM invoice_has_product WHERE Product_parcode = ? LIMIT 1")) {
                         ps.setString(1, barcode);
-                        if (ps.executeQuery().next()) {
-                            showError("Cannot Delete", "This product has sales history (Invoices). Cannot delete.");
-                            return;
-                        }
+                        if (ps.executeQuery().next()) hasHistory = true;
                     }
-                    try (PreparedStatement ps = conn.prepareStatement("SELECT 1 FROM customer_buy_product WHERE Product_parcode = ? LIMIT 1")) {
-                        ps.setString(1, barcode);
-                        if (ps.executeQuery().next()) {
-                            showError("Cannot Delete", "This product has customer purchase history. Cannot delete.");
-                            return;
+                    if (!hasHistory) {
+                        try (PreparedStatement ps = conn.prepareStatement("SELECT 1 FROM customer_buy_product WHERE Product_parcode = ? LIMIT 1")) {
+                            ps.setString(1, barcode);
+                            if (ps.executeQuery().next()) hasHistory = true;
                         }
                     }
                     
-                    // 2. Clear Dependencies
+                    if (hasHistory) {
+                        // Close initial connection/transaction check to ask user
+                        conn.rollback(); 
+                        conn.setAutoCommit(true);
+                        conn.close();
+                        
+                        // Ask for Force Delete
+                        Alert forceAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                        forceAlert.setTitle("Force Delete Warning");
+                        forceAlert.setHeaderText("Product has Sales/History");
+                        forceAlert.setContentText("This product is part of existing Invoices or Sales history.\n" +
+                                                "Deleting it will REMOVE it from those historical records, altering reports.\n\n" +
+                                                "Are you sure you want to FORCE DELETE?");
+                        
+                        Optional<ButtonType> forceResult = forceAlert.showAndWait();
+                        if (forceResult.isEmpty() || forceResult.get() != ButtonType.OK) {
+                            return;
+                        }
+                        
+                        // Re-open connection for Force Delete
+                        conn = DB.DBConnection.getConnection();
+                        conn.setAutoCommit(false);
+                        
+                        // Force Cleanup History
+                        try (PreparedStatement ps = conn.prepareStatement("DELETE FROM invoice_has_product WHERE Product_parcode = ?")) {
+                            ps.setString(1, barcode);
+                            ps.executeUpdate();
+                        }
+                        try (PreparedStatement ps = conn.prepareStatement("DELETE FROM customer_buy_product WHERE Product_parcode = ?")) {
+                            ps.setString(1, barcode);
+                            ps.executeUpdate();
+                        }
+                         // Also clear Purchase Invoice links (via Batch)
+                        try (PreparedStatement ps = conn.prepareStatement("DELETE FROM purchase_invoce_has_batch WHERE Batch_Product_parcode = ?")) {
+                            ps.setString(1, barcode);
+                            ps.executeUpdate();
+                        }
+                    } else {
+                        // Even if no sales history, check/clean purchase history just in case (optional but safe)
+                         try (PreparedStatement ps = conn.prepareStatement("DELETE FROM purchase_invoce_has_batch WHERE Batch_Product_parcode = ?")) {
+                            ps.setString(1, barcode);
+                            ps.executeUpdate();
+                        }
+                    }
+                    
+                    // 2. Clear Dependencies (Standard Cleanup)
                     
                     // Medicine / Dosage Link
                     try (PreparedStatement ps = conn.prepareStatement("DELETE FROM medicine_has_dosage_form WHERE medicine_Product_parcode = ?")) {

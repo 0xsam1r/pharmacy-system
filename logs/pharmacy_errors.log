@@ -20315,3 +20315,31 @@ Caused by: com.mysql.cj.exceptions.ConnectionIsClosedException: No operations al
 [INFO] 2025-12-06 22:19:26 - Dashboard displayed successfully
 [INFO] 2025-12-06 22:20:50 - User logged out
 >>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
+[INFO] 2025-12-06 23:00:07 - Application started successfully
+[INFO] 2025-12-06 23:00:12 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 23:00:12 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 23:00:12 - Attempting to load dashboard
+[INFO] 2025-12-06 23:00:12 - Dashboard initialized successfully
+[INFO] 2025-12-06 23:00:13 - Dashboard displayed successfully
+[INFO] 2025-12-06 23:00:15 - Sales view initialized
+[INFO] 2025-12-06 23:00:18 - Inventory view initialized
+[INFO] 2025-12-06 23:00:19 - Suppliers view initialized
+[INFO] 2025-12-06 23:00:22 - Application closed by user
+[INFO] 2025-12-06 23:06:10 - Application started successfully
+[INFO] 2025-12-06 23:06:21 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 23:06:21 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 23:06:21 - Attempting to load dashboard
+[INFO] 2025-12-06 23:06:22 - Dashboard initialized successfully
+[INFO] 2025-12-06 23:06:22 - Dashboard displayed successfully
+[INFO] 2025-12-06 23:06:24 - Products view initialized
+[INFO] 2025-12-06 23:08:30 - Application closed by user
+[INFO] 2025-12-06 23:08:40 - Application started successfully
+[INFO] 2025-12-06 23:08:46 - Session started for user: bayoumi (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 23:08:46 - User logged in successfully: bayoumi
+[INFO] 2025-12-06 23:08:46 - Attempting to load dashboard
+[INFO] 2025-12-06 23:08:46 - Dashboard initialized successfully
+[INFO] 2025-12-06 23:08:46 - Dashboard displayed successfully
+[INFO] 2025-12-06 23:08:48 - Inventory view initialized
+[INFO] 2025-12-06 23:08:49 - Products view initialized
+[INFO] 2025-12-06 23:09:00 - Product deleted: Panadol
+[INFO] 2025-12-06 23:09:03 - Inventory view initialized
