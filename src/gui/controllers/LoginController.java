@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
- 
+
 public class LoginController implements Initializable {
     
     @FXML
@@ -38,36 +38,21 @@ public class LoginController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-         
         passwordField.setOnAction(event -> handleLogin());
-        
-         
-        loadSavedCredentials();
     }
     
     @FXML
     private void handleLogin() {
         try {
-             
             validateInputs();
-            
-             
+
             errorLabel.setVisible(false);
             
             String username = usernameField.getText().trim();
             String password = passwordField.getText();
-            
              
             if (authenticateUser(username, password)) {
-                 
-                if (rememberMeCheckbox.isSelected()) {
-                    saveCredentials(username);
-                }
-                
-                 
                 ExceptionLogger.logInfo("User logged in successfully: " + username);
-                
-                 
                 navigateToDashboard();
                 
             } else {
@@ -103,8 +88,6 @@ public class LoginController implements Initializable {
     }
     
     private boolean authenticateUser(String username, String password) {
-         
-         
         String sql = "SELECT e.User_name, e.Password, e.Person_ID, e.bransh_ID, p.name " +
                     "FROM employee e " +
                     "JOIN person p ON e.Person_ID = p.ID " +
@@ -122,9 +105,7 @@ public class LoginController implements Initializable {
                 String userId = rs.getString("Person_ID");
                 String fullName = rs.getString("name");
                 int branchId = rs.getInt("bransh_ID");
-                
-                 
-                 
+
                 String role = "Cashier";  
                 if (userId != null && !userId.isEmpty()) {
                     char prefix = Character.toUpperCase(userId.charAt(0));
@@ -136,10 +117,8 @@ public class LoginController implements Initializable {
                         role = "Cashier";
                     }
                 }
-                
-                 
+
                 util.SessionManager.getInstance().setUserSession(username, fullName, role, userId, branchId);
-                
                 return true;
             }
             
@@ -147,7 +126,6 @@ public class LoginController implements Initializable {
             ExceptionLogger.logException(e, "Authentication query failed");
             e.printStackTrace();  
         }
-        
         return false;
     }
     
@@ -155,11 +133,9 @@ public class LoginController implements Initializable {
         try {
             System.out.println("Loading dashboard...");
             ExceptionLogger.logInfo("Attempting to load dashboard");
-            
-             
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/Dashboard.fxml"));
-             
-            
+
             if (loader.getLocation() == null) {
                 throw new Exception("Dashboard.fxml not found in resources");
             }
@@ -167,10 +143,8 @@ public class LoginController implements Initializable {
             System.out.println("FXML loaded from: " + loader.getLocation());
             Parent root = loader.load();
             System.out.println("Dashboard loaded successfully");
-            
             Scene scene = new Scene(root);
-            
-             
+
             try {
                 URL cssUrl = getClass().getResource("/gui/css/styles.css");
                 if (cssUrl != null) {
@@ -208,15 +182,5 @@ public class LoginController implements Initializable {
     private void showError(String message) {
         errorLabel.setText(message);
         errorLabel.setVisible(true);
-    }
-    
-    private void loadSavedCredentials() {
-         
-         
-    }
-    
-    private void saveCredentials(String username) {
-         
-         
     }
 }

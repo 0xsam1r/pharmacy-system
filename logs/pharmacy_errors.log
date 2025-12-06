@@ -18516,3 +18516,17 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 [INFO] 2025-12-06 22:04:37 - Periodic alert check started (every 6 hours)
 [INFO] 2025-12-06 22:04:37 - Reports view initialized
 [INFO] 2025-12-06 22:04:38 - Suppliers view initialized
+[INFO] 2025-12-06 22:13:46 - Application started successfully
+[INFO] 2025-12-06 22:13:58 - Session started for user: 0xsam1r (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:13:58 - User logged in successfully: 0xsam1r
+[INFO] 2025-12-06 22:13:58 - Attempting to load dashboard
+[INFO] 2025-12-06 22:13:58 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:13:58 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:14:16 - Application closed by user
+[INFO] 2025-12-06 22:19:13 - Application started successfully
+[INFO] 2025-12-06 22:19:26 - Session started for user: 0xsam1r (Role: Manager, Branch: 1)
+[INFO] 2025-12-06 22:19:26 - User logged in successfully: 0xsam1r
+[INFO] 2025-12-06 22:19:26 - Attempting to load dashboard
+[INFO] 2025-12-06 22:19:26 - Dashboard initialized successfully
+[INFO] 2025-12-06 22:19:26 - Dashboard displayed successfully
+[INFO] 2025-12-06 22:20:50 - User logged out

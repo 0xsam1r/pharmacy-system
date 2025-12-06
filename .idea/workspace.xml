@@ -9,7 +9,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DB/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DB/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/fxml/Dashboard_Debug.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/fxml/Dashboard_Debug.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/app.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/fxml/Dashboard_Debug.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/fxml/LoginScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/fxml/LoginScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/fxml/SimpleDashboard.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
