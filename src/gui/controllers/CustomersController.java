@@ -57,8 +57,8 @@ public class CustomersController implements Initializable {
         colPurchases.setCellValueFactory(new PropertyValueFactory<>("totalPurchases"));
         
         colActions.setCellFactory(param -> new TableCell<>() {
-            private final Button editBtn = new Button("✏️ Edit");
-            private final Button viewBtn = new Button("👁️ View");
+            private final Button editBtn = new Button("Edit");
+            private final Button viewBtn = new Button("View");
             
             {
                 editBtn.setOnAction(event -> {

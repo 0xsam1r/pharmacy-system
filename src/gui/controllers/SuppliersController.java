@@ -59,8 +59,8 @@ public class SuppliersController implements Initializable {
          
         colActions.setCellFactory(param -> new TableCell<>() {
             private final Button payBtn = new Button("💸 Pay");
-            private final Button editBtn = new Button("✏️ Edit");
-            private final Button deleteBtn = new Button("🗑️");
+            private final Button editBtn = new Button("Edit");
+            private final Button deleteBtn = new Button("Delete");
             
             {
                 payBtn.setOnAction(event -> {
