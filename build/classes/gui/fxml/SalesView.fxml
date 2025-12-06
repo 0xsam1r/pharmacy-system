@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="gui.controllers.SalesController" 
+      spacing="20" style="-fx-background-color: transparent;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        
+        
+        <VBox spacing="15" HBox.hgrow="ALWAYS" styleClass="card">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            
+            <Label text="New Sale" styleClass="label-header"/>
+            
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Product:"/>
+                <TextField fx:id="barcodeField" promptText="Scan Barcode or Enter Name..." HBox.hgrow="ALWAYS" 
+                           onAction="#handleAddItem"/>
+                <Button text="➕ Add" styleClass="btn, btn-primary" onAction="#handleAddItem"/>
+            </HBox>
+            
+            <TableView fx:id="cartTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="Product" prefWidth="200" fx:id="colName"/>
+                    <TableColumn text="Price" prefWidth="80" fx:id="colPrice"/>
+                    <TableColumn text="Qty" prefWidth="80" fx:id="colQty"/>
+                    <TableColumn text="Total" prefWidth="100" fx:id="colTotal"/>
+                    <TableColumn text="Action" prefWidth="80" fx:id="colAction"/>
+                </columns>
+            </TableView>
+        </VBox>
+        
+        
+        <VBox spacing="15" prefWidth="350" styleClass="card">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            
+            <Label text="Checkout Details" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            
+            <GridPane vgap="10" hgap="10">
+                <Label text="Subtotal:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="subtotalLabel" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                
+                <Label text="Tax (0%):" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="Discount:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="discountField" text="0" prefWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                
+                <Separator GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+                
+                <Label text="TOTAL:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <Label fx:id="totalLabel" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="4" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;"/>
+            </GridPane>
+            
+            <Separator/>
+            
+            <VBox spacing="10">
+                <Label text="Customer (Optional):"/>
+                <TextField fx:id="customerField" promptText="Customer ID / Phone"/>
+            </VBox>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            
+            <Button text="✓ Confirm Sale" styleClass="btn, btn-success" maxWidth="Infinity" 
+                    style="-fx-font-size: 16px; -fx-padding: 15; -fx-background-radius: 5; -fx-font-weight: bold;" onAction="#handleCheckout"/>
+            
+            <Button text="✕ Clear All" styleClass="btn, btn-danger" maxWidth="Infinity" 
+                    style="-fx-font-size: 16px; -fx-padding: 15; -fx-background-radius: 5; -fx-font-weight: bold;" onAction="#handleCancel"/>
+            
+            <Separator/>
+            
+            <Button text="↩ Sale Return" styleClass="btn" maxWidth="Infinity" 
+                    style="-fx-font-size: 16px; -fx-padding: 15; -fx-background-color: #f1c40f; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" 
+                    onAction="#handleReturn"/>
+        </VBox>
+    </HBox>
+</VBox>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/pharmacy-system/src/FXMLController.java</file>
+            <file>file:/C:/pharmacy-system/src/application/app.java</file>
+            <file>file:/C:/pharmacy-system/src/model/finance/AlertSystem.java</file>
+            <file>file:/C:/pharmacy-system/src/model/finance/ReportGeneratortest.java</file>
+            <file>file:/C:/pharmacy-system/src/model/finance/AlertSystemTest.java</file>
+            <file>file:/C:/pharmacy-system/src/DB/DBConnection.java</file>
+            <file>file:/C:/pharmacy-system/src/util/DateFormatter.java</file>
+            <file>file:/C:/pharmacy-system/src/model/finance/ReportGenerator.java</file>
+            <file>file:/C:/pharmacy-system/src/gui/controllers/LoginController.java</file>
+            <file>file:/C:/pharmacy-system/src/gui/controllers/SuppliersController.java</file>
+            <file>file:/C:/pharmacy-system/src/gui/controllers/ReportsController.java</file>
+            <file>file:/C:/pharmacy-system/src/gui/css/styles.css</file>
+        </group>
+    </open-files>
+</project-private>

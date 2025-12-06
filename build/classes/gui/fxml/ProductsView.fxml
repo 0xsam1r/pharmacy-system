@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="gui.controllers.ProductsController" 
+      spacing="20" style="-fx-background-color: transparent;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="Products Management" styleClass="label-header"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="➕ Add New Product" styleClass="btn, btn-success" onAction="#handleAddProduct"/>
+    </HBox>
+    
+    
+    <HBox styleClass="card" spacing="15" alignment="CENTER_LEFT">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+        
+        <Label text="🔍 Search:"/>
+        <TextField fx:id="searchField" promptText="Search by name or barcode..." prefWidth="300" 
+                   onKeyReleased="#handleSearch"/>
+                   
+        <TextField fx:id="activeIngredientSearchField" promptText="Active Ingredient..." prefWidth="200" 
+                   onKeyReleased="#handleActiveIngredientSearch"/>
+        
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <Label text="Category:"/>
+        <ComboBox fx:id="categoryComboBox" prefWidth="150" onAction="#handleCategoryFilter"/>
+        
+        <Button text="🔄 Refresh" styleClass="btn, btn-secondary" onAction="#handleRefresh"/>
+    </HBox>
+    
+    
+    <VBox styleClass="card" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+        
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Products List" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="productCountLabel" text="Total: 0 products" style="-fx-text-fill: #7f8c8d;"/>
+        </HBox>
+        
+        <TableView fx:id="productsTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="Barcode" prefWidth="120" fx:id="colBarcode"/>
+                <TableColumn text="Name" prefWidth="250" fx:id="colName"/>
+                <TableColumn text="Category" prefWidth="150" fx:id="colCategory"/>
+                <TableColumn text="Price" prefWidth="120" fx:id="colPrice"/>
+                <TableColumn text="Units Per Product" prefWidth="150" fx:id="colUnit"/>
+                <TableColumn text="Dosage Form" prefWidth="150" fx:id="colDosage"/>
+                <TableColumn text="Actions" prefWidth="150" fx:id="colActions"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="gui.controllers.PurchasesController" 
+      spacing="20" style="-fx-background-color: transparent;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        
+        
+        <VBox spacing="15" HBox.hgrow="ALWAYS" styleClass="card">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            
+            <Label text="New Purchase (Stock In)" styleClass="label-header"/>
+            
+            
+            <GridPane hgap="15" vgap="10">
+                <Label text="Supplier:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="supplierCombo" promptText="Select Supplier" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="250"/>
+                
+                <Label text="Invoice Date:" GridPane.rowIndex="0" GridPane.columnIndex="2" style="-fx-font-weight: bold;"/>
+                <HBox spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="3">
+                    <DatePicker fx:id="invoiceDate"/>
+                    <Button text="📂 Load Invoice" onAction="#handleLoadInvoice" styleClass="btn, btn-info" style="-fx-font-size: 11px;"/>
+                </HBox>
+            </GridPane>
+            
+            <Separator/>
+            
+            
+            <Label text="Add Item Details" style="-fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+            
+            <GridPane hgap="15" vgap="15">
+                
+                <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+                    <Label text="Product Barcode:"/>
+                    <TextField fx:id="barcodeField" promptText="Scan/Enter Barcode"/>
+                </VBox>
+                
+                <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0" HBox.hgrow="ALWAYS" GridPane.columnSpan="2">
+                    <Label text="Product Name:"/>
+                    <ComboBox fx:id="productNameCombo" promptText="Type Name to Search" editable="true" maxWidth="Infinity"/>
+                </VBox>
+                
+                <VBox spacing="5" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                    <Label text="Batch Number:"/>
+                    <ComboBox fx:id="batchCombo" promptText="Select/Type Batch" editable="true" prefWidth="150"/>
+                </VBox>
+                
+                
+                <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label text="Expiry Date:"/>
+                    <DatePicker fx:id="expiryDate" maxWidth="Infinity"/>
+                </VBox>
+
+                <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label text="Qty (Boxes):"/>
+                    <TextField fx:id="quantityField" promptText="Qty" maxWidth="100"/>
+                </VBox>
+                
+                <VBox spacing="5" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <Label text="Unit Cost:"/>
+                    <TextField fx:id="costField" promptText="Unit Price" maxWidth="120"/>
+                </VBox>
+                
+                <Button text="➕ Add to List" onAction="#handleAddItem" styleClass="btn, btn-primary" 
+                        GridPane.columnIndex="3" GridPane.rowIndex="1" maxWidth="Infinity" style="-fx-alignment: CENTER;" />
+            </GridPane>
+            
+            <Separator/>
+            
+            <TableView fx:id="purchaseTable" VBox.vgrow="ALWAYS" editable="true">
+                <columns>
+                    <TableColumn text="Product" prefWidth="200" fx:id="colName"/>
+                    <TableColumn text="Batch" prefWidth="120" fx:id="colBatch"/>
+                    <TableColumn text="Expiry" prefWidth="120" fx:id="colExpiry"/>
+                    <TableColumn text="Qty" prefWidth="80" fx:id="colQty"/>
+                    <TableColumn text="Rate" prefWidth="100" fx:id="colCostRate"/>
+                    <TableColumn text="Total" prefWidth="120" fx:id="colTotal"/>
+                    <TableColumn text="Action" prefWidth="80" fx:id="colAction"/>
+                </columns>
+
+            </TableView>
+        </VBox>
+        
+        
+        <VBox spacing="15" prefWidth="380" minWidth="380" styleClass="card">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            
+            <Label text="Payment Details" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            
+            <GridPane vgap="20" hgap="10">
+                <Label text="Total Amount:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-size: 14px;"/>
+                <Label fx:id="totalLabel" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                
+                <Label text="Paid Amount:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-size: 14px;"/>
+                <TextField fx:id="paidField" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-font-size: 14px;"/>
+                
+                <Label text="Remaining:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-size: 14px;"/>
+                <Label fx:id="remainingLabel" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-text-fill: #e74c3c; -fx-font-weight: bold; -fx-font-size: 16px;"/>
+            </GridPane>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            
+            <Button text="✅ Confirm Purchase" styleClass="btn, btn-success" maxWidth="Infinity" 
+                    style="-fx-font-size: 16px; -fx-padding: 15; -fx-font-weight: bold;" onAction="#handleConfirmPurchase"/>
+            
+            <Button text="❌ Clear All" styleClass="btn, btn-danger" maxWidth="Infinity" 
+                    style="-fx-font-size: 14px;" onAction="#handleClear"/>
+            
+            <Separator/>
+            <Button text="↩ Purchase Return" styleClass="btn, btn-warning" maxWidth="Infinity" onAction="#handlePurchaseReturn"/>
+        </VBox>
+    </HBox>
+</VBox>

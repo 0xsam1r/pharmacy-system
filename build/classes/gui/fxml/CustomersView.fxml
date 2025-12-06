@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="gui.controllers.CustomersController" 
+      spacing="20" style="-fx-background-color: transparent;">
+    
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="Customers Management" styleClass="label-header"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Add New Customer" styleClass="btn, btn-success" onAction="#handleAddCustomer"/>
+    </HBox>
+    
+    <HBox styleClass="card" spacing="15" alignment="CENTER_LEFT">
+        <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+        
+        <Label text="Search:"/>
+        <TextField fx:id="searchField" promptText="Search by name, phone, or ID..." prefWidth="350" 
+                   onKeyReleased="#handleSearch"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Refresh" styleClass="btn, btn-secondary" onAction="#handleRefresh"/>
+    </HBox>
+    
+    <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="10">
+        <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+        
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Customers List" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="customerCountLabel" text="Total: 0 customers" style="-fx-text-fill: #7f8c8d;"/>
+        </HBox>
+        
+        <TableView fx:id="customersTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="Customer ID" prefWidth="120" fx:id="colCustomerId"/>
+                <TableColumn text="Name" prefWidth="200" fx:id="colName"/>
+                <TableColumn text="Phone" prefWidth="150" fx:id="colPhone"/>
+                <TableColumn text="Points" prefWidth="100" fx:id="colPoints"/>
+                <TableColumn text="Total Purchases" prefWidth="130" fx:id="colPurchases"/>
+                <TableColumn text="Actions" prefWidth="150" fx:id="colActions"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

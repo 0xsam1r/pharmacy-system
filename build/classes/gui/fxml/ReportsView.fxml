@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="gui.controllers.ReportsController"
+      spacing="20" style="-fx-background-color: transparent;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    
+    <Label text="Reports &amp; Analytics" styleClass="label-header"/>
+    
+    
+    <GridPane hgap="20" vgap="20">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+        </columnConstraints>
+        
+        <VBox styleClass="card" spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            <Label text="📊 Sales Reports" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label text="Generate comprehensive sales reports" wrapText="true" style="-fx-text-fill: #7f8c8d;"/>
+            <DatePicker fx:id="salesReportDate" promptText="Select date" maxWidth="Infinity"/>
+            <Button text="Generate Sales Report" styleClass="btn, btn-primary" maxWidth="Infinity" 
+                    onAction="#handleGenerateSalesReport"/>
+        </VBox>
+        
+        <VBox styleClass="card" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            <Label text="💰 Profit Analysis" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label text="Generate profit graphs and charts" wrapText="true" style="-fx-text-fill: #7f8c8d;"/>
+            <DatePicker fx:id="profitReportDate" promptText="Select date" maxWidth="Infinity"/>
+            <Button text="Generate Profit Graph" styleClass="btn, btn-success" maxWidth="Infinity" 
+                    onAction="#handleGenerateProfitGraph"/>
+        </VBox>
+        
+        <VBox styleClass="card" spacing="15" GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            <Label text="⚠️ Alerts Summary" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label text="View all system alerts and warnings" wrapText="true" style="-fx-text-fill: #7f8c8d;"/>
+            <Button fx:id="checkAlertsButton" text="🔔 Check System Alerts" styleClass="btn, btn-warning" maxWidth="Infinity" 
+                    onAction="#handleViewAlerts"/>
+            <Label fx:id="lastAlertCheckLabel" text="Last checked: Never" style="-fx-text-fill: #95a5a6; -fx-font-size: 11px;"/>
+        </VBox>
+    </GridPane>
+    
+    
+    <VBox styleClass="card" spacing="15" VBox.vgrow="ALWAYS">
+        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+        
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="📄 Report Output" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Clear" styleClass="btn, btn-secondary" onAction="#handleClearOutput"/>
+        </HBox>
+        
+        <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Text Report">
+                <TextArea fx:id="reportOutputArea" editable="false" wrapText="true" prefHeight="500"
+                          style="-fx-font-family: 'Courier New'; -fx-font-size: 12px;"/>
+            </Tab>
+        </TabPane>
+    </VBox>
+</VBox>
+

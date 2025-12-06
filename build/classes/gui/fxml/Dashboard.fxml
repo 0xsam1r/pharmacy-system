@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+            fx:controller="gui.controllers.DashboardController" 
+            styleClass="dashboard-container" 
+            prefWidth="1400" prefHeight="900">
+    
+    
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Logout" onAction="#handleLogout"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Exit" onAction="#handleExit"/>
+            </Menu>
+            <Menu text="Help">
+                <MenuItem text="About" onAction="#handleAbout"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    
+    
+    <left>
+        <VBox styleClass="sidebar" prefWidth="220" spacing="0">
+            
+            <VBox alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #1a252f;">
+                <Label text="PMS" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+                <Label text="Pharmacy System" style="-fx-text-fill: #95a5a6; -fx-font-size: 12px;"/>
+            </VBox>
+            
+            <Separator style="-fx-background-color: #34495e;"/>
+            
+            
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" 
+                        style="-fx-background-color: #2c3e50; -fx-background: #2c3e50;" VBox.vgrow="ALWAYS">
+                <content>
+                    <VBox spacing="0" style="-fx-background-color: #2c3e50;">
+                        <Button fx:id="btnDashboard" text="Dashboard" styleClass="sidebar-button, sidebar-button-active" 
+                                prefWidth="220" onAction="#showDashboardView"/>
+                        <Button fx:id="btnProducts" text="Products" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showProductsView"/>
+                        <Button fx:id="btnInventory" text="Inventory" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showInventoryView"/>
+                        <Button fx:id="btnBatches" text="Batches" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showBatchView"/>
+                        <Button fx:id="btnSales" text="Sales" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showSalesView"/>
+                        <Button fx:id="btnPurchases" text="Purchases" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showPurchasesView"/>
+                        <Button fx:id="btnCustomers" text="Customers" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showCustomersView"/>
+                        <Button fx:id="btnEmployees" text="Employees" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showEmployeesView"/>
+                        <Button fx:id="btnReports" text="Reports" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showReportsView"/>
+                        <Button fx:id="btnSuppliers" text="Suppliers" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showSuppliersView"/>
+                        <Button fx:id="btnTreasury" text="Treasury" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showTreasuryView"/>
+                        <Button fx:id="btnSettings" text="Settings" styleClass="sidebar-button" 
+                                prefWidth="220" onAction="#showSettingsView"/>
+                    </VBox>
+                </content>
+            </ScrollPane>
+            
+            
+            <VBox style="-fx-padding: 15; -fx-background-color: #1a252f;" spacing="8">
+                <Label fx:id="userLabel" text="Welcome, User" 
+                       style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;" wrapText="true" maxWidth="190"/>
+                <Label fx:id="roleLabel" text="Role: Admin" 
+                       style="-fx-text-fill: #95a5a6; -fx-font-size: 11px;" wrapText="true" maxWidth="190"/>
+            </VBox>
+        </VBox>
+    </left>
+    
+    
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <javafx.scene.image.ImageView preserveRatio="true" fitHeight="600">
+                 <image>
+                     <javafx.scene.image.Image url="@../images/dashboard_welcome.jpeg"/>
+                 </image>
+            </javafx.scene.image.ImageView>
+        </StackPane>
+    </center>
+</BorderPane>
