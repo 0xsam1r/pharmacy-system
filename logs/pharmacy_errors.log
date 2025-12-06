@@ -17473,6 +17473,10 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 [INFO] 2025-12-06 18:33:57 - Reports view initialized
 [INFO] 2025-12-06 18:33:58 - Products view initialized
 [INFO] 2025-12-06 18:33:59 - Inventory view initialized
+<<<<<<< HEAD
+[INFO] 2025-12-06 19:14:09 - Application started successfully
+[INFO] 2025-12-06 19:14:14 - Application closed by user
+=======
 [INFO] 2025-12-06 18:49:53 - Application started successfully
 [INFO] 2025-12-06 18:49:55 - Application closed by user
 ================================================================================
@@ -17733,6 +17737,7 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.ListView.set
 [INFO] 2025-12-06 19:21:34 - Dashboard displayed successfully
 [INFO] 2025-12-06 19:21:36 - Products view initialized
 [INFO] 2025-12-06 19:21:37 - Inventory view initialized
+<<<<<<< HEAD
 [INFO] 2025-12-06 19:23:32 - Application closed by user
 [INFO] 2025-12-06 19:23:37 - Application started successfully
 [INFO] 2025-12-06 19:23:42 - Session started for user: ziad (Role: Manager, Branch: 1)
@@ -17992,3 +17997,6 @@ java.lang.NullPointerException: Cannot invoke "javafx.scene.control.Label.setTex
 [INFO] 2025-12-06 19:31:12 - Inventory view initialized
 [INFO] 2025-12-06 19:31:15 - Inventory view initialized
 [INFO] 2025-12-06 19:31:19 - Inventory view initialized
+=======
+>>>>>>> 2ca183344374f8bc294748a7c5790d3da752bdef
+>>>>>>> ad2a01120510df4bdbb5787a07ba1097f824a54b
