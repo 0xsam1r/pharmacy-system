@@ -21,7 +21,6 @@ public class Customer extends Person {
 
 public double calcPoints(SaleInvoice saleInvoice , double Total) {
         if (saleInvoice != null) {
-            double subTotal = saleInvoice.getSupTotal();
             double pointsEarned = 0.0;
 
             if (Total <= 100) {

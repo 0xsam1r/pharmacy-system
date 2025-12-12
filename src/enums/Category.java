@@ -1,12 +1,7 @@
 package enums;
 
- 
-
 public enum Category {
 
-     
-     
-     
     MEDICINE,
     COSMETIC,
     BABY_CARE,
@@ -21,9 +16,7 @@ public enum Category {
     NUTRITION,
     DEVICES,
 
-     
-     
-     
+    // Medicine categories
     PAINKILLER,             
     ANTIBIOTIC,             
     ANTIVIRAL,              
@@ -50,9 +43,7 @@ public enum Category {
     PEDIATRIC,              
     TOPICAL,                
 
-     
-     
-     
+    // Other categories
     SUPPLEMENTS,            
     PROTEIN,                
     BEAUTY,                 

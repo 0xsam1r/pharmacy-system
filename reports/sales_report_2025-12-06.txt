@@ -6,62 +6,33 @@
 --------------------------------------------------------------------------------
 Invoice    Date         Disc.    Customer             Product                   Line Total Employee    
 --------------------------------------------------------------------------------
-2002       2025-12-06   0.00     Walk-in             
-                                                           Panadol                        35.00   ziad        
-                                                           Augmentin 625                 155.00   ziad        
-                                                                     Invoice Total:     190.00
 2003       2025-12-06   0.00     Ahmed Saleh         
-                                                           Zyrtec                         60.00   ziad        
-                                                           Adol Extra                     45.00   ziad        
-                                                                     Invoice Total:     105.00
+                                                           Zyrtec                         60.00   manager1    
+                                                                     Invoice Total:      60.00
 2004       2025-12-06   0.00     Dina Farid          
-                                                           Nivea Soft Cream 100ml        120.00   ziad        
+                                                           Nivea Soft Cream 100ml        120.00   manager1    
                                                                      Invoice Total:     120.00
 2006       2025-12-06   0.00     Mona Nasser         
-                                                           Vitamin C 1000                 95.00   ziad        
-                                                           Vicks Cough Syrup              90.00   ziad        
-                                                           Glucophage 500                 95.00   ziad        
-                                                                     Invoice Total:     280.00
-<<<<<<< HEAD
-2009       2025-12-06   0.00     Walk-in             
-                                                           Panadol                        35.00   ziad        
-                                                                     Invoice Total:      35.00
-2010       2025-12-06   0.00     Walk-in             
-                                                           Panadol Cold & Flu             55.00   ziad        
-                                                                     Invoice Total:      55.00
-2011       2025-12-06   0.00     Walk-in             
-                                                           Panadol Cold & Flu             27.50   ziad        
-                                                                     Invoice Total:      27.50
-2012       2025-12-06   6.60     Mona Nasser         
-                                                           Cataflam 50                    75.00   ziad        
-                                                                     Invoice Total:      75.00
-2013       2025-12-06   5.28     Mona Nasser         
-                                                           Zyrtec                         60.00   ziad        
-                                                                     Invoice Total:      60.00
-2014       2025-12-06   0.00     Mona Nasser         
-                                                           Panadol                        35.00   ziad        
-                                                                     Invoice Total:      35.00
-2015       2025-12-06   0.00     Mona Nasser         
-                                                           Cataflam 50                    75.00   ziad        
-                                                                     Invoice Total:      75.00
+                                                           Glucophage 500                 95.00   manager1    
+                                                                     Invoice Total:      95.00
 2016       2025-12-06   0.00     Walk-in             
-                                                           Panadol                        35.00   ziad        
-                                                                     Invoice Total:      35.00
-2017       2025-12-06   10.00    Mona Nasser         
-                                                           Panadol Cold & Flu             55.00   ziad        
+                                                           Panadol Cold & Flu             55.00   manager1    
                                                                      Invoice Total:      55.00
-2018       2025-12-06   10.00    Mona Nasser         
-                                                           Panadol                        35.00   ziad        
-                                                                     Invoice Total:      35.00
-2019       2025-12-06   10.00    Mona Nasser         
-                                                           Panadol                        35.00   ziad        
-                                                                     Invoice Total:      35.00
+2017       2025-12-06   0.00     Walk-in             
+                                                           Panadol Cold & Flu             55.00   manager1    
+                                                                     Invoice Total:      55.00
+2018       2025-12-06   7.18     Ahmed Saleh         
+                                                           Panadol Cold & Flu             55.00   manager1    
+                                                                     Invoice Total:      55.00
+2021       2025-12-06   0.41     Ahmed Saleh         
+                                                           Brufen 400                     85.00   cash1       
+                                                                     Invoice Total:      85.00
+2022       2025-12-06   0.00     Walk-in             
+                                                           Nivea Soft Cream 100ml        120.00   manager1    
+                                                           Panadol Cold & Flu             55.00   manager1    
+                                                                     Invoice Total:     175.00
 --------------------------------------------------------------------------------
-                                                                     GRAND TOTAL SALES:    1217.50
-=======
---------------------------------------------------------------------------------
-                                                                     GRAND TOTAL SALES:     695.00
->>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
+                                                                     GRAND TOTAL SALES:     700.00
 
 
 2. PURCHASES
@@ -69,41 +40,22 @@ Invoice    Date         Disc.    Customer             Product                   
 Invoice    Date         Total        Paid         Remaining    Supplier            
 --------------------------------------------------------------------------------
 2005       2025-12-06   8400.00      4000.00      4400.00      PharmaTrade Egypt   
-<<<<<<< HEAD
-2007       2025-12-06   230.00       100.00       130.00       Al-Motaheda Distribution
-2008       2025-12-06   -230.00      -100.00      -130.00      Al-Motaheda Distribution
-2020       2025-12-06   450.00       0.00         450.00       PharmaTrade Egypt   
-2021       2025-12-06   -450.00      0.00         -450.00      Al-Motaheda Distribution
-2022       2025-12-06   400.00       400.00       0.00         PharmaTrade Egypt   
-2023       2025-12-06   -400.00      -400.00      0.00         Al-Motaheda Distribution
-2024       2025-12-06   600.00       200.00       400.00       PharmaTrade Egypt   
-2025       2025-12-06   -600.00      -200.00      -400.00      PharmaTrade Egypt   
-2026       2025-12-06   525.00       200.00       325.00       Al-Motaheda Distribution
-2027       2025-12-06   200.00       150.00       50.00        Al-Motaheda Distribution
-2028       2025-12-06   -200.00      -75.00       -125.00      Al-Motaheda Distribution
-2029       2025-12-06   950.00       200.00       750.00       Al-Motaheda Distribution
-2030       2025-12-06   -475.00      -100.00      -375.00      Al-Motaheda Distribution
+2007       2025-12-06   10000000.00  1600.00      9998400.00   Archived Supplier   
+2009       2025-12-06   10.00        0.00         10.00        PharmaTrade Egypt   
+2010       2025-12-06   25.00        0.00         25.00        PharmaTrade Egypt   
+2011       2025-12-06   270400.00    270000.00    400.00       PharmaTrade Egypt   
+2015       2025-12-06   100.00       99.85        0.15         PharmaTrade Egypt   
+2019       2025-12-06   1200.00      1000.00      200.00       PharmaTrade Egypt   
 --------------------------------------------------------------------------------
-                                                                     TOTAL PURCHASES:    9400.00
-=======
---------------------------------------------------------------------------------
-                                                                     TOTAL PURCHASES:    8400.00
->>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
+                                                                     TOTAL PURCHASES: 10280135.00
 
 
 3. PROFIT & LOSS SUMMARY
 --------------------------------------------------
-<<<<<<< HEAD
-Total Sales:                      1217.50 EGP
-Total Purchases:                  9400.00 EGP
+Total Sales:                       700.00 EGP
+Total Purchases:              10280135.00 EGP
 --------------------------------------------------
-NET PROFIT:                      -8182.50 EGP
-=======
-Total Sales:                       695.00 EGP
-Total Purchases:                  8400.00 EGP
---------------------------------------------------
-NET PROFIT:                      -7705.00 EGP
->>>>>>> 59a307d3bed69713b1e5de9f0a86b704b05c045f
+NET PROFIT:                  -10279435.00 EGP
 --------------------------------------------------
 
 ================================================================================

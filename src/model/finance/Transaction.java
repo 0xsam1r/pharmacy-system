@@ -37,7 +37,7 @@ public class Transaction {
         this.dateAndTime = null;
         this.type = "";
         this.employee = new Employee();
-        this.invoice = invoice;
+        this.invoice = null;
         this.amountOfMoney = 0;
     }
 

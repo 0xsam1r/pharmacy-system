@@ -41,5 +41,5 @@ public class ReturnItem {
     public double getUnitPrice() { return unitPrice; }
     public void setUnitPrice(double unitPrice) { this.unitPrice = unitPrice; }
     public double getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void setQuantity(double quantity) { this.quantity = quantity; }
 }

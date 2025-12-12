@@ -102,20 +102,16 @@ public class Branch {
 
      
     public void addEmployee(Employee employee) {
-       if( employees.contains(employee))
+       if( employees.contains(employee)) {
             System.out.println("error that employee was exiset");
+            return;
+       }
        employees.add(employee);
     }
 
     public void removeEmployee(String employeeId) {
         employees.removeIf(emp -> emp.getId().equals(employeeId));
     }
-
- 
- 
- 
- 
- 
 
     public Treasury getTreasury() {
         return treasury;
